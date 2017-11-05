@@ -1,0 +1,314 @@
+
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/architecture.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/architecture.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+  <xsd:annotation>
+    <xsd:documentation>
+
+       This schema defines the main components of the Yancees architecture, allowing
+       the specification of components (plug-ins) that go along with each subsystem
+       of the architecture.
+
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <!--
+    ELEMENT: architecture
+
+    This tag is the root element in a architecture file, the topmost element that
+    defines the architecture representation structure.
+   -->
+  <xsd:element name="architecture" type="ArchitectureConfigurationType"/>
+
+  <!--
+    TYPE: ArchitectureType
+
+    The ArchitectureType defines the main subsystems of the architecture, allowing
+    the inclusion and configuration of plug-ins in eacho of these subsystems.
+
+   -->
+  <xsd:complexType name="ArchitectureConfigurationType">
+     <xsd:sequence>
+        <xsd:element name="dispatcher" type="DispatcherConfigurationType"
+                  minOccurs="1" maxOccurs="unbounded"/>
+        <xsd:element name="subscription" type="SubscriptionConfigurationType"
+                  minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="notification" type="NotificationConfigurationType"
+                  minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="protocol" type="ProtocolConfigurationType"
+                  minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="inputFilters" type="FilterConfigurationType"
+                  minOccurs="0" maxOccurs="1"/>                
+        <xsd:element name="outputFilters" type="FilterConfigurationType"
+                  minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="services" type="ServicesConfigurationType"
+                  minOccurs="0" maxOccurs="1"/>          
+     </xsd:sequence>
+  </xsd:complexType>
+
+
+ <!--
+    TYPE: SubsystemType
+
+	  It is a superclass that has all common elements to the subsystems, which include
+	  subscripton notificatoin and protocol configurations.
+
+  -->
+  <xsd:complexType name="SubsystemConfigurationType">
+     <xsd:sequence>
+        <xsd:element name="plugin" type="PluginDescriptorType"
+                     minOccurs="1" maxOccurs="unbounded"/>
+
+     </xsd:sequence>
+  </xsd:complexType>
+
+ <!--
+    TYPE: PluginDescriptorType
+
+    This type defines all the elements that define the attributes of a
+    plug-in: name, a short description, the mainClass (optional), the
+    factoryClass (mandatory), the auxiliary files and a list of
+    dependencies.
+   -->
+  <xsd:complexType name="PluginDescriptorType">
+     <xsd:sequence>
+        <xsd:element name="name" type="NameType"
+               minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="description" type="DescriptionType"
+               minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="mainClass" type="JavaClassFile"
+               minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="factoryClass" type="JavaClassFile"
+               minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="auxClass" type="JavaClassFile"
+               minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="depends" type="DependencyListType"
+               minOccurs="0" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+
+  <!--
+    TYPE: DependencyList
+   -->
+  <xsd:simpleType name="DependencyListType">
+     <xsd:list itemType="xsd:string"/>
+  </xsd:simpleType>
+
+
+
+ <!--
+    TYPE: DispatcherType
+
+    The server configures the notification server used in the core
+    The adapter defines the class that implements the trnaslation between the
+    internal XML representation of the system and the specific notification
+    server language
+	 The plugin describes the component that handles the XML subscription language
+    associated to this server/adapter combination.
+   -->
+  <xsd:complexType name="DispatcherConfigurationType">
+     <xsd:sequence>
+	     <xsd:element name="server" type="NotificationServerType"
+                     minOccurs="1" maxOccurs="1"/>
+		  <xsd:element name="adapter" type="JavaClassFile"
+                     minOccurs="1" maxOccurs="1"/>       
+     </xsd:sequence>
+  </xsd:complexType>
+
+
+<!--
+    TYPE: NotificationServerType
+
+    Defines the basic notification server informion: name and uri used
+    to connect to it. Additional attributes may be added here in the future
+    to provide more intitialization parameters to the adapter.
+   -->
+  <xsd:complexType name="NotificationServerType">
+     <xsd:sequence>
+			<xsd:element name="name" type="NameType"
+                     minOccurs="1" maxOccurs="1"/>
+         <xsd:element name="uri" type="xsd:anyURI"
+                     minOccurs="1" maxOccurs="1"/>
+
+     </xsd:sequence>
+  </xsd:complexType>
+
+
+ <!--
+    TYPE: NotificationType
+
+	 Defines notificaiton plug-ins, used to deliver events when the subscription
+    is matched.
+   -->
+  <xsd:complexType name="NotificationConfigurationType">
+     <xsd:complexContent>
+      <xsd:extension base="SubsystemConfigurationType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+ <!--
+    TYPE: SubscriptionType
+
+	 Configures the subscription plug-ins
+   -->
+  <xsd:complexType name="SubscriptionConfigurationType">
+     <xsd:complexContent>
+      <xsd:extension base="SubsystemConfigurationType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+ <!--
+    TYPE: ProtocolType
+
+	 Configures protocol plug-ins
+   -->
+  <xsd:complexType name="ProtocolConfigurationType">
+     <xsd:complexContent>
+      <xsd:extension base="SubsystemConfigurationType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+ <!--
+    TYPE: ServiceConfigurationType
+
+	 Configures generic services
+   -->
+  <xsd:complexType name="ServicesConfigurationType">
+    <xsd:sequence>
+    	<xsd:element name="service" type="ServiceDescriptionType" minOccurs = "1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+ <!--
+    TYPE: ServiceDescriptionType
+
+    Configures individual services
+   -->
+  <xsd:complexType name="ServiceDescriptionType">
+    <xsd:sequence>
+       <xsd:element name="name" type="NameType"
+               minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="description" type="DescriptionType"
+               minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="mainClass" type="JavaClassFile"
+               minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="auxClass" type="JavaClassFile"
+               minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+ <!--
+    TYPE: FilterConfigurationType
+
+	 Configures input and output filters
+   -->
+  <xsd:complexType name="FilterConfigurationType">
+    <xsd:sequence>
+    	<xsd:element name="filter" type="FilterDescriptionType" minOccurs = "1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+ <!--
+    TYPE: FilterDescriptionType
+
+    Configures individual filters for input and output
+   -->
+  <xsd:complexType name="FilterDescriptionType">
+    <xsd:sequence>
+       <xsd:element name="name" type="NameType"
+               minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="description" type="DescriptionType"
+               minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="mainClass" type="JavaClassFile"
+               minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="auxClass" type="JavaClassFile"
+               minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="depends" type="DependencyListType"
+               minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+  <!--
+    TYPE: JavaClassFile
+
+    The JavaClassFile type contains the data necessary to locate
+    and instantiate a Java class file.  Files assumed to be on
+    the local classpath do not need a URL.  Files that are
+    to be retrieved from a remote server should have a URL.
+   -->
+  <xsd:complexType name="JavaClassFile">
+    <xsd:sequence>
+      <xsd:element name="javaClassName" type="JavaClassName"/>
+      <xsd:element name="url"           type="XMLLink"
+                   minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+ <!--
+    TYPE: JavaClassName
+
+    A JavaClassName is the name of a Java class,
+    i.e. edu.uci.isr.xarch.XArchUtils.
+   -->
+  <xsd:complexType name="JavaClassName">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string"/>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+
+<!--
+    TYPE: XMLLink
+
+    This type is a schema definition that encapsulates
+    the parts of the XLink definition that are useful
+    in the xArch context.
+   -->
+  <xsd:complexType name="XMLLink">
+   <xsd:simpleContent>
+      <xsd:extension base="xsd:anyURI"/>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <!--
+    TYPE: NameType
+
+    A name is a string that uniquely identifies a component
+
+   -->
+  <xsd:complexType name="NameType">
+     <xsd:simpleContent>
+        <xsd:extension base="xsd:string"/>
+     </xsd:simpleContent>
+  </xsd:complexType>
+
+
+  <!--
+    TYPE: DescriptionType
+
+    Is a piece of text used to descrbe components of this configuration file
+
+   -->
+  <xsd:complexType name="DescriptionType">
+     <xsd:simpleContent>
+        <xsd:extension base="xsd:string"/>
+     </xsd:simpleContent>
+  </xsd:complexType>
+
+</xsd:schema>

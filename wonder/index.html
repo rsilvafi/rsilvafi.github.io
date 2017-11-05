@@ -1,0 +1,1006 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<meta name="keywords"
+
+content="Distributed Systems, CORBA, Java, Mobile Agents, Workflow Management, CSCW, Groupware, Mobile Objects, Distributed Workflow, Large-scale Workflow">
+<meta name="University"
+
+content="IC - Institure of Computing, UNICAMP">
+
+	<META NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+	<TITLE>Wonder - Workflow on Distributed Envirionment</TITLE>
+</HEAD>
+
+<BODY TEXT="#552800" BGCOLOR="#F8F4E7" LINK="maroon" ALINK="#00A000" VLINK="#6F6F37">
+
+<P><A NAME="Main"></A></P>
+<P ALIGN="CENTER">&nbsp;</P>
+
+<DIV ALIGN="CENTER">
+	<CENTER>
+	<P>
+	<TABLE BORDER="0">
+		<TR>
+			<TD WIDTH="299">
+				<P><IMG SRC="BlueBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0" align="center"><A HREF="#Whatis"><B><FONT
+				FACE="Arial">What is Wonder</FONT></B></A></P>
+				<P><IMG SRC="GreenBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0" align="center"><A HREF="#Architecture"><B><FONT
+				FACE="Arial">Wonder Architecture</FONT></B></A></P>
+				<P><IMG SRC="RedBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0" align="center"><A HREF="#Chronogram"><B><FONT
+				FACE="Arial">Chronogram</FONT></B></A></P>
+				<P><IMG SRC="YellowBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0" align="center"><A HREF="#Status"><B><FONT
+				FACE="Arial">Project Status</FONT></B></A></P>
+				<P><IMG SRC="BlueBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0" align="center"><a HREF="tests/index.html"><STRONG><FONT
+				FACE="Arial">Performance Tests Results</FONT></STRONG></a></P>
+				<P><IMG SRC="GreenBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0" align="center"><A HREF="#Developpers"><B><FONT
+				FACE="Arial">Designers/Developers</FONT></B></A></P>
+				<P><IMG SRC="YellowBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0" align="center"><A HREF="#Related"><B><FONT
+				FACE="Arial">Related Links</FONT></B></A></P>
+
+                <P><IMG SRC="BlueBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0" align="center"><a HREF="errors.html"><STRONG><FONT
+				FACE="Arial">Frequent Programming Errors</FONT></STRONG></a>
+			</TD>
+			<TD><IMG SRC="Wonder_Logo.gif" WIDTH="346" HEIGHT="256" ALIGN="BOTTOM" BORDER="0"></TD>
+			<TD>&nbsp;</TD>
+		</TR>
+		<TR>
+			<TD WIDTH="299">&nbsp;</TD>
+			<TD>&nbsp;</TD>
+			<TD>&nbsp;</TD>
+		</TR>
+	</TABLE>
+
+</CENTER>
+</DIV>
+
+<P>
+<HR ALIGN="CENTER">
+
+<H1><marquee width="90%">Make your work flow! Meet the Wonder! The WFMS for a distributed world!</marquee></H1>
+<H1><IMG SRC="BlueBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><A NAME="Whatis"></A><FONT SIZE="5"
+FACE="Arial"> What is Wonder</FONT></H1>
+<P><FONT SIZE="3" FACE="Arial">Wonder stands for </FONT><STRONG><FONT SIZE="3" FACE="Arial">Workflow
+on Distributed Environment</FONT></STRONG><FONT SIZE="3" FACE="Arial">. It's a workflow management system architecture
+provides a highly distributed framework to support Workflow Execution in large-scale environments.
+It uses the mobile objects paradigm, together with the communication facilities and
+resources of the
+<a href="http://www.omg.org/corba"> CORBA</a> framework.
+This project was part of a MS Thesis project of </FONT><a HREF="http://www.ics.uci.edu/~rsilvafi"><FONT SIZE="3"
+FACE="Arial">Roberto Silveira Silva FIlho</FONT></a><FONT SIZE="3" FACE="Arial"> at the IC - </FONT><A HREF="http://www.ic.unicamp.br"><FONT
+SIZE="3" FACE="Arial">Institute of Computing</FONT></A><FONT SIZE="3" FACE="Arial"> at UNICAMP - </FONT><A HREF="http://www.unicamp.br"><FONT
+SIZE="3" FACE="Arial">University of Campinas</FONT></A><FONT SIZE="3" FACE="Arial"> - SP - Brazil.
+The dissertation was defended on July 2000. It is available <a href="../tese/dissertacao.pdf">here</a>.</FONT></P>
+<P><A HREF="#Main"><FONT SIZE="3" FACE="Arial">Back to Main Menu</FONT></A></P>
+<P>
+<HR ALIGN="CENTER">
+
+<H1><IMG SRC="GreenBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><A NAME="Architecture"></A><FONT
+SIZE="5" FACE="Arial"> Wonder Architecture</FONT></H1>
+
+<BLOCKQUOTE>
+	<P><IMG SRC="../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="3" FACE="Arial"> The
+	main components and issues of the Wonder architecture are described in the </FONT><A HREF="ISADS99/isads99.pdf"><FONT
+	SIZE="3" FACE="Arial">paper</FONT></A><FONT SIZE="3" FACE="Arial"> published in the 4th International Symposium
+	on Autonomous Decentralized Systems (</FONT><A HREF="http://computer.org/proceedings/isads/0137/0137toc.htm#01370276"><FONT
+	SIZE="3" FACE="Arial">ISADS '99</FONT></A><FONT SIZE="3" FACE="Arial">), March 20-23, 1999 - Tokyo, JAPAN - </FONT><B><FONT
+	SIZE="3" FACE="Arial">CORBA Based Architecture for Large Scale Workflow</FONT></B><FONT SIZE="3" FACE="Arial">.</FONT></P>
+	<P><IMG SRC="../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="3" FACE="Arial"> It
+	is also summarized in the </FONT><a HREF="SBRC99/sbrc99.pdf"><FONT SIZE="3"
+	FACE="Arial">poster</FONT></a><FONT SIZE="3" FACE="Arial"> (in portuguese) presented in the 17th Brazilian Symposium
+	on Computer Networks - (</FONT><a HREF="http://www.ufba.br/~sbrc99/"><FONT SIZE="3" FACE="Arial">SBRC'99</FONT></a><FONT
+	SIZE="3" FACE="Arial">) -Bahia - Brazil - May 25-28, 1999. -</FONT><B><FONT SIZE="3" FACE="Arial"> Wonder: A Distributed
+	Architecture for Large Scale Workflow Using CORBA</FONT></B><FONT SIZE="3" FACE="Arial">.</FONT></P>
+
+	<P><IMG SRC="../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="3" FACE="Arial"> An
+	</FONT><B><FONT SIZE="3" FACE="Arial">updated version</FONT></B><FONT SIZE="3" FACE="Arial"> of the architecture,
+	with some implementation issues is in the </FONT><A HREF="ADSSpecialIssue/ADSSpecialIssue.pdf"><FONT
+	SIZE="3" FACE="Arial">paper</FONT></A><FONT SIZE="3" FACE="Arial">, published in the IEEE/IEICE Special Issue on
+	Autonomous Decentralized Systems of the IEICE Transactions on Communications magazine, Japan, June 2000.</FONT></P>
+
+	<P><IMG SRC="../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="3" FACE="Arial"> The
+	tests and the final implementation version is described in the Master Thesis </FONT><STRONG><FONT SIZE="3" FACE="Arial">(in
+	portuguese)</FONT></STRONG><FONT SIZE="3" FACE="Arial">: </FONT><a HREF="../tese/"><FONT
+	SIZE="3" FACE="Arial">Uma Arquitetura Baseada em CORBA para Workflow de Larga Escala</FONT></a><FONT SIZE="3" FACE="Arial">.</FONT></P>
+	<P><IMG SRC="../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="3" FACE="Arial"> </FONT><FONT
+	FACE="Arial">A </FONT><A HREF="CTD2001/ctd2001.pdf"><FONT FACE="Arial">six-page
+	paper</FONT></A><FONT FACE="Arial"> with a brief description of the architecture and the test results of the architecture
+	is also available. Submitted to the CTD 2001 - XIV Tesis and Discertation Workshop of the SBC - Brazilian Computer
+	Society.</FONT></P>
+	<P>
+</BLOCKQUOTE>
+
+<P><B><FONT SIZE="3" FACE="Arial">The main components of the Wonder architecture are summarized below:</FONT></B></P>
+
+<UL>
+	<LI><B><FONT SIZE="3" FACE="Arial">Activity Manager </FONT></B><FONT SIZE="3" FACE="Arial">- Mobile agent that
+	conveys all case data to the actor's host. It implements the workflow engine which allows its authonomous migration.
+	It also provides the data and case mobility of the architecture.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Wrapper</FONT></B><FONT SIZE="3" FACE="Arial"> - This component is used by the
+	Activity Manager to invoke external applications as word processors, CAD tools, spreadsheets, and so on. It executes
+	and manages these Invoked applications during a Task execution.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Synchronization Activity</FONT></B><FONT SIZE="3" FACE="Arial"> - Implemets
+	the synchronization points (AND and OR joins), udsed do synchronize and merge data from workflow branches.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Case Coordinator</FONT></B><FONT SIZE="3" FACE="Arial"> - Corodinates and manages
+	a case instance executuion. Tracks the execution of the AcrivityManager(s) agents of a particular workflow case.
+	It provides fault tolerance and management facilities to the architecture.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Process Coordinator</FONT></B><FONT SIZE="3" FACE="Arial"> - Creates and manages
+	Case Coordinators for each case instance. Copes with scalability and performs the case coordinator creation and
+	failure recovery procedure.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Role Coordinator</FONT></B><FONT SIZE="3" FACE="Arial"> - Dynamically allocates
+	actors to perform activities. Helps in the ActivityManager migration and in the dynamic binding of actors and resources
+	in the system.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Backup Server</FONT></B><FONT SIZE="3" FACE="Arial"> - Stores data used during
+	the activities execution. Used for improved fault tolerance. It copies critical data from unreliable desktops to
+	more stable machines. Also provides data to fault recovery procedures.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">History Server</FONT></B><FONT SIZE="3" FACE="Arial"> - Stores the execution
+	history of each finalized case. Provides a database front-end used by the role coordinators to dynamically alocate
+	users based on previou execution history.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Task List</FONT></B><FONT SIZE="3" FACE="Arial"> - User takslit surrogate object.
+	Implements the communication between an actor and the WONDER system.</FONT>
+</UL>
+
+<P><FONT SIZE="3" FACE="Arial">The object persistence is implemented by the </FONT><STRONG><FONT SIZE="3" FACE="Arial">LOA</FONT></STRONG><FONT
+SIZE="3" FACE="Arial"> - Local Object Activator - A &quot;hook&quot; in the </FONT><B><FONT SIZE="3" FACE="Arial">orbixd</FONT></B><FONT
+SIZE="3" FACE="Arial"> daemon, a Locator that executes in each host of the system. The objects are stored in the
+</FONT><STRONG><FONT SIZE="3" FACE="Arial">Object Repository</FONT></STRONG><FONT SIZE="3" FACE="Arial">, a special
+local disk area.</FONT></P>
+<P><A HREF="#Main"><FONT SIZE="3" FACE="Arial">Back to Main Menu</FONT></A></P>
+<P>
+<HR ALIGN="CENTER">
+
+<H1><IMG SRC="RedBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><A NAME="Chronogram"></A><FONT SIZE="5"
+FACE="Arial"> Chronogram</FONT></H1>
+<P><FONT FACE="Arial, Helvetica">Project Chronogram: From March 1998 to February 2000</FONT><BR>
+&nbsp;</P>
+<P>
+<TABLE BORDER="1" BGCOLOR="#FFEBD7">
+	<TR>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Mar</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Apr</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">May</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Jun</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Jul</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Aug</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Sep</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Oct</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Nov</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Dec</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Jan</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Feb</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Mar</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Apr</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">May</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Jun</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Jul</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Aug</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Sep</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Oct</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Nov</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Dec</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Jan</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Feb</FONT></B>
+		</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Elaboration</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">1</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">1</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">1</FONT>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Re-Elaboration</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">2</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">2</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">2</FONT>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">CORBA&nbsp;</FONT></B> <BR>
+			<B><FONT FACE="Arial">Mapping</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">3</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">3</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">3</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">3</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">3</FONT>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Specification/</FONT></B> <BR>
+			<B><FONT FACE="Arial">Implementation</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">4</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">4</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">4</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">4</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">4</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">4</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">4</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">4</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">4</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">4</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">4</FONT>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Performance Testing/Comping</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">5</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">5</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">5</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">5</FONT>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER"><B><FONT FACE="Arial">Finalization/</FONT></B> <BR>
+			<B><FONT FACE="Arial">Thesis Writing</FONT></B>
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER">
+			<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">6</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">6</FONT>
+		</TD>
+		<TD ALIGN="CENTER" BGCOLOR="olive">
+			<P ALIGN="CENTER"><FONT COLOR="white" FACE="Arial">6</FONT>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR>
+&nbsp;</P>
+<P><A HREF="#Main"><FONT SIZE="3" FACE="Arial">Back to Main Menu</FONT></A></P>
+<P>
+<HR ALIGN="CENTER">
+
+<H1><IMG SRC="YellowBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><A NAME="Status"></A><FONT SIZE="5"
+FACE="Arial"> Project Status</FONT></H1>
+<P><font size="3" face="Arial">A prototype of the architecture with the following
+components were implemented for my MS thesis. Its architecture, implementation
+and tests are described in my <a href="../tese/dissertacao.pdf">dissertation</a>
+(in portuguese).</font></P>
+
+<UL>
+	<LI><B><FONT SIZE="3" FACE="Arial">LOA</FONT></B><FONT SIZE="3" FACE="Arial">: The Local Object Activator that
+	implements the persistence of the Wonder Objects;</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">LockManager</FONT></B><FONT SIZE="3" FACE="Arial">: A concurrency monitor for
+	the LOA: Reading during object serialization must be avoided. It is not used anymore by the system.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Process Interpreter</FONT></B><FONT SIZE="3" FACE="Arial">: The parser that
+	reads a PLISP plan and interprets. It is used by the Coordinators and The Activities. The
+      Process Definition (Workflow)
+	is described in PLISP (Process Lisp) a Lisp like language specially developed for this project;</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Activity Manager</FONT></B><FONT SIZE="3" FACE="Arial">: The Object that implements
+	the migration and execution of activities. An optimized data migration process was implemented. It transfers not
+	necessary data as links that are further converted to files (fetched from the previous owner) when needed.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Wrapper</FONT></B><FONT SIZE="3" FACE="Arial">: The Object that manages the
+	execution of an invoked application and notifies the ActivityManager when it is finished.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Synchronization Activity</FONT></B><FONT SIZE="3" FACE="Arial">: Object that
+	implements and-joins/or-joins.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Process Coordinator</FONT></B><FONT SIZE="3" FACE="Arial">: Creates and
+      manages the cases.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Case Coordinator</FONT></B><FONT SIZE="3" FACE="Arial">: Manages a case instance
+	and its activities. Performs the garbage collection by the end of the case, removing
+      the object state and data from
+	the system hosts.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Role Coordinator</FONT></B><FONT SIZE="3" FACE="Arial">: Implements a &quot;yellow
+	page&quot; service of uses and roles.</FONT>
+	<LI><B><FONT SIZE="3" FACE="Arial">Task List</FONT></B><FONT SIZE="3" FACE="Arial">: The object that stores
+      information and activities that the user is executing.</FONT>
+</UL>
+
+<P><FONT SIZE="3" FACE="Arial">The migration mechanism is completely functional, including the data/links transfer
+optimization police.</FONT> <BR>
+<FONT SIZE="3" FACE="Arial">A language for definition and creation of a test environment was also implemented.
+It is interpreted by the Wstarter application that creates the initial system object configuration.</FONT></P>
+<P><FONT SIZE="3" FACE="Arial">The system was tested using concurrent processes in centralized and distributed
+scenarios. The tests can be found at the </FONT><a HREF="tests/index.htm"><STRONG><FONT
+FACE="Arial">Performance Tests</FONT></STRONG></a><STRONG><FONT FACE="Arial"> </FONT></STRONG><FONT FACE="Arial">page</FONT><FONT
+SIZE="3" FACE="Arial">.</FONT></P>
+<P><FONT SIZE="3" FACE="Arial">Click </FONT><A HREF="errors.html"><FONT
+SIZE="3" FACE="Arial">here</FONT></A><FONT SIZE="3" FACE="Arial"> to see the list of the most common errors (in
+Portuguese) and problems related to OrbixWeb usage in WONDER implementation.</FONT></P>
+<P><B><FONT SIZE="3" FACE="Arial">Future Work and Extensions</FONT></B><FONT SIZE="3" FACE="Arial">:</FONT></P>
+
+<UL>
+	<LI><FONT SIZE="3" FACE="Arial">Integrate the Graphic interface for visualization and monitoring (in parallel with
+	the other topics) with the Wonder architecture.</FONT>
+	<LI><FONT SIZE="3" FACE="Arial">Implement the Backup Server interface;</FONT>
+	<LI><FONT SIZE="3" FACE="Arial">Implement the History Server interface;</FONT>
+	<LI><FONT SIZE="3" FACE="Arial">Implement the GatewayActivity component.</FONT>
+	<LI><FONT SIZE="3" FACE="Arial">Implement and define charge balance polices for case and process coordinators.
+	Use mobility with these servers.</FONT>
+</UL>
+
+<P><A HREF="#Main"><FONT SIZE="3" FACE="Arial">Back to Main Menu</FONT></A></P>
+<P>
+<HR ALIGN="CENTER">
+
+<H1><IMG SRC="BlueBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><A NAME="Developpers"></A><FONT SIZE="5"
+FACE="Arial"> Designers and Developers</FONT></H1>
+<P><FONT SIZE="3" FACE="Arial">The Wonder was conceived by the joint work of </FONT><A HREF="http://www.ics.uci.edu/~rsilvafi"><FONT
+SIZE="3" FACE="Arial">Roberto Silveira Silva Filho</FONT></A><FONT SIZE="3" FACE="Arial">, </FONT><A HREF="http://www.ic.unicamp.br/~wainer"><FONT
+SIZE="3" FACE="Arial">Jacques Wainer</FONT></A><FONT SIZE="3" FACE="Arial">, </FONT><A HREF="http://www.ic.unicamp.br/~edmundo"><FONT
+SIZE="3" FACE="Arial">Edmundo R. M. Madeira</FONT></A><FONT SIZE="3" FACE="Arial"> (</FONT><A HREF="http://www.unicamp.br/"><FONT
+SIZE="3" FACE="Arial">University of Campinas</FONT></A><FONT SIZE="3" FACE="Arial"> - UNICAMP) and </FONT><A HREF="http://www.cs.colorado.edu/~skip/Home.html"><FONT
+SIZE="3" FACE="Arial">Clarence (Skip) Ellis</FONT></A><FONT SIZE="3" FACE="Arial"> (</FONT><A HREF="http://www.cs.colorado.edu"><FONT
+SIZE="3" FACE="Arial">University of Colorado in Boulder</FONT></A><FONT SIZE="3" FACE="Arial">).</FONT></P>
+<P><FONT SIZE="3" FACE="Arial">It was implemented and is maintained by Roberto Silveira as a MS project at the
+</FONT><A HREF="http://www.ic.unicamp.br/"><FONT SIZE="3" FACE="Arial">Computer Science Institute</FONT></A><FONT
+SIZE="3" FACE="Arial"> at UNICAMP - </FONT><A HREF="http://www.unicamp.br/"><FONT SIZE="3" FACE="Arial">University
+of Campinas</FONT></A><FONT SIZE="3" FACE="Arial">.</FONT></P>
+<P><A HREF="#Main"><FONT SIZE="3" FACE="Arial">Back to Main Menu</FONT></A></P>
+<P>
+<HR ALIGN="CENTER">
+
+<H1><IMG SRC="GreenBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><A NAME="Related"></A><FONT SIZE="5"
+FACE="Arial"> Related Links</FONT></H1>
+<H1><IMG SRC="../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="5" FACE="Arial">Workflow
+Related Links</FONT></H1>
+<P><FONT SIZE="3" FACE="Arial">1. </FONT><A HREF="http://www.ifi.unizh.ch/groups/dbtg/Workflow/workflow_sites.html"><FONT
+SIZE="3" FACE="Arial">Projects, Consortioums and Sites realted to Workflow</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">2. </FONT><A HREF="http://www.almaden.ibm.com/cs/exotica/"><FONT SIZE="3" FACE="Arial">IBM
+Exotica Project</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">3. </FONT><A HREF="http://www.aiim.org/wfmc/"><FONT SIZE="3" FACE="Arial">Workflow
+Management Coallition</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">4. </FONT><A HREF="http://www.omg.org"><FONT SIZE="3" FACE="Arial">Object Management
+Group</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">5. </FONT><A HREF="http://www.omg.org/library/schedule/Workflow_RFP.htm"><FONT SIZE="3"
+FACE="Arial">OMG Workflow RFP</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">6.</FONT><A HREF="http://www.research.ibm.com/home.html"><FONT SIZE="3" FACE="Arial">
+IBM Research</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">7. </FONT><A HREF="http://begin.cs.uga.edu/worp/"><FONT SIZE="3" FACE="Arial">WORP</FONT></A><FONT
+SIZE="3" FACE="Arial"> : A repository and resource for researchers and practitioners in WORKflow and Process management
+in Information Systems</FONT> <BR>
+<FONT SIZE="3" FACE="Arial">8. </FONT><A HREF="http://lsdis.cs.uga.edu/"><FONT SIZE="3" FACE="Arial">Large-Scale
+Distributed Information Systems</FONT></A><FONT SIZE="3" FACE="Arial"> (Univ. Georgia)</FONT> <BR>
+<FONT SIZE="3" FACE="Arial">9. </FONT><A HREF="http://www.workflowsoftware.com/"><FONT SIZE="3" FACE="Arial">Workflow
+Software</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">10. </FONT><A HREF="http://st.cs.uiuc.edu/users/manolesc/Workflow/"><FONT SIZE="3"
+FACE="Arial">Micro Workflow</FONT></A><FONT SIZE="3" FACE="Arial"><BR>
+11. </FONT><A HREF="http://directory.google.com/Top/Computers/Software/Workflow/Research/"><FONT SIZE="3" FACE="Arial">GOOGLE
+Workflow Research</FONT></A><FONT FACE="Arial"><BR>
+12. </FONT><A HREF="http://dis.sema.es/projects/WIDE/"><FONT FACE="Arial">WIDE - Workflow on Intelligent Distributed
+database Environment</FONT></A><FONT FACE="Arial"><BR>
+13. </FONT><A HREF="http://citeseer.nj.nec.com/did/270484"><FONT FACE="Arial">WONDER Architecture at NEC Search
+Index</FONT></A><FONT FACE="Arial"><BR>
+14. </FONT><A HREF="http://citeseer.nj.nec.com/nrelated/0/270484"><FONT FACE="Arial">WONDER Related Publications
+at NET Search Index<BR>
+</FONT></A><FONT FACE="Arial">15. </FONT><A HREF="http://www.ics.uci.edu/~ietfswap/"><FONT FACE="Arial">Simple
+Workflow Access Protocol</FONT></A><FONT FACE="Arial">, an option to IIOP in </FONT><A HREF="ftp://ftp.omg.org/pub/docs/bom/98-06-07.pdf"><FONT
+FACE="Arial">jFlow</FONT></A><FONT FACE="Arial"> OMG Specification <BR>
+16. </FONT><A HREF="http://www.aiim.org/wfmc/standards/docs/secure1.pdf"><FONT FACE="Arial">Workflow Security Considerations</FONT></A><FONT
+FACE="Arial"> </FONT><BR>
+<FONT FACE="Arial, Helvetica">17. </FONT><A HREF="http://www.waria.com/"><FONT FACE="Arial, Helvetica">Workflow
+And Reengineering International Association</FONT></A></P>
+<P><FONT SIZE="4" FACE="Arial">Workflow Articles</FONT></P>
+<P><FONT FACE="Arial">1. </FONT><A HREF="http://www.networkmagazine.com/magazine/tutorial/software/9202tut.htm"><FONT
+FACE="Arial">Workflow Applications</FONT></A><BR>
+<FONT FACE="Arial">2. </FONT><A HREF="http://www.casisoft.com/wkflow.htm"><FONT FACE="Arial">A User's Guide to
+E-mail &amp; Workflow Applications</FONT></A><BR>
+<FONT FACE="Arial">3. </FONT><A HREF="http://www.workflow.ca/webwppart1.htm"><FONT FACE="Arial">The Workflow Automation
+Corporation - Workflow White Paper</FONT></A><BR>
+<FONT FACE="Arial">4. </FONT><A HREF="http://www.research.ibm.com/journal/sj/361/leymann.html"><FONT FACE="Arial">Workflow-based
+applications</FONT></A><BR>
+<FONT FACE="Arial">5. </FONT><A HREF="http://www.w4.fr/en/basics/typical.html"><FONT FACE="Arial">W4 - Typical
+Workflow Applications</FONT></A><FONT FACE="Arial"><BR>
+6. </FONT><A HREF="http://jeffsutherland.org/oopsla97/santanu.html"><FONT FACE="Arial">Business Objects and Business
+Rules</FONT></A><FONT FACE="Arial"><BR>
+7. </FONT><A HREF="http://www-rodin.inria.fr/~mohan/abstracts.html"><FONT FACE="Arial">Abstracts of talks by C.
+Mohan</FONT></A></P>
+<P><FONT SIZE="4" FACE="Arial">Other Workflow Research Projects (Mainly on Large-scale workflow)</FONT></P>
+<P><FONT FACE="Arial">1. </FONT><A HREF="http://www.ics.uci.edu/pub/endeavors/endeavors.html"><FONT FACE="Arial">Endevours</FONT></A><FONT
+FACE="Arial"> <BR>
+2. </FONT><A HREF="http://dis.sema.es/projects/WIDE/"><FONT FACE="Arial">Wide</FONT></A><FONT FACE="Arial"><BR>
+3. </FONT><A HREF="http://paris.cs.uni-sb.de/~mentor/"><FONT FACE="Arial">Mentor</FONT></A><FONT FACE="Arial"><BR>
+4. </FONT><A HREF="http://begin.cs.uga.edu/worp/"><FONT FACE="Arial">Worp</FONT></A><FONT FACE="Arial"><BR>
+5. </FONT><A HREF="http://www.cs.dartmouth.edu/reports/abstracts/TR96-283/"><FONT FACE="Arial">Dartflow</FONT></A><FONT
+FACE="Arial"> - Workflow using mobile agents<BR>
+6. </FONT><A HREF="http://www-4.ibm.com/software/ts/mqseries/library/whitepapers/mqover/"><FONT FACE="Arial">MQSeries</FONT></A><FONT
+FACE="Arial">: IBM Message Oriented Middleware</FONT></P>
+<P><IMG SRC="../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><B><FONT SIZE="5" FACE="Arial">(Mobile)
+Agents Related Links</FONT></B></P>
+<P><FONT SIZE="3" FACE="Arial">1. </FONT><A HREF="http://www.cs.umbc.edu/agents/"><FONT SIZE="3" FACE="Arial">UMBC
+Agent Web</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">2. </FONT><A HREF="http://www.ics.uci.edu/~bic/messengers/messengers.html"><FONT SIZE="3"
+FACE="Arial">Project Messagers - University of California - Irvine</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">3. </FONT><A HREF="http://www.trl.ibm.co.jp/aglets/"><FONT SIZE="3" FACE="Arial">IBM
+Aglets</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">4. </FONT><A HREF="http://www.objectspace.com/"><FONT SIZE="3" FACE="Arial">ObjectSpace
+Voyager Mobile Object Framework</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">5. </FONT><A HREF="http://agents.www.media.mit.edu/groups/agents/"><FONT SIZE="3" FACE="Arial">MIT
+Media Lab: Software Agents Group</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">6. </FONT><A HREF="http://www.cetus-links.org/oo_mobile_agents.html"><FONT SIZE="3"
+FACE="Arial">Distributed Objects &amp; Components: Mobile Agents</FONT></A><FONT SIZE="3" FACE="Arial"> (Thowsands
+of Links !!!)</FONT> <BR>
+<FONT SIZE="3" FACE="Arial">7. </FONT><A HREF="http://www.rhein-neckar.de/~cetus/software.html"><FONT SIZE="3"
+FACE="Arial">Links on Objects &amp; Components</FONT></A><FONT SIZE="3" FACE="Arial"> (Thowsands of Links !!!)</FONT>
+<BR>
+<FONT SIZE="3" FACE="Arial">8. </FONT><A HREF="http://www.infosys.tuwien.ac.at/Research/Agents/"><FONT SIZE="3"
+FACE="Arial">Mobile Agents Design Patterns and Frameworks</FONT></A><FONT SIZE="3" FACE="Arial"> (</FONT><A HREF="http://www.infosys.tuwien.ac.at/"><FONT
+SIZE="3" FACE="Arial">Distributed Systems Group</FONT></A><FONT SIZE="3" FACE="Arial"> , Technical University of
+Vienna)</FONT> <BR>
+<FONT SIZE="3" FACE="Arial">9. </FONT><A HREF="http://www.msci.memphis.edu/~franklin/AgentProg.html"><FONT SIZE="3"
+FACE="Arial">Agent or a Program?</FONT></A><FONT SIZE="3" FACE="Arial"> (Mobile Agents Taxionomy)</FONT> <BR>
+<FONT SIZE="3" FACE="Arial">10. </FONT><A HREF="http://www.cnri.reston.va.us/home/koe/bib/mobile-abs.bib.html"><FONT
+SIZE="3" FACE="Arial">Mobile Code Bibliography</FONT></A><FONT SIZE="3" FACE="Arial"> (Hundreats of Links on mobile
+code)</FONT><FONT FACE="Arial"><BR>
+11. </FONT><A HREF="http://www.research.ibm.com/massive/"><FONT SIZE="3" FACE="Arial">Massive Distributed Systems
+(IBM Research)<BR>
+</FONT></A><FONT SIZE="3" FACE="Arial">12. </FONT><A HREF="http://computer.org/dsonline/agents/index.htm"><FONT
+SIZE="3" FACE="Arial">IEEE Distributed Systems Online</FONT></A></P>
+<P><IMG SRC="../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><B><FONT SIZE="5" FACE="Arial">CSCW
+and Groupware Related Links</FONT></B></P>
+<P><FONT SIZE="3" FACE="Arial">1. </FONT><A HREF="http://www.usabilityfirst.com/cscw.html"><FONT SIZE="3" FACE="Arial">CSCW&amp;Groupware
+Index</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">2. </FONT><A HREF="http://www.cudenver.edu/~mryder/itc/cscw.html"><FONT SIZE="3" FACE="Arial">CSCW
+Related Links, topics and articles</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">3. </FONT><A HREF="http://www.telekooperation.de/cscw/yp/YP-info.html"><FONT SIZE="3"
+FACE="Arial">The unOfficial Yellow Pages of CSCW - Info</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">4. </FONT><A HREF="http://www.econ.kuleuven.ac.be/tew/academic/infosys/members/put/centers.htm"><FONT
+SIZE="3" FACE="Arial">CSCW Research Centers and Projects<BR>
+</FONT></A><FONT SIZE="3" FACE="Arial">5. </FONT><A HREF="http://www.ics.uci.edu/~ulrik/CSCWlinks.htm"><FONT SIZE="3"
+FACE="Arial">Ulrik CSCW Related Links</FONT></A></P>
+<P><IMG SRC="../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><B><FONT SIZE="5" FACE="Arial">CORBA
+Related Links</FONT></B></P>
+<P><FONT SIZE="3" FACE="Arial">1. </FONT><A HREF="http://adams.patriot.net/~tvalesky/freecorba.html"><FONT SIZE="3"
+FACE="Arial">Free CORBA implementations.</FONT></A><FONT SIZE="3" FACE="Arial"> (Several Links)</FONT> <BR>
+<FONT SIZE="3" FACE="Arial">2. </FONT><A HREF="http://www.infosys.tuwien.ac.at/Research/Corba/software.html"><FONT
+SIZE="3" FACE="Arial">CORBA Software Links</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">3. </FONT><A HREF="http://www.yy.cs.keio.ac.jp/~suzuki/object/dist_comp.html"><FONT
+SIZE="3" FACE="Arial">Distributed Object Computing</FONT></A><FONT SIZE="3" FACE="Arial"> - Many CORBA topics,
+implementations and related sites</FONT> <BR>
+<FONT SIZE="3" FACE="Arial">4. </FONT><A HREF="http://www.iona.com"><FONT SIZE="3" FACE="Arial">Iona Technologies</FONT></A>
+<BR>
+<FONT SIZE="3" FACE="Arial">5. </FONT><A HREF="http://www.prismtechnologies.com/products/openfusion/downloads/index.htm"><FONT
+SIZE="3" FACE="Arial">OpenFusion CORBA Services</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">6. </FONT><A HREF="http://www.omg.org"><FONT SIZE="3" FACE="Arial">OMG - Object Management
+Group</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">7. </FONT><A HREF="http://www.cs.wustl.edu/~schmidt/corba.html"><FONT SIZE="3" FACE="Arial">Distributed
+Computing and CORBA</FONT></A><FONT SIZE="3" FACE="Arial"> (Shimidt)&nbsp;</FONT></P>
+<P><IMG SRC="../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><B><FONT SIZE="5" FACE="Arial">Java
+Related Links</FONT></B></P>
+<P><FONT SIZE="3" FACE="Arial">1. </FONT><A HREF="http://www.sun.com/suntest/products/JavaCC/index.html"><FONT
+SIZE="3" FACE="Arial">JavaCC - Java Compiler Compiler</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">2. </FONT><A HREF="http://www.java.sun.com/products/jdk/1.2/docs/index.html"><FONT
+SIZE="3" FACE="Arial">JDK1.2</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">3. </FONT><A HREF="http://java.sun.com/products/jdk/1.1/index.html"><FONT SIZE="3"
+FACE="Arial">JDK1.1</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">4. </FONT><A HREF="http://www.javalobby.org/"><FONT SIZE="3" FACE="Arial">Java Lobby</FONT></A>
+<BR>
+<FONT SIZE="3" FACE="Arial">5. </FONT><A HREF="http://www.javasoft.com/docs/books/tutorial/index.html"><FONT SIZE="3"
+FACE="Arial">Java Tutorial</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">6. </FONT><A HREF="http://developer.java.sun.com/developer/earlyAccess/jdk12/idltojava.html"><FONT
+SIZE="3" FACE="Arial">Java IDL Compiler</FONT></A> <BR>
+<FONT SIZE="3" FACE="Arial">7. </FONT><A HREF="http://www.javaworld.com"><FONT SIZE="3" FACE="Arial">Java World</FONT></A>
+<BR>
+<FONT FACE="Arial">8. </FONT><A HREF="http://www.ibm.com/developer/java/"><FONT FACE="Arial">DeveloperWorks - Java
+Technology Zone</FONT></A><FONT FACE="Arial"><BR>
+9. I</FONT><A HREF="http://www.Alphaworks.ibm.com/"><FONT FACE="Arial">BM Alpha Works</FONT></A><FONT FACE="Arial"><BR>
+10. </FONT><A HREF="http://www.bruceeckel.com/javabook.html"><FONT FACE="Arial">Thinking in Java Book</FONT></A><FONT
+FACE="Arial"><BR>
+11. </FONT><A HREF="http://online-books.ora.com/mod-bin/books.mod/javaref/"><FONT FACE="Arial">O'REILLY Java Reference
+Books</FONT></A><FONT FACE="Arial"><BR>
+12. </FONT><A HREF="http://www.ibm.com/developer/java/"><FONT FACE="Arial">IBM Java Technology Zone</FONT></A><FONT
+FACE="Arial"><BR>
+13. </FONT><A HREF="http://www.sys-con.com/java/"><FONT FACE="Arial">Java Developers Journal</FONT></A><FONT FACE="Arial"><BR>
+14. </FONT><A HREF="http://java.icmsc.sc.usp.br/java_course/"><FONT FACE="Arial">Distributed Programming using
+Java</FONT></A></P>
+<P><IMG SRC="../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><B><FONT SIZE="5" FACE="Arial">
+Publications Search Engines</FONT></B></P>
+<P><FONT SIZE="3" FACE="Arial">1. </FONT><A HREF="http://www.cetus-links.org/" target="_top"><FONT SIZE="3" FACE="Arial">Cetus
+Links - Thousands of Links on Objects and Components</FONT></A><FONT SIZE="3" FACE="Arial"> <BR>
+2. </FONT><A HREF="http://webofscience.fapesp.br/"><FONT SIZE="3" FACE="Arial">Web of Science</FONT></A><FONT SIZE="3"
+FACE="Arial"> (FAPESP)<BR>
+3. </FONT><A HREF="http://www.researchindex.com/"><FONT SIZE="3" FACE="Arial">NEC Research Index</FONT></A><FONT
+SIZE="3" FACE="Arial"> <BR>
+4. </FONT><A HREF="http://www.acm.org/dl"><FONT SIZE="3" FACE="Arial">ACM Digital Library<BR>
+</FONT></A><FONT SIZE="3" FACE="Arial, Helvetica">5.</FONT><A HREF="http://www.wkap.nl/"><FONT SIZE="3" FACE="Arial, Helvetica">
+KLUWER Academics Publishers<BR>
+</FONT></A><FONT SIZE="3" FACE="Arial, Helvetica">6. </FONT><A HREF="http://www.cdlib.org/"><FONT SIZE="3" FACE="Arial, Helvetica">California
+Digital Libraries</FONT></A></P>
+<P><A HREF="#Main"><FONT SIZE="3" FACE="Arial">Back to Main Menu</FONT></A></P>
+<P>
+<HR ALIGN="CENTER">
+<P><font face="Arial">This project was sponsored by&nbsp;<A HREF="http://www.fapesp.br/"><IMG SRC="logofap1.gif" WIDTH="88" HEIGHT="21"
+ALIGN="BOTTOM" BORDER="0"></A> (Process # 98/06648-0 )</font></P>
+<P>
+<HR ALIGN="CENTER">
+<P ALIGN="CENTER"><!-- Start of TheCounter.com Code --><SCRIPT><!--
+
+  s="na";c="na";j="na";f=""+escape(document.referrer)
+
+  //--></SCRIPT>
+<SCRIPT language="javascript1.2"><!--
+
+  s=screen.width;v=navigator.appName
+
+  if (v != "Netscape") {c=screen.colorDepth}
+
+  else {c=screen.pixelDepth}
+
+  j=navigator.javaEnabled()
+
+  //--><!--
+
+  function pr(n) {document.write(n,"\n");}
+
+  NS2Ch=0
+
+  if (navigator.appName == "Netscape" &&
+
+  navigator.appVersion.charAt(0) == "2") {NS2Ch=1}
+
+  if (NS2Ch == 0) {
+
+  r="&size="+s+"&colors="+c+"&referer="+f+"&java="+j+""
+
+  pr("<A HREF=\"http://www.TheCounter.com\" TARGET=\"_top\"><IMG")
+
+  pr("BORDER=0 SRC=\"http://c1.thecounter.com/id=209075"+r+"\"></A>")}
+
+  //--></SCRIPT><noscript><A
+HREF="http://www.TheCounter.com" target="_top"><IMG SRC="id=209075" WIDTH="88" HEIGHT="31" ALIGN="BOTTOM" BORDER="0"></A></A><A
+HREF="http://www.TheCounter.com" target="_top"></noscript></A></A><A HREF="http://www.TheCounter.com" target="_top"><!-- End of TheCounter.com Code --></A>
+<BR>
+<FONT FACE="Arial">Since October 10th, 1999.</FONT></P>
+<P>
+<HR ALIGN="CENTER">
+
+<P><B><FONT FACE="Arial">This page was last modified in November 3, 2000</FONT></B>
+
+</BODY>
+
+</HTML>

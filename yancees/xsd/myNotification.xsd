@@ -1,0 +1,76 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/myNotification.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:not="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/notification.xsd"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/myNotification.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+<!-- Import namespaces used -->
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/notification.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/notification.xsd"/>
+
+
+
+  <xsd:annotation>
+    <xsd:documentation>
+       This schema defines a custom notification type which is intented to allow
+       subscribers to define notification policies.
+
+		 It defines push and pull policies in the notification language
+
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <!--
+    ELEMENT: notification
+
+    This tag is the root element in a notification file, the topmost element that
+    defines the notification representation structure.
+   -->
+  <xsd:element name="notification" type="MyNotificationType"/>
+
+
+ <!--
+    TYPE: SienaSubscriptionType
+    A Subscription in Siena is a Filter or a set of filters, in this last case,
+    representing a pattern.
+
+   -->
+  <xsd:complexType name="MyNotificationType">
+     <xsd:complexContent>
+        <xsd:extension base="not:NotificationType">
+           <xsd:sequence>
+              <xsd:element name="push" type="PushType" minOccurs="0" maxOccurs="1"/>
+              <xsd:element name="pull" type="PullType" minOccurs="0" maxOccurs="1"/>
+           </xsd:sequence>
+        </xsd:extension>
+     </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+
+  <!--
+    TYPE: PushType
+   -->
+  <xsd:complexType name="PushType">
+
+  </xsd:complexType>
+
+
+  <!--
+    TYPE: PullType
+   -->
+  <xsd:complexType name="PullType">
+
+  </xsd:complexType>
+
+
+</xsd:schema>

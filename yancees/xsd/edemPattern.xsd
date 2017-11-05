@@ -1,0 +1,112 @@
+<!--
+	The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+	standard.  The 'xlink' namespace defines the namespace for XLink attributes
+	and elements.  The targetNamespace defines the URI of the namespace
+	which THIS XSchema is defining.  Other XSchemas should use this URL
+	when referring to things defined in this XSchema.
+-->
+<xsd:schema
+	xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/edemPattern.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:sub="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"
+	xmlns:ssub="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd"
+	targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/edemPattern.xsd"
+	elementFormDefault="qualified" attributeFormDefault="qualified">
+
+	<!-- Import namespaces used -->
+	<xsd:import
+		namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"
+		schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd" />
+
+	<xsd:import
+		namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd"
+		schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd" />
+
+	<xsd:annotation>
+		<xsd:documentation>
+			This schema extends the siena subscription language to
+			support event sequence (pattern) detection
+		</xsd:documentation>
+	</xsd:annotation>
+
+	<!--
+		TYPE: PatternSubscriptionType
+		A Subscription extension that allows the detection of sequence of events.
+
+	-->
+	<xsd:complexType name="PatternSubscriptionType">
+		<xsd:complexContent>
+			<xsd:extension base="sub:SubscriptionType">
+				<xsd:sequence minOccurs="0" maxOccurs="1">
+					<xsd:element name="pattern"
+						type="FilterSequenceType">
+
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+
+	<!--
+    TYPE: FilterSequenceType defines an operation (disjunct, conjunct, sequence)
+		and a list of filters this command will be applied to.
+		This list defines a pattern
+	-->
+	<xsd:complexType name="FilterSequenceType">
+		<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+			<xsd:element name="filter" type="ssub:FilterType" />
+			<xsd:element name="stateFilter" type="TSTriggerType" />
+		</xsd:sequence>
+		<xsd:attribute name="operation" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="disjunct" />
+					<xsd:enumeration value="conjunct" />
+					<xsd:enumeration value="sequence" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+	<!--
+		TYPE: TSTriggerType defines a trigger, a query in the EDEM simplified tuple
+		space that has tuples of string or int types.s
+	-->
+	<xsd:complexType name="TSTriggerType">
+		<xsd:sequence>
+			<xsd:element name="attribute" type="xsd:string"
+				minOccurs="1" maxOccurs="1" />
+			<xsd:element name="value" type="xsd:string" minOccurs="1"
+				maxOccurs="1" />
+		</xsd:sequence>
+
+		<!-- Integer operations: EQ, LT, GT, LE, GE, NEQ -->
+		<xsd:attribute name="intOp" use="optional">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="EQ" />
+					<xsd:enumeration value="LT" />
+					<xsd:enumeration value="GT" />
+					<xsd:enumeration value="LE" />
+					<xsd:enumeration value="GE" />
+					<xsd:enumeration value="NEQ" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+
+		<!-- String operations: EQS, BEGINS, ENDS, SUBSTR -->
+		<xsd:attribute name="stringOp" use="optional">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="EQS" />
+					<xsd:enumeration value="BEGINS" />
+					<xsd:enumeration value="ENDS" />
+					<xsd:enumeration value="SUBSTR" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+
+</xsd:schema>

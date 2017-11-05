@@ -1,0 +1,912 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="pt-br"><head><title>Yet Another Configurable Extensible Event Service</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+body,td,th {
+font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-size: smaller}
+-->
+</style></head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<table width="100%">
+<tbody>
+<tr>
+<td align="left">
+<p align="center"><a href="http://www.uci.edu/"><img src="UCI.gif" border="0" height="108" width="255"></a></p>
+</td>
+<td align="center">
+<h1><span style="color: rgb(0, 0, 153);">YANCEES</span>:
+<span style="color: rgb(0, 0, 153);">Y</span>et
+<span style="color: rgb(0, 0, 153);">AN</span>other
+<span style="color: rgb(0, 0, 153);">C</span>onfigurable
+<span style="color: rgb(0, 0, 153);">E</span>xtensible
+<span style="color: rgb(0, 0, 153);">E</span>vent
+<span style="color: rgb(0, 0, 153);">S</span>ervice</h1>
+</td>
+<td><br>
+</td>
+<td align="right">
+<p align="center"><a href="http://www.isr.uci.edu/"> <img src="ISR-Logo.gif" border="0" height="69" width="140"></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div align="center">
+<center>
+<table>
+<tbody>
+<tr>
+<td align="center"> <span lang="en-us">Concepts:&nbsp;</span>
+</td>
+<td align="center">
+<p align="justify"><span lang="en-us"><a href="#Introduction">Introduction</a>
+|</span></p>
+</td>
+<td align="center"><a href="#Principles">Principles
+</a>|</td>
+<td align="center"><a href="#Benefits">Benefits</a>
+|<br>
+</td>
+<td align="center"><a href="#Design">Design</a>
+|</td>
+<td align="center"><a href="#Evaluation">Evaluation</a>&nbsp;</td>
+<td><a href="#Lessons"><br></a></td>
+</tr>
+</tbody>
+</table>
+</center>
+</div>
+<div align="center">
+<center>
+<table>
+<tbody>
+<tr>
+<td align="center">System:&nbsp;</td>
+<td align="center"><a href="#Implementation">Implementation</a>
+|&nbsp;</td>
+<td align="center"> <a href="manual/index.html">Documentation</a>
+|</td>
+<td align="center">
+<p align="justify"><a href="#Publications">Publications</a>
+| </p>
+</td>
+<td align="center">
+<p align="justify"><a href="#Download">Download</a><br>
+</p>
+</td>
+<td style="vertical-align: top;"><br>
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+</div>
+<p align="justify">&nbsp;</p>
+<h2 align="justify"><span lang="en-us"><a name="Introduction">Introduction</a></span></h2>
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">
+<span lang="en-us">In this project, we
+study the use of configurable and extensible architectures, and their ability to provide
+<a href="http://dictionary.reference.com/search?q=versatility">versatility</a>
+to publish/subscribe infrastructures. Our goal is not only to support
+the development of application-specific publish/subscribe
+infrastructures, but also to identify design trade-offs and derive a set of
+software engineering principles&nbsp;</span><span lang="en-us">to better support infrastructure producers and consumers in the process of</span><span lang="en-us"> building, evolving
+and (re)using versatile middleware. We
+evaluate our approach by comparing YANCEES with more traditional
+versatility strategies implemented by existing publish/subscribe infrastructures.</span></p>
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"><span lang="en-us">Current
+industrial
+and research infrastructures strive to support application domain
+variability and evolution by adopting different versatility strategies (see <a href="http://www.isr.uci.edu/tech_reports/UCI-ISR-05-8.pdf">survey
+on versatility strategies</a>).
+We define versatility as<span style="font-style: italic;"> the ability of software to be used for
+different purposes in a usable and useful way</span>. Examples of versatility
+strategies found in both the literature and industry include: (1) <span style="font-weight: bold;">Specialization</span>:
+Build new
+publish/subscribe infrastructures from
+scratch to support novel requirement sets; (2) <span style="font-weight: bold;">Generalization</span>:
+reuse minimal
+generalized publish/subscribe cores such as
+<a href="http://serl.cs.colorado.edu/%7Eserl/dot/siena.html">Siena</a>,
+<a href="http://elvin.org/papers/auug97/auug97.html">Elvin</a>
+or <a href="http://research.microsoft.com/%7Eantr/SCRIBE/default.htm">Scribe</a>;
+(3) <span style="font-weight: bold;">Variation</span>:
+reuse&nbsp;one-size-fits-all variable infrastructures as <a href="http://www.omg.org/technology/documents/formal/notification_service.htm">CORBA-NS</a>
+or <a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=776423">READY</a>,
+or more recently, (4) <span style="font-weight: bold;">Flexibility</span>:
+adopting configurable and
+extensible compositional approaches, as the case with <a href="http://doi.acm.org/10.1145/1028613.1028625">DREAM</a>,
+<a href="http://ieeexplore.ieee.org/iel5/5658/29547/01341257.pdf?isnumber=29547&amp;prod=&amp;arnumber=1341257&amp;arSt=+199&amp;ared=+216&amp;arAuthor=Pratap%2C+R.M.%3B+Hunleth%2C+F.%3B+Cytron%2C+R.K.">FACET</a>,
+<a href="http://www.springerlink.com/content/cavf010a4lab5u64/">GREEN</a>
+and <a href="http://portal.acm.org/citation.cfm?id=1108478">YANCEES</a>
+itself.&nbsp;&nbsp;</span></p>
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"><span lang="en-us">In this context, YANCEES
+is a flexible
+component framework that allows the construction of
+application-specific publish/subscribe infrastructures. It supports
+the customization and extension of its feature set,</span><span lang="en-us"> along main publish/subscribe design
+dimensions (i.e. event, publication, subscription,
+routing,&nbsp;notification and protocol models),</span><span lang="en-us"> through the use of
+plug-ins and extensible languages. Examples of
+such extensions
+include advanced event subscriptions, including event correlation;
+alternate
+notification
+policies (push and pull); infrastructure protocols for mobile
+applications, and ad-hoc P2P protocols; end-user protocols
+such as event source location and browsing; event
+persistence
+services;
+fast routing cores,&nbsp;and many others.&nbsp;</span></p>
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"><span lang="en-us">YANCEES has been extended and configured to
+support different applications, in different domains, such as <a href="http://www.isr.uci.edu/projects/swirl/Impromptu.html">Impromptu</a>
+(a project to study effective security through visualizatins), <a href="http://www.isr.uci.edu/projects/swirl/Vavoom.html">Vavoom</a>
+(a visual java virtual machine),
+and the IC server, <a href="http://www-128.ibm.com/developerworks/lotus/library/ae/">a
+test-bed for the study of contextual collaboration trade-offs</a>.
+More recently, we
+are comparing YANCEES compositional approach with other versatility
+approaches in an <a href="http://awareness.ics.uci.edu/%7Ersilvafi/tradeoffs/">empirical
+study of middleware versatility trade-offs</a>.</span></p>
+<h2><b style=""><a name="Principles"></a>YANCEES
+Architectural Design
+Principles</b></h2>
+
+According
+to the <i style="">Cambridge Advanced Learner&#8217;s
+Dictionary</i>, versatility is the ability <i style="">&#8220;to
+change easily from one activity to another&#8221; </i>or the ability<i style=""> &#8220;to be used for many different purposes.&#8221;</i>
+In the context of software engineering, versatility is a
+computational system charactetistic that allows its use in multiple contexts, by easily supporting the
+requirements of different application domains. Hence, from a software
+engineering
+perspective, and more specifically in the context of publish/subscribe
+infrastructures,
+<span style="font-weight: bold;">versatility is the ability of software
+systems to withstand the diversity and constant evolution of
+application domain requirements in a useful and usable way</span>.
+Our experience with YANCEES shows that versatility is achieved though
+the proper&nbsp;application of specialization, generalization,
+variation, extensibiliy and configurability in
+the construction of usable and useful infrastructures that can support
+the
+variability and evolution of an application domain.<br>
+<br>in YANCEES, <span style="font-weight: bold; font-family: Helvetica,Arial,sans-serif;">versatility</span><span style="font-family: Helvetica,Arial,sans-serif;">
+is achieved through the proper combination of the following <span style="font-weight: bold;">software
+engineering&nbsp; principles</span>: 1) separation
+of concerns as the criteria </span>of
+modularization; 2) design for change
+(extensibility and configurability) around stable publish/subscribe
+infrastructures design dimensions; 3)
+generality to reduce
+complexity induced by dependency-driven incompatibilities;&nbsp; 4) abstraction in the
+development of domain-specific subscription and notification languages, thus better supporting end users;
+5)&nbsp;optional reuse of existing infrastructures ; 6) and improved usability trhough automation and simplicity.
+These principles are explained
+as follows.<br>
+<span style="font-size: 11pt; line-height: 115%; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><small><span style="font-family: Helvetica,Arial,sans-serif;"></span></small></span><span style="font-size: 11pt; line-height: 115%; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><small><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+</span></small></span><span style="font-weight: bold;">Separation of concerns</span>.
+the design of YANCEES applied separation of concerns as the criteria
+for
+modularization, defining stable interfaces and modules "around"
+assumptions that are more likely to change <a href="http://portal.acm.org/citation.cfm?id=800054.801999">[Parnas,
+72]</a>.
+Hence, The variability of features in the publish/subscribe domain is
+centered
+on the way events are represented (event model); the way events are
+filtered and routed (subscription and routing models)&nbsp;; the
+way
+events
+are delivered (notification model) and additional interaction ways with
+the
+infrastructure, for example: event source browsing, mobility support
+and others. These main
+variability dimensions are chosen as the&nbsp;variation points in
+YANCEES. These variation points define component models that support
+the definition of modular units of variation and extension supporting
+reuse. Separation of concerns is also applied in the use of multiple
+interfaces: end-user publish/subscribe interface and extension
+interface, targeted to developers.<br>
+<b style=""><br>
+Anticipation of change. </b>The
+support for different application requirements is achieved by the use
+of a flexible component framework that supports configurability and
+extensibility
+along the main variability dimensions (design concerns) of
+publish/subscribe infrastructures. Component frameworks support
+configurability and extensibility as follows.<br>
+<ul>
+<li><b style="">Configurability. </b>It
+is usually the case that application domains require only a sub-set of
+features of an infrastructure. Configurability supports the
+coherent&nbsp;
+combination of publish/subscribe characteristics into
+application-specific infrastructures. This
+not only allows the
+tailoring of the infrastructure to the specific requirements of
+specific application domains, but also helps in the reduction of the
+footprint of the
+infrastructure for cases where memory and CPU resources are scarce, for
+example: PDAs.<br></li>
+<li><b style="">Extensibility.</b>
+The constant evolution of application domain requirements make the
+construction of one-size-fits-all approaches with fixed set of features
+inadequate. In order to support unforeseeable requirements, the main
+design
+dimensions of pub/sub infrastructures must be extensible. In YANCEES,
+the extensibility
+is supported along the main variability dimensions of publish/subscribe
+infrastructures according to &nbsp;their component models.<b style=""><o:p></o:p></b></li>
+</ul>
+<p class="MsoNormal" style="line-height: normal; font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">Generality.</span>
+One way to minimize the impact of dependencies, their configuration
+management costs, and incompatibility problems is to adopt general and
+fixed data representation. Central features such as the event format,
+which
+changes can virtually impact all other variability dimensions, need to
+be
+generalized. As such, In YANCEES, the default event
+model is represented by a tuple-based (attribute/value) abstraction,
+and the default subscription
+model is
+content-based. Generalization broadens reuse, requiring fewer
+adaptations of existing plug-ins
+(for the few cases where these models do not apply). As a rule, we use
+stability (the ratio between incoming and the total dependencies of a
+design dimension) as the criteria for selecting the dimension to
+generalize.</p>
+<p class="MsoNormal" style="line-height: normal; font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">Abstraction.</span> The
+ability to define domain-specific subscription and
+notification languages support application developers by reducing the
+cognitive distance involved in the development of event-driven
+applications. In other words, the ability to extend and configure the
+subscription and notification languages, as well as the event, routing
+and protocol models, frees the application developers from tasks
+associated to data format adaptation and the complexity of implementing
+domain-specific features.</p>
+<p class="MsoNormal" style="line-height: normal; font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">Reuse.</span>
+Finally, YANCEES not only supports the reuse of its many components,
+but can also the reuse of existing infrastructures such as Siena,
+Elvin and others as a way to achieve interoperability with existing
+publish/subscribe networks. Another goal of reuse is to leverage on the
+features provided by existing generalized infrastructures.</p>
+<p class="MsoNormal" style="line-height: normal; font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">Usability.</span> In order to be useful and fulfill its purpose, software must be usable.
+From the software consumers perspective, the usability in
+YANCEES&nbsp;
+is a consequence of the application of abstraction, separation of
+concerns and automation.
+Abstraction comes from the use of high-level subscription and
+notification languages, and a simple client-side API that hides from
+the users concerns related to: the runtime selection, initialization
+and configuration of components that implement the features required by
+end-users. The ability to hide these concerns from the end-users comes
+from the application of automation. Finally, separation of extension
+and usage concerns provide multiple interfaces to support both
+infrastructure developers and infrastructure users.</p><p class="MsoNormal" style="line-height: normal; font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">Simplicity</span>.
+Complexity is the major source of problems in software development.
+Approaches that minimize complexity result in more efficient,
+evolvable, less prone to errors solution. In order to escape the
+one-size-fits-all syndom where the addition of many variables in the
+system increases its complexity, configuration costs and even affect
+its performance, YANCEES is built as a simple core around which
+different extensions and optional plug-ins are installed.  </p>
+<h3><span style="font-weight: bold;">Taming the
+Costs of Versatility</span></h3>
+<p class="MsoNormal" style="line-height: normal; font-family: Helvetica,Arial,sans-serif;">The
+application of these principles, while increasing the infrastructure
+versatility, come at the expense of extra complexity due to the following facts: 1) The different publish/subscribe
+concerns are not orthogonal. In other words, they participate in the
+process of publishing, routing and notifying events, which define
+<span style="font-weight: bold;">implicit semantic data
+and control dependencies</span>
+between these components. For example, the use of a global event
+representation, and assumptions about event frequency, creates
+oportunities for feature interaction.&nbsp; 2)
+Moreover, complex features are built from a combination of different
+components, that&nbsp;need to communicate, defining <span style="font-weight: bold;">explicit dependencies</span>
+between different parts (and components) of the system. 3) The <span style="font-weight: bold;">dynamic characteristic of the
+publish/subscribe model</span>
+require additional support for run-time allocation of components in
+response to client's needs. 4) Finally, the reuse of existing
+infrastructures require support for adaptation. In order to
+address requirements, the following strategies are adopted in YANCEES:</p>
+<p class="MsoNormal" style="line-height: normal; font-family: Helvetica,Arial,sans-serif;"><b style="">Automation of user
+interaction and infrastructure build process</b> <span style="font-weight: bold;">(static variability management)</span>.
+Even though the different concerns of publish/subscribe systems can
+&nbsp;be separated into different variability dimensions. It is
+usually
+the case that these concerns are not completely orthogonal. In other
+words, components are implemented in the context of a predefined
+configuration. As a result, changes in one dimension may affect other
+dimensions. For
+example,
+content-based subscription is directly dependent on the event format;
+advanced event processing (for e.g.&nbsp;sequence detection), is
+dependent on timing assumptions induced by different&nbsp;routing
+protocols, filters and subscription languages. If not properly enforced
+and documented, changes in apparently unrelated features may
+interfere with each order. As a consequence these fundamental problem
+dependencies must be adequately managed. Two main strategies are
+adopted to manage these issues: indirection, documentation and
+automation.</p>
+<ul>
+<li><span style="font-weight: bold;">Indirection. </span>&nbsp;One
+way to prevent the ripple effect of changes in different parts of
+software is the use of standardized interfaces and decision points
+where component-specific adaptations can be performed. These points
+apply the information hiding principle, defining stable interfaces
+that are implemented by different components.&nbsp; In YANCEES this
+is achieved by the use of standard component model interfaces, the use
+of adapters, and the application of the factory design pattern as a
+mediator to the creation of plug-ins at runtime. The factory design
+pattern supports component parametrization, allowing components to be
+tailored to a particular runtime context at the time they are created.<br></li>
+<li><span style="font-weight: bold;">Documentation</span>.
+The dependencies between the components of the system must be made
+explicit in order to prevent misconfiguration. In YANCEES, this
+information can be defined in a configuration file, allowing the
+automatic checking of dependencies.<br></li>
+<li><span style="font-weight: bold;">Automation. </span>Without
+automation, the process of configuring and
+building a versatile
+infrastructure can become overly complex and error-prone.
+In YANCEES, configuration managers and dynamic parsers are used to
+integrate and
+automatically load user-required features, supporting the management
+of feature dependencies, preventing inconsistent configurations and
+allowing the runtime construction of user-tailored subscriptions.
+Hence, differently from variation-based infrastructures such
+as&nbsp;CORBA-NS where the user needs to navigate through a
+hierarchy
+of
+objects in order to assemble subscriptions, YANCEES strives to simplify
+the
+user interaction with the infrastructure through the use of
+subscription and notification languages
+that express the queries in the event model. It also adopt a
+configuration language dedicated to express the different
+configurations and dependencies between&nbsp;components. <o:p></o:p></li>
+</ul>
+<p class="MsoNormal" style="line-height: normal; font-family: Helvetica,Arial,sans-serif;"><b style="">Dynamism (dynamic variability management).</b>
+Publish/subscribe infrastructures are inherently interactive.
+Subscriptions are user-defined logical expressions on the order or
+content of events. As such, they are directly dependent on the
+features provided by the infrastructure. Subscriptions are also
+dynamic, being posted and removed at runtime by different users. Hence,
+In order to support the many possible combinations of features a server
+may have, and the intrinsic interactivity of the publish/subscribe
+model, YANCEES support&nbsp;runtime loading and assembling of
+features.
+A valid subscription is a word in the subscription language installed
+in YANCEES, and can be expressed in terms of different commands.Hence,
+subscriptions are used to orchestrate the composition of plug-ins at
+runtime. This strategy not only copes with
+configurability and customization, by also supports the co-existence of
+different
+feature sets in the same infrastructure, for example: content-based and
+fast
+topic-based subscriptions can be supported, at the same time in
+YANCEES. Finally, this strategy promotes a more rational allocation
+of
+resources: features are loaded on demand, copying with more
+restricted
+environments such as PDAs.</p>
+<p class="MsoNormal" style="line-height: normal; font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">Reflexive Architecture.&nbsp;</span>
+A consequence of the different data and control dependencies between
+the publish/subscribe variability dimensions is that complex features
+are usually implemented by the combination of different plug-ins. For
+example, event persistence, mobility protocols and others. Since most
+of these plug-ins are dynamically allocated, they need to locate each
+other, at runtime, in order to communicate. As a consequence, YANCEES
+supports&nbsp;runtime plug-in location through
+the use of a plug-in registry. A plug-in registry provides a single
+point of access to all the active components in the infrastructure. It
+supports name-based access to&nbsp;active plug-ins,&nbsp;at any
+given
+moment in time.</p>
+<p class="MsoNormal" style="line-height: normal; font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">Support for Adaptation</span>. The optional reuse of existing infrastructures such as Siena
+and Elvin as a way to achieve interoperability or to reduce the
+development costs associated to the routing model, requires means to
+convert YANCEES internal model (event representation, subscription and
+notification languages) to existing infrastructures. In YANCEES this is
+achieved by the use of adapters in the dispatcher model.</p><p class="MsoNormal" style="line-height: normal; font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">Support for Different Interfaces</span>.
+Infrastructure users and infrastructure developers have different needs
+with respect to the way they must interact with the infrastructure.
+While the users are interested in selecting and utilizing the features
+provided by the infrastructure. Developers are interested in extending
+and configuring the infrastructure to meet different user needs. In the
+support for these different roles, YANCEES provides different
+interfaces. The goal is to simplify the interaction with the system
+exposing only the necessary API to each king of user. The supported
+APIs are: Publication and Subscription API, used by application
+developers; and the Extension and Configuratoin API used by the
+develpers. &nbsp;Strategy selection is implicitly supported by the
+subscription language, at runtime, which allows subscribers to select
+different commands according to their need. For example: content-based
+or topic-based filtering.</p>
+<h2><b><b style=""><a name="Benefits"></a>YANCEES
+Benefits</b></b></h2>
+YANCEES
+incorporates these principles and strategies in a component framework
+illustrated as
+follows: the core components are extended and configured by
+user-defined plug-ins,
+filters and adapters. Subscription and notification models are defined
+according
+to extensible languages, that guide, and restrict, the process of
+runtime composition
+of subscription and notification plug-ins. Existing publish/subscribe
+infrastructures such as Siena or Elvin can be reused as routing
+components (or overlays). &nbsp;These components are integrated
+according to a configuration file (architecture description) that
+checks
+for coherent composition of plug-ins. The resulting infrastructure is
+loaded, supporting the combined features.<span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="font-family: Helvetica,Arial,sans-serif;"></span><o:p></o:p></span>
+<br>
+<br>
+<div style="text-align: left;">
+<div style="text-align: center;"><img style="width: 777px; height: 434px;" src="Yancees%20Approach.png" alt=""></div>
+<div style="text-align: center; font-style: italic;">Figure
+1: General YANCEES approach to the development of application-specific
+publish/subscribe infrastructures</div>
+</div>
+<span lang="en-us"><br>
+</span>By combining different features
+implemented by means of plug-ins, filters and protocols, YANCEES allows
+the built of application-specific notifications services. In so doing,
+it provides the following benefits:<br>
+<br>
+-
+Support for the right ammount of featues to the application domain,
+resulting in a
+reduced footprint, which can support environment &nbsp;restricted
+application domains.<br>
+- Support for subscription languages that
+match the exact need of the application, thus raising the abstraction
+of the infrastructure API, and reducing the cognitive
+distance between the infrastructure and the application domain.<br>
+-
+Reuse of existing features, implemented as plug-ins, servies and
+filters, as well as exisiting notificaiton servers, in the development
+of novel publish/sbscribe infrastructures.<br>
+- Reduced development time and incresed reusability from the point of
+view of application developers.<br>
+-&nbsp;Interoperability
+with existing publish/subscribe infrastructures such as Elvin and
+Siena. These infrastructures can be reused as publish/subscribe cores
+in YANCEES.<br>- Better evolvability: features can be added, removed and updated, according to the chaning needs of a domain<br>-
+Better maintainability: the modularization provided by the plug-in
+model allow a better isolation of components, facilitating the
+corrective maintenance process.<br>
+<span lang="en-us"><br>
+</span>
+<h2><a name="Design"></a>Component Framework
+Design</h2>
+YANCEES supports the extension and
+configuration of different publish/subscribe infrastructures features
+along main variation/extension points in the infrastructure. These
+points are:<br>
+<br>
+1) The <span style="font-weight: bold;">subscription</span>
+model, which defines the way information consumers express interest on
+events<br>
+2) The <span style="font-weight: bold;">notification</span>
+model, which defines the way events are sent to consumers when their
+subscriptions are match<br>
+3) The <span style="font-weight: bold;">event</span>
+model, which prescribes the way events are represented<br>
+4)
+The <span style="font-weight: bold;">publication</span>
+model, which permits the processing and interception of events at
+publication time, supporting the development of different extensions<br>
+5)
+The <span style="font-weight: bold;">routing</span>
+model, which permits the implementation of different
+routing strategies: content-based, topic-based, channel-based and
+others.<br>
+6)
+The <span style="font-weight: bold;">protocol</span>
+model, which represents other types of interaction with
+the infrastructure, other than the publication and subscription of
+events; as well as different infrastructure protocols.<br>
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">Internally,
+YANCEES is provide a set of component frameworks that combine:</p>
+<blockquote>
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"> <span lang="en-us">1. Dynamic
+parsers that&nbsp;allocate plug-ins according to user-provided
+subscriptions subscription and notification commands.<br>
+2. Input and output publication filters as a way to intercept event
+publication and implement global policies and filters.<br>
+3. Special static plug-ins that implement services, for example: mDNS
+and persistence<br>
+4. Configuration managers, dynamic parsers and builders that
+orchestrate the integration of different components at load time and
+runtime.<br>
+5. Adapters that can support existing
+publish/subscribe infrastructures, for ex: Siena, Elvin and custom-made
+cores<br>
+6. A set of component frameworks that provides interfaces and
+composition rules
+on the different variation points.</span></p>
+</blockquote>
+A
+component framework defines standard interfaces, composition mechamisns
+and&nbsp;common data representations. YANCEES has specific
+component
+models for each one of its variability dimensions. Threee major
+composition mechanisms and interfaces are defined. The
+communication between plug-ins in the subscription, notification and
+routing models is achieved by the use of the listener design pattern;
+by the pipe-and-filter design pattern in the case of input and output
+filters; and by standard interfaces in the case of services and
+dispatchers.
+Subscription and Notification plug-ins are therefore composed with one
+another by registering
+themselves as each other's listeners; whereas filters are composed by
+connecting their standard input with a standar output of other filter.
+Services do not prescribe any particular interface. Their integration
+with other components is mediated by the plug-in registry component,
+that permits different pllug-ins to locate each other by name
+references. In most of the cases, however, the composition
+process&nbsp;is automated. For example, subscription and
+notification
+plug-ins are composed, at runtime, through a subscription parsing
+engine, according to the provided subscription/notification expression
+which is defined according to the grammar rules of subscription and
+notification languages. Finally, the event model is extensible. Events
+are generic objects, which methods and/or content must be especialized
+by YANCEES users.<br>
+<br>
+These main components and APIs are presented in Figure 2 as follows.
+<blockquote>
+<p style="text-align: center;" class="EstiloAntes6ptDepoisde0ptKernem14pt"><span lang="en-us"><img style="width: 689px; height: 461px;" alt="Yancees Internal Components" src="Yancees%20internal%20components.png"></span></p>
+<p style="text-align: center; font-style: italic;" class="EstiloAntes6ptDepoisde0ptKernem14pt">Figure2. General
+YANCEES architecture with plug-ins (in red) and main
+extension/variation points and APIs (in blue)</p></blockquote>
+In sum, the unifying composition approach adopted by YANCEES component
+model is the listener pattern. &nbsp;Components are both producers and
+consumers of event, allowing multiple consumers to listen to existing
+components. Components also have a management interface that allow
+their runtime composition into listener hierarchies.
+<h2><a name="Design"></a>Evaluation</h2>
+YANCEES was used in the implementation of different applications, as
+part of the <a href="http://www.isr.uci.edu/projects/swirl/">Swirl</a>
+project and as part of the evaluation of IC server, the infrastructure
+behind <a href="http://www.research.ibm.com/journal/sj/454/geyer.html">Activity
+Explorer</a>. We also conducted a comparative analysis of the benefits and
+costs of using YANCEES as compared to other approaches. The results of
+this study are available in the <a href="http://awareness.ics.uci.edu/%7Ersilvafi/tradeoffs/">website</a> and in an <a href="http://www.isr.uci.edu/tech_reports/UCI-ISR-09-3.pdf">ISR technical report</a>.<br>
+<br>
+<h2><span lang="en-us"><a name="Implementation"><span style="font-weight: bold;">Prototype
+Implementation</span></a></span></h2>
+<p align="justify"><span lang="en-us">The
+YANCEES prototype was
+implemented and tested with Java (J2SDK1.4.2 and WSDP1.2 - which
+provides XMLSchema validation support for the DOM parser). Currently,
+the framework supports
+the core mechanisms presented in the previous sections: input and
+output filters, subscription, notification and protocol plug-ins, and
+shared services, which can be configured at boot time with the use of
+configuration description files. The system was ported to work using
+Siena and
+Elvin. It also supports our own fast topic-based dispatcher. The
+communication between client stubs and the
+server
+is implemented using Java RMI protocol.<br>
+</span></p>
+<p align="justify"><span lang="en-us">The
+following plug-ins are
+implemented: event sequence
+detection, pull and push notification policies, polling protocol, a
+simple
+persistence service (in memory), a fast multiplexer dispatcher
+(topic-based), and many other features. <br>
+</span></p>
+<p align="justify"><span lang="en-us">The
+service is multi threaded and
+supports many simultaneous subscriptions and publications as
+non-blocking operations. Input and output buffers were implemented to
+improve overall throughput and performance.<br>
+</span></p>
+<span style=""><br>
+</span>
+<hr style="width: 100%; height: 2px;">
+<h2 align="justify"><span lang="en-us"><a name="Download">Download</a></span></h2>
+<span lang="en-us">Regular builds of
+YANCEES are available in
+the folder: <a href="http://awareness.ics.uci.edu/%7Ersilvafi/yancees/dist">http://awareness.ics.uci.edu/~rsilvafi/yancees/dist.
+</a></span>The
+last snapshot is labeled as SNAPSHOP in those directories, and usually
+represents the current version with bug fixes, that we are using in our
+projects at UCI.
+<p align="justify">More current source code is available
+in the <a href="http://drzaius.ics.uci.edu/cgi-bin/cvsweb.cgi/Yancees/">CVS
+repository</a>.<br>
+<span lang="en-us"></span></p>
+<p align="justify"><span lang="en-us">Examples,
+installation
+instructions, user
+manual and configurations are under construction at the <a href="manual/index.html">YANCEES
+manual</a> page (under construction).<br>
+</span></p>
+<p align="justify"><span lang="en-us">This
+software is distributed
+according to the following <a href="LICENSE.TXT">LICENSE.TXT</a>.<br>
+This software was tested with <a href="http://java.sun.com/j2se/1.4.2/download.html">J2SDK1.4.2</a>
+and
+Java API for XML processing available at <a href="http://java.sun.com/webservices/downloads/webservicespack.html">SUN
+WSDP1.2 (web services pack)</a> or higher.</span></p>
+<h2>YANCEES Bundles</h2>
+<p align="justify"><span style="font-family: Helvetica,Arial,sans-serif;">For your
+convenience, we provide some examples of YANCEES bundled in different
+configurations. Those bundles include only a YANCEES-SNAPSHOT.jar file
+with the publisher and&nbsp; subscriber source codes. windows and
+Unix shell
+scripts are provided as well as the configuration file used to
+customize YANCEES.<br>
+<br>
+<a href="dist/bundles/MinimalYancees.zip">Minimal YANCEES</a>:
+<span style="font-weight: bold;">(August 2006 snapshot)</span>
+Configured with a fast switch core, the subscription language has only
+one command, <span style="font-weight: bold;">&lt;require&gt;</span>,
+which filters messages with the specified attribute name.<br>
+<br>
+<a href="dist/bundles/SienaYancees.zip">Siena YANCEES</a>:
+<span style="font-weight: bold;">(August 2006 snapshot)</span>
+Configured with Siena as the routing core, it provides Siena
+configuration language with an extra sequence detector plug-in. This is
+the version used in our example above.</span><span lang="en-us"></span></p>
+<p align="justify"><span lang="en-us"><br>
+</span></p>
+<hr style="width: 100%; height: 2px;">
+<p align="justify"><span lang="en-us"><br>
+</span></p>
+<h3 align="justify"><b>YANCEES prototype version 1.0</b></h3><p align="justify"><span lang="en-us"><span style="font-weight: bold;">August 2009</span> - The fourth stable public release of the YANCEES
+prototype is
+available. Previous releases can be downloaded <a href="releaseNotes.html">here</a>. The
+Java implementation of the prototype can be downloaded as follows:</span></p>
+<div align="justify">
+<ul>
+<li><span lang="en-us">Full source code,
+documentation, binaries and
+scripts: [<a href="dist/Yancees-all-1.0.zip">YANCEES-all-1.0.zip</a>]&nbsp;</span>
+</li>
+<li><span lang="en-us">Binaries only (base code without plugins): [<a href="dist/lib/Yancees-core-1.0.jar">YANCEES-core-1.0.jar</a>]</span>
+</li>
+<li><span lang="en-us">Source code only (base code without plugins): [<a href="dist/src/Yancees-core-src-1.0.zip">YANCEES-core-src-1.0.zip</a>]</span>
+</li>
+<li><span lang="en-us">Documentation [<a href="dist/doc/Yancees-doc-1.0.zip">YANCEES-doc-1.0.zip</a>]&nbsp;</span>
+</li>
+</ul>
+</div>
+<h3 align="justify"><span lang="en-us"><b>Release
+notes:</b>
+</span></h3>
+<div align="justify">
+<ul>
+<li>This is basically a stable version of YANCEES core components used in our <a href="../tradeoffs/index.html">versatility trade-offs case study</a>.&nbsp;</li>
+<li>Some other bug fixes.</li>
+</ul>
+</div>
+<p align="justify"><span lang="en-us">&nbsp;&nbsp;&nbsp;&nbsp;
+This
+version supports:</span></p>
+<div align="justify">
+<ul>
+<li><span lang="en-us">Server-side plug-ins
+(subscription,
+notification and protocol)</span> </li>
+<li><span lang="en-us">Server-side services</span>
+</li>
+<li><span lang="en-us">Server-side Input and
+output filters</span></li>
+<li><span lang="en-us">Client-side filters and
+plug-ins</span></li><li><span lang="en-us">Fixed attribute/value pair event format (YanceesEvent)<br></span></li><li><span lang="en-us">Buffered and non-blocking
+publication and
+notification implementations for improved throughput</span></li>
+
+</ul>During our case studies, we developed different plug-ins supprting:<br><ul><li><span lang="en-us">Content-based core</span> </li><li><span lang="en-us">Topic-based core</span>
+</li><li><span lang="en-us">Rules, event sequence detection and content-based subscription languag and plug-ins</span></li><li><span lang="en-us">Client-side filters and
+plug-ins</span></li><li><span lang="en-us">Push and pull notification</span></li><li><span lang="en-us">Publicatio filters<br></span></li><li><span lang="en-us">Protocols</span></li></ul>These plug-ins are shipped separatedly as part of our&nbsp;<a href="../tradeoffs/index.html">versatility trade-offs case study</a>.&nbsp;<br>
+<span lang="en-us">Roberto Silveira Silva Filho</span><br>
+<a href="http://www.ics.uci.edu/%7Ersilvafi">http://www.ics.uci.edu/~rsilvafi</a><br>
+Irvine, CA. June 8th, 2005.<br>
+</div>
+<hr style="width: 100%; height: 2px;" align="JUSTIFY">
+<div align="justify"><br>
+<span style="font-weight: bold;">Click here for </span><a style="font-weight: bold;" href="releaseNotes.html">YANCEES
+previous
+releases</a><br>
+<br>
+</div>
+<hr style="width: 100%; height: 2px;" align="JUSTIFY">
+<div align="justify"><span lang="en-us"><br>
+</span></div><br><p align="justify"><span lang="en-us">Roberto
+Silveira Silva Filho<br>
+Irvine, CA. August 15th, 2009.<br>
+<br>
+</span></p>
+<hr style="width: 100%; height: 2px;" align="JUSTIFY">
+<h2 align="justify"><span lang="en-us"><a name="Publications">Publications and Technical Reports</a></span></h2>
+<div align="justify">
+<br>
+<table border="0">
+<tbody>
+<tr>
+<td><font><font><b><font><font face="Arial, Helvetica"><font face="Arial, Helvetica"><b><font face="Arial, Helvetica"><font><font><font><font><font><font><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><span style="font-weight: bold;">2007</span>
+-</font></font></font></font></font></font></font></font></font></font></font></font><big>
+<small style="font-weight: normal;">Silva
+Filho, R. S. and D. F. Redmiles. <a href="publicatoins/ICFI2007-conference.pdf">Managing Feature
+Interaction by
+Documenting and Enforcing Dependencies in Software Product Lines</a>.
+in proceedings of the <a href="http://www-lsr.imag.fr/ICFI2007/">9th
+International Conference on Feature Interactions in Software and
+Communication Systems</a>. pp.39-54, Grenoble, France,
+September 3-5, 2007.</small></big></font></b></font></font></font></b></font></font></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td><font><font><font><font><font><font><font><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica" size="3"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica" size="3"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica" size="3"><span style="font-family: helvetica,arial,sans-serif;"><span style="font-weight: bold;">2005 - </span>Silva Filho
+R. S<span style="font-weight: bold;">.</span>,&nbsp;</span></font></font></font></font></font></font></font></font></font></font></font></font></font></font><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica" size="3"><span style="font-family: helvetica,arial,sans-serif;"><st1:personname style="font-family: helvetica,arial,sans-serif;" w:st="on">Redmiles
+D. </st1:personname><a href="publicatoins/SEM2005-workshop.pdf">Striving for
+Versatility in Publish/Subscribe Infrastructures</a>. in Proc. <a href="http://www.elet.polimi.it/upload/dinitto/SEM2005/">5th
+International Workshop on Software Engineering and Middleware
+(SEM'2005)</a>. in conjunction with the ACM ESEC/FSE conference.
+Lisbon, Portugal<font style="font-family: helvetica,arial,sans-serif;" face="Arial, Helvetica">. September, 5th-6th 2005.</font></span></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td><font style="font-weight: bold;" face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica" size="3"> </font></font></font></font></font></font></font><span lang="en-us"><span style="font-weight: bold;">2005
+- </span>Silva Filho
+R. S., Redmiles D. F.&nbsp; <a href="publicatoins/Survey-UCI-ISR-05-8.pdf">A
+Survey of Versatility for Publish/Subscribe Infrastructures</a>.
+Technical
+Report UCI-ISR-05-8.
+University of California, Irvine, May 2005.</span></td>
+</tr>
+<tr>
+<td><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><span lang="en-us"><span style="font-weight: bold;">2004
+- </span>Silva Filho
+R. S., Redmiles D. F. <a href="publicatoins/Versatility-UCI-ISR-04-7.pdf">Preserving
+Versatility in Event-based Middleware</a>. Technical
+Report UCI-ISR-04-7.
+University of California, Irvine, October 2004.</span></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><span lang="en-us"><span style="font-weight: bold;">2004
+- </span>Silva Filho
+R. S., De Souza C. R. B., Redmiles D. F. <a href="publicatoins/Yancees-UCI-ISR-04-1.pdf">Design and
+Experiments
+with YANCEES, a Versatile Publish-Subscribe Service</a>.
+Technical
+Report UCI-ISR-04-1.
+University of California, Irvine, April 2004.</span></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><span lang="en-us"><br>
+</span> </td>
+</tr>
+<tr>
+<td><span lang="en-us"><span style="font-weight: bold;">2003 - </span>Silva Filho
+R. S., De Souza C. R. B.,
+Redmiles D. F. <a href="publicatoins/DEBS2003-workshop.pdf">
+The
+Design of a Configurable, Extensible and Dynamic Notification Service</a>.
+in <a href="http://www.informatik.uni-trier.de/%7Eley/db/conf/debs/debs2003.html">Proc.
+Second International Workshop on Distributed Event-Based
+Systems (DEBS'03)</a>, In conjunction with The ACM SIGMOD/PODS
+Conference,
+San Diego, CA, USA, June 8th, 2003.</span>&nbsp;<span lang="en-us"></span></td>
+</tr>
+<tr>
+<td><span lang="en-us"><br>
+</span></td>
+</tr>
+<tr>
+<td>
+<h3>Additional materials</h3>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Slides from the ICFI 2007 conference are available <a href="presentations/ICFI2007%20Presentation.pdf">here</a>.</td>
+</tr>
+<tr>
+<td>&nbsp;<br>
+</td>
+</tr>
+<tr>
+<td>Slides from the SEM 2005 workshop are
+available&nbsp;<span lang="en-us"><a href="presentations/SEM2005%20Presentation.pdf">here.</a></span></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><span lang="en-us">Slides from
+the DEBS 2003 workshop are available <a href="./presentations/DEBS%20presentation.pdf">here</a>.</span></td>
+</tr>
+<tr>
+<td style="vertical-align: top;">&nbsp;<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">Current YANCEES
+Brochure&nbsp; is available <a href="flyer/Yancees-Flyer.pdf">here.</a><br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">&nbsp;<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">YANCEES Poster
+presented in the
+ISR Internal Workshop, June 2004 is available <a href="flyer/Yancees-Poster.pdf">here.</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>
+Acknowledgments</h3>
+<p>This research has been sponsored by NSF (grants 0133749,
+0205724, 0326105, 0527729,0524033), an IBM Eclipse technology exchange
+grant, and the Intel Corporation. </p>
+<hr>
+<center><span lang="en-us">Research Staff: <a href="http://www.ics.uci.edu/%7Ersilvafi">Roberto Silveira
+Silva
+Filho</a><br>
+Professor: <a href="http://www.ics.uci.edu/%7Eredmiles/">
+David F.
+Redmiles</a><br>
+<i><a href="http://www.isr.uci.edu/">Institute for
+Software Research</a><br>
+<a href="http://www.ics.uci.edu/">Information and Computer
+Science</a><br>
+<a href="http://www.uci.edu/">University of California,
+Irvine</a>
+CA 92697-3425</i><br>
+<a href="mailto:redmiles@ics.uci.edu"><br>
+</a></span></center>
+<hr>
+<center>
+<p><font color="white" size="1"><a target="_top" href="http://extremetracking.com/open?login=yancees"><img src="http://t1.extreme-dm.com/i.gif" alt="" border="0" height="38" width="41"></a>
+<script language="javascript1.2"><!--
+EXs=screen;EXw=EXs.width;navigator.appName!="Netscape"?
+EXb=EXs.colorDepth:EXb=EXs.pixelDepth;//-->
+</script>
+<script language="javascript"><!--
+EXd=document;EXw?"":EXw="na";EXb?"":EXb="na";
+EXd.write("<img src=\"http://t0.extreme-dm.com",
+"/c.g?tag=yancees&j=y&srw="+EXw+"&srb="+EXb+"&",
+"l="+escape(EXd.referrer)+"\" height=1 width=1>");//-->
+</script>
+<noscript><img height=1 width=1 alt=""
+src="http://t0.extreme-dm.com/c.g?tag=yancees&j=n"></noscript>
+</font>
+</p>
+</center>
+<hr>
+<address class="style1"> This page was last updated on
+August 8th,
+2008
+</address>
+</body></html>

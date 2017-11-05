@@ -1,0 +1,80 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:sub="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"
+            xmlns:sevt="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaEvent.xsd"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+<!-- Import namespaces used -->
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"/>
+
+<!-- Import namespaces used -->
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaEvent.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaEvent.xsd"/>
+
+
+  <xsd:annotation>
+    <xsd:documentation>
+       This schema defines subscriptions as supported by Siena
+
+    </xsd:documentation>
+  </xsd:annotation>
+
+
+  <!--
+    TYPE: SienaSubscriptionType
+    A Subscription in Siena is a Filter or a set of filters, in this last case,
+    representing a pattern.
+
+   -->
+  <xsd:complexType name="SienaSubscriptionType">
+     <xsd:complexContent>
+        <xsd:extension base="sub:SubscriptionType">
+           <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+              <xsd:element name="filter" type="FilterType"/>
+           </xsd:sequence>
+        </xsd:extension>
+     </xsd:complexContent>
+  </xsd:complexType>
+
+
+  <!--
+    TYPE: FilterType
+    a Filter is a conjunction of constraints (see AttributeConstraint).
+    Each constraint poses an elementary condition on a specific attribute of the event.
+    For example a contraint[price < 10] requires that the event contain an attribute
+    named "price" whose value is a number less than 10.
+    A Filter can have more that one constraint for an attribute. For example, a
+    Filter can express things like [model="custom", price > 10, price <= 20].
+    Every constraint in a Filter implicitly expresses an existential quantifier
+    over the event. The filter of the previous example
+    ([model="custom", price > 10, price <= 20]) requires that an event contain an
+    attribute named "model", whose value is the string "custom", and an attribute
+    named "price" whose value is a number between 10 and 20 (20 included).
+   -->
+  <xsd:complexType name="FilterType">
+     <xsd:sequence>
+        <xsd:element name="EQ" type="sevt:AttributeType" minOccurs="0"  maxOccurs="unbounded"/>
+        <xsd:element name="GT" type="sevt:AttributeType" minOccurs="0"  maxOccurs="unbounded"/>
+        <xsd:element name="LT" type="sevt:AttributeType" minOccurs="0"  maxOccurs="unbounded"/>
+        <xsd:element name="LE" type="sevt:AttributeType" minOccurs="0"  maxOccurs="unbounded"/>
+        <xsd:element name="GE" type="sevt:AttributeType" minOccurs="0"  maxOccurs="unbounded"/>
+        <xsd:element name="PF" type="sevt:AttributeType" minOccurs="0"  maxOccurs="unbounded"/>
+        <xsd:element name="SF" type="sevt:AttributeType" minOccurs="0"  maxOccurs="unbounded"/>
+        <xsd:element name="ANY" type="sevt:AttributeType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="NE" type="sevt:AttributeType" minOccurs="0"  maxOccurs="unbounded"/>
+        <xsd:element name="SS" type="sevt:AttributeType" minOccurs="0"  maxOccurs="unbounded"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+
+</xsd:schema>

@@ -1,0 +1,41 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+
+ <xsd:annotation>
+    <xsd:documentation>
+       This XML Schema file defines the basic event structure that must be
+       specialized by specific event implementations.
+
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <!--
+    ELEMENT: event
+
+    This tag is the root element in an event file, the topmost element that
+    defines the event structure.
+   -->
+  <xsd:element name="event" type="EventType"/>
+
+
+  <!--
+    TYPE: EventType
+
+    The EventType is generic and need to be implemented by extensions of
+    this schema. It can be used to define any event representation
+
+   -->
+  <xsd:complexType name="EventType" abstract = "true"/>
+
+</xsd:schema>

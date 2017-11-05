@@ -1,0 +1,539 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<TITLE>Sequence15-bubblesort-araguaia_iguacu_anhumas_tigre x Sequence15-bubblesort-araguaia_iguacu x Sequence15-bubblesort-iguacu x</TITLE>
+</HEAD>
+<BODY>
+<H1><CENTER>Test24 - Concurrent cases executing in 2 and 4 machines compared to a centralized scenario</CENTER></H1>
+1 to 20 concurrent cases compared to 1 to 20 centralized cases. Hosts: araguaia.dcc.unicamp.br and iguacu.dcc.unicamp.br
+<HR>
+<!-- A tabela seguinte foi gerada pelo Assistente para Internet do Microsoft Excel. -->
+<!-- ------------------------- -->
+<!-- IN&Iacute;CIO DA SA&Iacute;DA CONVERTIDA -->
+<!-- ------------------------- -->
+<Table border>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial"><B>Centralized Execution Scenario:</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>araguaia</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Single sequence without splits.</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">The same activity, with the same data set is executed durint each task</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial"><B>Distributed Execution Scenario:</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>araguaia and iguacu</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Cases execute in a single sequence of equal activities, without splits and joins.</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Activities alternate between two machines: consecutive activities execute in different hosts.</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Case, process and role coordinators ececute in host araguaia</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">The taskLists (2) execute in host iguacu.</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">The test is started from host iguacu</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">The same data set is read by all activities</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial"><B>Distributed Execution Scenario:</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>araguaia, iguacu, anhumas and tigre</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Cases execute in a single sequence of equal activities, without splits and joins.</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">The users are allocated at runtime in random order. Since each user (tasklist) is executing in a different host, the host of the next activity is choosed at runtime. </FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">The activities are created in the user preferential host.</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Hence, activities alternate between three machines: araguaia, iguacu and tigre. Consecutive activities may execute in the same host.</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Case, process and role coordinators ececute in host araguaia</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">The TaskLists execute one in each host: araguaia, iguacu and tigre, each one representing one user.</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">All coordinators execute in host anhumas.</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">The test is started from host araguaia.</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">The same data set is read by all activities</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+<TD><FONT FACE="Arial"><B>&nbsp;</B></FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial"><B>Hosts: araguaia.pos.dcc.unicamp.br; iguacu.dcc.unicamp.br; anhumas.dcc.unicamp.br; tigre.dcc.unicamp.br</B></FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial"><B>Hosts Information: </B></FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Host Name</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">araguaia</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Manufacturer</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">Sun (Sun Microsystems)</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">System Model</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">Ultra 2</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Main Memory</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">380 MB</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Virtual Memory</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">526 MB</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Host Name</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">iguacu</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Manufacturer</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">Sun (Sun Microsystems)</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">System Model</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">Ultra 2</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Main Memory</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">252 MB</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Virtual Memory</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">531 MB</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Host Name: </FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">tigre</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Manufacturer</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">Sun (Sun Microsystems)</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">System Model</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">Ultra Enterprise</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Main Memory</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">512 MB</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Virtual Memory</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">870 MB</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">ROM Version</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">CPU Type</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">sparc</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Number of CPUs</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">2</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">App Architecture</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">sparc</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Kernel Architecture</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">sun4u</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">OS Name</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">SunOS</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">OS Version</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">5.7</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Kernel Version</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">SunOS Release 5.7</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Host Name</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">anhumas</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Manufacturer</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">Sun (Sun Microsystems)</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">System Model</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">Ultra 4</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Main Memory</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">4096 MB</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Virtual Memory</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">5200 MB</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">ROM Version</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">CPU Type</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">sparc</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Number of CPUs</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">4</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">App Architecture</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">sparc</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Kernel Architecture  </FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">sun4u</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">OS Name</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">SunOS</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">OS Version</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial"> 5.7</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Kernel Version</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">SunOS Release 5.7</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Timeout of the activities (minutes) </FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">5</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Timeout of the coordinators (Case, Process and Role) (minutes) </FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">10</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Timeout of the tasklist (minutes)</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">5</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Wait time between consecutive cases (seconds): </FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">20</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Number of activities in the case: </FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">15</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Number of users:</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">2</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Number of process coordinators:</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">1</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Wait time of the invoked application: </FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">Time to execute the bubble sort</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Invoked application command line:</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">bsort 1000</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Performs garbage collection at the end of the case?</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">no</FONT></TD>
+</TR>
+<TR ALIGN="left" VALIGN="bottom">
+<TD><FONT FACE="Arial">Total ammount of data exchanged between consecutive activities (KB):</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">&nbsp;</FONT></TD>
+<TD><FONT FACE="Arial">121</FONT></TD>
+</TR>
+</Table>
+<P>
+<IMG SRC="test2410.gif" ALT="ChartObject Averange Case Execution Time" ALIGN=CENTER>
+</P>
+<P>
+<IMG SRC="test2411.gif" ALT="ChartObject Case Elapsed Time (ms) : 1 Case" ALIGN=CENTER>
+</P>
+<P>
+<IMG SRC="test2412.gif" ALT="ChartObject Case Elapsed Time (ms) : 5 Concurrent Cases" ALIGN=CENTER>
+</P>
+<P>
+<IMG SRC="test2413.gif" ALT="ChartObject Case Elapsed Time (ms) : 10 Concurrent Cases" ALIGN=CENTER>
+</P>
+<P>
+<IMG SRC="test2414.gif" ALT="ChartObject Case Elapsed Time (ms) : 15 Concurrent Cases" ALIGN=CENTER>
+</P>
+<P>
+<IMG SRC="test2415.gif" ALT="ChartObject Case Elapsed Time (ms) : 20 Concurrent Cases" ALIGN=CENTER>
+</P>
+<P>
+<IMG SRC="test2416.gif" ALT="ChartObject Averange Wrapper Execution Time" ALIGN=CENTER>
+</P>
+<P>
+<IMG SRC="test2417.gif" ALT="ChartObject Sequencing Averange Time" ALIGN=CENTER>
+</P>
+<P>
+<IMG SRC="test2418.gif" ALT="ChartObject Averange Case Elapsed Time" ALIGN=CENTER>
+</P>
+<!-- ------------------------- -->
+<!-- FIM DA SA&Iacute;DA CONVERTIDA -->
+<!-- ------------------------- -->
+<FONT SIZE=-1><I>
+<HR>
+<BR>&Uacute;ltima atualiza&ccedil;&atilde;o 10/04/2000
+<BR>Por Roberto Silveira Silva Filho
+<BR>Correio eletr&ocirc;nico: <A HREF = "mailto:Roberto.Filho@dcc.unicamp.br">Roberto.Filho@dcc.unicamp.br</A>
+<FONT SIZE=+0></I>
+</BODY>
+</HTML>

@@ -1,0 +1,326 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/cassProtocol.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:msg="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/message.xsd"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/cassProtocol.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+  <!-- Import namespaces used -->
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/message.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/message.xsd"/>
+
+
+  <xsd:annotation>
+    <xsd:documentation>
+		This schema defines a polling protocol, which operates together with the pull
+ 		plug-in collecting events stored in this plug-in.
+    </xsd:documentation>
+  </xsd:annotation>
+
+   <!--
+    ELEMENT: protocol
+
+    This tag is the root element in a protocol definition file, the topmost element that
+    defines the protocol to be used here
+   -->
+  <xsd:element name="prototcol" type="CassProtocolType"/>
+
+
+  <!--
+    TYPE: CassProtocolType
+ 
+    Defines the cassius protocol. Note that the publish and subscribe commands of cassius are handled 
+    by special publish and subscribe plug-ins outside this protocol plug-in.
+    Note also that the protocol plug-in operates together with an event model and persistency service
+    that manipulates the cassius hierarchy of events.
+
+   -->
+  <xsd:complexType name="CassProtocolType">
+     <xsd:complexContent>
+        <xsd:extension base="msg:ProtocolType">
+           <xsd:sequence>
+              <xsd:element name="request" type="CassProtocolRequestType" minOccurs="0" maxOccurs="1"/>             
+              <xsd:element name="response" type="CassProtocolResponseType" minOccurs="0" maxOccurs="1"/>
+           </xsd:sequence>
+        </xsd:extension>
+     </xsd:complexContent>
+  </xsd:complexType>
+
+  <!--
+    TYPE: CassProtocolRequestType
+ 
+    Defines all possible requests in the protocol
+   -->
+  <xsd:complexType name="CassProtocolRequestType">
+	  <xsd:sequence>
+        <xsd:element name="registerAccount" type="RegisterAccountCommandType" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="unregisterAccount" type="UnregisterAccountCommandType" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="changeAccount" type="ChangeAccountCommandType" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="listAccounts" type="ListAccountsCommandType" minOccurs="0" maxOccurs="1"/>
+              
+        <xsd:element name="newObject" type="NewObjectCommandType" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="removeObject" type="RemoveObjectCommandType" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="modifyObject" type="ModifyObjectCommandType" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="listObjects" type="ListObjectsCommandType" minOccurs="0" maxOccurs="1"/>
+              
+        <xsd:element name="defineType" type="DefineTypeCommandType" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="removeType" type="RemoveTypeCommandType" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="listTypes" type="ListTypesCommandType" minOccurs="0" maxOccurs="1"/>
+              
+ 		  <!--
+ 			 Events in Cassius are defined in another file called cassEvent.xsd. The event names
+ 			 listed in the types are a contract, an agreement between the event producers and
+ 			 consumers. Nothing prevents an event producer to generate other events.
+ 		  -->
+             
+        <xsd:element name="poll" type="PollCommandType" minOccurs="0" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+
+  <!--
+    TYPE: CassProtocolResponseType
+ 
+    Defines all possible responses in the cassius protocol
+
+   -->
+  <xsd:complexType name="CassProtocolResponseType">
+	  <xsd:sequence>
+        <xsd:element name="accountList" type="CassAccountListType" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="objectList" type="CassObjectListType" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="typeList" type="CassTypeListType" minOccurs="0" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+
+  <!--
+    TYPE: CassAccountListType
+ 
+   List of registered accounts. It is a list of all account records
+
+   -->
+  <xsd:complexType name="CassAccountListType">
+	  <xsd:sequence>
+        <xsd:element name="account" type="RegisterAccountCommandType" minOccurs="0" maxOccurs="unbounded"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+  <!--
+    TYPE: CassObjectListType
+    
+    List of registered objects. It is a list of all object records
+   -->
+  <xsd:complexType name="CassObjectListType">
+	  <xsd:sequence>
+        <xsd:element name="account" type="NewObjectCommandType" minOccurs="0" maxOccurs="unbounded"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+  <!--
+    TYPE: CassTypeListType
+    
+    List of registered types. It is a list of all type records
+   -->
+  <xsd:complexType name="CassTypeListType">
+	  <xsd:sequence>
+        <xsd:element name="account" type="DefineTypeCommandType" minOccurs="0" maxOccurs="unbounded"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+
+  <!--
+    TYPE: PollCommandType
+ 
+    Defines all commands of the poll protocol.
+    The events here are directly delivered to the subscriber that initiated the poll
+
+   -->
+  <xsd:complexType name="PollCommandType">
+	  <xsd:sequence>
+        <xsd:element name="pollInterval" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="since" type="xsd:Time" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="command" type="CommandType" minOccurs="1" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+  <!--
+    TYPE: CommandType
+
+    Defines all the possible poll sub-commands.
+   -->
+  <xsd:simpleType name="CommandType">
+    <xsd:restriction base="xsd:string">
+    	<xsd:enumeration value="start"/>
+    	<xsd:enumeration value="stop"/>
+    	<xsd:enumeration value="pause"/>
+    	<xsd:enumeration value="resume"/>
+  	 </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!--
+    TYPE: RegisterAccountCommandType
+  
+    Registers a new cassius account.
+
+   -->
+  <xsd:complexType name="RegisterAccountCommandType">
+	  <xsd:sequence>
+        <xsd:element name="accountName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+  <!--
+    TYPE: UnegisterAccountCommandType
+
+    Unegisters a cassius account.
+
+   -->
+  <xsd:complexType name="UnegisterAccountCommandType">
+	  <xsd:sequence>
+        <xsd:element name="accountName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+  
+   <!--
+    TYPE: ChangeAccountCommandType
+ 
+    Changes the account information
+
+   -->
+  <xsd:complexType name="ChangeAccountCommandType">
+	  <xsd:sequence>
+        <xsd:element name="accountName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="newAccountName" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="newDescription" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+  
+   <!--
+    TYPE: ListAccountsCommandType
+ 
+    Lists all the accounts if no parameter is provided or the specific accounts provided
+    their name and/or class namess
+
+   -->
+  <xsd:complexType name="ListAccountsCommandType">
+	  <xsd:sequence>
+        <xsd:element name="accountName" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+   <!--
+    TYPE: NewObjectCommandType
+ 
+    Creates a new object inside an account. Type and parent ids are optionals. They can be used
+    to create a typed hierarchy of objects inside an account.
+
+   -->
+  <xsd:complexType name="NewObjectCommandType">
+	  <xsd:sequence>
+        <xsd:element name="objectName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="objectId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="accountName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="objectType" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="parentId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+  
+   <!--
+    TYPE: RemoveObjectCommandType
+
+	 Removes an object inside an account provided its id.
+   -->
+  <xsd:complexType name="RemoveObjectCommandType">
+	  <xsd:sequence>
+        <xsd:element name="objectId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="accountName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+  <!--
+    TYPE: NewObjectCommandType
+
+    Creates a new object inside an account. Type and parent ids are optionals. They can be used
+    to create a typed hierarchy of objects inside an account.
+
+   -->
+  <xsd:complexType name="ModifyObjectCommandType">
+	  <xsd:sequence>
+        <xsd:element name="objectName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="objectId" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="newObjectName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="newObjectId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="newParentId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="newDescription" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+  
+   <!--
+    TYPE: ListObjectsCommandType
+
+    List all the objects of an account.
+    List all objects or the sub-objects (inclusive) of an optinal objectID
+
+   -->
+  <xsd:complexType name="ListObjectsCommandType">
+	  <xsd:sequence>
+        <xsd:element name="accountName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="objectId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+  
+   <!--
+    TYPE: DefineTypeCommandType
+
+    Defines a new Type
+    In cassius, each object is an event source. Hence, an object of a certain type will provide
+    a set of events.
+    Each type has a list of events associated to it. For example, if the type is a FileType, in
+    a filesystem hierarchy, one can associate events to it as: FileChangedEvent, FileDeletedEvent,
+    FilePermissionsModifiedEvent and so on.
+   -->
+  <xsd:complexType name="DefineTypeCommandType">
+	  <xsd:sequence>
+        <xsd:element name="typeName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="associatedEvent" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+     </xsd:sequence>
+  </xsd:complexType>
+  
+   <!--
+    TYPE: RemoveTypeCommandType
+
+    Removes a type definition provided its name and account
+   -->
+  <xsd:complexType name="RemoveTypeCommandType">
+	  <xsd:sequence>
+        <xsd:element name="accountName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="typeName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+  <!--
+    TYPE: ListTypeCommandType
+
+	Lists all the types of an account with their associated events or the types specified by a
+	list of typeNames
+   -->
+  <xsd:complexType name="ListTypesCommandType">
+	  <xsd:sequence>
+        <xsd:element name="accountName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="typeName" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+     </xsd:sequence>
+  </xsd:complexType>
+  
+
+</xsd:schema>

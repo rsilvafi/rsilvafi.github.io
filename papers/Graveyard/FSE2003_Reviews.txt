@@ -1,0 +1,95 @@
+First reviewer's review:
+
+          >>> Summary of the paper <<<
+
+The paper presents an architecture for notification services, which allows programmers to customize
+these services to different application domains.
+
+
+
+          >>> Comments <<<
+
+There has been extensive work, both in research and in practice, on notification services, with
+many many existing systems (as also noted by the authors). Furthermore, many of those systems offer
+rich set of capabilties (e.g., the Corba notification service, which even provides event qos and
+other advanced fearures).
+
+So, I don't really see why is it important to provide more exensibility than what's provided by
+those tools.
+
+But besides that, eventhough the paper describes a compherensive description of the architecture of
+their services, I don't see a conceptual or technical research contribution in this work.
+
+
+
+
+
+ =*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=
+
+Second reviewer's review:
+
+          >>> Summary of the paper <<<
+
+The paper describes the design of a flexible, extensible, notification server, based on the use of
+plugins.
+
+
+
+          >>> Comments <<<
+
+The design seems quite flexible and extensible. Unfortunately, without an implementation, it is
+difficult to know where the problems are. In particular, what is the overhead of the dynamic
+extension capability. These other systems you mention have been built and used over time. Your
+paper will be much stronger if you have an implementation report.
+
+
+
+          >>> Points in favour or against <<<
+
++ Nice survey of existing systems + Reasonably good design
+
+- No way to tell if the design works -- there is no implementation currently
+
+
+
+ =*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=
+
+Third reviewer's review:
+
+          >>> Summary of the paper <<<
+
+The paper presents the design of an event notification service where nearly all its features can be
+configured and customized, even dynamically. The approach is based on the use of a plug-in
+architecture.
+
+
+
+          >>> Comments <<<
+
+I am not sure I buy your characterization of various existing event notification services in terms
+of special-purpose, general-purpose, and "in between". I suspect that nearly all would claim to be
+general purpose, and all to be "optimized". I think it is reasonable to ask the question: how do I
+design a service such that I can tailor its capabilities? The argumentation at the beginning of the
+paper is really superfluous.
+
+But the real problem with the paper is the following: One can easily believe that nearly all
+decisions, even down to the interpretation of a subscription operation like "or", can be "plugged
+in". But can you get something that meets any kind of performance goals? The paper hints at a
+coming implementation. I would like to see this paper again once the implementation is available
+and the performance costs of its flexibility understood.
+
+A small thing: In related work you say "Promela" when you mean "Promile".
+
+
+
+          >>> Points in favour or against <<<
+
+In Favour: An interesting idea for evolving an important class of systems.
+
+Against: Feasible, yes, but too immature to tell anything about its practicality.
+
+
+
+ =*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=
+
+

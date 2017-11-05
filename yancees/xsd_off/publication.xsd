@@ -1,0 +1,54 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/publication.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:evt="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/publication.xsd"           
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+<!-- Import namespaces used -->
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"/>
+
+
+  <xsd:annotation>
+    <xsd:documentation>
+       This schema defines a generic publication type which is intented to allow
+       publishers to publish events and define plug-ins to be used to process them.
+
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <!--
+    ELEMENT: publication
+
+    This tag is the root element in a publication file, the topmost element that
+    defines the publication representation structure.
+   -->
+  <xsd:element name="publication" type="PublicationType"/>
+
+  <!--
+    TYPE: PublicationType
+
+    The PublicationType is generic and need to be implemented by extensions of
+    this schema. It can be used to define any language. The only requirement is
+    that it uses reverse polish notation: + A B to imply A+B for example. This allows
+    the publication manager to parse the DOM tree invoking the appropriate plug-ins.
+
+   -->
+  	<xsd:complexType name="PublicationType">
+		<xsd:sequence>	
+  			<xsd:element name="event" type="evt:EventType"/>
+  			<xsd:element name="filters" type="PublicationFilterType"/>	
+  		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="PublicationFilterType" abstract="true"/>
+
+</xsd:schema>

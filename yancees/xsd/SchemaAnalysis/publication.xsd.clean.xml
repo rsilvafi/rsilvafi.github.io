@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="file:C:/Opt/eclipse/plugins/com.ibm.etools.sketch.sqc/SimpleErrorReport.xsl"?>
+<schemaAnalysis SchemaQualityCheckerVersion="2.2"
+    anyWarningsRequestedToBeSuppressed="false" cost="10"
+    haltAtFirstError="false" requireEachDocumentValid="false" schemaLanguageVersion="2001-05-02">
+    <file fileNameWithoutPath="publication.xsd" filename="C:\Users\rsilvafi\Proj\Yancees\xsd\publication.xsd">
+        <startdatetime>2003-08-29T14:53:43</startdatetime>
+        <noErrorFound/>
+        <enddatetime>2003-08-29T14:53:46</enddatetime>
+    </file>
+</schemaAnalysis>

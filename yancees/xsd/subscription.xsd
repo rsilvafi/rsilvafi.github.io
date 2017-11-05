@@ -1,0 +1,41 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+
+  <xsd:annotation>
+    <xsd:documentation>
+       This schema defines a generic subscription type, which allows the creation
+       and extension of a subscription language.
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <!--
+    ELEMENT: subscription
+
+    This tag is the root element in a subscription file, the topmost element that
+    defines the subscription representation structure.
+   -->
+  <xsd:element name="subscription" type="SubscriptionType"/>
+
+  <!--
+    TYPE: SubscriptionType
+
+    The SubscriptionType is generic and need to be implemented by extensions of
+    this schema. It can be used to define any language. The only requirement is
+    that it uses reverse polish notation: + A B to imply A+B for example. This allows
+    the subscription manager to parse the DOM tree invoking the appropriate plug-ins.
+
+   -->
+  <xsd:complexType name="SubscriptionType" abstract = "true"/>
+
+</xsd:schema>

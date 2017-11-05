@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<meta name="keywords"
+
+content="Distributed Systems, CORBA, Java, Distributed Workflow, Workflow Management, CSCW, Groupware, Mobile Objects">
+
+	<META NAME="GENERATOR" Content="Microsoft FrontPage 4.0">
+	<TITLE>Wonder - Execution Tests</TITLE>
+</HEAD>
+
+<BODY TEXT="#552800" BGCOLOR="#F8F4E7" LINK="maroon" ALINK="#00A000" VLINK="#6F6F37">
+
+<H1 ALIGN="CENTER"><A NAME="Main"></A><FONT FACE="Arial">WONDER Execution Tests</FONT></H1>
+<P ALIGN="CENTER">&nbsp;</P>
+
+<DIV ALIGN="CENTER">
+	<CENTER>
+	<P>
+	<TABLE BORDER="0">
+		<TR>
+			<TD WIDTH="400"><IMG SRC="../GreenBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="4" FACE="Arial">I.</FONT><FONT
+				SIZE="5" FACE="Arial"> </FONT><A HREF="#Overhead"><FONT SIZE="4" FACE="Arial">Overhead Tests</FONT></A><BR>
+				<IMG SRC="../BlueBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="4" FACE="Arial">II.</FONT><FONT
+				SIZE="5" FACE="Arial"> </FONT><A HREF="#Concurrency"><FONT SIZE="4" FACE="Arial">Concurrent Cases Performance Tests</FONT></A>
+				<BR>
+				<IMG SRC="../RedBall.jpg" WIDTH="29" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="4" FACE="Arial">III. </FONT><A
+				HREF="#Data"><FONT SIZE="4" FACE="Arial">Data Exchange Performance Tests</FONT></A> <BR>
+				<IMG SRC="../YellowBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="4" FACE="Arial">IV. </FONT><A
+				HREF="#Processing"><FONT SIZE="4" FACE="Arial">Processing Performance Tests</FONT></A> <BR>
+				<IMG SRC="../GreenBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="4" FACE="Arial">V. </FONT><A
+				HREF="#Hosts"><FONT SIZE="4" FACE="Arial">Hosts Information</FONT></A></TD>
+			<TD><A HREF="http://www.ics.uci.edu/~rsilvafi/wonder/"><IMG SRC="../Wonder_Logo.gif" WIDTH="264" HEIGHT="195" ALIGN="BOTTOM"
+				BORDER="0"></A></TD>
+		</TR>
+		<TR>
+			<TD WIDTH="400">&nbsp;</TD>
+			<TD>
+				<P ALIGN="CENTER"><B><FONT FACE="Arial">Execution Tests</FONT></B>
+			</TD>
+		</TR>
+	</TABLE>
+
+</CENTER>
+</DIV>
+
+<P>&nbsp;</P>
+
+<P>
+<HR ALIGN="CENTER">
+<FONT FACE="Arial, Helvetica"></FONT>
+
+<P><FONT FACE="Arial, Helvetica">A set of performance tests were performed. In these tests, the system had a linear
+increase of the execution times with the increase of the number of concurrent cases and the volume of data exchanged.
+The overhead associated to Java objects creation represent almost 40\% of the total object migration time.<BR>
+</FONT></P>
+
+<P><A HREF="http://www.ics.uci.edu/~rsilvafi/wonder/"><FONT FACE="Arial">Back to Wonder Home Page</FONT></A> </P>
+
+<P>
+<HR ALIGN="CENTER">
+
+<P><A NAME="Overhead"></A></P>
+<H1><IMG SRC="../GreenBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="5" FACE="Arial"> I.
+Overhead Tests</FONT></H1>
+<P><B><FONT SIZE="3" FACE="Arial">In these tests, the amount of data exchanged between activities is null. The
+wrapper application is not invoked. The main objective is to test the overhead of the activities migration and
+creation, without the interference of invoked applications and data transferred among hosts. One single case with
+20 activities is executed in centralized and in a distributed scenarios.</FONT></B></P>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"> 
+<a HREF="test26.html"><B><FONT
+SIZE="3" FACE="Arial">Test 26 - Distributed X Centralized Execution of a case with 20 activities. No data is conveyed
+and no wrapper is invoked</FONT></B></a><B><FONT SIZE="3" FACE="Arial">.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A></P>
+<P>
+<HR ALIGN="CENTER">
+<P><A NAME="Concurrency"></A></P>
+<H1><IMG SRC="../BlueBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="5" FACE="Arial"> II.
+Concurrent Cases Performance Tests</FONT></H1>
+<P><B><FONT SIZE="3" FACE="Arial">In these tests, the amount of data exchanged between activities is fixed and
+equal to all activities. The wrapper application executes a sleep 20 UNIX shell command. The number of concurrent
+cases is the main variable in the tests. These tests were performed in Solaris hosts.</FONT></B> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT SIZE="5" FACE="Arial">II.1. Single machine execution at host: araguaia.ics.uci.edu</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test1.html"><B><FONT
+FACE="Arial">Test 1 - 1 to 10 concurrent cases having 10 equal activities each. </FONT></B></a><B><FONT FACE="Arial">10
+Samples.</FONT></B></P>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test2.html"><B><FONT
+FACE="Arial">Test 2 - 1 to 20 concurrent cases having 20 equal activities each.</FONT></B></a><B><FONT FACE="Arial">
+5 Samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT SIZE="5" FACE="Arial">II.2. Single machine execution at host: anhumas.ics.uci.edu</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test7.html"><B><FONT
+FACE="Arial">Test 7- 1 to 20 concurrent cases having 20 equal activities each.</FONT></B></a><B><FONT FACE="Arial">
+5 Samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT FACE="Arial">II.3. Distributed Execution (araguaia and iguacu)</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test3.html"><B><FONT
+FACE="Arial">Test 3 - Progressive execution of 1 to 10 concurrent cases</FONT></B></a><B><FONT FACE="Arial">. Each
+case was defined as a 10 equal activities sequence. The test was performed using 2 hosts having consecutive activities
+executing in different hosts. 10 Samples.</FONT></B></P>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test4.html"><B><FONT
+FACE="Arial">Test 4 - Progressive execution of 1 to 20 concurrent cases.</FONT></B></a><B><FONT FACE="Arial"> Each
+case was defined as a 20 equal activities sequence. The test was performed using 2 hosts having consecutive activities
+executing in different hosts. 5 Samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A></P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT FACE="Arial">II.4. Distributed&nbsp; Execution (araguaia, iguacu, anhumas and tigre)</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test22.html"><B><FONT
+FACE="Arial">Test 22 - Progressive execution of 1 to 20 concurrent cases.</FONT></B></a><B><FONT FACE="Arial">
+Each case was defined as a 20-equal-activity sequence. The test was performed using 4 hosts. The host to execute
+the next activity is chosed, randomly, from the four hosts set, at runtime. 5 Samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A></P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT FACE="Arial">II.5. Distributed X Centralized Execution (araguaia x araguaia and iguacu)</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test5.html"><B><FONT
+FACE="Arial">Test 5 - Progressive execution of 1 to 10 concurrent cases, execuiting in 2 machines, compared to
+Progresive execution of 1 to 10 centralized cases.</FONT></B></a><B><FONT FACE="Arial"> Both tests use 10 equal
+activities for each case . 10 samples.</FONT></B></P>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test6.html"><B><FONT
+FACE="Arial">Test 6 - Progressive execution of 1 to 20 concurrent cases, executing in 2 machines, compared to Progressive
+execution of 1 to 20 centralized cases. </FONT></B></a><B><FONT FACE="Arial">Both tests use 20 equal activities
+for each case . 5 samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A></P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT FACE="Arial">II.6. Distributed X Centralized Execution (araguaia x araguaia and iguacu x araguaia, iguacu,
+anhumas and tigre)</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test25.html"><B><FONT
+FACE="Arial">Test 25 - Progressive execution of 1 to 20 concurrent cases, execuiting in 2 and 4 machines, compared
+to Progresive execution of 1 to 20 centralized cases.</FONT></B></a><B><FONT FACE="Arial"> Both tests use 20 equal
+activities for each case . The test was performed using 4 hosts. The host to execute the next activity is
+chosed,
+randomly, from the four hosts set, at runtime. 5 Samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A></P>
+<P>
+<HR ALIGN="CENTER">
+
+<HR ALIGN="CENTER">
+<P><A NAME="Data"></A></P>
+<H1><IMG SRC="../RedBall.jpg" WIDTH="29" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="5" FACE="Arial"> III.
+Data Exchange Performance Tests</FONT></H1>
+<P><B><FONT SIZE="3" FACE="Arial">In these tests, the amount of data exchanged between activities is the main
+variable. The number of concurrent cases is fixed.</FONT></B></P>
+<H1><FONT SIZE="5" FACE="Arial">III.1. Single machine execution at host: araguaia.ics.uci.edu</FONT></H1>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test9.html"><B><FONT
+FACE="Arial">Test 9 - Successive execution of a 20-activity case, with the data volume excanged between activities
+varing from 961KB to 14422KB</FONT></B></a><B><FONT FACE="Arial">. 5 samples.</FONT></B></P>
+<H1><FONT SIZE="5" FACE="Arial">III.2. Single machine execution at host: anhumas.ics.uci.edu</FONT></H1>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test10.html"><B><FONT
+FACE="Arial">Test 10- Successive execution of a 20-activity case, with the data volume excanged between activities
+varing from 961KB to 14422KB</FONT></B></a><B><FONT FACE="Arial">. 5 samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT SIZE="5" FACE="Arial">III.</FONT><FONT FACE="Arial">3. Distributed Execution (araguaia and iguacu)</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test11.html"><B><FONT
+FACE="Arial">Test 11 - Sucessive execution of a 20-activity case, with the data volume excanged between activities
+varing from 961KB to 14422KB</FONT></B></a><B><FONT FACE="Arial">. The test was performed using 2 hosts having
+consecutive activities executing in different hosts. 5 Samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<H1><FONT SIZE="5" FACE="Arial">III.4. Distributed X Centralized Execution (araguaia x araguaia and iguacu)</FONT></H1>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test13.html"><B><FONT
+FACE="Arial">Test 13 - Sucessive execution of a 20-activity case, with the data volume excanged between activities
+varing from 961KB to 14422KB</FONT></B></a><B><FONT FACE="Arial">. Centralized execution
+in a single host compared
+to the Distributed execution. Both tests use 20 equal activities in the case . 5 samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<HR ALIGN="CENTER">
+<P><A NAME="Processing"></A></P>
+<H1><IMG SRC="../YellowBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><FONT SIZE="5" FACE="Arial">
+IV. Processing Performance Tests</FONT></H1>
+<P><B><FONT SIZE="3" FACE="Arial">In these tests, the amount of data exchanged between activities is fixed and
+equal to all activities. The wrapper application executes a bubble sort of 1000 random numbers. The number of concurrent
+cases is the main variable in the tests. These tests were performed in Solaris hosts.</FONT></B></P>
+<P><B><FONT SIZE="3" FACE="Arial">The maximum number of concurrent cases that a centralized host could stand was
+15, with 15 activities each.</FONT></B> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT SIZE="5" FACE="Arial">IV.1. Single machine execution at host: araguaia.ics.uci.edu</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test15.html"><B><FONT
+FACE="Arial">Test 15 - 1 to 20 concurrent cases having 20 equal activities each.</FONT></B></a><B><FONT FACE="Arial">
+5 Samples.</FONT></B></P>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test17.html"><B><FONT
+FACE="Arial">Test 17 - 1 to 20 concurrent cases having 15 equal activities each.</FONT></B></a><B><FONT FACE="Arial">
+5 Samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT SIZE="5" FACE="Arial">IV.2. Single machine execution at host: anhumas.ics.uci.edu</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test16.html"><B><FONT
+FACE="Arial">Test 16 - 1 to 20 concurrent cases having 20 equal activities each.</FONT></B></a><B><FONT FACE="Arial">
+5 Samples.</FONT></B></P>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test18.html"><B><FONT
+FACE="Arial">Test 18 - 1 to 20 concurrent cases having 15 equal activities each.</FONT></B></a><B><FONT FACE="Arial">
+5 Samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT FACE="Arial">IV.3. Distributed Execution (araguaia and iguacu)</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test19.html"><B><FONT
+FACE="Arial">Test 19 - Progressive execution of 1 to 20 concurrent cases</FONT></B></a><B><FONT FACE="Arial">.
+Each case was defined as a 15 equal activities sequence. The test was performed using 2 hosts having consecutive
+activities executing in different hosts. 5 Samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT FACE="Arial">IV.4. Distributed Execution (araguaia, iguacu, anhumas and tigre)</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test23.html"><B><FONT
+FACE="Arial">Test 23 - Progressive execution of 1 to 20 concurrent cases.</FONT></B></a><B><FONT FACE="Arial">
+Each case was defined as a 15 equal activities sequence. The test was performed using 4 hosts. The host to execute
+the next activity is choosed, randomly, from the four hosts set, at runtime. 5 Samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT SIZE="5" FACE="Arial">IV.5</FONT><FONT FACE="Arial">. Distributed X Centralized Execution (araguaia x
+araguaia and iguacu)</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test21.html"><B><FONT
+FACE="Arial">Test 21- Progressive execution of 1 to 20 concurrent cases, executing
+in 2 machines, compared to
+Progresive execution of 1 to 20 centralized cases.</FONT></B></a><B><FONT FACE="Arial"> Both tests use 15 equal
+activities for each case . 5 samples.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<H2><FONT SIZE="5" FACE="Arial">IV.6</FONT><FONT FACE="Arial">. Distributed X Centralized Execution (araguaia x
+araguaia and iguacu x araguaia, iguacu, anhumas and tigre)</FONT></H2>
+<P><IMG SRC="../../ball_grey.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"><a HREF="test24.html"><B><FONT
+FACE="Arial">Test 24- Progressive execution of 1 to 20 concurrent cases, execuiting in 2 and 4 machines, compared
+to Progresive execution of 1 to 20 centralized cases.</FONT></B></a><B><FONT FACE="Arial"> The 3 tests use 15 equal
+activities for each case . 5 samples each.</FONT></B></P>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<HR ALIGN="CENTER">
+<P><A NAME="Hosts"></A></P>
+<H2><IMG SRC="../GreenBall.jpg" WIDTH="30" HEIGHT="30" ALIGN="BOTTOM" BORDER="0"><FONT FACE="Arial">V. Hosts Information</FONT></H2>
+<P>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="10">
+	<TR>
+		<TD><FONT FACE="Arial">Host Name : </FONT><B><FONT FACE="Arial">araguaia</FONT></B> <BR>
+			<FONT FACE="Arial">Host Aliases :</FONT> <BR>
+			<FONT FACE="Arial">Host Address(es) : 143.106.7.14</FONT> <BR>
+			<FONT FACE="Arial">Host ID : 8089b3de</FONT> <BR>
+			<FONT FACE="Arial">Serial Number : 9024478</FONT> <BR>
+			<FONT FACE="Arial">Manufacturer : Sun (Sun Microsystems)</FONT> <BR>
+			<FONT FACE="Arial">System Model : Ultra 2</FONT> <BR>
+			<FONT FACE="Arial">Main Memory : 380 MB</FONT> <BR>
+			<FONT FACE="Arial">Virtual Memory : 526 MB</FONT></TD>
+		<TD><FONT FACE="Arial">Host Name : </FONT><B><FONT FACE="Arial">iguacu</FONT></B> <BR>
+			<FONT FACE="Arial">Host Aliases :</FONT> <BR>
+			<FONT FACE="Arial">Host Address(es) : 143.106.7.2</FONT> <BR>
+			<FONT FACE="Arial">Host ID : 8088edd4</FONT> <BR>
+			<FONT FACE="Arial">Serial Number : 8973780</FONT> <BR>
+			<FONT FACE="Arial">Manufacturer : Sun (Sun Microsystems)</FONT> <BR>
+			<FONT FACE="Arial">System Model : Ultra 2</FONT> <BR>
+			<FONT FACE="Arial">Main Memory : 252 MB</FONT> <BR>
+			<FONT FACE="Arial">Virtual Memory : 531 MB</FONT></TD>
+	</TR>
+	<TR>
+		<TD><FONT FACE="Arial">Host Name : </FONT><B><FONT FACE="Arial">tigre</FONT></B> <BR>
+			<FONT FACE="Arial">Host Aliases :</FONT> <BR>
+			<FONT FACE="Arial">Host Address(es) : 143.106.7.16</FONT> <BR>
+			<FONT FACE="Arial">Host ID : 8081db37</FONT> <BR>
+			<FONT FACE="Arial">sysinfo: /dev/ksyms is not a 32-bit kernel namelist</FONT> <BR>
+			<FONT FACE="Arial">Serial Number :</FONT> <BR>
+			<FONT FACE="Arial">Manufacturer : Sun (Sun Microsystems)</FONT> <BR>
+			<FONT FACE="Arial">sysinfo: /dev/ksyms is not a 32-bit kernel namelist</FONT> <BR>
+			<FONT FACE="Arial">sysinfo: /dev/ksyms is not a 32-bit kernel namelist</FONT> <BR>
+			<FONT FACE="Arial">System Model : Ultra Enterprise</FONT> <BR>
+			<FONT FACE="Arial">Main Memory :</FONT> <BR>
+			<FONT FACE="Arial">sysinfo: /dev/ksyms is not a 32-bit kernel namelist</FONT> <BR>
+			<FONT FACE="Arial">Virtual Memory :</FONT> <BR>
+			<FONT FACE="Arial">sysinfo: /dev/ksyms is not a 32-bit kernel namelist</FONT> <BR>
+			<FONT FACE="Arial">ROM Version :</FONT> <BR>
+			<FONT FACE="Arial">CPU Type : sparc</FONT> <BR>
+			<FONT FACE="Arial">Number of CPUs : 2</FONT> <BR>
+			<FONT FACE="Arial">App Architecture : sparc</FONT> <BR>
+			<FONT FACE="Arial">Kernel Architecture : sun4u</FONT> <BR>
+			<FONT FACE="Arial">OS Name : SunOS</FONT> <BR>
+			<FONT FACE="Arial">OS Version : 5.7</FONT> <BR>
+			<FONT FACE="Arial">Kernel Version : SunOS Release 5.7&nbsp;</FONT> <BR>
+			<FONT FACE="Arial">Version Generic_106541-08 [UNIX(R)</FONT> <BR>
+			<FONT FACE="Arial">System V Release 4.0]</FONT></TD>
+		<TD><FONT FACE="Arial">Host Name : </FONT><B><FONT FACE="Arial">anhumas</FONT></B> <BR>
+			<FONT FACE="Arial">Host Aliases :</FONT> <BR>
+			<FONT FACE="Arial">Host Address(es) : 143.106.7.92</FONT> <BR>
+			<FONT FACE="Arial">Host ID : 80a75f7d</FONT> <BR>
+			<FONT FACE="Arial">sysinfo: /dev/ksyms is not a 32-bit kernel namelist</FONT> <BR>
+			<FONT FACE="Arial">Serial Number :</FONT> <BR>
+			<FONT FACE="Arial">Manufacturer : Sun (Sun Microsystems)</FONT> <BR>
+			<FONT FACE="Arial">sysinfo: /dev/ksyms is not a 32-bit kernel namelist</FONT> <BR>
+			<FONT FACE="Arial">sysinfo: /dev/ksyms is not a 32-bit kernel namelist</FONT> <BR>
+			<FONT FACE="Arial">System Model : Ultra 4</FONT> <BR>
+			<FONT FACE="Arial">Main Memory :</FONT> <BR>
+			<FONT FACE="Arial">sysinfo: /dev/ksyms is not a 32-bit kernel namelist</FONT> <BR>
+			<FONT FACE="Arial">Virtual Memory :</FONT> <BR>
+			<FONT FACE="Arial">sysinfo: /dev/ksyms is not a 32-bit kernel namelist</FONT> <BR>
+			<FONT FACE="Arial">ROM Version :</FONT> <BR>
+			<FONT FACE="Arial">CPU Type : sparc</FONT> <BR>
+			<FONT FACE="Arial">Number of CPUs : 4</FONT> <BR>
+			<FONT FACE="Arial">App Architecture : sparc</FONT> <BR>
+			<FONT FACE="Arial">Kernel Architecture : sun4u</FONT> <BR>
+			<FONT FACE="Arial">OS Name : SunOS</FONT> <BR>
+			<FONT FACE="Arial">OS Version : 5.7</FONT> <BR>
+			<FONT FACE="Arial">Kernel Version : SunOS Release 5.7</FONT> <BR>
+			<FONT FACE="Arial">Version Generic_106541-08 [UNIX(R)</FONT> <BR>
+			<FONT FACE="Arial">System V Release 4.0]</FONT></TD>
+	</TR>
+</TABLE>
+<P><A HREF="#Main"><FONT FACE="Arial">Back to Tests Menu</FONT></A> </P>
+<P>
+<HR ALIGN="CENTER">
+
+<P><B><FONT FACE="Arial">This page was last modified in April 6, 2000</FONT></B>
+
+</BODY>
+
+</HTML>

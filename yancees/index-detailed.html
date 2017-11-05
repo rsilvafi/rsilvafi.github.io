@@ -1,0 +1,2070 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="pt-br"><head>
+
+  
+
+
+  
+  
+  <title>Yet Another Configurable Extensible Event Service</title><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+  
+  <style type="text/css">
+<!--
+body,td,th {
+font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-size: smaller}
+-->
+  </style></head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+
+
+<table width="100%">
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td align="left">
+      
+      <p align="center"><a href="http://www.uci.edu/"><img src="UCI.gif" border="0" height="108" width="255"></a>
+      </p>
+
+
+      </td>
+
+
+      <td align="center">
+      
+      <h1>YANCEES: Yet ANother Configurable Extensible Event
+Service</h1>
+
+
+      </td>
+
+
+      <td><br>
+
+
+      </td>
+
+
+      <td align="right">
+      
+      <p align="center"><a href="http://www.isr.uci.edu/"> <img src="ISR-Logo.gif" border="0" height="69" width="140"></a></p>
+
+
+      </td>
+
+
+    </tr>
+
+
+  
+  </tbody>
+</table>
+
+
+<hr>
+<div align="center">
+<center>
+<table>
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td align="center"> <span lang="en-us">Concepts:&nbsp;</span>
+      </td>
+
+
+      <td align="center">
+      
+      <p align="justify"><span lang="en-us"><a href="#Introduction">Introduction</a>
+|</span></p>
+
+
+      </td>
+
+
+      <td align="center">
+      
+      <p align="justify"><a href="#Motivation">Motivation</a>
+|</p>
+
+
+      </td>
+
+
+      <td align="center"> <a href="#Overview">Overview</a>
+| </td>
+
+
+      <td align="center">
+      
+      <p align="justify"><a href="#Architecture">Architecture</a>
+|</p>
+
+
+      </td>
+
+
+      <td align="center"><a href="#Extensibility">Versatility</a>
+      <br>
+
+
+      </td>
+
+
+    </tr>
+
+
+  
+  </tbody>
+</table>
+
+
+</center>
+
+
+</div>
+
+
+<div align="center">
+<center>
+<table>
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td align="center">System:&nbsp;</td>
+
+
+      <td align="center"><a href="#Implementation">Implementation</a>
+|&nbsp;</td>
+
+
+      <td align="center"> <a href="manual/index.html">Documentation</a>
+|</td>
+
+
+      <td align="center">
+      
+      <p align="justify"><a href="#Publications">Publications</a>
+| </p>
+
+
+      </td>
+
+
+      <td align="center">
+      
+      <p align="justify"><a href="#Download">Download</a>
+|<br>
+
+
+      </p>
+
+
+      </td>
+
+
+      <td style="vertical-align: top;"><a href="http://drzaius.ics.uci.edu/cgi-bin/cvsweb.cgi/Yancees/">CVS
+repository</a><br>
+
+
+      </td>
+
+
+    </tr>
+
+
+  
+  </tbody>
+</table>
+
+
+</center>
+
+
+</div>
+
+
+<p align="justify">&nbsp;</p>
+
+
+<h2 align="justify"><span lang="en-us"><a name="Introduction">Introduction</a></span></h2>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">
+<span lang="en-us">In this project, we
+study the use of configurable and extensible software architectures to
+provide
+<a href="http://dictionary.reference.com/search?q=versatility">versatility</a>
+to event notification services (a.k.a. publish/subscribe
+infrastructures). Its goal is to study the trade-offs involved in the
+construction and use of such infrastructures.&nbsp;
+Current industrial infrastrucutres strive to support the variability of
+different application domains through the applicaiton of different
+strategies: 1) Build new publish/subscribe infrastructures from
+scratch; 2) Use minimal core infrastructures such as Siena, Elvin or
+Scribe; 3) Use one-size-fits-all infrastructures as CORBA-NS or READY.
+More recently, a new class of publish/subscribe infrastructures that
+relies on compositional approaches have been created. Examples include
+FACET, GREEN and YANCEES.&nbsp; YANCEES is an extensible and
+configurable component framework that allows the construction of
+application-specific publish/subscribe infrastructures. Examples of
+such extensions
+include subscriptions with event correlation, different notification
+policies (push and pull), protocols for mobile
+applications integration, ad-hoc P2P network protocols; event
+persistence
+services,
+security and others. YANCEES configurability and extensibility is
+achieved by the use of extensible languages and plug-in oriented
+architectures, along main publish/subscribe design dimensions (event,
+publication, subscription,
+notification, protocol and resource models). In other
+words, versatility
+is achieved by:</span></p>
+
+
+<blockquote>
+  
+  <p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"> <span lang="en-us">1. An
+open, extensible and configurable architecture
+where plug-ins can be installed<br>
+
+
+2. Extensible event, notification, subscription and protocol languages<br>
+
+
+  </span></p>
+
+
+</blockquote>
+
+
+The key insight on YANCEES is the separation of languages
+(subscription,
+notification and protocol) and their implementation (plug-ins), for
+each design dimension of a notification server. Those two aspects are
+then dynamically combined through the user of parsers and configuration
+managers, allowing dynamic allocation of resources and the runtime
+installation of new featuers to the infrastructure.&nbsp;Another
+insight is that, different languages and adapters can be used,
+simultaneously, allowing
+the integration of different publish/subscripe networks and event
+sources.<br>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">Internally,
+YANCEES is a framework that combines:</p>
+
+
+<blockquote>
+  
+  <p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"> <span lang="en-us">1. Dynamic
+parsers that&nbsp;allocate plug-ins to
+cope with the provided subscription and notification commands/policies.<br>
+
+
+2. Input and output filters<br>
+
+
+3. Special pluggable services<br>
+
+
+4. Configuration managers and builders<br>
+
+
+5. Adapters that can support existing
+publish/subscribe networks<br>
+
+
+6. A core that integrates those featues.</span></p>
+
+
+</blockquote>
+
+
+By combining different features
+impelmented by means of plug-ins, filters and protocols, YANCEES allows
+the built of application-specific notifications services. The general
+approach is described in the following figure.<br>
+
+
+<div style="text-align: left;"><br>
+
+
+<div style="text-align: center;"><img src="YanceesProcess.gif" alt=""></div>
+
+
+</div>
+
+
+<blockquote>
+  
+  <p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"></p>
+
+
+</blockquote>
+
+
+<h2 align="justify"><span lang="en-us"><a name="Motivation">Motivation</a></span></h2>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">Many
+distributed applications interact by the exchange of events.
+For the point of view of the applications, notification services
+provide a distributed implementation of the
+implicit
+invocation pattern, intermediating the communication between
+publishers of
+information and their consumers (subscribers). In such systems, at one
+side, publishers produce pieces of information that are sent (or
+published) to a logically-centralized service (a.k.a.notification
+service); whereas information consumers (or subscribers)
+express their interest on those pieces of informationby means of
+subscriptions. Subscriptions are usually represented
+as logical expressions on the content, type and/or order of events.
+More
+advanced systems allow more expressive constructs, permitting the
+correlation of events, for example. This
+approach allows the insulation between producers and consumers of
+information, which copes with the dynamism, heterogeneity, scalability
+and changeability requirements of many distributed applications. The
+publish/subscribe
+communication style also facilitates the
+combination and integration of information from different sources as
+they get produced.<br>
+
+
+</p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"><span lang="en-us">For having such characteristics, event
+notification servers have been used as the basic communication
+infrastructure in a
+large set of application domains. These domains
+include
+user and software monitoring, testing, <a href="http://elvin.dstc.edu.au/index.html">CSCW</a>, <a href="http://www.isr.uci.edu/projects/cassius/">awareness</a>,
+workflow management systems, mobile
+applications,
+enterprise integration, software engineering environments and so on.
+Due to their
+increasing popularity and the peculiarities of each application domain,
+different functinality has been demanded from such
+infrastructures.&nbsp;</span></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">
+<span lang="en-us">Even though a big
+set of commercial and research notification services are currently
+available,
+they
+are not usually designed for evolution and configurabilty. In other
+words, they provide poor programability, configurability and dynamic
+change&nbsp;support.
+From a software engineer perspective, before YANCEES, developers had
+basically three options when using notification services in their
+applications:</span></p>
+
+
+<ul>
+
+
+  <li>
+    
+    <p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"> <span lang="en-us">Use what
+we call &#8220;one-size-fits-all&#8221; or
+monolythic
+approaches, such as
+adopted by <a href="http://www.omg.org/technology/documents/formal/notification_service.htm">CORBA
+Notification Service (CORBA-NS), </a>READY or JMS. These
+infrastructures strive to address new applications requirements by
+providing, in advance, a very
+comprehensive set of features. Besides their inability to scale (down)
+to more
+simple applications, they are not designed with extensibility in mind.
+As applications evolve demand new requirements, the
+infrastructure itself cannot evolve to address these new
+requirements.</span> </p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"> <span lang="en-us">Use
+specialized notification services, designed for
+different application domains. Also motivated by the poor versatility
+of current standardized solutions such as CORBA-NS or JMS, many
+notification services have been
+developed to provide novel but specific
+functionalities demanded by different applications.
+Examples of such specialized systems include KHRONIKA and <a href="http://www.isr.uci.edu/projects/cassius/">CASSIUS</a>
+which
+are specially designed to support groupware and awareness applications;
+or YEAST and GEM which are specialized in advanced event
+processing for local networks
+applications, or JEDI, which first studies strategies to support
+mobility in publish/subscribe systems. Moreover, those infrastructures
+are usually implement incompatible and
+non-programmable solutions, which in a big organization result in
+incompatibilty and interoperability problems, since&nbsp; different
+notification services may need to co-exist and inter-operate.<br>
+
+
+    </span></p>
+
+
+  </li>
+
+
+  <li>
+    
+    <p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"><span lang="en-us">In a third
+and emerging category, notification services
+such as <a href="http://serl.cs.colorado.edu/%7Ecarzanig/siena/software/index.html">Siena</a>
+or <a href="http://elvin.dstc.com/index.html">Elvin</a>
+can be used.
+They provide a minimal core of features in a
+content-based network. A compromise between expressiveness and
+performance is achieved in favor of
+its scalability, providing an optimized content-based event routing
+network. Due to their emphases on fast and scalable routing of events,
+they
+provide a simple but efficient filtering language.
+Configurability&nbsp;programability is not their primary concerns,
+being the responsibility of
+the application to implement extra services such as event persistence,
+and advanced event correlation, for example.</span></p>
+
+
+  </li>
+
+
+</ul>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">
+<span lang="en-us"><span style="font-weight: bold;">Configurabilty:
+Specialization versus Generalization.</span> Therefore, in the
+development of event driven distributed applications, developers face
+the dilemma of
+specialization versus generalization: to use a generalized
+infrastructure, that
+can support and integrate different applications, but that may not
+provide all the
+necessary functionality (in terms of subscription language,
+notification policies and other points of variance in notification
+services); or to
+use specialized
+event-based infrastructures for each application domain, having
+&#8220;the
+right tool
+for the right problem&#8221;, but loosing the uniformity and
+integration of a
+common
+solution. For example, in the development of awareness tools, one can
+use either
+a comprehensive solution such as CORBA Notification Service (CORBA-NS)
+that
+provides a large set of features and services, or a domain specific
+solution
+such as <a href="http://www.isr.uci.edu/projects/cassius/">CASSIUS</a>,
+that provides services for awareness applications.
+That&#8217;s
+important to note that infrastructures as CORBA-NS, even though are
+very
+comprehensive in its set of features, do not provide specific support
+for
+all the
+requirements of many specific application domains. For example, in the
+case of
+awareness
+applications, CORBA-NS does not provide event source hierarchy
+representation, browsing and discovery. CASSIUS, on the other
+hand, provides these features and allows the easy discovery of
+information sources
+and the subscription for events from different source components. If
+CORBA-NS
+were used in an awareness application demanding this feature, this
+service would
+need to be implemented by the system developers, in the application
+layer.</span></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">
+<span lang="en-us"><span style="font-weight: bold;">Processing
+distribution.</span>
+Another problem
+of the currently available event-based infrastructures is the poor
+support for
+selection and customization of where to execute the&nbsp; event
+processing computation.
+Few notification services, such as READY, provide this support. READY
+extends the CORBA-NS, allowing
+subscription processing to be done in the client side. <br>
+
+
+</span></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"><span lang="en-us"><span style="font-weight: bold;">Infrastructure
+Evolution.</span>
+Moreover,
+current
+event-based infrastructures lack mechanisms that allow the programming
+(or evolution)
+of
+their
+functionality. The only extension mechanism is usually the
+(understanding and)
+change of the notification service source code, or the implementation
+of the missing functionality as part of the application itself.
+Additionally, due to restrictions in their event or
+subscription models, the addition of new functionality may become a
+very
+time consuming and difficult task.</span></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"><span lang="en-us"><span style="font-weight: bold;">Scalabilty</span>.
+Different applications demand different functionality sets from the
+publish/subscribe infrastructure. Moreover, they have different
+hardware requirements, requiring the support for device-constrained
+configurations such as PDAs, or more demanding server-side
+applications. &nbsp;Hence, infrastructures that allow the scale (up
+and
+down) of their features to different application requirements are not
+available.</span></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"><span lang="en-us"><span style="font-weight: bold;">Interoperabilty.</span>
+Interoperability issues may also be a problem. In large organizations,
+for example, if
+multiple notification services are used in the support for different
+application domains, their integration may be an
+issue. They are usually
+incompatible with one another and do not easily
+interoperate, as a result of different event syntax and semantic, as
+well as subscription formats.<br>
+
+
+</span></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"><span style="font-weight: bold;">Dynamism.</span> In order
+to be useful, the
+configurability and programmabilty aspects need to&nbsp; be
+provided in
+a way that does not inerrupt the publish/subscribe infrastructure. This
+requires the ability to
+dinamically configure/upgrade the system as&nbsp; required by the
+addplicatoins. <br>
+
+
+<span lang="en-us"><span style="font-weight: bold;"></span></span></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"><span lang="en-us"><span style="font-weight: bold;">Usability</span>.
+Another important aspect to be considered is usabilty. A notification
+service must be easy to use, in the point of view of the programmers,
+providing services that allow, for example, the registration and
+discovery of new event souces, as a way to enhance the subscription
+ability of the service.<br>
+
+
+</span></p>
+
+
+Based on those requirements, <span style="font-weight: bold;">versatility</span>
+is then defined as the ability of providing those characteristics. In
+order to study the application of those issues in a publish/subscribe
+context, we developed <span lang="en-us">YANCEES, a
+prototype that
+embodies our approach. YANCEES&nbsp; provides one common and
+programmable
+publish/subscribe framework to address the versatility aspects
+previously described. Programability is provided by
+plug-ins
+and&nbsp;
+the&nbsp; event, notification, subscription and protocol languages.
+Configurability is achieved by the use of configuration managers and
+the ability to distribute plug-ins throughout client and server sides.
+Dynamism is
+achieved by dynamic parsers, that allocate plug-ins on demand, and by
+the architecture manager, that allows the upgrade and installation of
+new
+plug-in implementations. Reuse is achieved by the composition of
+existing plug-ins. YANCEES can also be used to integrate existing
+content-based routing networks such as Siena and Elvin by using them as
+internal dispatchers. Or it can also be be used as an abstraction layer
+around these networks, enhancing their
+subscription languages with more expressive filters, and event
+correlation capabilities, moving the advanced event
+processing and delivery burden from the client to the middleware. <br>
+
+
+</span>
+<h2 align="justify"><span lang="en-us">Functionality
+evolution in
+publish/subscribe systems<br>
+
+
+</span></h2>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">
+<span lang="en-us">In order to design a generic and
+programmable
+framework, the application domain must be understood. This requirements
+analysis must lay out the main activities involved in the process being
+automated, allowing the generalization of the solution through the
+implementation of an object-oriented framework. In other words, a
+framework must provide extensibilty along the main dimension of the
+problem being generalized.<br>
+
+
+</span></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"><span lang="en-us">In the YANCEES
+framework, the programability points are inspired in the framework
+proposed
+by <a href="http://www.ics.uci.edu/%7Edsr/Publications/esec97.html">(Rosenblum
+and
+Wolf 1997)</a>, which captures the most relevant dimensions (or
+models)
+in the design
+of publish/subscribe services. In this framework, the <i style="">object
+model</i> describes the components that receive notifications
+(subscribers) and
+generate events (publishers). The <i style="">event
+model</i> describes the representation and characteristics of the
+events; the <i style="">notification
+model</i> is concerned with the way the events are delivered to
+the
+subscribers;
+the <i style="">observation model</i> describes the
+mechanisms used to
+express interest
+in occurrences of events; the <i style="">timing model</i>
+is concerned with the casual and temporal relations between the events;
+the <i style="">resource
+model</i> defines where, in the distributed system architecture,
+the
+observation
+and notification computations are located, as well as how they are
+allocated and
+accounted; finally, the <i style="">naming model</i>
+is concerned with the location of objects, events, and subscriptions in
+the
+system.</span></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">
+<span lang="en-us">For the implementation of YANCEES, we
+consider a
+variation of this model proposed by </span><span class="m"><span class="h">
+<a href="http://dx.doi.org/10.1109/32.950318">(Cugola,
+Nitto, and Fuggetta 2001)</a>, with the addition of</span></span><span lang="en-us"> a new model, the protocol. The protocol model
+is defined
+as a way to address the need to capture
+other forms of interaction with the notification service that goes
+beyond the common publish/subscribe
+interaction. This is necessary to incorporate the ability to handle
+different functionality other than the common publish and subscribe
+activities, and that require the interaction of the publish/subscribe
+core with other components of the system. Examples of protocols that
+may be necessary are:
+guaranteed delivery, mobility and roaming protocols,
+security, event source discovery and other possible interaction
+mechanisms with
+the service.</span></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">The
+YANCEES strategy to provide programability and configurability is to
+implement these models as programmable points along an object-oriented
+framework. An extension in this model is represented by programmable
+languages and protocols, whose implementation is
+provided by user-defined plug-ins, services and filters. </p>
+
+
+<h2 align="justify"><span lang="en-us"><a name="Overview">Overview</a></span></h2>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">
+<span lang="en-us">Currently, YANCEES is bult on top of a
+generic and
+replaceable pub/sub core. It provides an programability layer, that
+allows the use of
+different subscription, notification and event models with the
+development of plug-ins
+and language extensions (using XML).&nbsp;</span></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="center">
+<a href="Yancees%20logo.gif"><span lang="en-us"><img alt="Yancees overall view" src="Yancees%20logo.gif" style="border: 0px solid ; width: 928px; height: 690px;"></span></a></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify">
+<span lang="en-us">As highlighted in
+the picture above, plug-ins are used to extend the event, notification,
+subscription and protocol models. These models are implemented as sets
+of languages defined in XML.
+Examples of
+plug-ins include event correlation expressions (sequence detection,
+rules, temporal and causality constructs), push and pull
+notification
+delivery policies, move-in/move-out protocol primitives to support
+mobile
+clients,
+event ontology and persistence
+services, and so on. An alternative picture of the overall approach is
+presented as follows.</span></p>
+
+
+<p class="EstiloAntes6ptDepoisde0ptKernem14pt" align="justify"><span lang="en-us"></span></p>
+
+
+<div style="text-align: center;"><img style="width: 940px; height: 306px;" src="Architecture%20and%20Plug-ins.gif" alt=""><br>
+
+
+<br>
+
+
+</div>
+
+
+<h2 align="justify"><span lang="en-us"><a name="Architecture"> YANCEES
+Event-Notification
+Service Architecture</a></span></h2>
+
+
+<p><span lang="en-us">In a high-level perspective,
+YANCEES provides a
+framework that combines plug-ins (in red) with language extensions (in
+orange), along the main event processing steps. Along with those
+dimensions, the protocol dimension is also provided, supporting the
+implementation of different interaction mechanisms with the server.</span></p>
+
+
+<p><span lang="en-us"><br>
+
+
+</span></p>
+
+
+<div style="text-align: center;"><span lang="en-us"></span><img src="Approach.gif" alt="">
+</div>
+
+
+<p align="justify"><span lang="en-us">Under
+the hood, YANCEES provides
+a set of
+parsers that combine the extensions in the languages
+(which express the design models), with their semantic implementation,
+the plug-ins. Internally, the framework provides auxiliary extension
+points (filters, services and adapters) that are used to support the
+implementation of more complex policies and services. Adapters are used
+to provide interoperability and support for different publish/subscribe
+substrates (currently Siena and Elvin).
+As shown in the picture below,
+each parser (in orange) is responsible
+for extending different design dimensions of a publish/subscribe system
+(notification, protocol and subscription). </span></p>
+
+
+<p align="justify"><span lang="en-us">The
+server-side architecture of
+the YANCEES framework is presented as
+follows.<br>
+
+
+</span></p>
+
+
+<div style="text-align: center;"><a href="architecture.gif"><span lang="en-us"><img alt="" src="architecture.gif" style="border: 0px solid ; width: 720px; height: 540px;"></span></a><br>
+
+
+<span lang="en-us"></span></div>
+
+
+<p align="center"><span lang="en-us"><br>
+
+
+</span></p>
+
+
+<p align="justify"><span lang="en-us">The
+components of the system are
+divided in main categories: parsers (orange), auxiliary parser
+components (service manager and plug-in manager) and a component
+configuration manager (all in green), and the instances allocated by
+this set of components (plug-ins, filters and services in red).</span></p>
+
+
+<p align="justify"><span lang="en-us">Parsers
+(in orange) are used to
+dynamically allocate plug-ins in
+response to messages sent to YANCEES API, mainly publish and subscribe
+commands. They use plug-in instances (in red), that are dynamically
+allocated by the Plug-in manager (green). Plug-ins are hierarchically
+composed, forming evaluation trees that extend the basic functionality
+of the
+event
+dispatcher core. There is one parser to each main design dimension.
+Plug-in
+instances (in red) extend the core subscription and notification
+languages provided by the
+dispatcher
+adapter and the dispatcher component (in blue). Protocol plug-ins
+interact with the service instances and filters in response to protocol
+messages. The architecture
+configuration manager
+deals with&nbsp; the dynamic installation of components and their
+distribution
+between client an server side. The whole components can be installed in
+the client-side, moving event processing to the client, or can be
+shared in the server-side, an intermediate approach balancing the
+location of the plug-ins can also be achieved.</span></p>
+
+
+<p align="justify"><span lang="en-us">Filters
+and services are used to
+enhance the functionality
+provided by the plug-ins. Filters process events in the input and
+output streams
+of the framework, allowing the implementation of security policies,
+event type checking and so on; services can be used to provide access
+points to shared
+resources such
+as databases, data models, and so on.</span></p>
+
+
+<p align="justify"><span lang="en-us">The
+following figure shows the
+flow
+of messages in the system
+and the dynamic allocation of plug-ins in response to the messages
+provided (other components are omitted here for simplicity).</span></p>
+
+
+<p align="center"><a href="workflow.gif"><span lang="en-us"><img alt="" src="workflow.gif" style="border: 0px solid ; width: 720px; height: 540px;"></span></a></p>
+
+
+<p align="justify"><span lang="en-us">The
+arrival of a message
+(subscription arrow in the picture) triggers the appropriate
+parser (Subscriber API), which identifies the XML tags of the message.
+In the example
+above, we assume a subscription message&nbsp; having two parts, a
+subscription expression and a notification policy. The subscriber API
+splits the message in their two components, forwarding each part to the
+appropriate parser, in this case, the notification and the subscription
+parsers. Each parser allocates plug-in
+instances to handle the commands expressed in each part of the message.
+An
+evaluation tree, composed of plug-in instances, is then created, in
+memory, to handle (or interpret) that particular
+message. The tree is composed of notification and subscription nodes.
+The leaves of this tree are special plug-ins that subscribe to events
+in the dispatcher. Plug-is more close to the top of the tree perform
+higher-level computations, such as event sequence detection. Once the
+tree is parsed, events coming from the dispatcher that matches the
+leaves subscriptions are processed, in a bottom-up approach, through
+this structure, having the results sent to the subscriber as
+notifications. Before delivering the notifications, the message passes
+through output filters that enforce global policies in the system. Note
+that while subscriptions are handled on demand, and are associated to
+unique subscribers, filters are applied to all the events of the system.<br>
+
+
+</span></p>
+
+
+<p align="justify"><span lang="en-us">The
+basic parsing algorithm,
+which
+is also applied to the notification, subscription and protocol models,
+is
+illustrated as follows (example
+with subscription language and parser):</span></p>
+
+
+<p align="center"><a href="parsing.gif"><span lang="en-us"><img alt="" src="parsing.gif" style="border: 0px solid ; width: 584px; height: 296px;"></span></a></p>
+
+
+<p align="justify"><span lang="en-us">Plug-ins
+associated to each tag
+of
+the message (subscription in our example) are allocated according to
+their disposition in the XML model (or document) where they are
+represented. Each plug-in instance handles one or more XML tags in the
+message being
+parsed.
+Events are sent upward in the subscription tree as the plug-ins
+expressions are
+evaluated.</span></p>
+
+
+<h2 align="justify"><span lang="en-us"><a name="Extensibility">Versatility
+Summary</a></span></h2>
+
+
+<p align="justify"><span lang="en-us">The
+following table summarizes
+the event notification design dimensions
+supported by YANCEES and describes how to extend each one of them in
+our approach.</span></p>
+
+
+<div align="center">
+<center>
+<table border="1" width="800">
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td align="center" width="180"><span lang="en-us"><b>DESIGN
+DIMENSION</b></span></td>
+
+
+      <td align="center" width="365"><span lang="en-us"><b>HOW TO
+EXTEND/USE</b></span></td>
+
+
+      <td align="center" width="233"><span lang="en-us"><b>EXAMPLE
+EXTENSIONS</b></span></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td width="180"><span lang="en-us"><i><b>Subscription
+Model</b></i></span></td>
+
+
+      <td width="365"><span lang="en-us">Extend
+the subscription
+language using XML;<br>
+
+
+Provide plug-in implementations for each tag or the new set of tags;<br>
+
+
+Use optional input or output filters and services.<br>
+
+
+      </span></td>
+
+
+      <td width="233"><span lang="en-us">Event
+correlation (sequence
+detection, aggregation, rules)<br>
+
+
+Primitives to support different dispatchers (Elvin, JMS, Siena CORBA-NS
+and
+others)<br>
+
+
+Topic-based<br>
+
+
+Channel-based<br>
+
+
+      </span></td>
+
+
+    </tr>
+
+
+    <tr><td><span style="font-weight: bold; font-style: italic;">Publication Model</span></td><td>Allows
+the definition of filters that can intercept the publication of events,
+supporting global policies such as event type checking, or features
+such as event persistency and infrastructure protocols.</td><td>Type ckecing filter, repeated events filter, peer publish protocol interceptor.</td></tr><tr>
+
+
+      <td width="180"><span lang="en-us"><i><b>Event
+Model</b></i></span></td>
+
+
+      <td width="365"><span lang="en-us">Extend
+the event
+representation in XML;<br>
+
+
+Provide event dispatchers or dispatcher adapters to handle the event
+transport;<br>
+
+
+Use optional input and output filters to enforce the event
+representation.<br>
+
+
+      </span></td>
+
+
+      <td width="233"><span lang="en-us">Tuple-based
+(attribute/value
+pairs)<br>
+
+
+Record-based<br>
+
+
+Object-based<br>
+
+
+Typed and un-typed events</span></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td width="180"><span lang="en-us"><i><b>Notification
+Model</b></i></span></td>
+
+
+      <td width="365"><span lang="en-us">Extend
+the notification
+language using XML;<br>
+
+
+Provide plug-in implementations for each tag; implementing the
+notification policies;</span></td>
+
+
+      <td width="233"><span lang="en-us">Push<br>
+
+
+Periodic push<br>
+
+
+Pull (with persistence)</span></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td width="180"><span lang="en-us"><i><b>Resource
+Model</b></i></span></td>
+
+
+      <td width="365"><span lang="en-us">Register
+client and server
+components using YANCEES configuration language,
+which is interpreted by the configuration manager;<br>
+
+
+      </span></td>
+
+
+      <td width="233"><span lang="en-us">Centralized,<br>
+
+
+Partially-centralized,<br>
+
+
+and Client-side configurations</span></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td width="180"><span lang="en-us"><i><b>Protocol
+Model</b></i></span></td>
+
+
+      <td width="365"><span lang="en-us">Define
+protocol messages using
+XML definitions<br>
+
+
+Provide protocol plug-ins (client and server-side ones) to interpret
+and respond to the messages as they are received.<br>
+
+
+      </span></td>
+
+
+      <td width="233"><span lang="en-us">Security
+protocols<br>
+
+
+Mobility Protocols<br>
+
+
+Ad-hoc P2P networking protocols<br>
+
+
+Configuration protocols</span></td>
+
+
+    </tr>
+
+
+  
+  </tbody>
+</table>
+
+
+</center>
+
+
+</div>
+
+
+<p align="center"><br>
+
+
+</p>
+
+
+<h2 align="justify"><span lang="en-us"><a name="Configurability">Configurability
+Summary</a></span></h2>
+
+
+<p align="justify"><span lang="en-us">The
+configurabilty is provided by
+YANCEES configuration language, which allows the selection of specific
+plug-ins, filters and services to be used by each YANCEES instance. The
+configuration file is provided when the service is started. Pluig-ins
+interdependencies are checked and enforced by the configuration manager
+at bootstrap time.<br>
+
+
+</span></p>
+
+
+<h2 align="justify"><span lang="en-us"><a name="Configurability">Dynamism
+Summary</a></span></h2>
+
+
+<span lang="en-us">YANCEES can be configured to
+dynamically install
+plug-ins. When a subscription is provided to the service, it is parsed,
+and the appropriate plug-ins are allocated. Plug-ins not found in the
+service can be downloaded and installed with the use of a plug-in
+repository. Besides that, plug-ins can be updated at runtime with the
+help of the configuration protocol.&nbsp;</span>
+<h2 align="justify"><span lang="en-us"><a name="Implementation">Implementation
+Status</a></span></h2>
+
+
+<p align="justify"><span lang="en-us">The
+YANCEES prototype was
+implemented and tested with Java (J2SDK1.4.2 and WSDP1.2 - which
+provides XMLSchema validation support for the DOM parser). Currently,
+the framework supports
+the core mechanisms presented in the previous sections: input and
+output filters, subscription, notification and protocol plug-ins, and
+shared services, which can be configured at boot time with the use of
+configuration description files. The system was ported to work using
+Siena and
+Elvin. It also supports our own fast topic-based dispatcher. The
+communication between client stubs and the
+server
+is implemented using Java RMI protocol.<br>
+
+
+</span></p>
+
+
+<p align="justify"><span lang="en-us">The
+following plug-ins are
+implemented: event sequence
+detection, pull and push notification policies, polling protocol, a
+simple
+persistence service (in memory), a fast multiplexer dispatcher
+(topic-based), and many other features. <br>
+
+
+</span></p>
+
+
+<p align="justify"><span lang="en-us">The
+service is multithreaded and
+supports many simultaneous subscriptions and publications as
+non-blocking operations. Input and output buffers were implemented to
+improve overall throughput and performance.<br>
+
+
+</span></p>
+
+
+<p align="justify"><span lang="en-us">In the
+next releases of YANCEES,
+we plan to improve the architecture with:<br>
+
+
+</span></p>
+
+
+<ul>
+
+
+  <li>Improved <span lang="en-us">end-user
+subscription language and
+interface (as opposed to bare XML subscription language only)</span></li>
+
+
+  <li><span lang="en-us">Finer-grained distribution
+of components
+between client and server</span></li>
+
+
+  <li><span lang="en-us">Address issues related to
+integration of
+different event notification networks, for example, Elvin, Siena and
+CORBA-NS - integration layer. In other words, improve the
+interoperability and generality of the adapters.<br>
+
+
+    </span></li>
+
+
+  <li><span lang="en-us">Validate the system with
+other applications.
+Currently, we are using it to support a <a href="http://www.isr.uci.edu/projects/swirl/">security
+awareness</a>
+project and
+a <a href="http://drzaius.ics.uci.edu/%7Ebpillet/vavoom/index.html">software
+monitoring tool</a>.</span></li>
+
+
+  <li><span lang="en-us">Run YANCEES on a Pocket PC.
+Current experiments with YANCEES on PocketPC are described in the
+document:&nbsp;</span><br>
+
+
+    <a href="../pocketPC/index.html">Configuring Java (J9)
+on a Pocket PC with RMI, SWT
+and SVG using CDC Personal Profile: some experiences and issues</a><br>
+
+
+    <span lang="en-us"></span><br>
+
+
+    <span lang="en-us"></span></li>
+
+
+</ul>
+
+
+<h2><span style="font-weight: bold;">References</span></h2>
+
+
+<small><font style=""><big>David S.
+Rosenblum and Alexander L. Wolf. <a href="http://citeseer.nj.nec.com/rosenblum97design.html">A
+Design
+Framework for Internet-Scale Event Observation and Notification</a>.
+Proc. Sixth European Software
+Engineering Conf./ACM SIGSOFT Fifth Symposium on the Foundations of
+Software Engineering, Sep. 1997, pp. 344-360.</big></font>
+<br>
+
+
+<font style=""><big><br>
+
+
+Cugola,
+G.&nbsp;&nbsp; Di Nitto, E.&nbsp;&nbsp; Fuggetta,
+A.&nbsp; <a href="http://dx.doi.org/10.1109/32.950318">The
+JEDI event-based infrastructure and its application to the development
+of the OPSS WFMS</a>. IEEE Transactions on Software
+Engineering,&nbsp;
+Sept.
+2001, Volume: 27, Issue: 9, pp. 827 - 85. </big></font><br>
+
+
+</small><span style=""><font style="" face="Verdana, Arial, Helvetica, sans-serif"><br>
+
+
+</font><br>
+
+
+</span>
+<hr style="width: 100%; height: 2px;">
+<h2 align="justify"><span lang="en-us"><a name="Download">Download</a></span></h2>
+
+
+<span lang="en-us">Regular builds of
+YANCEES are available in
+the folder: <a href="http://awareness.ics.uci.edu/%7Ersilvafi/yancees/dist">http://awareness.ics.uci.edu/~rsilvafi/yancees/dist.
+</a></span>The
+last snapshot is labed as SNAPSHOP in those directories, and usually
+represents the current version with bug fixes, that we are using in our
+projects at UCI.
+<p align="justify">More current source code is available
+in the <a href="http://drzaius.ics.uci.edu/cgi-bin/cvsweb.cgi/Yancees/">CVS
+repository</a>.<br>
+
+
+<span lang="en-us"></span></p>
+
+
+<p align="justify"><span lang="en-us">Examples,
+installation
+instructions, user
+manual and configurations are under construction at the <a href="manual/index.html">YANCEES
+manual</a> page (under construction).<br>
+
+
+</span></p>
+
+
+<p align="justify"><span lang="en-us">This
+software is distributed
+according to the following <a href="LICENSE.TXT">LICENSE.TXT</a>.<br>
+
+
+This software was tested with <a href="http://java.sun.com/j2se/1.4.2/download.html">J2SDK1.4.2</a>
+and
+Java API for XML processing available at <a href="http://java.sun.com/webservices/downloads/webservicespack.html">SUN
+WSDP1.2 (web services pack)</a> or higher.</span></p>
+
+
+<h2>YANCEES Bundles</h2>
+
+
+<p align="justify"><span style="font-family: Helvetica,Arial,sans-serif;">For your
+convenience, we provide some examples of YANCEES bundled in different
+configurations. Those buldes include only a Yancees-SNAPSHOT.jar file
+with the publisher and&nbsp; subscriber source codes. windows and
+unix shell
+scripts are provided as well as the configuration file used to
+customize YANCEES.<br>
+
+
+<br>
+
+
+<a href="dist/bundles/MinimalYancees.zip">Minimal YANCEES</a>:
+<span style="font-weight: bold;">(August 2006 snapshot)</span>
+Configured with a fast switch core, the subscription language has only
+one command, <span style="font-weight: bold;">&lt;require&gt;</span>,
+which filters messages with the specified attribute name.<br>
+
+
+<br>
+
+
+<a href="dist/bundles/SienaYancees.zip">Siena YANCEES</a>:
+<span style="font-weight: bold;">(August 2006 snapshot)</span>
+Configured with Siena as the routing core, it provides siena
+configuration language with an extra sequence detector plug-in. This is
+the version used in our example above.</span><span lang="en-us"></span></p>
+
+
+<p align="justify"><span lang="en-us"><br>
+
+
+</span></p>
+
+
+<hr style="width: 100%; height: 2px;">
+<p align="justify"><span lang="en-us"><br>
+
+
+</span></p>
+
+
+<h3 align="justify"><b>YANCEES prototype version 0.7</b></h3>
+
+
+<p align="justify"><span lang="en-us"><span style="font-weight: bold;">June
+8th 2004</span> - The third stable public release of the YANCEES
+prototype is
+available. Previous releases can be downloaded <a href="releaseNotes.html">here</a>. The
+Java implementation of the prototype can be downloaded as follows:</span></p>
+
+
+<div align="justify">
+<ul>
+
+
+  <li><span lang="en-us">Full source code,
+documentation, binaries and
+scripts: [<a href="dist/Yancees-all-0.7.zip">Yancees-all-0.7.zip</a>]&nbsp;</span>
+  </li>
+
+
+  <li><span lang="en-us">Binaries only: [<a href="dist/lib/Yancees-0.7.jar">Yancees-0.7.jar</a>]</span>
+  </li>
+
+
+  <li><span lang="en-us">Source code only: [<a href="dist/src/Yancees-src-0.7.zip">Yancees-src-0.7.zip</a>]</span>
+  </li>
+
+
+  <li><span lang="en-us">Documentation [<a href="dist/doc/Yancees-doc-0.7.zip">Yancees-doc-0.7.zip</a>]
+which is
+also available <a href="doc/index.html">on-line</a>.</span>
+  </li>
+
+
+</ul>
+
+
+</div>
+
+
+<h3 align="justify"><span lang="en-us"><b>Release
+notes:</b>
+</span></h3>
+
+
+<div align="justify">
+<ul>
+
+
+  <li>This is basically a stable version of YANCEES used in the
+impromptu application for the <a href="http://www.isr.uci.edu/projects/swirl/">swirl project</a>.
+It
+supports the JmDNS
+protocol, allowing YANCEES to form an ad-hoc network of servers where
+each event published is propagated to the peers.&nbsp;</li>
+
+
+  <li>Some other bug fixes.</li>
+
+
+</ul>
+
+
+</div>
+
+
+<p align="justify"><span lang="en-us">&nbsp;&nbsp;&nbsp;&nbsp;
+This
+version supports:</span></p>
+
+
+<div align="justify">
+<ul>
+
+
+  <li><span lang="en-us">Server-side plug-ins
+(subscription,
+notification and protocol)</span> </li>
+
+
+  <li><span lang="en-us">Server-side services</span>
+  </li>
+
+
+  <li><span lang="en-us">Server-side Input and
+output filters</span></li>
+
+
+  <li><span lang="en-us">Client-side filters and
+plug-ins<br>
+
+
+    </span></li>
+
+
+  <li><span lang="en-us">Elvin or Siena, or both as
+the dispatcher of
+the system. These programs can be downloaded in the sites:<br>
+
+
+&nbsp;&nbsp;&nbsp; <a href="http://www.cs.colorado.edu/%7Ecarzanig/siena/">http://www.cs.colorado.edu/~carzanig/siena/</a><br>
+
+
+&nbsp;&nbsp;&nbsp;<a href="http://elvin.dstc.edu.au/index.html">
+http://elvin.dstc.edu.au/index.html</a></span></li>
+
+
+  <li><span lang="en-us">Fast switcher adapter,
+allowing topic-based
+subscriptions similar to Elvin require() one<br>
+
+
+    </span></li>
+
+
+  <li><span lang="en-us">Tuple-based event model,
+notification,
+subscription and protocol models defined using <a href="http://www.w3.org/TR/xmlschema-0/">XMLSchema</a>
+available at: <a href="http://awareness.ics.uci.edu/%7Ersilvafi/yancees/xsd/">http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/</a></span></li>
+
+
+  <li><span lang="en-us">Correlation plug-ins that
+support event
+sequence detection with temporal constraints</span></li>
+
+
+  <li><span lang="en-us">Buffered and non-blocking
+publication and
+notification implementations for improved throughput</span></li>
+
+
+  <li><span lang="en-us">JmDNS protocol for peer
+discovery in an ad-doc
+wireless network. This service is implemented by a JmDNS service
+(static plug-in), and an input filter<br>
+
+
+    </span></li>
+
+
+</ul>
+
+
+<span lang="en-us">Roberto Silveira Silva Filho</span><br>
+
+
+<a href="http://www.ics.uci.edu/%7Ersilvafi">http://www.ics.uci.edu/~rsilvafi</a><br>
+
+
+Irvine, CA. June 8th, 2005.<br>
+
+
+</div>
+
+
+<hr style="width: 100%; height: 2px;" align="JUSTIFY">
+<div align="justify"><br>
+
+
+<span style="font-weight: bold;">Click here for </span><a style="font-weight: bold;" href="releaseNotes.html">YANCEES
+previous
+releases</a><br>
+
+
+<br>
+
+
+</div>
+
+
+<hr style="width: 100%; height: 2px;" align="JUSTIFY">
+<div align="justify"><span lang="en-us"><br>
+
+
+</span></div>
+
+
+<h3 align="justify"><span lang="en-us"><b><b>Plans
+for the next version:</b></b></span></h3>
+
+
+<div align="justify">I am currently working on the
+implementation of
+the following features:&nbsp;&nbsp; <br>
+
+
+<ul>
+
+
+  <li>YANCEES client for Pocket PC, which requires the use of SAX
+instead of DOM for XML parsing.</li>
+
+
+  <li>Client-side stubs that translates a subscription, defined
+in a
+simplified language, to the actual XML representation which is
+understood by YANCEES.<br>
+
+
+  </li>
+
+
+  <li>More client-side plug-ins, services and filters.</li>
+
+
+  <li>Improved event
+correlation, such as rules (<a href="http://elvin.dstc.edu.au/projects/correlation/">more
+information
+about correlation</a>).</li>
+
+
+  <li>A filter parser/language that allows the client to
+facilitate the
+interaction of the client with input and output filters. This will be
+very useful for the implementation of software monitoring tools.<br>
+
+
+  </li>
+
+
+</ul>
+
+
+</div>
+
+
+<h3 align="justify">In a medium term, we are also planning
+to develop:</h3>
+
+
+<div align="justify">
+<ul>
+
+
+  <li>Aspect Plug-ins to allow the implementation of
+cross-cutting
+features.</li>
+
+
+  <li>Interface plug-ins (such as Eclipse integration components)<br>
+
+
+  </li>
+
+
+  <li>End-user subscription GUIs</li>
+
+
+  <li>A monitoring/visualization tool to visualize and monitor
+the
+installed plug-ins.</li>
+
+
+  <li>A YANCEES manager GUI</li>
+
+
+  <li>Dynamic download and installation of plug-ins.</li>
+
+
+  <li>Provide our own publish/subscribe core (besides the current
+fast
+switch or Elvin and Siena), to achieve more fine-grainded control on
+the routing algorithms of the pub/sub network.<br>
+
+
+  </li>
+
+
+</ul>
+
+
+</div>
+
+
+<p align="justify"><span lang="en-us">Roberto
+Silveira Silva Filho<br>
+
+
+Irvine, CA. March 18th, 2004.<br>
+
+
+<br>
+
+
+</span></p>
+
+
+<hr style="width: 100%; height: 2px;" align="JUSTIFY">
+<h2 align="justify"><span lang="en-us"><a name="Publications">Publications and Technical Reports</a></span></h2>
+
+
+<div align="justify">
+<br>
+
+
+    
+<table border="0">
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td><font><font><b><font><font face="Arial, Helvetica"><font face="Arial, Helvetica"><b><font face="Arial, Helvetica"><font><font><font><font><font><font><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><span style="font-weight: bold;">2007</span>
+-</font></font></font></font></font></font></font></font></font></font></font></font><big>
+      <small style="font-weight: normal;">Silva
+Filho, R. S. and D. F. Redmiles. <a href="publicatoins/ICFI2007-conference.pdf">Managing Feature
+Interaction by
+Documenting and Enforcing Dependencies in Software Product Lines</a>.
+in proceedings of the <a href="http://www-lsr.imag.fr/ICFI2007/">9th
+International Conference on Feature Interactions in Software and
+Communication Systems</a>. pp.39-54, Grenoble, France,
+September 3-5, 2007.</small></big></font></b></font></font></font></b></font></font></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td>&nbsp;</td>
+
+      </tr>
+
+
+    <tr>
+
+
+      <td><font><font><font><font><font><font><font><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica" size="3"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica" size="3"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica" size="3"><span style="font-family: helvetica,arial,sans-serif;"><span style="font-weight: bold;">2005 - </span>Silva Filho
+R. S<span style="font-weight: bold;">.</span>,&nbsp;</span></font></font></font></font></font></font></font></font></font></font></font></font></font></font><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica" size="3"><span style="font-family: helvetica,arial,sans-serif;"><st1:personname style="font-family: helvetica,arial,sans-serif;" w:st="on">Redmiles
+D. </st1:personname><a href="publicatoins/SEM2005-workshop.pdf">Striving for
+Versatility in Publish/Subscribe Infrastructures</a>. in Proc. <a href="http://www.elet.polimi.it/upload/dinitto/SEM2005/">Fith
+International Workshop on Software Engineering and Middleware
+(SEM'2005)</a>. in conjunction with the ACM ESEC/FSE conference.
+Lisbon, Portugal<font style="font-family: helvetica,arial,sans-serif;" face="Arial, Helvetica">. September, 5th-6th 2005.</font></span></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td>&nbsp;</td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td><font style="font-weight: bold;" face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica"><font face="Arial, Helvetica" size="3"> </font></font></font></font></font></font></font><span lang="en-us"><span style="font-weight: bold;">2005
+- </span>Silva Filho
+R. S., Redmiles D. F.&nbsp; <a href="publicatoins/Survey-UCI-ISR-05-8.pdf">A
+Survey of Versatility for Publish/Subscribe Infrastructures</a>.
+Technical
+Report UCI-ISR-05-8.
+University of California, Irvine, May 2005.</span></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td><br>
+
+
+      </td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;"><span lang="en-us"><span style="font-weight: bold;">2004
+- </span>Silva Filho
+R. S., Redmiles D. F. <a href="publicatoins/Versatility-UCI-ISR-04-7.pdf">Preserving
+Versatility in Event-based Middleware</a>. Technical
+Report UCI-ISR-04-7.
+University of California, Irvine, October 2004.</span></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;"><br>
+
+
+      </td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;"><span lang="en-us"><span style="font-weight: bold;">2004
+- </span>Silva Filho
+R. S., De Souza C. R. B., Redmiles D. F. <a href="publicatoins/Yancees-UCI-ISR-04-1.pdf">Design and
+Experiments
+with YANCEES, a Versatile Publish-Subscirbe Service</a>.
+Technical
+Report UCI-ISR-04-1.
+University of California, Irvine, April 2004.</span></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;"><span lang="en-us"><br>
+
+
+      </span> </td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td><span lang="en-us"><span style="font-weight: bold;">2003 - </span>Silva Filho
+R. S., De Souza C. R. B.,
+Redmiles D. F. <a href="publicatoins/DEBS2003-workshop.pdf">
+The
+Design of a Configurable, Extensible and Dynamic Notification Service</a>.
+in <a href="http://www.informatik.uni-trier.de/%7Eley/db/conf/debs/debs2003.html">Proc.
+Second International Workshop on Distributed Event-Based
+Systems (DEBS'03)</a>, In conjunction with The ACM SIGMOD/PODS
+Conference,
+San Diego, CA, USA, June 8th, 2003.</span>&nbsp;<span lang="en-us"></span></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td><span lang="en-us"><br>
+
+
+      </span></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td>
+      
+      <h3>Additional materials</h3>
+
+
+      </td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td>&nbsp;</td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td>Slides from the ICFI 2007 conference are available <a href="presentations/ICFI2007%20Presentation.pdf">here</a>.</td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td>&nbsp;<br>
+
+      </td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td>Slides from the SEM 2005 workshop are
+available&nbsp;<span lang="en-us"><a href="presentations/SEM2005%20Presentation.pdf">here.</a></span></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td>&nbsp;</td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;"><span lang="en-us">Slides from
+the DEBS 2003 workshop are available <a href="./presentations/DEBS%20presentation.pdf">here</a>.</span></td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;">&nbsp;<br>
+
+
+      </td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;">YANCEES Flyer
+presented in the
+ISR Internal Workshop, June 2005 is available <a href="flyer/Yancees-Flyer.pdf">here.</a><br>
+
+
+      </td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;">&nbsp;<br>
+
+
+      </td>
+
+
+    </tr>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;">YANCEES Poster
+presented in the
+ISR Internal Workshop, June 2004 is available <a href="flyer/Yancees-Poster.pdf">here.</a></td>
+
+
+    </tr>
+
+
+  
+  </tbody>
+</table>
+
+
+</div>
+
+
+<h3>
+Acknowledgements</h3>
+
+
+<p>This research has been sponsored by NSF (grants 0133749,
+0205724, 0326105, 0527729,0524033), an IBM Eclipse technology exchange grant, and the Intel Corporation. </p>
+
+
+<hr>
+<center><span lang="en-us">Research Staff: <a href="http://www.ics.uci.edu/%7Ersilvafi">Roberto Silveira
+Silva
+Filho</a><br>
+
+
+Professor: <a href="http://www.ics.uci.edu/%7Eredmiles/">
+David F.
+Redmiles</a><br>
+
+
+<i><a href="http://www.isr.uci.edu/">Institute for
+Software Research</a><br>
+
+
+<a href="http://www.ics.uci.edu/">Information and Computer
+Science</a><br>
+
+
+<a href="http://www.uci.edu/">University of California,
+Irvine</a>
+CA 92697-3425</i><br>
+
+
+<a href="mailto:redmiles@ics.uci.edu"><br>
+
+
+</a></span></center>
+
+
+<hr>
+<center>
+<p><font color="white" size="1">
+<a target="_top" href="http://extremetracking.com/open?login=yancees"><img src="http://t1.extreme-dm.com/i.gif" alt="" border="0" height="38" width="41"></a>
+<script language="javascript1.2"><!--
+EXs=screen;EXw=EXs.width;navigator.appName!="Netscape"?
+EXb=EXs.colorDepth:EXb=EXs.pixelDepth;//-->
+</script>
+<script language="javascript"><!--
+EXd=document;EXw?"":EXw="na";EXb?"":EXb="na";
+EXd.write("<img src=\"http://t0.extreme-dm.com",
+"/c.g?tag=yancees&j=y&srw="+EXw+"&srb="+EXb+"&",
+"l="+escape(EXd.referrer)+"\" height=1 width=1>");//-->
+</script>
+<noscript><img height=1 width=1 alt=""
+src="http://t0.extreme-dm.com/c.g?tag=yancees&j=n"></noscript>
+
+
+</font>
+</p>
+
+
+</center>
+
+
+<hr>
+<address class="style1"> This page was last updated on
+September 13th,
+2005
+</address>
+
+
+</body></html>

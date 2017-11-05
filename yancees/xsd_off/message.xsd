@@ -1,0 +1,104 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/message.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+				xmlns:not="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/notification.xsd"
+				xmlns:evt="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"
+            xmlns:sub="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/message.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+<!-- Import namespaces used -->
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"/>
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"/>
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/notification.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/notification.xsd"/>
+
+
+  <xsd:annotation>
+     <xsd:documentation>
+       This schema defines the message messages between applications and the
+       Yancess API
+
+     </xsd:documentation>
+  </xsd:annotation>
+
+  <!--
+    ELEMENT: message
+
+    This tag is the root element in a message file, the topmost element that
+    defines the message representation structure.
+   -->
+  <xsd:element name="message" type="MessageType"/>
+
+  <!--
+    TYPE: MessageType
+
+    The message defines the set of messages that can be exchanged between the
+    notificatoin server and its clients. It is done by the use of operations
+    that may have optional parameters and contents.
+   -->
+  <xsd:complexType name="MessageType">
+      <xsd:sequence>
+         <xsd:element name="subscribe" type="SubscribeType"
+                  minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="publish" type="PublishType"
+                  minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="protocol" type="ProtocolType"
+                  minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+  </xsd:complexType>
+
+
+  <!--
+    TYPE: PublishType
+
+    Defines a type that allows the passing of parameters along with the command.
+   -->
+  <xsd:complexType name="PublishType">
+      <xsd:sequence>
+        <!-- here goes events and subscriptions -->
+         <xsd:element name="event" type="evt:EventType"
+                  minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+  </xsd:complexType>
+
+
+ <!--
+    TYPE: SubscribeType
+
+    Defines a type that allows the passing of parameters along with the command.
+   -->
+  <xsd:complexType name="SubscribeType">
+      <xsd:sequence>
+        <!-- here goes subscriptions and notification policies -->
+         <xsd:element name="subscription" type="sub:SubscriptionType"
+                  minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="notification" type="not:NotificationType"
+                  minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+  </xsd:complexType>
+
+
+  <!--
+    TYPE: ProtocolType
+
+    The ProtocolType is generic and need to be implemented by extensions of
+    this schema. It can be used to define any protocol language. The only requirement is
+    that it uses reverse polish notation: + A B to imply A+B for example. This allows
+    the notification manager to parse the DOM tree invoking the appropriate plug-ins.
+
+   -->
+  <xsd:complexType name="ProtocolType" abstract = "true"/>
+
+
+
+</xsd:schema>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema attributeFormDefault="qualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaCorrelation.xsd"
+    xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaCorrelation.xsd"
+    xmlns:ssub="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd"
+    xmlns:sub="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!-- Import namespaces used -->
+    <xsd:import
+        namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd" schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"/>
+    <xsd:import
+        namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd" schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd"/>
+    <xsd:annotation>
+        <xsd:documentation>        This schema extends the siena
+            subscription language to support event correlation
+            constructs such as AND, OR and THEN, future extensions will
+            include RULEs</xsd:documentation>
+    </xsd:annotation>
+    <!--
+    TYPE: CorrelationSubscriptionType
+    A Subscription extension that allows the detection of sequence of events.
+
+   -->
+    <xsd:complexType name="CorrelationSubscriptionType">
+        <xsd:complexContent>
+            <xsd:extension base="sub:SubscriptionType">
+                <xsd:sequence maxOccurs="1" minOccurs="0">
+                    <xsd:element maxOccurs="1" minOccurs="0" name="and" type="CorrelationType"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="or" type="CorrelationType"/>
+                    <xsd:element maxOccurs="1" minOccurs="0" name="then" type="CorrelationType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!--
+    TYPE: CorrelationType
+
+   -->
+    <xsd:complexType name="CorrelationType">
+        <xsd:sequence maxOccurs="unbounded" minOccurs="1">
+            <xsd:choice>
+                <xsd:element maxOccurs="unbounded" minOccurs="0"
+                    name="filter" type="ssub:FilterType"/>
+                <xsd:element maxOccurs="1" minOccurs="0" name="and" type="CorrelationType"/>
+                <xsd:element maxOccurs="1" minOccurs="0" name="or" type="CorrelationType"/>
+                <xsd:element maxOccurs="1" minOccurs="0" name="then" type="CorrelationType"/>
+            </xsd:choice>
+        </xsd:sequence>
+        <xsd:attribute name="withing" type="xsd:long"/>
+        <xsd:attribute name="after" type="xsd:long"/>
+    </xsd:complexType>
+</xsd:schema>

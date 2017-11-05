@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="pt-br"><head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  
+  <title>releases.html</title><meta content="Roberto Silveira Silva Filho" name="author"></head>
+
+<body style="font-family: helvetica,arial,sans-serif;">
+<h1 style="font-family: helvetica,arial,sans-serif;">YANCEES
+Previous
+Release Notes</h1>
+<br><hr style="width: 100%; height: 2px;"><br><h3 align="justify"><b>YANCEES prototype version 0.7</b></h3>
+<p align="justify"><span lang="en-us"><span style="font-weight: bold;">June
+8th 2005</span> - The third stable public release of the YANCEES
+prototype is
+available. Previous releases can be downloaded <a href="file:///L:/public_html/yancees/releaseNotes.html">here</a>. The
+Java implementation of the prototype can be downloaded as follows:</span></p>
+<div align="justify">
+<ul><li><span lang="en-us">Full source code,
+documentation, binaries and
+scripts: [<a href="dist/Yancees-all-0.7.zip">YANCEES-all-0.7.zip</a>]&nbsp;</span>
+</li><li><span lang="en-us">Binaries only: [<a href="dist/lib/Yancees-0.7.jar">YANCEES-0.7.jar</a>]</span>
+</li><li><span lang="en-us">Source code only: [<a href="dist/src/Yancees-src-0.7.zip">YANCEES-src-0.7.zip</a>]</span>
+</li><li><span lang="en-us">Documentation [<a href="dist/doc/Yancees-doc-0.7.zip">YANCEES-doc-0.7.zip</a>]
+which is
+also available <a href="doc/index.html">on-line</a>.</span>
+</li></ul>
+</div>
+<h3 align="justify"><span lang="en-us"><b>Release
+notes:cocore</b>
+</span></h3>
+<div align="justify">
+<ul><li>This is basically a stable version of YANCEES used in the
+impromptu application for the <a href="http://www.isr.uci.edu/projects/swirl/">swirl project</a>.
+It
+supports the JmDNS
+protocol, allowing YANCEES to form an ad-hoc network of servers where
+each event published is propagated to the peers.&nbsp;</li><li>Some other bug fixes.</li></ul>
+</div>
+<p align="justify"><span lang="en-us">&nbsp;&nbsp;&nbsp;&nbsp;
+This
+version supports:</span></p>
+
+<ul><li><span lang="en-us">Server-side plug-ins
+(subscription,
+notification and protocol)</span> </li><li><span lang="en-us">Server-side services</span>
+</li><li><span lang="en-us">Server-side Input and
+output filters</span></li><li><span lang="en-us">Client-side filters and
+plug-ins<br>
+</span></li><li><span lang="en-us">Elvin or Siena, or both as
+the dispatcher of
+the system. These programs can be downloaded in the sites:<br>
+&nbsp;&nbsp;&nbsp; <a href="http://www.cs.colorado.edu/%7Ecarzanig/siena/">http://www.cs.colorado.edu/~carzanig/siena/</a><br>
+&nbsp;&nbsp;&nbsp;<a href="http://elvin.dstc.edu.au/index.html">
+http://elvin.dstc.edu.au/index.html</a></span></li><li><span lang="en-us">Fast switcher adapter,
+allowing topic-based
+subscriptions similar to Elvin require() one<br>
+</span></li><li><span lang="en-us">Tuple-based event model,
+notification,
+subscription and protocol models defined using <a href="http://www.w3.org/TR/xmlschema-0/">XMLSchema</a>
+available at: <a href="http://awareness.ics.uci.edu/%7Ersilvafi/yancees/xsd/">http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/</a></span></li><li><span lang="en-us">Correlation plug-ins that
+support event
+sequence detection with temporal constraints</span></li><li><span lang="en-us">Buffered and non-blocking
+publication and
+notification implementations for improved throughput</span></li><li><span lang="en-us">JmDNS protocol for peer
+discovery in an ad-doc
+wireless network. This service is implemented by a JmDNS service
+(static plug-in), and an input filter<br>
+</span></li></ul>
+<span lang="en-us">Roberto Silveira Silva Filho</span><br>
+<a href="http://www.ics.uci.edu/%7Ersilvafi">http://www.ics.uci.edu/~rsilvafi</a><br>
+Irvine, CA. June 8th, 2005.<br>
+<hr style="width: 100%; height: 2px;"><br>
+<h3 align="justify"><b>YANCEES
+prototype version 0.6</b></h3>
+<p align="justify"><span lang="en-us"><span style="font-weight: bold;">March
+11st 2004</span> - The second stable
+public release of the YANCEES
+prototype is
+available. The
+Java implementation of the prototype can be downloaded as follows:</span></p>
+<div align="justify">
+<ul>
+  <li><span lang="en-us">Full source code, documentation,
+binaries and
+scripts: [<a href="dist/Yancees-all-0.6.zip">Yancees-all-0.6.zip</a>]&nbsp;</span>
+  </li>
+  <li><span lang="en-us">Binaries only: [<a href="dist/lib/Yancees-0.6.jar">Yancees-0.6.jar</a>]</span>
+  </li>
+  <li><span lang="en-us">Source code only: [<a href="dist/src/Yancees-src-0.6.zip">Yancees-src-0.6.zip</a>]</span>
+  </li>
+  <li><span lang="en-us">Documentation [<a href="dist/doc/Yancees-doc-0.6.zip">Yancees-doc-0.6.zip</a>]
+which is
+also available <a href="doc/index.html">on-line</a>.</span>
+  </li>
+</ul>
+</div>
+<h3 align="justify"><span lang="en-us"><b>Release
+notes:</b>
+</span></h3>
+<div align="justify">
+<ul>
+  <li>Many adapters can now be
+installed at the same time, coping with
+interoperability and different subscription strategies. In fact, a
+topic-based router adapter is provided allowing fast switching of
+events. Elvin can be used as the dispatcher as well as Siena.<br>
+  </li>
+  <li>YANCEES now has client-side
+stubs (YanceesRMIClient) and supports
+a new event wrapper (the YanceesEvent.java class) that allows the
+programmer to build events, adding and removing their attributes as
+currently provided by Elvin and Siena<br>
+  </li>
+  <li>YANCEES now supports
+client-side subscription and notification
+plug-is, as well as filters. With such facility, a light-weight version
+of YANCEES can now be created in the client (publisher or subscriber)
+side with, for example, event correlation plug-ins, converting it into
+an event correlation library on top of servers such as Siena and Elvin.</li>
+  <li>Siena can now also be used
+as a local component, instead of a
+separate process (communicating via sockets), which improved the
+overall system performance.<br>
+  </li>
+  <li>Version 0.6 also adds lots
+of performance improvements, mainly
+with the addition of publication and notification&nbsp; event
+buffers,
+which in my throughput tests, allowed a steady peak of 4000
+events/second using Siena as the underlying publish/subscribe
+component.&nbsp; If Elvin is used, a peak of 9000 events/second is
+reached. Also, as part of the performance improvements, the
+YanceesEvent internal parser was rewritten using SAX instead of DOM. <br>
+  </li>
+  <li>Event creation and
+publication time stamps are now being
+collected, marshaled and un-marshaled through the event dispatcher: The
+adapters now serialize/de-serialize the event creation time stamps,
+transporting this meta-information from publishers to subscribers,
+allowing these attributes to persist over the life of the event. <br>
+  </li>
+  <li>New event correlation
+plug-ins were developed that allow sequence
+detection with temporal constraints. These are AND, OR and THEN, with
+support for WITHIN and AFTER clauses. They improve and replace the
+previous sequence detection plug-in. <br>
+  </li>
+  <li>Some package name
+refactoring was performed and many other minor
+improvements.<br>
+  </li>
+</ul>
+</div>
+<p align="justify"><span lang="en-us">&nbsp;&nbsp;&nbsp;&nbsp;
+This
+version supports:</span></p>
+<ul>
+  <li><span lang="en-us">Server-side plug-ins (subscription,
+notification and protocol)</span> </li>
+  <li><span lang="en-us">Server-side services</span>
+  </li>
+  <li><span lang="en-us">Server-side Input and output filters</span></li>
+  <li><span lang="en-us">Client-side filters and plug-ins<br>
+    </span></li>
+  <li><span lang="en-us">Elvin or Siena, or both as the
+dispatcher of
+the system. These programs can be downloaded in the sites:<br>
+&nbsp;&nbsp;&nbsp; <a href="http://www.cs.colorado.edu/%7Ecarzanig/siena/">http://www.cs.colorado.edu/~carzanig/siena/</a><br>
+&nbsp;&nbsp;&nbsp;<a href="http://elvin.dstc.edu.au/index.html">
+http://elvin.dstc.edu.au/index.html</a></span></li>
+  <li><span lang="en-us">Fast switcher adapter, allowing
+topic-based
+subscriptions similar to Elvin require() one<br>
+    </span></li>
+  <li><span lang="en-us">Tuple-based event model, notification,
+subscription and protocol models defined using <a href="http://www.w3.org/TR/xmlschema-0/">XMLSchema</a>
+available at: <a href="http://awareness.ics.uci.edu/%7Ersilvafi/yancees/xsd/">http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/</a></span></li>
+  <li><span lang="en-us">Correlation plug-ins that support event
+sequence detection with temporal constraints</span></li>
+  <li><span lang="en-us">Buffered and non-blocking publication
+and
+notification implementations for improved throughput<br>
+    </span></li>
+</ul>
+<span lang="en-us">Roberto
+Silveira Silva Filho</span><br>
+<a href="http://www.ics.uci.edu/%7Ersilvafi">http://www.ics.uci.edu/~rsilvafi</a><br>
+Irvine, CA. March 11st, 2004.
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<h3 style="font-family: helvetica,arial,sans-serif;" align="justify"><b>YANCEES
+prototype version 0.5</b></h3>
+<p style="font-family: helvetica,arial,sans-serif;" align="justify"><span lang="en-us"><span style="font-weight: bold;">Dec
+1st 2003</span> - The first public
+release of the Yancees prototype is
+available. The
+Java implementation of the prototype can be downloaded as follows:</span></p>
+<ul style="font-family: helvetica,arial,sans-serif;">
+  <li><span lang="en-us">Full source code, documentation and
+binaries: [<a href="file:///L:/public_html/yancees/dist/Yancees-all-0.5.zip">Yancees-all-0.5.zip</a>]&nbsp;</span>
+  </li>
+  <li><span lang="en-us">Binaries only: [<a href="file:///L:/public_html/yancees/dist/lib/Yancees-0.5.jar">Yancees-0.5.jar</a>]</span>
+  </li>
+  <li><span lang="en-us">Source code only: [<a href="file:///L:/public_html/yancees/dist/src/Yancees-src-0.5.zip">Yancees-src-0.5.zip</a>]</span>
+  </li>
+  <li><span lang="en-us">Documentation [<a href="file:///L:/public_html/yancees/dist/doc/Yancees-doc-0.5.zip">Yancees-doc-0.5.zip</a>]
+which is
+also available <a href="file:///L:/public_html/yancees/doc/index.html">on-line</a>.</span>
+  </li>
+</ul>
+<p style="font-family: helvetica,arial,sans-serif;"><span lang="en-us">Additionally,
+I plan to place regular builds of
+Yancees in
+the folder: <a href="http://awareness.ics.uci.edu/%7Ersilvafi/yancees/dist">http://awareness.ics.uci.edu/~rsilvafi/yancees/dist</a></span></p>
+<p style="font-family: helvetica,arial,sans-serif;" align="justify"><span lang="en-us">Examples, installation
+instructions, user
+manual and configurations are under construction at the <a href="file:///L:/public_html/yancees/manual/index.html">Yancees
+manual</a> page.<br>
+</span></p>
+<p style="font-family: helvetica,arial,sans-serif;" align="justify"><span lang="en-us">This software is distributed
+according to the following <a href="file:///L:/public_html/yancees/LICENSE.TXT">LICENSE.TXT</a>.<br>
+This software was tested with <a href="http://java.sun.com/j2se/1.4.2/download.html">J2SDK1.4.2</a>
+and
+Java API for XML processing availabe at <a href="http://java.sun.com/webservices/downloads/webservicespack.html">SUN
+WSDP1.2 (web services pack)</a> or
+higher.<br>
+</span></p>
+<h3 style="font-family: helvetica,arial,sans-serif;" align="justify"><span lang="en-us"><b>Release
+notes:</b>
+</span></h3>
+<p style="font-family: helvetica,arial,sans-serif;" align="justify">The
+initial release, version 0.5 reflects the early
+stages of
+the implementation of the Yancees notification service prototype. It is
+well enough
+to accommodate new plug-ins, filters and services but not fully tested
+on real
+applications. This version also reflects the fact that the overall
+architecture
+is under improvement and open to suggestions.</p>
+<p style="font-family: helvetica,arial,sans-serif;" align="justify"><span lang="en-us">This is the initial release of
+Yancees, which implements the core functionality of the system,
+consisting of
+publication, notification and protocol models; filters, services and
+configuration manager. In this
+initial release, some plug-ins are provided: notification language
+plug-ins --
+push and pull notification -- subscription language plug-ins: sequence
+detection, regular content-based filtering; a simple persistency
+service. other components
+are under
+development and still partially implemented.</span></p>
+<p style="font-family: helvetica,arial,sans-serif;" align="justify"><span lang="en-us">The objective of this release is
+to provide a prototype to the general
+Yancees approach. The system is under continuous improvement and
+development.
+Hence, comments and suggestions, as well as bug reports are welcome.</span></p>
+<p style="font-family: helvetica,arial,sans-serif;" align="justify"><span lang="en-us">This version provides the basic
+Yancees functionality. It supports:</span></p>
+<ul style="font-family: helvetica,arial,sans-serif;">
+  <li><span lang="en-us">Server-side plug-ins (subscription,
+notification and
+protocol)</span> </li>
+  <li><span lang="en-us">Server-side services</span>
+  </li>
+  <li><span lang="en-us">Server-side Input and output filters</span>
+  </li>
+  <li><span lang="en-us">Elvin or Siena, or both as the
+dispatcher of
+the system. These
+programs can be downloaded in the sites:<br>
+&nbsp;&nbsp;&nbsp; <a href="http://www.cs.colorado.edu/%7Ecarzanig/siena/">http://www.cs.colorado.edu/~carzanig/siena/</a><br>
+&nbsp;&nbsp;&nbsp;<a href="http://elvin.dstc.edu.au/index.html">
+http://elvin.dstc.edu.au/index.html</a></span>
+  </li>
+  <li><span lang="en-us">Tuple-based event model, notification,
+subscription and protocol models defined using <a href="http://www.w3.org/TR/xmlschema-0/">XMLSchema</a>
+available at: <a href="http://awareness.ics.uci.edu/%7Ersilvafi/yancees/xsd/">http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/</a></span></li>
+</ul>
+<span style="font-family: helvetica,arial,sans-serif;" lang="en-us">Roberto
+Silveira Silva Filho</span><br style="font-family: helvetica,arial,sans-serif;">
+<a style="font-family: helvetica,arial,sans-serif;" href="http://www.ics.uci.edu/%7Ersilvafi">http://www.ics.uci.edu/~rsilvafi</a><br style="font-family: helvetica,arial,sans-serif;">
+<span style="font-family: helvetica,arial,sans-serif;">Irvine,
+CA.
+November 28st, 2003.
+</span>
+</body></html>

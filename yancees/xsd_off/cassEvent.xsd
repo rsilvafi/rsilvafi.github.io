@@ -1,0 +1,66 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/cassEvent.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:evt="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"
+            xmlns:sevt="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaEvent.xsd"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/cassEvent.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+
+<!-- Import namespaces used -->
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"/>
+
+<!-- Import namespaces used -->
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaEvent.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaEvent.xsd"/>
+
+
+<!--
+xmlns="http://awareness.ics.uci.edu/~rsilafi/yancess/xsd/event.xsd"
+targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancess/xsd/event.xsd"
+ -->
+
+ <xsd:annotation>
+    <xsd:documentation>
+       This XML Schema file defines the basic cass event structure.
+
+    </xsd:documentation>
+  </xsd:annotation>
+
+ <!--
+    ELEMENT: event
+
+    This tag is the root element in an event file, the topmost element that
+    defines the event structure.
+   -->
+  <xsd:element name="event" type="CassEventType"/>
+
+
+  <!--
+    TYPE: CassEventType
+
+    A cass event is similar to the siena event. It extends it by includding
+   -->
+  <xsd:complexType name="CassEventType">
+     <xsd:complexContent>
+        <xsd:extension base="evt:SienaEventType">
+           <xsd:sequence>
+    			  <xsd:element name="accountName" type="xsd:string"
+                       minOccurs="1" maxOccurs="1"/>	
+     			  <xsd:element name="objectID" type="xsd:string"
+                       minOccurs="1" maxOccurs="1"/>	
+           </xsd:sequence>
+        </xsd:extension>
+     </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>

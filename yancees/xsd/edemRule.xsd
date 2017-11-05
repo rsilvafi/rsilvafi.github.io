@@ -1,0 +1,113 @@
+<!--
+	The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+	standard.  The 'xlink' namespace defines the namespace for XLink attributes
+	and elements.  The targetNamespace defines the URI of the namespace
+	which THIS XSchema is defining.  Other XSchemas should use this URL
+	when referring to things defined in this XSchema.
+-->
+<xsd:schema
+	xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/edemRule.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:sub="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"
+	xmlns:ssub="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd"
+	xmlns:patt="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/edemPattern.xsd"
+	targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/edemRule.xsd"
+	elementFormDefault="qualified" attributeFormDefault="qualified">
+
+	<!-- Import namespaces used -->
+	<xsd:import
+		namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"
+		schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd" />
+
+	<xsd:import
+		namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd"
+		schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd" />
+
+	<xsd:import
+		namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/edemPattern.xsd"
+		schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/edemPattern.xsd" />
+
+
+	<xsd:annotation>
+		<xsd:documentation>
+			This schema extends the siena subscription language to
+			support rules, a set of patterns that trigger actions
+		</xsd:documentation>
+	</xsd:annotation>
+
+
+	<!--
+		TYPE: RuleSubscriptionType
+		defines the <rule> tag within subscription
+
+	-->
+	<xsd:complexType name="RuleSubscriptionType">
+		<xsd:complexContent>
+			<xsd:extension base="sub:SubscriptionType">
+				<xsd:sequence minOccurs="1" maxOccurs="1">
+					<xsd:element name="rule" type="RuleSubscriptionBodyType" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+    <!--
+		TYPE: RuleSubscriptionBodyType
+		A Subscription extension that allows the detection of sequence of events.
+
+	-->
+	<xsd:complexType name="RuleSubscriptionBodyType">
+		<xsd:complexContent>
+			<xsd:extension base="sub:SubscriptionType">
+				<xsd:sequence minOccurs="1" maxOccurs="1">
+			        <xsd:element name="beginGuard" type="GuardType" />
+					<xsd:element name="pattern"	type="patt:FilterSequenceType" minOccurs="1" maxOccurs="unbounded"/>
+				    <xsd:element name="action" type="ActionType" minOccurs="1" maxOccurs="1"/>
+				    <xsd:element name="endGuard" type="GuardType" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+
+	<!--
+    TYPE: GuardType defines an guard based on a set of filters, used as
+    triggers to the actions of a rule. The supported operations are disjunction
+    and conjunction of events
+
+	-->
+	<xsd:complexType name="GuardType">
+		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="filter" type="ssub:FilterType" />
+			<xsd:element name="stateFilter" type="patt:TSTriggerType" />
+		</xsd:sequence>
+		<xsd:attribute name="operation" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="disjunct" />
+					<xsd:enumeration value="conjunct" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+
+	<!--
+		TYPE: ActionType defines an action (count, record, e-mail)
+		that is executed over the events of a rule, while the
+		beginGuard is satisfied and the endGuard is not satisfied
+
+	-->
+	<xsd:complexType name="ActionType">
+		<xsd:attribute name="operation" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="count" />
+					<xsd:enumeration value="record" />
+					<xsd:enumeration value="e-mail" />
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:complexType>
+
+</xsd:schema>

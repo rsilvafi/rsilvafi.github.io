@@ -1,0 +1,80 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/pollProtocol.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:msg="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/message.xsd"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/pollProtocol.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+<!-- Import namespaces used -->
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/message.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/message.xsd"/>
+
+
+  <xsd:annotation>
+    <xsd:documentation>
+		This schema defines a polling protocol, which operates together with the pull
+ 		plug-in collecting events stored in this plug-in.
+    </xsd:documentation>
+  </xsd:annotation>
+
+   <!--
+    ELEMENT: protocol
+
+    This tag is the root element in a notification file, the topmost element that
+    defines the notification representation structure.
+   -->
+  <xsd:element name="prototcol" type="PollProtocolType"/>
+
+
+ <!--
+    TYPE: PollProtocolType
+    Defines a new protocol based on poll tag.
+
+   -->
+  <xsd:complexType name="PollProtocolType">
+     <xsd:complexContent>
+        <xsd:extension base="msg:ProtocolType">
+           <xsd:sequence>
+              <xsd:element name="poll" type="PollCommandType" minOccurs="1" maxOccurs="1"/>
+           </xsd:sequence>
+        </xsd:extension>
+     </xsd:complexContent>
+  </xsd:complexType>
+
+
+ <!--
+    TYPE: PollCommandType
+    Defines all commands of the poll protocol.
+
+   -->
+  <xsd:complexType name="PollCommandType">
+	  <xsd:sequence>
+        <xsd:element name="pollInterval" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="command" type="CommandType" minOccurs="1" maxOccurs="1"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+  <!--
+    TYPE: CommandType
+
+    Defines all the possible types an attribute may have.
+   -->
+  <xsd:simpleType name="CommandType">
+    <xsd:restriction base="xsd:string">
+    	<xsd:enumeration value="start"/>
+    	<xsd:enumeration value="stop"/>
+    	<xsd:enumeration value="pause"/>
+    	<xsd:enumeration value="resume"/>
+  	 </xsd:restriction>
+  </xsd:simpleType>
+
+
+
+</xsd:schema>

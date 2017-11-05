@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="file:C:/Opt/eclipse/plugins/com.ibm.etools.sketch.sqc/SimpleErrorReport.xsl"?>
+<schemaAnalysis SchemaQualityCheckerVersion="2.2"
+    anyWarningsRequestedToBeSuppressed="false" cost="10"
+    haltAtFirstError="false" requireEachDocumentValid="false" schemaLanguageVersion="2001-05-02">
+    <file fileNameWithoutPath="architecture.xsd" filename="C:\Users\rsilvafi\Proj\Yancees\xsd\architecture.xsd">
+        <startdatetime>2003-09-01T15:05:36</startdatetime>
+        <noErrorFound/>
+        <enddatetime>2003-09-01T15:05:42</enddatetime>
+    </file>
+</schemaAnalysis>

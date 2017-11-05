@@ -1,0 +1,153 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/yanceesEvent.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:evt="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/yanceesEvent.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+
+<!-- Import namespaces used -->
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"/>
+
+ <xsd:annotation>
+    <xsd:documentation>
+       This XML Schema file defines the basic yancees event structure.
+
+    </xsd:documentation>
+  </xsd:annotation>
+
+<!--
+    ELEMENT: event
+
+    This tag is the root element in an event file, the topmost element that
+    defines the event structure.
+   -->
+  <xsd:element name="event" type="YanceesEventType"/>
+  
+  
+  <!--
+    TYPE: YanceesEventType
+
+    The Event type defines the basic event structure with its header, where
+    meta-information and annotations can be added, and the body, where the
+    sequence of attribute/value pairs are defined.
+
+   -->
+  <xsd:complexType name="YanceesEventType">
+  	  <xsd:complexContent>
+        <xsd:extension base="evt:EventType">
+		     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+      		  <xsd:element name="attribute" type="AttributeType"
+                       minOccurs="0" maxOccurs="1"/>
+     		  </xsd:sequence>
+     	  </xsd:extension>
+     	</xsd:complexContent>
+  </xsd:complexType>
+
+
+  <!--
+    TYPE: AttributeType
+
+    An attribute is a name/value pair of some valid type
+
+   -->
+   <xsd:complexType name="AttributeType">
+      <xsd:sequence minOccurs="1" maxOccurs="1">
+         <xsd:element name="name" type="NameType"/>
+         <xsd:element name="value" type="ValueType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <!--
+    TYPE: NameType
+
+    A name is a string
+
+   -->
+  <xsd:complexType name="NameType">
+     <xsd:simpleContent>
+        <xsd:extension base="xsd:string"/>
+     </xsd:simpleContent>
+  </xsd:complexType>
+
+  <!--
+    TYPE: yanceesString
+
+    Defines a yancees string simple type.
+   -->
+  <xsd:simpleType name="yanceesString">
+     <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+
+  <!--
+    TYPE: yanceesInt
+
+    Defines a yancees int simple type.
+   -->
+  <xsd:simpleType name="yanceesInt">
+     <xsd:restriction base="xsd:int"/>
+  </xsd:simpleType>
+
+  <!--
+    TYPE: yanceesLong
+
+   Defines a yancees long simple type.
+   -->
+  <xsd:simpleType name="yanceesLong">
+     <xsd:restriction base="xsd:long"/>
+  </xsd:simpleType>
+
+  <!--
+    TYPE: yanceesFloat
+
+     Defines a yancees float simple type.
+   -->
+  <xsd:simpleType name="yanceesFloat">
+     <xsd:restriction base="xsd:float"/>
+  </xsd:simpleType>
+
+  <!--
+    TYPE: yanceesDouble
+
+    Defines a yancees double simple type.
+   -->
+  <xsd:simpleType name="yanceesDouble">
+     <xsd:restriction base="xsd:double"/>
+  </xsd:simpleType>
+
+   <!--
+    TYPE: yanceesBoolean
+
+    Defines a yancees boolean simple type.
+   -->
+  <xsd:simpleType name="yanceesBoolean">
+     <xsd:restriction base="xsd:boolean"/>
+  </xsd:simpleType>
+
+  <!--
+    TYPE: yanceesHexBinary
+
+    Defines a yancees boolean simple type.
+   -->
+  <xsd:simpleType name="yanceesHexBinary">
+     <xsd:restriction base="xsd:hexBinary"/>
+  </xsd:simpleType>
+
+   <!--
+    TYPE: ValueType
+
+    Defines all the possible types an attribute may have.
+   -->
+  <xsd:simpleType name="ValueType">
+     <xsd:union memberTypes="yanceesString yanceesInt yanceesLong yanceesFloat yanceesDouble yanceesBoolean yanceesHexBinary"/>
+  </xsd:simpleType>
+
+</xsd:schema>

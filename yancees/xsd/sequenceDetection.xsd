@@ -1,0 +1,59 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sequenceDetection.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:sub="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"
+            xmlns:ssub="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sequenceDetection.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+<!-- Import namespaces used -->
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"/>
+
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaSubscription.xsd"/>
+
+
+ <xsd:annotation>
+    <xsd:documentation>
+       This schema extends the siena subscription language to support the detection of
+       sequences of events.
+    </xsd:documentation>
+  </xsd:annotation>
+
+
+  <!--
+    TYPE: SequenceSubscriptionType
+    A Subscription extension that allows the detection of sequence of events.
+
+   -->
+  <xsd:complexType name="SequenceSubscriptionType">
+     <xsd:complexContent>
+        <xsd:extension base="sub:SubscriptionType">
+           <xsd:sequence minOccurs="0" maxOccurs="1">
+              <xsd:element name="sequence" type="FilterSequenceType"/>
+           </xsd:sequence>
+        </xsd:extension>
+     </xsd:complexContent>
+   </xsd:complexType>
+
+
+  <!--
+    TYPE: SequenceType
+
+   -->
+  <xsd:complexType name="FilterSequenceType">
+     <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+         <xsd:element name="filter" type="ssub:FilterType"/>
+     </xsd:sequence>
+  </xsd:complexType>
+
+
+</xsd:schema>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema attributeFormDefault="qualified"
+    elementFormDefault="qualified"
+    targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/switcherSubscription.xsd"
+    xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/switcherSubscription.xsd"
+    xmlns:sub="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!-- Import namespaces used -->
+    <xsd:import
+        namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd" schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/subscription.xsd"/>
+    <xsd:annotation>
+        <xsd:documentation>        This schema defines topics as
+            supported by Switcher</xsd:documentation>
+    </xsd:annotation>
+    <!--
+    TYPE: SwitcherSubscriptionType
+    A Subscription in Switcher is the specificaiton of a field in the event
+
+   -->
+    <xsd:complexType name="SwitcherSubscriptionType">
+        <xsd:complexContent>
+            <xsd:extension base="sub:SubscriptionType">
+                <xsd:sequence maxOccurs="1" minOccurs="1">
+                    <xsd:element name="require" type="TopicType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!--
+    TYPE: TopicType
+    A topic specifies a string representing the name of the field an event is
+    being required to have. All events with the specified field, independent of its content,
+    are routed to the subscriber.
+   -->
+    <xsd:simpleType name="TopicType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+</xsd:schema>

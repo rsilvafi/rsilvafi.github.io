@@ -1,0 +1,969 @@
+IEEE Software,SWSI-0070-0604
+manuscript type: Special Issue on Persistent Software
+Attributes-Submission Deadline 01 June 04 
+"Preserving Versatility in Event-Based Middleware"
+
+Dear Mr. Silva Filho,
+
+The above-referenced manuscript, which you submitted to IEEE
+Software, has completed the review process.  After carefully
+examining the manuscript and reviews, the Editor in Chief has
+decided that the manuscript is not suitable for publication in
+the special issue of IEEE Software, and therefore we must reject
+it.
+
+The Guest Editors' and reviewers' comments are attached below.
+Thank you very much for your submission to IEEE Software.
+
+Sincerely,  
+
+Hilda Hosillos
+Magazine Assistant
+IEEE Software
+software@computer.org
+
+Guest Editors' Comments:
+
+Your paper appears to have set a record for engendering
+diversity of opinion among reviewers, if nothing else. There
+seems to be a consensus that you have some interesting and
+worthwhile ideas in your paper, and the reviewers provide a
+number of useful suggestions for bringing those ideas out. You
+may wish to consider addressing the reviewers' comments and
+submitting the revision to IEEE Software as a regular paper. In
+making any revisions, keep in mind that IEEE Software is a
+practitioner-oriented magazine and the focus of any revision
+should reflect this.
+  
+
+Reviewer 1
+				
+				
+Section I. Overview 
+
+
+A. Reader Interest
+
+
+1. How relevant is this manuscript to the readers of this
+periodical? Please explain your rating in the Confidential
+Comments section.
+
+( ) Very Relevant
+
+(X) Relevant
+
+( ) Interesting - but not very relevant
+
+( ) Irrelevant
+
+
+B. Content 
+
+
+1. Please summarize what you view as the key point(s) of the
+manuscript and the importance of the content to the readers of
+this periodical.
+
+The authors define the concept of software "versatility" with
+precision, argue effectively why versatility is a vital
+component of distributed systems, and describe their own system,
+YANCEES, for providing such versatility to distributed software
+applications.
+
+
+2. Is the manuscript technically sound? Please explain your
+answer in the Confidential Comments section.
+
+(X) Yes
+
+( ) Appears to be - but didn't check completely
+
+( ) Partially
+
+( ) No
+
+
+3. What do you see as this manuscript's contribution to the
+literature in this field? 
+
+They make a persuasive argument for the need for middleware that
+supports versatility in distributed applications, and define the
+problem in some detail.
+
+
+4. What do you see as the strongest aspect of this manuscript?
+
+See above.
+
+
+5. What do you see as the weakest aspect of this manuscript?
+
+They introduce a lot of ideas in trying to explain their goals,
+so at times I thought I was reading a summary article instead of
+a description of a result. They pull it back together by the end
+of the paper, though, with a detailed description of their
+system and how it addresses the goals that they described
+earlier in the paper.
+
+C. Presentation
+
+
+1. Are the title, abstract, and keywords appropriate? Please
+elaborate in the Confidential Comments section.
+
+(X) Yes
+
+( ) No
+
+
+2. Manuscript does not contain title, abstract, and/or
+keywords.
+
+( ) Yes
+
+(X) No
+
+
+3. Does the manuscript contain sufficient and appropriate
+references? Please elaborate in the Confidential Comments
+section.
+
+(X) References are sufficient and appropriate
+
+( ) Important references are missing; more references are
+needed
+
+( ) Number of references are excessive
+
+
+4. Does the introduction state the objectives of the manuscript
+in terms that encourage the reader to read on? Please explain
+your answer in the Confidential Comments section.
+
+(X) Yes
+
+( ) Could be improved
+
+( ) No
+
+
+5. How would you rate the organization of the manuscript? Is it
+focused? Is the length appropriate for the topic? Please
+elaborate in the Confidential Comments section. 
+
+(X) Satisfactory
+
+( ) Could be improved
+
+( ) Poor
+
+
+6. Is the manuscript focused? Please elaborate in the
+Confidential Comments section.
+
+(X) Satisfactory
+
+( ) Could be improved
+
+( ) Poor
+
+
+7. Is the length of the manuscript appropriate for the topic?
+Please elaborate in the Confidential Comments section.
+
+(X) Satisfactory
+
+( ) Could be improved
+
+( ) Poor
+
+
+8. Please rate and comment on the readability of this manuscript
+in the Confidential Comments section.
+
+(X) Easy to read
+
+( ) Readable - but requires some effort to understand
+
+( ) Difficult to read and understand
+
+( ) Unreadable
+
+
+Section II. Summary and Recommendation
+
+
+A. Evaluation 
+
+Please rate the manuscript. Explain your choice in the
+Confidential Comments section.
+
+( ) Award Quality
+
+( ) Excellent
+
+(X) Good
+
+( ) Fair
+
+( ) Poor
+
+
+B. Recommendation 
+
+Please make your recommendation and explain your decision in the
+Detailed Comments section.
+
+(X) Accept with no changes
+
+( ) Accept if certain minor revisions are made
+
+( ) Author should prepare a major revision
+
+( ) Reject
+
+
+Section III. Detailed Comments
+
+A. Public Comments (these will be made available to the author)
+ I.A.1 (relevancy) - 
+
+I.B.2 (soundness) - 
+
+I.C.1 (title, abstract, & keywords) - I think the title is clear
+and to the point, but I have to admit that after reading that
+title I kept looking for an extensive discussion of
+"event-based" in the paper and really never saw it. The authors
+seem to range quite a bit more broadly than just event-based
+middleware, focusing on the entire problem of creating versatile
+middleware, which include event-based and more.
+
+I.C.2 (missing items) - Keywords are missing.
+
+I.C.3 (references) - 
+
+I.C.4 (introduction) - 
+
+I.C.5 (organization) - 
+
+I.C.6 (focus) - 
+
+I.C.7 (length) - 
+
+I.C.8 (readability) - 
+
+II.A (overall rating) - 
+
+II.B (recommendation) - Accept with no change. My reflex was to
+say "minor changes," but to be honest I didn't come up with much
+that needed changing. My main concern is that this is clearly an
+more research-oriented paper than the majority of IEEE Software
+papers, but it presents its research in a sufficiently readable
+and jargon-free fashion that I think it will work out fine.
+Reviewer 2
+				
+				
+Section I. Overview 
+
+
+A. Reader Interest
+
+
+1. How relevant is this manuscript to the readers of this
+periodical? Please explain your rating in the Confidential
+Comments section.
+
+( ) Very Relevant
+
+(X) Relevant
+
+( ) Interesting - but not very relevant
+
+( ) Irrelevant
+
+
+B. Content 
+
+
+1. Please summarize what you view as the key point(s) of the
+manuscript and the importance of the content to the readers of
+this periodical.
+
+The key point of the manuscript is that building PSAs into
+networked systems can be simplified if proper design decisions
+have been made in advance. The reader is sensitized to the
+correlation of design decisions and the building of PSAs.
+
+
+
+2. Is the manuscript technically sound? Please explain your
+answer in the Confidential Comments section.
+
+( ) Yes
+
+(X) Appears to be - but didn't check completely
+
+( ) Partially
+
+( ) No
+
+
+3. What do you see as this manuscript's contribution to the
+literature in this field? 
+
+The manuscript's contribution to the literature is limited as
+the authors explain what problems they have solved only in a
+very abstract way. Moreover, many important and interesting
+details about how the system is designed and implemented are
+missing.
+
+
+4. What do you see as the strongest aspect of this manuscript?
+
+The strongest aspect of the paper is the classification of
+common system design approaches.
+
+
+5. What do you see as the weakest aspect of this manuscript?
+
+The weakest aspect of the manuscript is that the authors do not
+state precisely how they have designed and built PSAs in their
+YANCEES system.
+
+C. Presentation
+
+
+1. Are the title, abstract, and keywords appropriate? Please
+elaborate in the Confidential Comments section.
+
+(X) Yes
+
+( ) No
+
+
+2. Manuscript does not contain title, abstract, and/or
+keywords.
+
+(X) Yes
+
+( ) No
+
+
+3. Does the manuscript contain sufficient and appropriate
+references? Please elaborate in the Confidential Comments
+section.
+
+(X) References are sufficient and appropriate
+
+( ) Important references are missing; more references are
+needed
+
+( ) Number of references are excessive
+
+
+4. Does the introduction state the objectives of the manuscript
+in terms that encourage the reader to read on? Please explain
+your answer in the Confidential Comments section.
+
+( ) Yes
+
+(X) Could be improved
+
+( ) No
+
+
+5. How would you rate the organization of the manuscript? Is it
+focused? Is the length appropriate for the topic? Please
+elaborate in the Confidential Comments section. 
+
+(X) Satisfactory
+
+( ) Could be improved
+
+( ) Poor
+
+
+6. Is the manuscript focused? Please elaborate in the
+Confidential Comments section.
+
+( ) Satisfactory
+
+(X) Could be improved
+
+( ) Poor
+
+
+7. Is the length of the manuscript appropriate for the topic?
+Please elaborate in the Confidential Comments section.
+
+(X) Satisfactory
+
+( ) Could be improved
+
+( ) Poor
+
+
+8. Please rate and comment on the readability of this manuscript
+in the Confidential Comments section.
+
+( ) Easy to read
+
+( ) Readable - but requires some effort to understand
+
+(X) Difficult to read and understand
+
+( ) Unreadable
+
+
+Section II. Summary and Recommendation
+
+
+A. Evaluation 
+
+Please rate the manuscript. Explain your choice in the
+Confidential Comments section.
+
+( ) Award Quality
+
+( ) Excellent
+
+( ) Good
+
+(X) Fair
+
+( ) Poor
+
+
+B. Recommendation 
+
+Please make your recommendation and explain your decision in the
+Detailed Comments section.
+
+( ) Accept with no changes
+
+( ) Accept if certain minor revisions are made
+
+(X) Author should prepare a major revision
+
+( ) Reject
+
+
+Section III. Detailed Comments
+
+A. Public Comments (these will be made available to the author)
+ The authors describe their lessons learned in designing a
+versatile message-oriented middleware system. They survey
+existing solutions and state that there is no really versatile
+solution meeting their requirements. After clarifying their
+definition of versatility they briefly describe classic and
+advanced approaches to versatility. Then, these approaches are
+evaluated as well as associated to existing middleware
+solutions. At last, the authors cite their YANCEES system as
+case study of a versatile software system and summarize their
+experiences.
+
+A general problem of the manuscript is that it is hard to read.
+It lacks examples, figures and explanations that may help an
+unaware reader to understand it. For example, the authors should
+support the reader right at the beginning by explaining in more
+detail what message-oriented middleware is and what it is used
+for. Instead of that, the aim of MOM systems is only described
+in a somehow abstract way. Especially regarding the motivation
+section concrete real-life examples would help to encourage the
+reader to learn why versatility plays such a big role in MOM
+systems. Despite these problems the first part of the manuscript
+is quite well done and gives an interesting overview of general
+design approaches that build a fundament for many aspects of
+versatility and PSAs, respectively.
+
+The second part of the manuscript, describing the YANCEES
+system, contains too little concrete information to impart
+knowledge how the authors have built PSAs. Especially the
+separation of the section generally describing design steps from
+the section describing the design steps of the YANCEES system
+seems to be inappropriate. Furthermore, instead of describing
+their framework in detail the authors only reference Figure 1.
+Unfortunately, the content of Figure 1 is not explained anywhere
+-- this is a major problem as Figure 1 is not easy to
+understand.
+
+The most interesting aspect of the YANCEES design is focused in
+Table 1 describing how versatility requirements are addressed in
+YANCEES. Here again, a more detailed description containing
+examples would help to explain which versatility problems exist
+and in how far they are addressed. At last, the authors should
+include performance evaluations instead of referencing their
+technical report. This is also a missing aspect that would make
+the manuscript a more interesting read.
+
+Reviewer 3
+				
+				
+Section I. Overview 
+
+
+A. Reader Interest
+
+
+1. How relevant is this manuscript to the readers of this
+periodical? Please explain your rating in the Confidential
+Comments section.
+
+( ) Very Relevant
+
+(X) Relevant
+
+( ) Interesting - but not very relevant
+
+( ) Irrelevant
+
+
+B. Content 
+
+
+1. Please summarize what you view as the key point(s) of the
+manuscript and the importance of the content to the readers of
+this periodical.
+
+The paper provides a very interesting and technically sound
+overview of current technologies and approaches that can be used
+to implement "versatile" middleware which is easy to adapt,
+extend and configure. Furthermore, as a proof of concept, the
+basics of a notification service prototype named "YANCEES"
+realizing the ideas described in the paper are presented. 
+
+
+2. Is the manuscript technically sound? Please explain your
+answer in the Confidential Comments section.
+
+(X) Yes
+
+( ) Appears to be - but didn't check completely
+
+( ) Partially
+
+( ) No
+
+
+3. What do you see as this manuscript's contribution to the
+literature in this field? 
+
+The paper elaborates on aspects of versatility, like
+extensibility, functional configurability, distribution
+configurability, reuse, and usability, needed today in
+event-based middleware implementations and points out approaches
+and technologies that can be used to achieve these software
+engineering goals. 
+
+
+4. What do you see as the strongest aspect of this manuscript?
+
+It provides a nice and informative overview and analysis of
+potential ways of preserving versatility in event-based
+middleware.
+
+
+5. What do you see as the weakest aspect of this manuscript?
+
+The paper stays very much at the surface of the numerous
+technologies and approaches mentioned.
+
+C. Presentation
+
+
+1. Are the title, abstract, and keywords appropriate? Please
+elaborate in the Confidential Comments section.
+
+(X) Yes
+
+( ) No
+
+
+2. Manuscript does not contain title, abstract, and/or
+keywords.
+
+( ) Yes
+
+(X) No
+
+
+3. Does the manuscript contain sufficient and appropriate
+references? Please elaborate in the Confidential Comments
+section.
+
+(X) References are sufficient and appropriate
+
+( ) Important references are missing; more references are
+needed
+
+( ) Number of references are excessive
+
+
+4. Does the introduction state the objectives of the manuscript
+in terms that encourage the reader to read on? Please explain
+your answer in the Confidential Comments section.
+
+(X) Yes
+
+( ) Could be improved
+
+( ) No
+
+
+5. How would you rate the organization of the manuscript? Is it
+focused? Is the length appropriate for the topic? Please
+elaborate in the Confidential Comments section. 
+
+(X) Satisfactory
+
+( ) Could be improved
+
+( ) Poor
+
+
+6. Is the manuscript focused? Please elaborate in the
+Confidential Comments section.
+
+(X) Satisfactory
+
+( ) Could be improved
+
+( ) Poor
+
+
+7. Is the length of the manuscript appropriate for the topic?
+Please elaborate in the Confidential Comments section.
+
+( ) Satisfactory
+
+(X) Could be improved
+
+( ) Poor
+
+
+8. Please rate and comment on the readability of this manuscript
+in the Confidential Comments section.
+
+(X) Easy to read
+
+( ) Readable - but requires some effort to understand
+
+( ) Difficult to read and understand
+
+( ) Unreadable
+
+
+Section II. Summary and Recommendation
+
+
+A. Evaluation 
+
+Please rate the manuscript. Explain your choice in the
+Confidential Comments section.
+
+( ) Award Quality
+
+(X) Excellent
+
+( ) Good
+
+( ) Fair
+
+( ) Poor
+
+
+B. Recommendation 
+
+Please make your recommendation and explain your decision in the
+Detailed Comments section.
+
+( ) Accept with no changes
+
+(X) Accept if certain minor revisions are made
+
+( ) Author should prepare a major revision
+
+( ) Reject
+
+
+Section III. Detailed Comments
+
+A. Public Comments (these will be made available to the author)
+ The paper provides a very interesting and technically sound
+overview of current technologies and approaches that can be used
+to implement "versatile" middleware which is easy to adapt,
+extend and configure. Furthermore, as a proof of concept, the
+basics of a notification service prototype named "YANCEES"
+realizing the ideas described in the paper are presented. 
+
+The paper is technically sound and condenses much information on
+an easy-to-read level of abstraction. 
+
+The paper elaborates on aspects of versatility, like
+extensibility, functional configurability, distribution
+configurability, reuse, and usability, needed today in
+event-based middleware implementations and points out approaches
+and technologies that can be used to achieve these software
+engineering goals.
+
+It provides a nice and informative overview and analysis of
+potential ways of preserving versatility in event-based
+middleware. However, the paper stays very much at the surface of
+the numerous technologies and approaches mentioned. It might be
+worth-while considering an extenion of the paper to provide more
+substance.
+
+Keywords are missing. There are a few grammatical and spelling
+errors.
+Reviewer 4
+				
+				
+Section I. Overview 
+
+
+A. Reader Interest
+
+
+1. How relevant is this manuscript to the readers of this
+periodical? Please explain your rating in the Confidential
+Comments section.
+
+( ) Very Relevant
+
+(X) Relevant
+
+( ) Interesting - but not very relevant
+
+( ) Irrelevant
+
+
+B. Content 
+
+
+1. Please summarize what you view as the key point(s) of the
+manuscript and the importance of the content to the readers of
+this periodical.
+
+Middleware is an important element in distributed systems. This
+manuscripts provides a framework for describing the versatility
+of a middleware design, presents a survey of current middleware
+approaches and describes a middleware under development by the
+authors.
+
+
+2. Is the manuscript technically sound? Please explain your
+answer in the Confidential Comments section.
+
+( ) Yes
+
+(X) Appears to be - but didn't check completely
+
+( ) Partially
+
+( ) No
+
+
+3. What do you see as this manuscript's contribution to the
+literature in this field? 
+
+A framework for discussing the versatility of middleware and a
+survey of current middleware approaches.
+
+
+4. What do you see as the strongest aspect of this manuscript?
+
+The framework for discussing versatility seems very useful. The
+survey of strengths and weaknesses of current industry/academic
+standard middleware approaches is also useful.
+
+
+5. What do you see as the weakest aspect of this manuscript?
+
+The manuscript is not focused. There is a great deal of
+information provided but is not cohesive. See comments below.
+
+C. Presentation
+
+
+1. Are the title, abstract, and keywords appropriate? Please
+elaborate in the Confidential Comments section.
+
+(X) Yes
+
+( ) No
+
+
+2. Manuscript does not contain title, abstract, and/or
+keywords.
+
+(X) Yes
+
+( ) No
+
+
+3. Does the manuscript contain sufficient and appropriate
+references? Please elaborate in the Confidential Comments
+section.
+
+(X) References are sufficient and appropriate
+
+( ) Important references are missing; more references are
+needed
+
+( ) Number of references are excessive
+
+
+4. Does the introduction state the objectives of the manuscript
+in terms that encourage the reader to read on? Please explain
+your answer in the Confidential Comments section.
+
+( ) Yes
+
+(X) Could be improved
+
+( ) No
+
+
+5. How would you rate the organization of the manuscript? Is it
+focused? Is the length appropriate for the topic? Please
+elaborate in the Confidential Comments section. 
+
+(X) Satisfactory
+
+( ) Could be improved
+
+( ) Poor
+
+
+6. Is the manuscript focused? Please elaborate in the
+Confidential Comments section.
+
+( ) Satisfactory
+
+( ) Could be improved
+
+(X) Poor
+
+
+7. Is the length of the manuscript appropriate for the topic?
+Please elaborate in the Confidential Comments section.
+
+(X) Satisfactory
+
+( ) Could be improved
+
+( ) Poor
+
+
+8. Please rate and comment on the readability of this manuscript
+in the Confidential Comments section.
+
+( ) Easy to read
+
+(X) Readable - but requires some effort to understand
+
+( ) Difficult to read and understand
+
+( ) Unreadable
+
+
+Section II. Summary and Recommendation
+
+
+A. Evaluation 
+
+Please rate the manuscript. Explain your choice in the
+Confidential Comments section.
+
+( ) Award Quality
+
+( ) Excellent
+
+( ) Good
+
+(X) Fair
+
+( ) Poor
+
+
+B. Recommendation 
+
+Please make your recommendation and explain your decision in the
+Detailed Comments section.
+
+( ) Accept with no changes
+
+( ) Accept if certain minor revisions are made
+
+( ) Author should prepare a major revision
+
+(X) Reject
+
+
+Section III. Detailed Comments
+
+A. Public Comments (these will be made available to the author)
+ While this reviewer found the topic interesting, the manuscript
+is not well focused and difficult to follow. The goal of the
+discussion is not clear from the start.
+
+The manuscript seems to be heading in the following direction: 
+
+* Describe a framework for evaluating versatility of middlware.
+
+* Describe current approaches for middleware within the context
+of the framework. Identify strenghts and weaknesses of each
+approach.
+
+* Describe YANCEES.
+
+
+Currently, the manuscript does a reasonable job at describing
+the versatility framework. However, after digesting that, the
+reader is introduced to a collection of categories that capture
+various approaches to middleware. For the most part, the
+categories are discussed with no reference of the framework. 
+
+It would be more effective, and relevant, to discuss the
+categories with in the context of the framework.
+
+Lastly, with respect to YANCEES, the purpose of "Yet Another"
+middleware approach should be to address issues of versatility
+identified in other approaches and explain how YANCEES improves
+upon them. If the improvement is not identifiable, why should we
+need it?
+
+That said, I think there is something that can be salvaged from
+the manuscript. I would encourage the authors to completely
+redesign their discussion and consider submitting the new
+manuscript for consideration. 
+
+
+
+Some specific comments about the manuscript:
+
+* There are some obvious middleware choices (e.g., JavaBeans,
+COM/DCOM, .Net, MPI, NDDS, etc.) that have been left out of the
+survey. You should consider doing a more extensive survey of
+current approaches. You do not necessarily have to detail each
+middleware but it would be useful to place the various
+middleware products into the categories. 
+
+* While I agree that the approaches listed under "Advanced
+Approaches to Versatility" are useful, the categories under
+"Architectural Approaches Beyond Middleware" does not add much
+to the discussion.
+
+* You should consider investigating some discussion on framework
+tools (e.g., IBM Rational Rose Real-Time) that provide
+location-independent communication using an extensible
+proprietary approach. Such tools may fall into the "Advanced
+Approaches to Versatility" categories. They are not truly MDA.
+Several such tools provide interesting communication schemes.
+
+
+
+
+
+  

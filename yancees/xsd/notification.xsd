@@ -1,0 +1,42 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/notification.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/notification.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+
+  <xsd:annotation>
+    <xsd:documentation>
+       This schema defines a generic notification type which is intented to allow
+       subscribers to define notification policies.
+
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <!--
+    ELEMENT: notification
+
+    This tag is the root element in a notification file, the topmost element that
+    defines the notification representation structure.
+   -->
+  <xsd:element name="notification" type="NotificationType"/>
+
+  <!--
+    TYPE: NotificationType
+
+    The NotificationType is generic and need to be implemented by extensions of
+    this schema. It can be used to define any language. The only requirement is
+    that it uses reverse polish notation: + A B to imply A+B for example. This allows
+    the notification manager to parse the DOM tree invoking the appropriate plug-ins.
+
+   -->
+  <xsd:complexType name="NotificationType" abstract = "true"/>
+
+</xsd:schema>

@@ -1,0 +1,368 @@
+Dear Roberto, Cleidson and David,
+
+The program committee for the Twelfth ACM SIGSOFT Symposium on
+Foundations of Software Engineering (FSE) met recently to consider
+your submission.  Your paper titled
+
+"Striving for Versatility in Event Notification Services"
+
+was carefully reviewed by at least three program committee members. 
+The committee decided that your paper will not be included in this
+year's program. As I'm sure you know FSE is a highly-selective
+meeting and this year only 25 out of 169 submissions were accepted.  
+
+The reviewers spent considerable time reading your paper and writing
+reviews; the reviews are attached below. I urge you to consider
+those reviews carefully as they contain advice on how to address
+problematic issues with your research results and to improve the
+quality of your presentation. If you are new to the FSE community,
+I urge to read selected papers from past FSE proceedings to gain an
+understanding of the quality of results and presentation that are
+typical of the meeting. This will help when you submit your work in
+the future.
+
+FSE will be held in Newport Beach, California at the beginning of
+November this year.  It will be preceded and followed by a lineup
+of very interesting workshops (see the conference web-site for
+details). SIGSOFT week as a whole promises a wealth of interesting 
+technical material and a healthy dose of pleasant California beach
+weather; I encourage you to attend.
+
+Best Regards
+
+Matthew B. Dwyer
+FSE 2004 Program Chair
+*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=
+
+First reviewer's review:
+
+          >>> Summary of the submission <<<
+
+ The paper proposes YANCEES, an extensible and configure event service
+ framework. The authors motivate the proposed framework by observing that
+ current event services are either not extensible or do not include
+ capabilities needed by many applications. Thus, developers have to
+ build event services from scratch or modify the source code of existing
+ services. The YANCEES framework addresses this concern by providing a
+ pluggable architecture to allows new plugs-in to be defined and inserted
+ into the event notification paths. A new protocol dimension is added
+ to address concerns other than simple subscription and notification.
+ Two cases studies have been presented which sketch how YANCEES can be
+ customized to specific applications.
+
+          >>> Evaluation <<<
+
+ The paper addresses an important problem of designing an event service
+ that can be customized to specific applications. I have the
+ suggestions for improvements:
+
+ 1. The paper does not present concrete details about the proposed framework.
+ The details are mostly discussed at the conceptual level. For example,
+ the authors talk about the distribution configurability (ability to
+ specify which parts of the service execute on the server side and which
+ on the client side), but there is no concrete discussion on how this
+ is specified or implemented except mentioning that client and server
+ side plugins can be defined.
+
+ 2. The paper does not refer to some recent work on extensible event
+ communication frameworks. For example, the
+ FACET framework (http://www.cs.wustl.edu/~doc/RandD/PCES/facet) based on
+ aspect oriented programming accomplishes many of the goals of this paper.
+
+ 3. The section, Performance Tests, needs to be expanded. For
+ example, the metric "subscriptions/second" is not clear. Does it
+ imply a sequence of subscribe and unsubscribe calls ? How many clients
+ are subscribing ? Are the clients and servers running on the same
+ machine ? Also, it is not clear how many producers and
+ consumers were used in the experiments. The authors need to present
+ a more detailed evaluation.
+
+ 4. In the first case study, the authors should provide some concrete
+ numbers using metrics such as the number of lines of code that the user
+ had to write to customize YANCEES to the specific application.
+ For example, how complex is the CassiusService component (the
+ discussion says that it handles creation and management of objects,
+ accounts, and their events which sounds complex) ?
+ It would have been also useful if the authors could briefly discuss
+ what modifications are needed in an existing event service (such as SIENA)
+ to customize it for the same application.
+
+*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*
+
+Second reviewer's review:
+
+          >>> Summary of the submission <<<
+
+The paper describes YANCEES (Yet ANother Configurable Extensible Event
+Service), a framework designed to address versatility in
+publish/subscribe systems. YANCEES is implemented as a layer on top of
+a generic existing event notification middleware, allowing its
+extension in term of new services. The paper shows how to use YANCEES
+for implementing new services and provides an evaluation comparing the
+YANCEES performances with different under-layer protocols.
+
+          >>> Evaluation <<<
+
+Favour:
+
+The authors applied a plug-in design to the event-based world providing a
+solution that allows versatility and adaptability.
+
+The Paper is clear and well written. The overall idea is clearly
+described and many implementation details are well explained.
+
+Against:
+
+The authors miss an important point of comparison with systems like FACET.
+They should address this issue and try to emphasize and better characterize
+their approach wrt the existing literature.
+
+
+The authors do not explicitly mention that YANCEES is build on top of
+existing event-notification services. Moreover, it is not clear if and
+how YANCESS respects the requirements posed by the under-layer
+framework. That is, does it preserve the semantics defined by the used
+framework? For example, Siena and Elvin subscription/unsubscription
+semantics are quite different. In fact while Siena implements a
+complex subscription logic based on the filter-covering and posets
+theory, Elvin implements a naive solution. 
+
+I would like to see a comparative benchmark using YANCEES and JMS.
+
+
+Section 1:
+	in this work because our we see... --> in this work because we see...
+
+Section 5: 
+	(last paragraph) What does LOC mean? 
+
+Section 6: 
+ * table 2, cell (4,1): subscirp. --> subscrip. 
+ * It is not clear how the performance tests have been computed:
+  - In both Siena and Elvin the event-service can be implemented in
+  either a centralized or distributed way: What is the experimental
+  setup used for these measurements?
+  - The authors do not explain what "ability of processing
+  subscriptions" means and how they have measured it. i.e. In Siena
+  a subscription is fully processed when it is active; Then this
+  implies that a subscription is active only after it has been
+  (eventually) forwarded through the event-service.
+
+Section 9: 
+	However, form... --> However from...
+
+*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*
+
+Third reviewer's review:
+
+          >>> Summary of the submission <<<
+
+This paper describes the design, implementation, and
+qualitative/quantitative evaluation of YANCEES, which is 
+a flexible event service implementation written in Java and XML.
+
+          >>> Evaluation <<<
+
++ The paper is based on an actual event service implementation and 
+ quantitative/qualitative evaluations of this implementation.
+ 
+- The paper doesn't provide a significant contribution to the
+ extensive research on these topics.
+ 
+- Paper isn't very well written, i.e., needs a careful proof reading. 
+ 
+The following are suggestions for improving this paper:
+
+Section 1
+
+. The authors' aren't clear what they mean when they say "CORBA-NS
+ does not support mobility protocols, and the addition of such
+ feature (sic) usually requires changing its source code or the
+ implementation of this concern by the client application." Mobility
+ protocols are indeed supported in CORBA (see the work on Extensible
+ Transport Frameworks and the Wireless/Mobile Special Interest Group
+ in the OMG for details), but they are supported at the ORB-level,
+ not the Service-level. I recommend the authors come up with a
+ better example to illustrate their point.
+ 
+. There has been extensive work on highly flexible event services
+ based on standards. A good example is the FACET work by Ron Cytron
+ and Frank Hunleth at Washington University, which uses AspectJ to be
+ able to add/subtract event service features in a very fine-grained
+ level. 
+ 
+ @inproceedings{Hunleth:01,
+  AUTHOR =	 "Frank Hunleth and Ron Cytron and Chris Gill",
+  TITLE =	 "{Building Customizable Middleware using Aspect
+          Oriented Programming}",
+  BOOKTITLE =	 "The OOPSLA 2001 Workshop on Advanced Separation of
+          Concerns in Object-Oriented Systems",
+  ORGANIZATION = "ACM",
+  note =
+         
+{\url{http://www.cs.ubc.ca/~kdvolder/Workshops/OOPSLA2001/ASoC.html}},
+  ADDRESS =	 {Tampa Bay, FL},
+  MONTH =	 oct,
+  YEAR =	 {2001},
+ }
+
+ @inproceedings{Hunleth:02,
+  author =	 {Frank Hunleth and Ron K. Cytron},
+  title =	 {Footprint and feature management using
+          aspect-oriented programming techniques},
+  booktitle =	 {Proceedings of the joint conference on Languages,
+          compilers and tools for embedded systems},
+  year =	 {2002},
+  isbn =	 {1-58113-527-0},
+  pages =	 {38--45},
+  location =	 {Berlin, Germany},
+  doi =		 {http://doi.acm.org/10.1145/513829.513838},
+  publisher =	 {ACM Press},
+ }
+ 
+ There is also related work by Arno Jacobsen et al
+ <http://www.eecg.toronto.edu/~jacobsen/>, which also uses
+ aspect-oriented techniques to develop highly flexible event
+ services. 
+ 
+ C. Zhang, H.-A. Jacobsen. Re-factoring Middleware Systems: A Case
+ Study. Distributed Objects and Applications (DOA), 2003, (accepted
+ for publication).
+
+ C. Zhang, H.-A. Jacobsen. Quantifying Aspects in Middleware
+ Platforms. ACM Aspect Oriented Software Development, Boston, MA,
+ pp. 130-139, March 2003.
+
+  G. Cugola, H.-A. Jacobsen Using publish/subscribe middleware for
+ mobile systems. ACM SIGMOBILE Mobile Computing and Communications
+ Review (MC2R) Vol. 6(4), pp. 25-33. ACM Press, New York, NY, USA,
+ October 2002.
+
+ @inproceedings{Jacobsen:03,
+  AUTHOR =    {Milenko Petrovic and Ioana Burcea and Hans-Arno Jacobsen},
+  TITLE =    "{S-ToPSS: Semantic Toronto Publish/Subscribe System}",
+  BOOKTITLE =  "Proceedings of the 29th VLDB Conference",
+  ADDRESS =   "Berlin, Germany",
+  YEAR =     {2003},
+ }
+
+ @inproceedings{Jacobsen:04,
+  AUTHOR =    {Haifeng Liu and H-Arno Jacobsen},
+  TITLE =    "{Modeling uncertainties in Publish/Subscribe System}",
+  BOOKTITLE =  "Proceedings of The 20th International Conference on Data
+Engineering (ICDE04)",
+  ADDRESS =   "Boston, USA",
+  YEAR =     {2004},
+ } 
+ 
+ I recommend the authors cite this work since they have already
+ addressed the main topics of this paper in detail several years ago.
+ 
+. It's not really clear from this section what the key *research*
+ contributions of this paper are, i.e., what are the hard open
+ problems in this area and how does this paper provide a significant
+ contribution. I recommend the authors revise the intro to clearly
+ explain this since otherwise it's not really clear what makes this a
+ research paper.
+ 
+Section 2
+
+. One of the most important requirements on an event service is
+ "quality of service" (e.g., scalability, reliability,
+ predictability, etc.). Without considering this capability in the
+ context of the other "ility" requirements listed in this section
+ it's hard to imagine an event service being very useful in practice.
+ I recommend the authors explain how their approach effects quality
+ of service since there are often important tradeoffs between it and
+ the versability requirements.
+ 
+Section 3
+ 
+. The way in which this section is written makes the paper seem
+ EXTREMELY incremental, i.e., it's basically saying that "our work
+ extends Rosenblum and Wolf's work to add one new property "the
+ protocol". It's entirely unclearly, however, why adding this
+ particularly property represents a contribution to research on event
+ services since there has been considerable work already done on
+ addressing protocol-related issues in the context of event
+ services. examples of this type of work include 
+ 
+ Benoît Garbinato, Rachid Guerraoui: Using the Strategy Design
+ Pattern to Compose Reliable Distributed Protocols. COOTS 1997:
+ 221-232 
+ 
+ Xavier Défago, Pascal Felber, Benoît Garbinato, Rachid Guerraoui:
+ Reliability with CORBA Event Channels. COOTS 1997: 237-240 
+ 
+ @article{Guerraoui:98,
+  AUTHOR =	 "Pascal Felber and Rachid Guerraoui and Andr\'{e}
+          Schiper",
+  TITLE =	 "{The Implementation of a CORBA Object Group
+          Service}",
+  JOURNAL =	 "Theory and Practice of Object Systems (TAPOS)",
+  VOLUME =	 4,
+  NUMBER =	 2,
+  MONTH =	 feb,
+  YEAR =	 1998,
+  PAGES =	 {93-105}
+ }
+
+ @article{Vaysburd:98,
+  AUTHOR =	 "Alexey Vaysburd and Ken Birman",
+  TITLE =	 "{The Maestro approach to Building Reliable
+          Interoperable Distributed Applications with Multiple
+          Execution Styles}",
+  JOURNAL =	 "Theory and Practice of Object Systems (TAPOS)",
+  VOLUME =	 4,
+  NUMBER =	 2,
+  MONTH =	 feb,
+  YEAR =	 1998,
+  PAGES =	 {73-80}
+ }
+ 
+Sections 4 and 5
+ 
+. It's hard to tell from the discussion in these sections what is
+ actually novel/new in the approach to implementing YANCEES since all
+ of the approaches sound very straightforward and similar to related
+ work. I recommend the authors clearly explain what is novel/new in
+ their approach and also describe what are the hard parts of what
+ they are doing, i.e., they need to justify why this isn't all just
+ straightforward engineering work.
+ 
+Section 6 
+ 
+. These empirical results really aren't interesting since they are
+ simply measuring the performance of YANCEES rather than evaluating
+ its *versatility*. The key selling point for YANCEES is clearly not
+ raw performance (otherwise, it wouldn't be written in Java and
+ XML). Therefore, any novelty it has must stem from its versability,
+ which is not actually evaluated in the performance tests. Moreover,
+ the results don't really provide any insights into novel/new
+ optimization techniques used to alleviate performance bottlenecks in
+ event service systems.
+ 
+Section 7
+ 
+. This section does a nice job of illustrating how YANCEES can be used
+ in practice. Given the preponderance of other published work that
+ illustrates how to configure flexible event service implementations,
+ however, this section doesn't really represent a signficant
+ contribution. Moreover, these case studies are only on prototypes
+ developed by the authors, rather than being used in large-scale
+ production systems (unlike other published work on flexible event
+ services), so that minimizes the opportunity to present results
+ based on lessons learned from actual experience in real-world
+ systems.
+ 
+Section 8 
+ 
+. As mentioned earlier, the paper doesn't discuss significant related
+ work on event services. 
+ 
+Section 9
+
+. It would be useful to add a summary of "lessons learned" at the end
+ of the paper.
+
+*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*=--=*

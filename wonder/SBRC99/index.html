@@ -1,0 +1,626 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Fourth International Symposium on Autonomous Distributed Systems – ISADS´99</title>
+</head>
+
+<body bgcolor="#FFFFFF" link="#0000FF">
+
+<p align="center"><font size="3" face="Arial">17<sup>º</sup>
+SBRC &#150; Simpósio Brasileiro de Redes de Computadores</font></p>
+
+<p align="center"><font size="1" face="Arial"><img
+src="../Wonder_Logo.jpg" width="364" height="270"></font></p>
+
+<p align="center"><a
+href="http://www.dcc.unicampbr/~931680/wonder"><font size="3"
+face="Arial">www.dcc.unicamp.br/~931680/wonder</font></a></p>
+
+<p align="center"><font size="1"></font>&nbsp;</p>
+
+<p align="center"><font size="5" face="Arial"><b>WONDER: A
+Distributed Architecture for Large Scale Workflow Using CORBA</b></font></p>
+
+<p align="center"><font size="1"></font>&nbsp;</p>
+
+<p align="center"><font size="3" face="Arial"><i>Roberto Silveira
+Silva Filho, Jacques Wainer,<br>
+Edmundo R. M. Madeira<br>
+IC -Instituto de Computação<br>
+UNICAMP - Universidade Estadual de Campinas<br>
+13081-970 Campinas - SP - Brasil<br>
+{robsilfi, wainer, edmundo}@dcc.unicamp.br<br>
+<br>
+Clarence Ellis<br>
+Department of Computer Science<br>
+University of Colorado, Boulder, CO 80309<br>
+skip@colorado.edu</i></font></p>
+
+<p align="center"><font size="4" face="Arial"><b>Resumo</b></font></p>
+
+<p><font size="3" face="Arial"><i>Os sistemas de gerenciamento de
+workflow tradicionais (SGWFs), baseados na arquitetura
+cliente-servidor centralizada, possuem uma limitação
+intrínseca quanto à escalabilidade: o servidor central
+representa um gargalo para aplicações de grande escala.
+Representa, ainda, um único ponto de falha que pode desabilitar
+todo o sistema. Neste contexto, é proposta uma arquitetura
+completamente distribuída para SGWFs. Esta arquitetura se baseia
+na idéia de que casos (instâncias de processos) migram de host
+para host de acordo com um plano preestabelecido (definição de
+processos) à medida em que as atividades são executadas. A
+arquitetura é estendida de forma que outros requisitos dos SGWFs
+são contemplados. Uma implementação em CORBA desta arquitetura
+é discutida, tendo seus pontos positivos e negativos
+apresentados.</i></font></p>
+
+<p align="center"><font size="4" face="Arial"><b>Abstract</b></font></p>
+
+<p><font size="3" face="Arial"><i>Standard client-server workflow
+management systems have an intrinsic scalability limitation: the
+central server is a bottleneck for large scale applications. It
+is also a single fault point that may disable the whole workflow
+system. We propose a fully decentralized architecture for
+workflow management systems. It is based on the idea that the
+case (an instance of the process) migrates from host to host,
+according to the process definition specification, as the
+corresponding activities are executed. This basic architecture is
+improved so that other requirements for Workflow Management
+Systems, besides scalability, are also contemplated. A
+CORBA-based implementation of such architecture is discussed,
+with both its limitations and positive points described.</i></font></p>
+
+<p><font size="3" face="Arial"><b><i>Key Words</i></b><i>: Large
+Scale Workflow, Distributed Objects, CORBA, and Mobile Agents.</i></font></p>
+
+<p><font size="4" face="Arial"><b>1. Introdução</b></font></p>
+
+<p><font size="3" face="Arial"><b>1.1. Definição de Workflow</b></font></p>
+
+<p><font size="3" face="Arial">- A) Modelo empresarial
+computadorizado que especifica todos os parâmetros envolvidos em
+sua realização. Tais parâmetros incluem: interdependência de
+tarefas, concorrência de atividades e decisões de trilhas a
+seguir, etc.</font></p>
+
+<ul>
+    <li><font size="3" face="Arial">B) Descrição
+        computadorizada, interoperável de atividades e sua ordem
+        de execução.</font></li>
+</ul>
+
+<p><font size="3" face="Arial"><b>1.2. Sistema de Gerenciamento
+de Workflow (SGWf) (Workflow Management System (WFMS)): </b></font></p>
+
+<p><font size="3" face="Arial">- Conjunto de aplicações de
+controle e interfaces para outras ferramentas e aplicações que
+permitem o projeto, definição, execução e monitoramento de
+workflows.</font></p>
+
+<p><font size="3" face="Arial"><b>1.3. Termos Empregados</b></font></p>
+
+<p><font size="3" face="Arial"><b>- Processo</b>: (ou Definição
+de Processo): é um workflow, uma descrição do processo
+empresarial. É represantado por atividades, joins (pontos de
+sincronização) e splits.</font></p>
+
+<p><font size="3" face="Arial"><b>- Caso</b>: é uma instância
+de um processo.</font></p>
+
+<p><font size="3" face="Arial"><b>- Atividades</b>: Tarefas
+predefinidas normalmente executadas por uma pessoa ou um
+programa. Processos são definidos em termos de atividades.</font></p>
+
+<p><font size="3" face="Arial"><b>- Papel</b>: é uma descrição
+geral de um conjunto de habilidades requeridas para o desempenho
+de uma certa atividade.</font></p>
+
+<p><font size="3" face="Arial"><b>- Atores</b>: Pessoas ou
+programas que realizam atividades.</font></p>
+
+<p><font size="4" face="Arial"><b>2. Caracterização do Problema</b></font></p>
+
+<p><font size="3" face="Arial">Limitações dos Sistemas de
+Gerenciamento de Workflow tradicionais:</font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Arquitetura cliente-servidor
+        centralizada: Banco de dados, Controle, Dados de
+        definição e execução de processos, histórico de
+        execução e aplicações utilizadas no desempenho das
+        atividades do caso são centralizados e, em grande parte
+        dos casos, executados no servidor.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Arquitetura centralizada
+        impõe um limite à execução simultânea de uma grande
+        quantidade de processos concorrentes. A interface com o
+        usuário é um dos itens normalmente prejudicados nestes
+        sistemas.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">O uso de um servidor central
+        possui limitações que o impedem de prover níveis
+        apropriados de tolerância a falhas e disponibilidade
+        para aplicações de larga escala: A falha do servidor ou
+        do link de comunicação com o servidor normalmente
+        paralisa todo o sistema.</font></li>
+</ul>
+
+<p><font size="3" face="Arial">- Falta de interoperabilidade com
+outros SGWFs.</font></p>
+
+<p><font size="4" face="Arial"><b>3. Principais Requisitos dos
+SGWFs</b></font></p>
+
+<p><font size="3" face="Arial"><b>&#150; Capacidade de
+integração com diferentes aplicações existentes:</b>
+Aplicações auxiliares como editores de texto e planilhas
+eletrônicas são utilizadas durante a realização de muitas
+tarefas.</font></p>
+
+<p><font size="3" face="Arial"><b>&#150; Interoperabilidade entre
+diferentes sistemas de gerenciamento de Workflow:</b> padrões de
+interoperabilidade entre SGWfs de fabricantes diferentes devem
+ser suportados de forma a viabilizar uma maior integração entre
+SGWfs.</font></p>
+
+<p><font size="3" face="Arial"><b>&#150; Suporte a recuperação
+de falhas: </b>O SGWF deve ser capaz de lidar com falhas de
+software e hardware de forma mais transparente possível para os
+usuários do sistema, maximizando a disponibilidade do sistema.</font></p>
+
+<p><font size="3" face="Arial"><b>&#150; Escalabilidade: </b>Grandes
+empresas como bancos e companhias aéreas envolvem milhares de
+usuários, centenas de milhares de processos concorrentes
+distribuídos em milhares de sites. SGWfs devem suportar o
+crescimento e as exigências de tais sistemas satisfazendo seus
+requisitos de desempenho.</font></p>
+
+<p><font size="3" face="Arial"><b>&#150; Disponibilidade:</b>
+SGWfs devem prover mecanismos de tolerância a falhas, largura de
+banda e redundâncias, de forma a impedir que falhas no sistema
+paralisem os processos em andamento, indisponibilizando o sistema
+por longos períodos de tempo.</font></p>
+
+<p><font size="3" face="Arial"><b>&#150; Rastreamento:</b> Ao
+lidarmos com processos longos e muitas vezes complexos,
+mecanismos que possibilitem determinar o estado corrente dos
+casos em execução são essenciais para o gerenciamento do
+sistema, fornecendo dados para detecção de falhas e gargalos de
+performance.</font></p>
+
+<p><font size="3" face="Arial"><b>&#150; Monitorização: </b>A
+manutenção do histórico das execuções dos processos em SGWfs
+são importantes nos processos de otimização e reestruturação
+dos processos de Workflow de uma empresa.</font></p>
+
+<p><font size="4" face="Arial"><b>4. Modelo Proposto</b></font></p>
+
+<p><font size="3" face="Arial">De forma a satisfazer os
+requisitos de escalabilidade e disponibilidade dos SGWFs de larga
+escala a arquitetura <i>WONDER (Workflow on Distributed
+Environment</i>).é proposta.</font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Cada caso é um &quot;objeto
+        móvel&quot; que é transladado de host a host, ficando
+        próximos aos usuários, durante sua execução.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">O caso encapsula os dados
+        (arquivos, links, tabelas) e o plano (definição de
+        processo) necessários a sua execução. Estes dados são
+        movidos de host para host conforme as atividades vão
+        sendo executadas.</font></li>
+</ul>
+
+<p><font size="3" face="Arial">Para satisfazer os outros
+requisitos descritos anteriormente alguns componentes são
+adicionados ao modelo:</font></p>
+
+<ul>
+    <li><font size="3" face="Arial"><b>Determinação de atores
+        em tempo de execução</b>: papel auxiliado pelo <i>Role
+        Coordinator</i>.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial"><b>Monitoramento e
+        resolução de falhas</b>: desempenhado pelos servidores:
+        <i>Case Coordinator</i> e <i>Process Coordinator</i>.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial"><b>Recuperação de Falhas</b>:
+        utiliza dados e estado dos objetos armazenados no <i>Backup
+        Server</i> assíncrono, além da informação de cache
+        (objetos serializados localmente) armazenados nos hosts
+        envolvidos na execução das atividades, e do <i>Case
+        Coordinator</i>.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial"><b>Rastreamento:</b>
+        realizado através de consultas a dados de execuções
+        passadas armazenadas no <i>History Server</i>.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial"><b>Suporte a mobilidade de
+        objetos</b>: implementado através dos servidores <i>Activity
+        Manager</i>, <i>Synchronization Activity</i> e <i>Gateway
+        Activity</i>.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial"><b>Interface com o usuário</b>:
+        Task List.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial"><b>Interoperabilidade</b>:
+        possível através do uso de <i>Gateway Activities</i>.</font></li>
+</ul>
+
+<p><font size="4" face="Arial"><b>5. Principais Componentes da
+Arquitetura</b></font></p>
+
+<p><font size="3" face="Arial"><b><img src="Image10.gif"
+width="59" height="58"> Process Coordinator (Coordenador de
+Processos)</b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Gerencia a definição de um
+        determinado processo.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Responsável pela criação
+        de coordenadores de processos.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Mantém informações dos
+        Coordenadores de caso por ele criados e que estão ativos
+        no sistema.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">O Coordenador de Processos
+        pode ser replicado em vários hosts de uma organização.</font></li>
+</ul>
+
+<p><font size="3" face="Arial"><img src="Image11.gif" width="59"
+height="58"><b> Case Coordinator (Coordenador de Casos)</b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Possui sua própria cópia da
+        definição de processo.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Cria a primeira atividade e
+        os servidores de sincronização usados numa instância
+        de processo.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Armazena informações sobre
+        uma instância particular de processo.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Detecta falhas no sistema e
+        toma atitudes para recupera-las.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Notifica o coordenador e
+        processo ao final do caso.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Cada Coordenador de Caso pode
+        ser criado em um host diferente ou vários podem ser
+        criados em um único host.</font></li>
+</ul>
+
+<p><font size="3" face="Arial"><b><img src="Image12.gif"
+width="59" height="56"> Role Coordinator (Coordenador de Papéis)</b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Responsável pelo
+        gerenciamento de usuários que podem desempenhar um
+        determinado papel.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Pode, ainda ter acesso ao
+        servidor de histórico.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Determina usuários para
+        desempenharem um determinado papel em tempo de execução
+        através de consultas.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Pode ter divérsas políticas
+        de alocação de atores: &quot;menos atarefado&quot;,
+        &quot;round robin&quot;, &quot;randômico&quot;, etc.</font></li>
+</ul>
+
+<p><font size="3" face="Arial"><b><img src="Image13.gif"
+width="59" height="58"> Synchronization Activity (Atividade de
+Sincronização)</b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Implementa AND e OR joins.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Recebe notificações de
+        eventos externos.</font></li>
+</ul>
+
+<p><font size="3" face="Arial"><b><img src="Image14.gif"
+width="59" height="58"> Task List (Lista de Tarefas)</b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Interface gráfica,
+        semelhante a de um aplicativo de correio eletrônico, de
+        comunicação entre o usuário e o sistema.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Coleta e provê informações
+        sobre a carga de trabalho do usuário, políticas de
+        alocação de trabalho, prioridades das atividades do
+        usuário etc. </font></li>
+</ul>
+
+<p><font size="3" face="Arial"><b><img src="Image15.gif"
+width="59" height="58"> History Server (Servidor de Histórico)</b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Front-end para o repositório
+        de dados de atividades terminadas.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Armazena todos os dados
+        relevantes de um processo que terminou sua execução.
+        Disponibiliza os dados para consulta.</font></li>
+</ul>
+
+<p><font size="3" face="Arial"><b><img src="Image16.gif"
+width="59" height="58"> Backup Server (Servidor de Backup)</b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Front-end para o repositório
+        de estado de execução e dados de atividades dos casos
+        ativos no sistema.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Executa em uma máquina mais
+        estável e segura.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Política de distribuição:
+        um por caso, um por grupo de casos, ou vários por um
+        único caso.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Escolhido durante a criação
+        do caso, de acordo com a carga e disponibilidade, do
+        sistema, proximidade etc. </font></li>
+</ul>
+
+<p><font size="3" face="Arial"><b><img src="Image17.gif"
+width="59" height="58"> Activity Manager (Gerenciador de
+Atividade) </b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">&quot;Implementa&quot; a
+        mobilidade de objetos da arquitetura WONDER, permitindo a
+        mobilidade de dados e definição de processos entre os
+        hosts do sistema. Não há mobilidade de código.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">A cada atividade está
+        associada um Activity Manager.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Computa a próxima atividade
+        a ser executada.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Determina, através de
+        consulta ao Coordenador de Papel específico, o usuário
+        a desempenhar a próxima atividade.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Recebe requisições para
+        transferir dados a outras atividades.</font></li>
+</ul>
+
+<p><font size="3" face="Arial"><b><img src="Image18.gif"
+width="59" height="58"> Wrapper Activity</b>. </font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Controla a execução de um
+        aplicativo específico.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">É uma ponte entre o Activity
+        Manager e as aplicações usadas por uma atividade.</font></li>
+</ul>
+
+<p><font size="3" face="Arial"><b><img src="Image19.gif"
+width="59" height="58"> Gateway Activity.</b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Responsável pela conversão
+        bidirecional de definições de processos e dados entre o
+        WONDER e um SGWFs de outro fabricante. </font></li>
+</ul>
+
+<p><font size="4" face="Arial"><b>6. Implementação em CORBA</b></font></p>
+
+<p><font size="3" face="Arial"><b>6.1. Referências a Objetos
+CORBA</b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Um caso pode transcorrer
+        durante vários meses e até mesmo anos..</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Referências CORBA (GIOP) a
+        exemplo da <i>IOR(Inter-operable Object Reference</i>)
+        são muito transitórias para nossa aplicação.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">IORs possuem informações
+        como o <i>host name</i> onde o objeto se encontra e o <i>port
+        number</i> que identifica o objeto em seu host.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Não podemos assumir que o
+        objeto permanecerá ativo, respondendo no mesmo <i>port
+        number</i> onde foi inicialmente criado, durante toda a
+        vida do caso.</font></li>
+</ul>
+
+<p><font size="3" face="Arial"><b>6.1.1. Local Object Activator
+(Ativador de Objetos Local)</b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">Implementa a persistência de
+        objetos CORBA</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Utiliza a seguinte hierarquia
+        de nomes:</font></li>
+</ul>
+
+<p><font size="3" face="Arial"><i>(host, process, case, actor,
+activity, file) </i>para arquivos<i>; </i></font></p>
+
+<p><font size="3" face="Arial"><i>(host, process, case, actor,
+activity) </i>para atividades<i>; </i></font></p>
+
+<p><font size="3" face="Arial"><i>(host, process, case) </i>para
+coordenadores de casos<i>; </i></font></p>
+
+<p><font size="3" face="Arial"><i>(host, process) </i>para
+coordenadores de processos<i>; </i></font></p>
+
+<p><font size="3" face="Arial"><i>(host, backup-server) </i>para
+servidores de backup, etc<i>.</i></font></p>
+
+<p><font size="4" face="Arial"><b>7. Implementação</b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">O sistema está sendo
+        desenvolvido usando Java (Sun JDK1.1) e OrbixWeb3.1 da
+        Iona.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">O LOA (Local Object
+        Activator) é implementado através da implementação da
+        classe LoaderClass da OrbixWeb. Falhas do tipo
+        OBJECT_NOT_FOUND são direcionadas pelo orbixd (daemon da
+        orbix) para esta implementação que se encarrega de
+        tratar a exceção, ativando o objeto
+        &quot;adormecido&quot;.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Todos os objetos do Wonder
+        são periodicamente serializados.</font></li>
+</ul>
+
+<p><font size="4" face="Arial"><b>6. Considerações Finais</b></font></p>
+
+<p><font size="3" face="Arial"><b>6.1. A arquitetura WONDER
+objetiva:</b></font></p>
+
+<dir>
+    <li><font size="3" face="Arial">Satisfazer os principais
+        requisitos dos SGWFs, principalmente os de escalabilidade
+        e disponibilidade.</font></li>
+</dir>
+
+<ul>
+    <li><font size="3" face="Arial">WONDER objetiva alcançar
+        disponibilidade e escalabilidade através da
+        descentralização dos dados e da descentralização
+        quase total de controle do workflow.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">O controle centralizado é
+        substituído pelo gerenciamento hierárquico de casos que
+        possuem atividades semi-autônomas.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">A arquitetura é baseada na
+        idéia de que o caso move de host para host, ficando mais
+        próximo dos usuários que realizam as atividades do
+        caso.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">Um conjunto de coordenadores
+        e servidores são adicionados ao conjunto básico da
+        arquitetura (Activity Manager, LOA, ORB) de forma a
+        contemplar os outros requisitos dos SGWFs.</font></li>
+</ul>
+
+<p><font size="3" face="Arial"><b>6.2. Problemas do uso de CORBA:</b></font></p>
+
+<ul>
+    <li><font size="3" face="Arial">CORBA ainda não define um
+        serviço de persistência de objetos padrão. Tal
+        persistência deve ser implementada de forma
+        proprietária, como um fator essencial para o esquema de
+        tolerância a falhas.</font></li>
+</ul>
+
+<ul>
+    <li><font size="3" face="Arial">O acesso a objetos CORBA é
+        feita através de um ativador de objetos, executando em
+        cada host, que se utiliza de um espaço de nomes
+        especialmente definido para esta aplicação.</font></li>
+</ul>
+
+<p><font size="1"></font>&nbsp;</p>
+
+<p><font size="3" face="Arial"><b>Agradecimentos:</b> Os
+primeiros três autores gostariam de agradecer à FAPESP
+(Processo 98/06648-0) , CNPq, CAPES (Processo 027/98), e o Pronex
+&#150; projeto SAE - MCT/Finep por seu apoio.</font></p>
+</body>
+</html>

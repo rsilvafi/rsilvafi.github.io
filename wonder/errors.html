@@ -1,0 +1,276 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="keywords"
+content="Distributed Systems, CORBA, Java, Distributed Workflow, Workflow Management, CSCW, Groupware, Mobile Objects">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Wonder - Erros e Causas</title>
+</head>
+
+<body bgcolor="#F8F4E7" text="#552800" link="#800000"
+vlink="#6F6F37" alink="#00A000">
+
+<h1 align="center"><font face="Arial">Lista dos Erros Mais Comuns
+e Suas Causas</font></h1>
+
+<p align="center"><font face="Arial">Arquivo gerado durante o
+desenvolvimento do projeto </font><a
+href="http://www.ic.unicamp.br/~931680/wonder/"><font
+face="Arial">Wonder</font></a></p>
+
+<hr>
+
+<table border="0" cellpadding="5" cellspacing="5">
+    <tr>
+        <td bgcolor="#FBFCD1"><font face="Arial"><strong>ERRO</strong>:
+        Parada anormal na janela do orbixd. (UNKNOWN ERROR):<br>
+        <strong>CAUSA</strong>: invocação de métodos em uma
+        variável cujo valor era null no cliente.</font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial"><strong>ERRO</strong>: Null
+        pointer exception durante a invocacao de metodos remotos
+        passando sequences<br>
+        <strong>CAUSA</strong>: passagem de sequences nao
+        inicializados: variáveis do tipo sequence passadas como
+        null. <br>
+        <strong>SOLUÇÃO</strong>: Resolvemos o problema
+        iniciando o sequence com tamanho zero.</font></td>
+    </tr>
+    <tr>
+        <td bgcolor="#FCFDD9"><font face="Arial"><strong>ERRO</strong>:
+        Ao darmos um bind para um servidor de uma determinada
+        classe, dentro desta mesma classe, por exempl, um
+        servidor do tipo X tenta criar outro servidor do tipo X,
+        a OrbixWeb retorna uma referência para o servidor que
+        invocou o bind (self reference). Deveria criar um novo
+        servidor e retornar uma referência para este objeto.<br>
+        <strong>CAUSA</strong>: Desconhecida<br>
+        <strong>SOLUÇÃO</strong>: Criar um FACTORY (Um outro
+        servidor registrado na orbix, de um tipo diferente)
+        contendo os factory methods: operações que criam os
+        servidores desejados, devolvendo referências para estes
+        objetos. Criar o servidor a partir de invocações neste
+        factory.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial"><strong>ERRO</strong>: org.omg.CORBA.UNKNOWN:
+        remote exception - Unknown error. The server encountered
+        a Java exception while dispatching the request - (unknown)<br>
+        <strong>CAUSA</strong>: Passagem de uma referência a um
+        servidor CORBA como null, seguido de uma posterior
+        tentativa de invocação de métodos usando esta referência,
+        no servidor que a obteve.<br>
+        <strong>SOLUÇÃO</strong>: Checar se a referência é ou
+        não nula antes de usa-la.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td bgcolor="#FCFDD9"><font face="Arial"><strong>ERRO</strong>:
+        org.omg.CORBA.UNKNOWN: remote exception - Unknown error.
+        The server encountered a Java exception while dispatching
+        the request - (unknown)<br>
+        <strong>CAUSA</strong>: Tentativa de invocação de método
+        em uma referência null no lado servidor<br>
+        <strong>SOLUÇÃO</strong>: Fazer checagem de referências
+        nulas antes de as utilizar.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial"><strong>ERRO</strong>: org.omg.CORBA.UNKNOWN:
+        remote exception - Unknown error The server encountered a
+        Java exception while dispatching the request - (unknown)<br>
+        <strong>CAUSA</strong>: Passagem de um struct contendo
+        campos null: ou o struct era null ou seus campos eram.<br>
+        <strong>SOLUÇÃO</strong>: Preencher as variáveis do
+        struct com instâncias vazias exemplo: &quot;&quot; para
+        string, byte[0] para arrays, etc.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td bgcolor="#FCFDD9"><font face="Arial"><strong>ERRO</strong>:
+        Variable not initialized OR null variable<br>
+        <strong>CAUSA</strong>: Redeclaração de uma mesma variável
+        existente na classe pai. Desta forma, métodos da classe
+        pai que, inicializam esta variável, não possuem efeito
+        pois, na classe filha, a variável está inicializada
+        como null (default do java).<br>
+        <strong>SOLUÇÃO</strong>: Excluir a declaração da
+        variável da classe derivada de forma a não sobrescrever
+        (overrride) a declaração da superclasse.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial"><strong>ERRO</strong>: org.omg.CORBA.INV_OBJREF:
+        remote exception - Invalid object reference<br>
+        <strong>CAUSA</strong>: Tentativa de dar um bind num
+        objeto de um tipo X usando um HELPER de um tipo Y.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td bgcolor="#FCFDD9"><font face="Arial"><strong>ERRO</strong>:
+        org.omg.CORBA.INV_OBJREF: remote exception - Invalid
+        object reference<br>
+        <strong>CAUSA</strong>: Tentativa de dar um bind num
+        objeto do tipo X usando um marker qualquer, sem que o
+        marker seja fornecido pelo Loader.class. O marker precisa
+        ser consenso tanto do lado cliente quanto do lado
+        servidor. Precisamos usar o Loader, registrando-o quando
+        o objeto é criado.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial"><strong>ERRO</strong>: org.omg.CORBA.UNKNOWN:
+        remote exception - Unknown error The server encountered a
+        Java exception while dispatching the request - (unknown)<br>
+        <strong>CAUSA</strong>: Erro durante a passagem de um
+        tipo estruturado, contendo um dos atributos como sendo um
+        tipo enumerado (enum), para o servidor.<br>
+        <strong>SOLUÇÃO</strong>: Não usar o tipo enumerado,
+        substituir por um string.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td bgcolor="#FCFDD9"><font face="Arial"><strong>ERRO</strong>:
+        Binder: Exception during binding to WorkflowManager at
+        host: wonder<br>
+        org.omg.CORBA.INV_OBJREF: remote exception - Invalid
+        object reference<br>
+        <strong>CAUSA</strong>: uso de Binder.bindDefaultWorkflowManager
+        ao inves de Binder.bindLocalWorkflowManager. A mesma
+        coisa vale para o Binder.WonderObjectFactory.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial"><strong>ERRO</strong>: Binder:
+        Exception during binding to WorkflowObjectFactory org.omg.CORBA.INITIALIZE:
+        Invalid operation OrbixWeb orb is not initialised, check
+        ORB.init call minor code: 12256 completed: No<br>
+        <strong>CAUSA</strong>: Tentativa de utilização da orb
+        do OrbixWeb sem que esta estaja devidamente inicializada
+        OU uso da ORB do JDK1.2 ao invés da OrbixWeb.<br>
+        <strong>SOLUÇÃO</strong>: Inicializar o ORB ou rodar o
+        programa usando JDK1.1 (através do wrapper owjava)<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td bgcolor="#FCFDD9"><font face="Arial"><strong>ERRO</strong>:
+        Binder: Exception during binding to ActivityManager. org.omg.CORBA.COMM_FAILURE:
+        wonder.pos.ic.unicamp.br/1570<br>
+        <strong>CAUSA</strong>: Tentativa de criação de um
+        servidor unshared usando um marker com comprimento maior
+        que 59 caracteres na máquina wonder<br>
+        <strong>SOLUÇÃO</strong>: Usar nomes menores :-))). O
+        comprimento destes nomes parede depender da plataforma (solaris/NT),
+        de acordocomo a versão da orbixweb.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial"><strong>ERRO</strong>: LOA: Error
+        while serializing to file: ./WonderData/Loa/wonder,P,seqPC.loa<br>
+        java.io.NotSerializableException: Wonder._CaseCoordinatorStub<br>
+        <strong>CAUSA</strong>: Tentativa de serializar um objeto
+        contendo um atributo não serializavel. No caso, uma
+        referência a um objeto corba. Referências a objetos
+        corba não são serializáveis já que os objetos não são
+        locais.<br>
+        <strong>SOLUÇÃO</strong>: Tornar o atributo do tipo
+        servidor corba <em>transient</em> e armazenar, como
+        alternativa, o nome do objeto, não a sua referência.
+        Usar o nome do objeto para fazer um bind posterior, após
+        o objeto ser lido da base de dados serializada.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td bgcolor="#FCFDD9"><font face="Arial"><strong>ERRO</strong>:
+        Servidor trava durante a invocação de um método remoto.
+        O programa pára mas o daemon continua respondendo a
+        invocações de psit por exemplo.<br>
+        <strong>CAUSA</strong>: A variável usada para invocar o
+        método não foi devidamente inicializada ou aponta para
+        outro servidor.<strong><br>
+        SOLUÇÃO</strong>: Iniciar a variável corretamente,
+        possivelmente usando bind e obtendo a referência <br>
+        desejada antes de inocar o método.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td><font face="Arial"><strong>ERRO</strong>:
+        DataResolver: wonder,M,seqPC,seqCC-0,act03-1: Error while
+        gettind data !<br>
+        org.omg.CORBA.UNKNOWN: remote exception - Unknown error<br>
+        The server encountered a Java exception while dispatching
+        the request - (unknown)<br>
+        <strong>CAUSA</strong>: Envio de campos null dentro de um
+        struct<br>
+        <strong>SOLUÇÃO</strong>: Structs são mapeadas para
+        Classes java, contendo seus respectivos atributos, pelo
+        compilador IDL. Enviar objetos vazios ou strings de
+        tamanho zero, mas não null.<br>
+        </font></td>
+    </tr>
+    <tr>
+        <td bgcolor="#FCFDD9"><font face="Arial"><strong>ERRO</strong>:
+        org.omg.CORBA.COMM_FAILURE do lado cliente.<br>
+        <strong>CAUSA</strong>: provocado por excesso de carga na
+        máquina: falta de recursos de memória ou swapp devido
+        ao grande número de servidores carregados em paralelo.<br>
+        <strong>SOLUÇÃO</strong>: Tratar a exceção e tentar a
+        conexão, novamente, até conseguir usando o trecho de código
+        semelhante ao descrito a seguir:<br>
+        </font><p><font size="2" face="Arial"><code><br>
+        </code></font><font size="3"><code> int retryTurn = 0;<br>
+        do {<br>
+        <br>
+        try {<br>
+        <br>
+        // Não somente este mas para todos os servidores do
+        wonder<br>
+        server = LockManagerHelper.bind(&quot;:LockManagerSrv&quot;);<br>
+        <br>
+        } catch (SystemException ex) {<br>
+        System.out.println(ex.toString());<br>
+        <br>
+        server = null;<br>
+        retryTurn ++;<br>
+        wait(waitTimeout);<br>
+        }<br>
+        <br>
+        } while (doRetry &amp;&amp; (server == null) &amp;&amp; (retryTurn
+        &lt; retryTimes));</code></font><font size="2"
+        face="Arial"><code><br>
+        </code></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td><font face="Arial"><strong>ERRO</strong>: org.omg.CORBA.INTERNAL:
+        remote exception - ORB internal error:<br>
+        <br>
+        Internal Error in activator<br>
+        Actual system exception is `(unknown)'<br>
+        (please contact Iona Technologies)<br>
+        <br>
+        <strong>CAUSA</strong>: O aplicativo utiliza excesso de
+        CPU ou recursos da máquina o que a<br>
+        impossibilita de atender requisições ou criar novos
+        objetos.</font></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p><a href="http://www.ic.unicamp.br/~931680/wonder/"><font
+size="3" face="Arial">Back to Wonder Page</font></a></p>
+
+<hr>
+
+<p><strong>Página atualizada em 17 de abril de 2000.</strong></p>
+</body>
+</html>

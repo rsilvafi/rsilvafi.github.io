@@ -1,0 +1,199 @@
+<!--
+  The 'xsd' namespace is the "schema of schemas" as defined by the XSchema
+  standard.  The 'xlink' namespace defines the namespace for XLink attributes
+  and elements.  The targetNamespace defines the URI of the namespace
+  which THIS XSchema is defining.  Other XSchemas should use this URL
+  when referring to things defined in this XSchema.
+ -->
+<xsd:schema xmlns="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaEvent.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:evt="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"
+            targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/sienaEvent.xsd"
+            elementFormDefault="qualified"
+            attributeFormDefault="qualified">
+
+
+<!-- Import namespaces used -->
+  <xsd:import namespace="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"
+              schemaLocation="http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/event.xsd"/>
+
+
+<!--
+xmlns="http://awareness.ics.uci.edu/~rsilafi/yancess/xsd/event.xsd"
+targetNamespace="http://awareness.ics.uci.edu/~rsilvafi/yancess/xsd/event.xsd"
+ -->
+
+ <xsd:annotation>
+    <xsd:documentation>
+       This XML Schema file defines the basic siena event structure.
+
+    </xsd:documentation>
+  </xsd:annotation>
+
+<!--
+    ELEMENT: event
+
+    This tag is the root element in an event file, the topmost element that
+    defines the event structure.
+   -->
+  <xsd:element name="event" type="SienaEventType"/>
+  
+  
+  <!--
+    TYPE: SienaEventType
+
+    The Event type defines the basic event structure with its header, where
+    meta-information and annotations can be added, and the body, where the
+    sequence of attribute/value pairs are defined.
+
+   -->
+  <xsd:complexType name="SienaEventType">
+     <xsd:sequence>
+        <xsd:element name="header" type="SienaHeaderType"
+                  minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="body" type="SienaBodyType"
+                  minOccurs="0" maxOccurs="1"/>
+     </xsd:sequence>
+</xsd:complexType>
+
+  <!--
+    TYPE: HeaderType
+
+    The Event type defines the basic event structure with its header, where
+    meta-information and annotations can be added, and the body, where the
+    sequence of attribute/value pairs are defined.
+
+   -->
+  <xsd:complexType name="SienaHeaderType">
+     <xsd:complexContent>
+        <xsd:extension base="evt:HeaderType">
+           <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+              <xsd:element name="attribute" type="AttributeType"
+                       minOccurs="0" maxOccurs="1"/>
+           </xsd:sequence>
+        </xsd:extension>
+     </xsd:complexContent>
+  </xsd:complexType>
+
+
+   <!--
+    TYPE: BodyType
+
+    The Event type defines the basic event structure with its header, where
+    meta-information and annotations can be added, and the body, where the
+    sequence of attribute/value pairs are defined.
+
+   -->
+   <xsd:complexType name="SienaBodyType">
+      <xsd:complexContent>
+        <xsd:extension base="evt:BodyType">
+           <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+              <xsd:element name="attribute" type="AttributeType"/>
+           </xsd:sequence>
+        </xsd:extension>
+     </xsd:complexContent>
+   </xsd:complexType>
+
+
+  <!--
+    TYPE: AttributeType
+
+    An attribute is a name/value pair of some valid type
+
+   -->
+   <xsd:complexType name="AttributeType">
+      <xsd:sequence minOccurs="1" maxOccurs="1">
+         <xsd:element name="name" type="NameType"/>
+         <xsd:element name="value" type="ValueType"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+
+
+   <!--
+    TYPE: NameType
+
+    A name is a string
+
+   -->
+  <xsd:complexType name="NameType">
+     <xsd:simpleContent>
+        <xsd:extension base="xsd:string"/>
+     </xsd:simpleContent>
+  </xsd:complexType>
+
+
+  <!--
+    TYPE: sienaString
+
+    Defines a siena string simple type.
+   -->
+  <xsd:simpleType name="sienaString">
+     <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+
+  <!--
+    TYPE: sienaInt
+
+    Defines a siena int simple type.
+   -->
+  <xsd:simpleType name="sienaInt">
+     <xsd:restriction base="xsd:int"/>
+  </xsd:simpleType>
+
+  <!--
+    TYPE: sienaLong
+
+   Defines a siena long simple type.
+   -->
+  <xsd:simpleType name="sienaLong">
+     <xsd:restriction base="xsd:long"/>
+  </xsd:simpleType>
+
+  <!--
+    TYPE: sienaFloat
+
+     Defines a siena float simple type.
+   -->
+  <xsd:simpleType name="sienaFloat">
+     <xsd:restriction base="xsd:float"/>
+  </xsd:simpleType>
+
+  <!--
+    TYPE: sienaDouble
+
+    Defines a siena double simple type.
+   -->
+  <xsd:simpleType name="sienaDouble">
+     <xsd:restriction base="xsd:double"/>
+  </xsd:simpleType>
+
+ <!--
+    TYPE: sienaBoolean
+
+    Defines a siena boolean simple type.
+   -->
+  <xsd:simpleType name="sienaBoolean">
+     <xsd:restriction base="xsd:boolean"/>
+  </xsd:simpleType>
+
+ <!--
+    TYPE: sienaHexBinary
+
+    Defines a siena boolean simple type.
+   -->
+  <xsd:simpleType name="sienaHexBinary">
+     <xsd:restriction base="xsd:hexBinary"/>
+  </xsd:simpleType>
+
+   <!--
+    TYPE: ValueType
+
+    Defines all the possible types an attribute may have.
+   -->
+  <xsd:simpleType name="ValueType">
+     <xsd:union memberTypes="sienaString sienaInt sienaLong sienaFloat sienaDouble sienaBoolean sienaHexBinary"/>
+  </xsd:simpleType>
+
+
+</xsd:schema>

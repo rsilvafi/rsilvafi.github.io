@@ -1,0 +1,3813 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="pt-br"><head>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <title>YANCEES Documentation</title><style>
+<!--
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman"}
+.style1 {font-family: Arial, Helvetica, sans-serif}
+-->
+  </style></head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+
+
+
+
+
+<table style="font-family: Helvetica,Arial,sans-serif;" width="100%">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" align="left">
+      
+      
+      
+      
+      
+      
+      <p align="center"><a href="http://www.uci.edu/"><img src="../UCI.gif" border="0" height="108" width="255"></a> </p>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+      <td class="style1" align="center">
+      
+      
+      
+      
+      
+      
+      <h1>Using YANCEES - Project Documentation</h1>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+      <td class="style1"><br>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+      <td class="style1" align="right">
+      
+      
+      
+      
+      
+      
+      <p align="center"><a href="http://www.isr.uci.edu/"> <img src="../ISR-Logo.gif" border="0" height="69" width="140"></a></p>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<hr style="font-family: Helvetica,Arial,sans-serif;">
+<div style="font-family: Helvetica,Arial,sans-serif;" align="center">
+<center>
+<table>
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td align="center">
+      
+      
+      
+      
+      
+      
+      <p align="justify"><span lang="en-us"><a href="#Introduction">Introduction</a>
+|</span></p>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+      <td><a href="#Clients">Writing Simple Clients</a> |</td>
+
+
+
+
+      <td><a href="#Server">Starting YANCEES Server</a></td>
+
+
+
+
+
+
+      
+
+      
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+<br>
+
+<table>
+
+  <tbody>
+
+    <tr>
+
+      <td><a href="#Samples"><span style="text-decoration: underline;">Sample Configurations</span></a>&nbsp;</td>
+
+    </tr>
+
+  
+  </tbody>
+</table>
+
+<br>
+
+
+
+
+<table>
+
+
+
+
+  <tbody>
+
+
+
+
+    <tr>
+
+
+
+
+      <td align="center"> <span lang="en-us"><a href="index.html#Dimensions">Understanding The Design Dimensions</a> | </span> </td>
+
+
+
+
+      <td></td>
+
+
+
+
+      <td align="center"> <span lang="en-us"><a href="index.html#Examples">Examples</a>
+|</span> </td>
+
+
+
+
+      <td align="center">
+      
+      
+      
+      
+      
+      
+      <p align="justify"><span lang="en-us"><a href="../index.html">Yancees
+Project Main Page</a></span></p>
+
+
+
+
+
+
+      </td>
+
+
+
+
+    </tr>
+
+
+
+
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+</center>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<h1 style="font-family: Helvetica,Arial,sans-serif;" align="center"><span style="text-transform: uppercase;"><blink>
+<span lang="en-us"><code><small style="color: rgb(204, 0, 0);"><span style="font-family: Helvetica,Arial,sans-serif;">Updated on August 18th, 2006</span></small></code></span></blink></span>&nbsp;</h1>
+
+
+
+
+
+
+
+
+
+
+
+<h2 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us"><a name="Introduction">Introduction</a>
+to the YANCEES framework</span></h2>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">YANCEES is a versatile publish/subscribe infrastructure.
+The current implementation provides an extensible and configurable
+event-based
+framework. Extension points are layd over the main design dimensions of
+a
+publish/subscribe system. These
+dimensions are the subscription, notification, publicatoin, event
+and protocol models. Additionally, YANCEES provides support for static plub-ins (a.k.a. services). The architecture
+is flexible
+enough to allow the distribution of components through client and
+server sides, providing flexibility to the resource model.</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">Subscription and notificatoin models are defined in terms of
+extensible languages,
+that syntactically describe the primitives, commands and messages of
+each
+model; Associated to each sets of elements in these languages are
+plug-ins. The
+dynamic binding of plug-ins with syntactical constructs in the language
+provides
+the desired functionality in each dimension. Internally, this dynamic
+plug-in
+allocation is performed by dynamic parsers associated to the
+subscription,
+notification and protocol models.</p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">In
+short, YANCEES provides:</p>
+
+
+
+
+
+
+<ul style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+
+
+  <li>Basic event, notification, subscription and protocol models
+represented by a combination of languages and plug-ins. </li>
+
+
+
+
+
+
+  <li>Parsers that dynamically bind (or allocate) plug-ins according to
+the messages being processed in the system. The binding is performed at
+runtime, and is implemented in the framework. </li>
+
+
+
+
+
+
+  <li>Support for different event representations, currently, a basic
+tuple-based event model is provided, which is compatible with Elvin and
+Siena
+models. </li>
+
+
+
+
+
+
+  <li>Additional adaptation points in the form of input and output
+filters, and internal services, that can be used by the plug-ins to
+enhance their functionality </li>
+
+
+
+
+
+
+  <li>An architecture manager to combine and manage the components of
+the system, control the plug-in dependencies, and build startup a
+notification server with a valid configuration.</li>
+
+
+
+
+
+
+  <li>Client-side plug-ins to better distribute processing and
+implement client-side event abstraction and subscription.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+<h2 style="font-family: Helvetica,Arial,sans-serif;">The Publish/subscribe architectural style</h2>
+
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;"></span><span style="font-family: Helvetica,Arial,sans-serif;" class="StyleBodyTextFirstIndent11ptChar">Publish/subscribe infrastructures (or publish/subscribe
+for short) are message-oriented middleware (or MOMs) that implement the
+publish/subscribe architectural style. This architectural style provides an
+inherent loose coupling communication mechanism between information producers (publishers)
+and information consumers (subscribers), which defines clear separation of communication from computation
+and carries the potential for easy integration of autonomous, heterogeneous
+components into complex systems that are easy to evolve and scale</span><span style="font-family: Helvetica,Arial,sans-serif;">.
+They also provide a one-to-many communication mechanism with which
+multicast
+and broadcast-based applications can be implemented. &nbsp;The
+following picture illustrates this communication paradigm. One one end,
+publishers produce information in the form of events; on the other end,
+subscribers express interest on those messages (based on a special
+message field -- topic-based subscription, or on the whole content --
+content-based subscriptions). The pub/sub core routes messages
+according to the subscriptions provided by different subscribers,
+notifying them whenever a message matching their subscription (or
+query) is published in the system.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+
+<div style="text-align: center; font-family: Helvetica,Arial,sans-serif;"><img style="height: 296px; width: 752px;" alt="Publish/subscribe" src="../publish-subscribe.gif"><br>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+
+<h2 style="font-family: Helvetica,Arial,sans-serif;"><a name="Clients"></a>Writing simple clients (publishers and subscribers) in YANCEES</h2>
+
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;">In our simple
+example, YANCEES is configured as a centralized server running in a
+predefined host in the distributed system (possibly the localhost), and
+with a content-based routing and subscription language similar to <a href="http://serl.cs.colorado.edu/siena/">Siena</a>. &nbsp;<br>
+
+
+
+
+<br>
+
+
+
+
+</span>
+<h3 style="font-family: Helvetica,Arial,sans-serif;">A simple publisher</h3>
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;">In order to be
+able to publish events, the user first needs to connect to the YANCEES
+server. YANCEES uses Java RMI to export its server interface, and
+requires the client to know the machine name where the server is
+running. RMI URLs are usually in the form<span style="font-family: Courier New,Courier,monospace;">
+\\hostname.mydomain.com\instancename</span>. YANCEES instance name default
+value is 'yancees' and 'hostname.mydomain.com' must be replaced with
+the host name or IP address of the machine where YANCEES server
+instance is running.<br>
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+</span>
+
+<span style="font-family: Helvetica,Arial,sans-serif;">After the
+connection is stablished, the users can start publishing events with
+the<span style="font-family: Courier New,Courier,monospace;"> publish() </span>command. Due to the use of RMI, this command throws
+a <span style="font-family: Courier New,Courier,monospace;">java.rmi.RemoteException</span>. It also generates
+<span style="font-family: Courier New,Courier,monospace;">edu.uci.isr.yancees.YanceesException</span> in case the subscription or event
+formats are incorrect.</span><br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;">The class
+<span style="font-family: Courier New,Courier,monospace;">edu.uci.isr.yancees.client.rmi.YanceesRMIClient</span> encapsulates all the
+RMI connection concerns from YANCEES providing a simple interface with
+which users can publish and subscribe to events remotely. A publisher is presented below.<br>
+
+
+</span>
+<div style="font-weight: bold; font-family: Helvetica,Arial,sans-serif;" align="left">
+<table style="border-collapse: collapse;" id="AutoNumber1" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td width="461">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><span style="font-weight: bold;">import edu.uci.isr.yancees.YanceesEvent;</span><br style="font-weight: bold;"><span style="font-weight: bold;">import edu.uci.isr.yancees.YanceesException;</span><br style="font-weight: bold;"><span style="font-weight: bold;">import edu.uci.isr.yancees.client.rmi.YanceesRMIClient;</span><br style="font-weight: bold;"><span style="font-weight: bold;" lang="en-us">...<br><code><br>public class YanceesPublisher {<br>   <br>   YanceesRMIClient </code><code>client;</code></span><br style="font-weight: bold;"><span style="font-weight: bold;" lang="en-us"><br>   ...<br><br>   // this is the same code as the client<br>   public void connectToYanceesClient() { <br><br>      /*<br>       *&nbsp;connects to YANCEES server at<br>       * host: hostname.mydomain.com<br>       */<br><code></code><code></code><code>      client = new YanceesRMIClient("hostname.mydomain.com");<br></code><code><br>   }<br><br>   ...<br><br>   public void publishAnEvent() {<br></code></span><span lang="en-us"><code><span style="font-weight: bold;">   <br>      YanceesEvent event = new YanceesEvent();<br>      event.put("name", "Roberto");<br>      event.put("Office", 247);<br>      event.put("inHisOffice", true);<br>      event.put("idleTime", 300000);<br>	</span><span style="font-weight: bold;"></span><br style="font-weight: bold;"><span style="font-weight: bold;">      try {</span><br style="font-weight: bold;"><span style="font-weight: bold;">         client.publish(event);</span><br style="font-weight: bold;"><span style="font-weight: bold;">      } catch (YanceesException ex) {</span><br style="font-weight: bold;"><span style="font-weight: bold;">      	// handle the exception</span><br style="font-weight: bold;"><span style="font-weight: bold;">      }</span><br style="font-weight: bold;"><span style="font-weight: bold;">   }<br><br>   public static void main(String[] argv) {<br>      YanceesPublisher myClient = new YanceesPublisher();<br>      myClient.connectToYanceesRMIClient();<br>      myClient.publishAnEvent();<br>   }<br><br>}</span></code></span><span lang="en-us"><code><span style="font-weight: bold;"></span></code></span><span lang="en-us"><code></code></span></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;"><br>
+
+
+
+
+Internally, the YanceesEvent object generates an XML representation of
+the event. In the example above, the event is represented as:<br>
+
+
+
+
+<br>
+
+
+
+
+</span>
+<div style="font-family: Helvetica,Arial,sans-serif;" align="left">
+<table style="border-collapse: collapse;" id="AutoNumber1" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td width="461">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><span lang="en-us"><b><code>&lt;event&gt;<br><br>   &lt;attribute&gt;<br></code></b></span>      <code><span lang="en-us"><b>&lt;name&gt; </b>myName<b> &lt;/name&gt;<br>       &lt;value type="yanceesString"&gt; </b>Roberto <b>&lt;/value&gt;<br>   &lt;/attribute&gt;<br></b></span></code><span lang="en-us"><b><code>   &lt;attribute&gt;<br></code></b></span>      <code><span lang="en-us"><b>&lt;name&gt; </b>Office<b> &lt;/name&gt;<br>       &lt;value type="yanceesString"&gt; </b>247 <b>&lt;/value&gt;<br>   &lt;/attribute&gt;</b></span></code><br><span lang="en-us"><b><code>   &lt;attribute&gt;<br></code></b></span>      <span lang="en-us"><code><b>&lt;name&gt; </b>inHisoffice <b>&lt;/name&gt;<br>      &lt;value type="yanceesBoolean"&gt; </b>true<b> &lt;/value&gt;<br>   &lt;/attribute&gt;<br></b></code></span><span lang="en-us"><b><code>   &lt;attribute&gt;<br></code></b></span>      <span lang="en-us"><code><b>&lt;name&gt; </b>idleTime <b>&lt;/name&gt;<br>      &lt;value type="yanceesLong"&gt; </b>300000<b>&lt;/value&gt;<br>   &lt;/attribute&gt;</b></code></span><br><span lang="en-us"><code></code><b><code>   </code></b></span><b><span lang="en-us"><code><br> &lt;/event&gt;</code></span></b><span lang="en-us"><b><code><br><br></code></b></span><b><span lang="en-us"><code></code></span></b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;">A simple subscriber&nbsp;</h3>
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;">In order to cope
+with extensibility, subscription in YANCEES are defined according to an
+extensible subscription language defined in XMLSchema. This allows different
+subscription commands and languages to be defined. In this
+example, we use a content-based subscription language similar to the
+one provided by Siena. In Siena, filters represent simple content-based
+subscriptions, For the event produced by the client above, one could
+write a subscription that identifies when the user <span style="font-style: italic;">'Roberto'</span> is in his office and
+'<span style="font-style: italic;">typing on the keyboard'</span>, i.e. the idle time is of some seconds, less than
+10 seconds for example. The subscription looks as follows:<br>
+
+
+</span>
+<div style="font-family: Helvetica,Arial,sans-serif;" align="left">
+<table style="border-collapse: collapse;" id="AutoNumber1" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td width="461">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><span lang="en-us"><b>&lt;subscription&gt;<br>   &lt;filter&gt;<br>     &lt;EQ&gt;<br>         &lt;name&gt; name </b><b>&lt;/name&gt;<br>         &lt;value type="yanceesString"&gt; </b>Roberto<b> &lt;/value&gt;<br>     &lt;/EQ&gt;<br>     &lt;GT&gt;<br></b></span><span lang="en-us"><b>         &lt;name&gt; </b>idleTime<b> &lt;/name&gt;<br>         &lt;value type="yanceesLong"&gt; </b>10000<b> &lt;/value&gt;</b></span><span lang="en-us"><b><br>     &lt;/GT&gt; <br>   &lt;/filter&gt;<br>&lt;/subscription&gt;<code><br></code></b></span><b><span lang="en-us"><code></code></span></b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;">The gramar, XMLSchema, defining the content-based Siena-equivalent subscription language is defined in the file: &nbsp;</span><a style="font-family: Helvetica,Arial,sans-serif;" href="http://awareness.ics.uci.edu/%7Ersilvafi/yancees/xsd/sienaSubscription.xsd">sienaSubscription.xsd</a><span style="font-family: Helvetica,Arial,sans-serif;"> available at: </span><a style="font-family: Helvetica,Arial,sans-serif;" href="http://awareness.ics.uci.edu/%7Ersilvafi/yancees/xsd/">http://awareness.ics.uci.edu/~rsilvafi/yancees/xsd/</a><br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;" lang="en-us">In order to receive notifications of events, the subscriber client needs to implement the <span style="font-style: italic;">edu.uci.isr.yancees.SubscriberInterface.</span> This interface&nbsp; has two methods: <big><code><span style="font-weight: bold;">notify(EventInterface myEvent) </span><span style="font-family: Helvetica,Arial,sans-serif;">and</span><span style="font-weight: bold;"> </span></code></big><code><big><span style="font-weight: bold;">notify(EventInterface[] myEventList)</span> <span style="font-family: Helvetica,Arial,sans-serif;">which receive a single event or a pattern matching of events.
+&nbsp;The subscriber then registers itself as a listener for
+notifications in the method <span style="font-family: Courier New,Courier,monospace;">subscribe()</span>. After that, it starts
+receiving notifications whenever the subscriptioin is match, in
+response to an event publication.</span></big><span style="font-weight: bold;"><br>
+
+
+
+
+</span></code></span><span style="font-weight: bold; font-family: Helvetica,Arial,sans-serif;"></span><br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<span style="font-weight: bold; font-family: Helvetica,Arial,sans-serif;"> </span><span style="font-family: Helvetica,Arial,sans-serif;">After
+understanding the basic Siena subscription language, and the basic
+publish/subscribe mechanism, one can start writing a subscription
+client as follows:</span><br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<div style="font-weight: bold; font-family: Helvetica,Arial,sans-serif;" align="left">
+<table style="border-collapse: collapse;" id="AutoNumber1" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td width="461">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><span style="font-weight: bold;">import edu.uci.isr.yancees.YanceesEvent;</span><br style="font-weight: bold;"><span style="font-weight: bold;">import edu.uci.isr.yancees.YanceesException;</span><br style="font-weight: bold;"><span style="font-weight: bold;">import edu.uci.isr.yancees.client.rmi.YanceesRMIClient;<br>import edu.uci.isr.yancees.SubscriberInterface;<br style="font-weight: bold;"></span><span style="font-weight: bold;" lang="en-us">...<br><code><br>public class YanceesSubscriptionClient implements SubscriberInterface {<br>   <br>   YanceesRMIClient </code><code>client;</code></span><br style="font-weight: bold;"><span style="font-weight: bold;" lang="en-us"><br>   ...<br><br>   // this is the same code as the client<br>   public void connectToYanceesClient() { <br><br>      /*<br>       *&nbsp;connects to YANCEES server at<br>       * host: hostname.mydomain.com<br>       * RMI name: yancees<br>       */<br><code></code><code></code><code>      client = new YanceesRMIClient("hostname.mydomain.com");<br><br>      // optionally one could use YANCEES default name and do:<br>      // </code><code>client = new YanceesRMIClient("hostname.mydomain.com");<br>   }<br><br>   ...<br><br>   public void subscribeToEvents() {<br></code></span><span lang="en-us"><code><span style="font-weight: bold;">   <br>      // A GenericMessage class can be used to represent an event, or in this case,<br>      // a subscription.<br>      GenericMessage msg = new GenericMessage("" +<br>				" &lt;subscription&gt;" +<br>				"   &lt;filter&gt;" +<br>			        "     &lt;EQ&gt;" +<br>			        "       &lt;name&gt; name &lt;/name&gt;" +<br>			        "       &lt;value type=\"yanceesString\"&gt; Roberto &lt;/value&gt;" +<br>			        "     &lt;/EQ&gt;"+<br></span></code></span><span lang="en-us"><code><span style="font-weight: bold;">				"   &lt;/filter&gt;" +</span></code></span><br><span lang="en-us"><code><span style="font-weight: bold;">		                " &lt;/subscription&gt;");</span></code></span><span lang="en-us"><code><span style="font-weight: bold;"><br>      client.subscribe(msg, this);<br></span><span style="font-weight: bold;"></span><br style="font-weight: bold;"><span style="font-weight: bold;">      try {</span><br style="font-weight: bold;"><span style="font-weight: bold;">         client.publish(event);</span><br style="font-weight: bold;"><span style="font-weight: bold;">      } catch (YanceesException ex) {</span><br style="font-weight: bold;"><span style="font-weight: bold;">      	// handle the exception</span><br style="font-weight: bold;"><span style="font-weight: bold;">      }</span><br style="font-weight: bold;"><span style="font-weight: bold;">   }<br><br>   public void notify(EventInterface[] myEvents) {<br>	// handle the event list (pattern match) sent by the server when events are match<br>  &nbsp;}<br><br>   public void notify(EventInterface myEvent) {<br>      YanceesEvent yanceesEventHelper = (YanceesEvent) myEvent;<br>      // handle the received event, in this case represented as an YanceesEvent object<br>      // (It could be a GenericEvent object if a pure XML event is published instead.	&nbsp;<br>   }<br><br>   public static void main(String[] argv) {<br>      YanceesSubscriptionClient myClient = new YanceesSubscriptionClient();<br>      myClient.connectToYanceesRMIClient();<br>      myClient.subscribeToEvents();<br><br>      // keeps the subscriber alive, listening to events that match the subscription<br>      while (true) {<br>	 try {<br>            Thread.sleep(100);<br>	 } catch (InterruptedException ex) {<br>	 }<br>      }<br>   }<br><br>}</span></code></span><span lang="en-us"><code></code></span></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;"><br>
+
+
+
+
+Note that <span style="font-family: Courier New,Courier,monospace;">YanceesSubscriptionClient</span> implements the <span style="font-family: Courier New,Courier,monospace;">SubscriberInterface</span>.
+It also has a loop to keep it active indefinitely, reveiving
+notifications.<br>
+
+
+
+
+<br>
+
+
+
+
+</span>
+<h2 style="font-family: Helvetica,Arial,sans-serif;"><a name="Server"></a>Starting the YANCEES&nbsp;Server</h2>
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;">In order to
+properly use YANCEES, the server configured with the required features
+must be started in one or more hosts in the network. A configuration
+file specifying the location of the implementation of different
+components must be provided. This file describes, for example, the
+router component, the subscription language plug-ins, optional input
+and output filters, as well as protocol and notification plug-ins. The
+next session describes in more detail the configuration and development
+of such components. </span><br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;">In order to
+start YANCEES with a basic content-based configuration, suitable for
+routing the aforementioned examples, one can use the
+<span style="font-family: Courier New,Courier,monospace;">startLocalSienaYancees.bat</span>
+file which does the following (note that it is a single line command,
+they are presented in different lines here for readability):</span><br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<span style="font-family: Courier New,Courier,monospace;">java
+-cp
+%CLASSPATH%;.\classes;.\bin;.\lib\siena-1.5.0.jar;.\lib\Yancees-SNAPSHOT.jar
+-Djava.rmi.server.codebase=file:/./lib/Yancees-SNAPSHOT.jar
+-Djava.security.policy=java.policy.all&nbsp;
+edu.uci.isr.yancees.server.rmi.RemoteYanceesImplementation
+./configurations/simpleLocalSienaConfiguration.xml</span><br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;">The configuration file </span><span style="font-family: Courier New,Courier,monospace;">./configurations/simpleLocalSienaConfiguration.xml<span style="font-family: Helvetica,Arial,sans-serif;"> basically specifies the plug-ins, filters, langauge extensions and pub/sub cores to use in the YANCEES implementation. </span></span><span style="font-family: Helvetica,Arial,sans-serif;">This particular configuration uses Siena as a content-based routing component, and requires Siena to be in the %CLASSPATH%. <br>
+
+
+<br>
+
+
+</span><span style="font-family: Helvetica,Arial,sans-serif;">The class
+<span style="font-family: Courier New,Courier,monospace;">RemoteYanceesImplementation</span> reads the configuraton file and assembles
+the YANCEES router with all the ad-on components. We assume that the
+user had downloaded the <a href="../jars/Yancees-SNAPSHOT.jar">Yancees-SNAPSHOT.jar</a> file and placed it in the .\lib folder as well as the last version of <a href="http://serl.cs.colorado.edu/siena/">Siena</a>.<br>
+
+
+
+<br>
+
+
+
+We suggest that users download the <a href="../dist/src/Yancees-src-SNAPSHOT.zip">full distribution of YANCEES</a> that comes with the .bat scripts, configuration files and some examples.<br>
+
+
+<br>
+
+</span>
+<h1><span style="font-family: Helvetica,Arial,sans-serif;"><a name="Samples"></a>Downloading Sample Configurations</span></h1>
+
+<span style="font-family: Helvetica,Arial,sans-serif;">For your
+convenience, we provide some examples of YANCEES bundled in different
+configurations. Those buldes include&nbsp; a Yancees-SNAPSHOT.jar file
+with the publisher and&nbsp; subscriber source codes. windows and unix
+shell scripts are provided as well as the configuration file used to
+customize YANCEES.<br>
+
+<br>
+
+<a href="../dist/bundles/MinimalYancees.zip">Minimal YANCEES</a>: Configured with a fast switch core, the subscription language has only one command, <span style="font-weight: bold;">&lt;require&gt;</span>, which filters messages with the specified attribute name.<br>
+
+<br>
+
+<a href="../dist/bundles/SienaYancees.zip">Siena YANCEES</a>:
+Configured with Siena as the routing core, it provides siena
+configuration language with an extra sequence detector plug-in. This is
+the version used in our example above.<br>
+
+</span><span style="font-family: Helvetica,Arial,sans-serif;"><br>
+
+
+</span>
+<h1><span style="font-family: Helvetica,Arial,sans-serif;">Extending and Configuring YANCEES</span></h1>
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;">This section is for those interested in extending YANCEES for their own needs</span>
+
+<h2 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><a name="Dimensions"><span lang="en-us">Understanding&nbsp;YANCEES Design Dimensions</span></a></h2>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">In this section, we briefly
+explain the main extensibility dimensions, their models and how to
+extend them. At the end of this section, full examples are provided.
+All design
+dimensions are represented by a language, defined in <a href="http://www.w3.org/TR/xmlschema-0/">XMLSchema</a>,
+and plug-ins, implemented to provide the functionality.</span></p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">Event Model</span></h3>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">What is it</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">The
+event model deals with the way events are
+represented.
+The basic event model supported by current YANCEES implementation is
+tuple-based. In this
+model, an
+event is a set of attribute/value pairs. This model is very flexible
+and allows
+the implementation of more restrictive models such as record-based
+(fixed set of
+attributes/types) and subject-based (having a special attribute to
+distinguish
+events from different types) models. The enforcement of these rules can
+be
+achieved by the use of input and output filters as will de discussed
+later.<br>
+
+
+
+
+
+
+</p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">Note:
+Event models are usually bound to the event router used in the
+framework. Currently, we support Elvin, Siena, and a proprietary fast
+switch router. Other event representations can be defined provided that
+a router, that understands that representation, is installed in the
+framework. Different routers can be simultaneously used.<br>
+
+
+
+
+
+
+</p>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">How to represent events</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">Events
+are represented as sets of
+attributes which have name, type and value. Events in YANCEES can be
+represented as YanceesEvent objects or in&nbsp;XML format as the
+example below.</span></p>
+
+
+
+
+
+
+<div style="font-family: Helvetica,Arial,sans-serif;" align="left">
+<table style="border-collapse: collapse;" id="AutoNumber1" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td width="461">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><span lang="en-us"><b> <code>
+ &lt;event&gt;
+   &lt;attribute&gt;
+</code></b></span>      <code><span lang="en-us"><b>&lt;name&gt; </b>attribute name<b> &lt;/name&gt;<br>       &lt;value type="yanceesString"&gt; </b>the value <b>&lt;/value&gt;<br>   &lt;/attribute&gt;<br></b></span></code><span lang="en-us"><b><code>   &lt;attribute&gt;<br></code></b></span>      <span lang="en-us"><code><b>&lt;name&gt; </b>another name <b>&lt;/name&gt;<br>       &lt;value type="yanceesInt"&gt; </b>12<b> &lt;/value&gt;<br>   &lt;/attribute&gt;<br></b></code><b><code>   &lt;attribute&gt; ... &lt;/attribute&gt;<br>   ...</code></b></span><b><span lang="en-us"><code>
+ &lt;/event&gt;</code></span></b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">This format was chosen to provide
+the ability to represent large attribute values, such as binary files,
+text files,
+and long strings in between <b> &lt;value&gt; </b>tags (as opposed to
+use
+attribute and value as attributes of the tag, instead of elements as it
+is
+represented now). The types supported in current YANCEES implementation
+are the same as provided by the XML schema:</span>
+<span lang="en-us"><b>boolean, double, float, long,
+int, string, hexBinary</b> which, for the sake of limiting the possible
+attribute types, facilitating the parsing of the events, and coping
+with
+extensibility, are
+represented as: <b>yanceesBoolean, yanceesDouble, yanceesFloat,
+yanceesLong, yanceesInt, yanceesString</b> and <b>yanceesBinary</b>
+types.</span></p>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">How to extend an existing event model or define a new one<br>
+
+
+
+
+
+
+</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">In order to extend the event
+model, developers extend the GenericMessage interface and optionally change the event schema with the new features,
+using the inheritance and extensibilty feautres of the <a href="http://www.w3schools.com/schema/default.asp">XMLSchema</a>
+definition. Alternatively, one can define a new event representation
+(or schemas). <br>
+
+
+
+
+
+
+</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">Once the extension is defined, it must be implemented by
+plug-ins or by the adapter installed in the YANCEES framework. For
+example, if events are represented as generic
+HTML pages, it is the responsibility of the notification server adapter
+to receive this events and transform them, back and forth, from this
+representation to the native representation of the installed event
+dispatcher. In
+our current YANCEES prototype implementation, this is performed by the <i>
+SienaAdapter</i> or <i> ElvinAdapter</i>, with the help of the <i>
+SienaEvent</i> and
+<i>ElvinEvent</i> classes. These last classes convert the internal
+event
+representation to the native representation of Siena and Elvin,
+respectively,
+and vice-versa. The adapters are responsible for reading publish and
+subscribe
+commands and converting them to the native Siena and Elvin formats
+respectively.</span></p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">Subscription Language</span></h3>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">What is it</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">The
+subscription language allows an interested party
+(or subscriber)
+to specify its interest in a sub-set of events. The subscription
+language allows
+the specification of constraints in both the content and the order the
+events to be queried
+(including their type or subject in other event models). This is
+usually performed through the use
+logical
+expressions (or queries), based on special commands. For example, a <b>
+&lt;sequence&gt;</b> command can be defined to detect sequences of
+events; a <b> &lt;filter&gt;</b>
+command
+inquires about the content of the events and so on. These commands can
+be combined in subscription expressions that are interpreted by the
+Yancees <i> SubscriptionParser</i>.&nbsp;</p>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">How to represent subscriptions</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">In the point of view of the
+YANCEES
+framework, simple subscriptions are represented as combinations of
+operators over events and their attributes. These
+operators are combined in logical expressions that, when matched,
+result in the delivery of the events to the end user. Operators are
+combined in a reverse polish notation as shown in the example below (in
+other words, it uses a LISP-like function composition syntax where
+operators
+comes before operands).</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">Complex subscriptions can be defined to
+generate new events, combine and abstract them. The classical example
+are rules. Rules are composed of a simple subscription part and an
+action part. The action can produce new events, and usually operate on
+the
+results of the subscription (condition).&nbsp;</span></p>
+
+
+
+
+
+
+<table style="border-collapse: collapse; font-family: Helvetica,Arial,sans-serif;" id="AutoNumber1" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" width="461">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b><span lang="en-us"> <code>
+ &lt;subscription type="subscriptionExtensionType"&gt;
+   &lt;op1 type="op1Type"&gt;
+      &lt;op2 type="op2Type"&gt; ... &lt;/op2&gt;
+      &lt;op3 type="op2Type"&gt; ... &lt;/op3&gt;
+   &lt;/op1&gt;
+ &lt;/subscription&gt;
+
+ &lt;notification&gt;
+   &lt;policy1/&gt;
+   &lt;policy2/&gt;
+ &lt;/notification&gt;</code></span></b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">Example
+of a rule specification...</p>
+
+
+
+
+
+
+<table style="border-collapse: collapse; font-family: Helvetica,Arial,sans-serif;" id="AutoNumber1" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" width="461">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><span lang="en-us"><b> <code>
+ &lt;subscription type="subscriptionExtensionType"&gt;
+   &lt;rule type="ruleType"&gt;
+      &lt;condition type="conditionType"&gt; 
+</code></b></span>        <b>&lt;filter&gt;<span lang="en-us"><code>... &lt;/filter&gt;<br></code></span></b>     <b><span lang="en-us"><code>&lt;/condition&gt;<br>      &lt;action type="actionType"&gt; ... &lt;/action&gt;<br>   &lt;/rule&gt;<br> &lt;/subscription&gt;<br><br> &lt;notification&gt;<br>   &lt;policy1/&gt;<br>   &lt;policy2/&gt;<br> &lt;/notification&gt;</code></span></b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">&nbsp;</p>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">How to extend the subscription
+model</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">The
+subscription model is extended by two combined
+steps: (1) the extension of the subscription language, which is defined
+in XMLSchema, by the definition of&nbsp; new tags (operators); (2) the
+implementation of
+plug-ins to handle those new tags, according to their syntax rules,
+defined in
+the XMLSchema extension. The plug-ins and their tags are
+then installed in the system using the configuration file, which
+associates their binaries with the appropriate XML tags in the plug-in
+manager.</p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">Notification Language</span></h3>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">What is it</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">The
+notification language specifies policies and
+procedures
+that deal with the delivery of events after their matching by a
+subscription expression. It allows, for example, the specification that
+events must be
+delivered
+as soon as they are produced, using <b> &lt;push&gt;</b> policy, or
+over subscriber
+request, using <b>
+&lt;pull&gt;</b>. Examples of extensions, or additional options, of
+such policies may include
+validity (the
+time an event should be kept in the server waiting for a deliver
+request); or a
+time interval (period) that all events matched in a subscription and
+stored
+for delivery, up to a certain point of time, must be delivered.</p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">The
+notification policies are usually included at
+the end of a subscription message to the server, in the <b>&lt;notification&gt;</b>
+section, as presented in the
+following example.</p>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">How to represent notification
+options (or policies)</span></h4>
+
+
+
+
+
+
+<table style="border-collapse: collapse; font-family: Helvetica,Arial,sans-serif;" id="AutoNumber1" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" width="461">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b><span lang="en-us"> <code>
+ &lt;subscription type="subscriptionExtensionType"&gt;
+	...
+ &lt;/subscription&gt;
+
+ &lt;notification&gt;
+   &lt;policy1/&gt;
+   &lt;policy2/&gt;
+ &lt;/notification&gt;</code></span></b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">How to extend the notification
+model</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">The
+notification model is extended in the same way
+as the subscription model. Extensions in the notification language need
+to be implemented by the plug-ins that will handle that commands
+expressed in the subscription message. Whenever the subscription is
+matched, the result is sent to the specified notification plug-in.
+Extensions such as pull may store the events in a temporary repository.
+These events are then collected by the subscriber with the help of
+protocol plug-ins.</p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">&nbsp;Protocol Model</span></h3>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">What is it</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">The
+protocol model allows the specification of more
+complex
+interaction modes with the service (apart from the common
+publish/subscription
+of events). The idea is to allow the addition of new services to the
+common
+publish/subscribe model. Examples of protocols may include the
+identification
+and browsing of event source hierarchies (with primitives similar to
+CASSIUS);
+support for mobile clients (with move-in/move-out primitives);
+authentication
+protocols and so on.</p>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">How to represent protocol
+messages</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">Protocols
+are implemented by plug-ins that externalize the protocol API using
+Remote interfaces in Java RMI. These plug-ins are dynamically loaded,
+being created and accessed through factory methods in YANCEES API. This
+way, a protocol can implement an arbitrary complex interface,
+representing protocol messages, which adds flexibiltiy to the model.
+Protocol plug-ins can interact with other YANCEES plug-ins. In order to
+locate installed plug-ins YANCEES internal plug-in registry stores a
+reference to all active plug-ins (static or dynamic) at any given
+time.&nbsp;</p><h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">How to extend the protocol model</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">The current implementation of YANCEES uses RMI. A plug-in must
+implement a remote interface and responds to the remote method
+invocations. A session is created between the client and the plug-in,
+through the plug-in manager, based on the service requested through YANCEES API.</p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">The Resource Model</span></h3>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">What is it</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">The
+resource model allows the definition of the components of
+the system, and their location. In the current implementation, the
+resource
+model is provided by a configuration language. This language allows the
+configuration of plug-ins, services and filters that are installed in
+the
+server, as well as the dispatcher components to be used.&nbsp;</p>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">How to represent a configuration</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">The
+configuration file allows the specification of the files
+that implement the plug-ins, services, filters and adapters of the
+whole system.
+It is subdivided in 5 sections, the dispatcher section, which
+configures the
+adapter(s) and the notification server(s) used in a configuration, the
+subscription section which defined subscription plug-ins; the
+notification and
+protocol sections with the same syntax as the subscription, defining
+their
+plug-ins. Finally services and input and output filters can also be
+defined. A
+configuration file looks like the one presented below.</p>
+
+
+
+
+
+
+<table style="border-style: none; border-width: medium; font-family: Helvetica,Arial,sans-serif;" class="MsoNormalTable" border="1" cellpadding="2" width="767">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" bgcolor="#ffffcc" width="757">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b>&lt;architecture&gt;<br>   &lt;dispatcher&gt;<br>      &lt;server&gt;<br>         &lt;name&gt;siena.server&lt;/name&gt;<br>         &lt;uri&gt;tcp:localhost:1234&lt;/uri&gt;<br>      &lt;/arch:server&gt;<br>      &lt;adapter&gt;<br>         &lt;javaClassName&gt;<br>	  edu.uci.isr.yancees.server.dispatcher.siena.SienaAdapter<br>	&lt;/javaClassName&gt;<br>      &lt;/adapter&gt;<br>   &lt;/dispatcher&gt;<br><br>   &lt;subscription&gt;<br>      &lt;plugin&gt;<br>	&lt;name&gt;<br>  	   filter.plugin<br>   	&lt;/name&gt;<br>         &lt;description&gt;<br>	  This is a content-based filtering plug-in<br>   	&lt;/description&gt;<br>	&lt;mainClass&gt;<br>	   &lt;javaClassName&gt;<br>	     edu.uci.isr.yancees.server.plugin.subscription.filter.FilterPlugin<br>	   &lt;/javaClassName&gt;<br>	&lt;/mainClass&gt;<br>	&lt;factoryClass&gt;<br>	    &lt;javaClassName&gt;<br>		edu.uci.isr.yancees.server.plugin.subscription.filter.FilterPluginFactory<br>	    &lt;/javaClassName&gt;<br>	&lt;/factoryClass&gt;<br>      &lt;/plugin&gt;<br><br>      &lt;plugin&gt;<br>	&lt;name&gt;<br>	   sequence.plugin<br>   	&lt;/name&gt;<br>         &lt;description&gt;<br>	  This is a sequence detection plug-in<br>   	&lt;/description&gt;<br>	&lt;mainClass&gt;<br>	   &lt;arch:javaClassName&gt;<br>	     edu.uci.isr.yancees.server.plugin.subscription.sequence.SequencePlugin<br>	   &lt;/arch:javaClassName&gt;<br>	&lt;/arch:mainClass&gt;<br>	   &lt;arch:factoryClass&gt;<br>	      &lt;arch:javaClassName&gt;<br>		   edu.uci.isr.yancees.server.plugin.subscription.sequence.SequencePluginFactory<br>	      &lt;/arch:javaClassName&gt;<br>	   &lt;/arch:factoryClass&gt;<br>         &lt;arch:depends&gt;<br>	   filter.plugin<br>         &lt;/arch:depends&gt;<br>		...<br>   &lt;/arch:subscription&gt;<br><br><br>   &lt;notification&gt;<br>	...<br>   &lt;notification&gt;<br><br>   &lt;arch:protocol&gt;<br>        ...<br>   &lt;/arch:protocol&gt;<br><br>  &lt;inputFilters&gt;<br>     &lt;filter&gt;<br>	&lt;name&gt;<br>	   performance.input<br>   	&lt;/name&gt;<br>         &lt;description&gt;<br>	   This is a performance collector filter<br>   	&lt;/description&gt;<br>	&lt;mainClass&gt;<br>	   &lt;javaClassName&gt;<br>	     edu.uci.isr.yancees.server.filter.performance.InputPerformanceFilter<br>	   &lt;/javaClassName&gt;<br>	&lt;/mainClass&gt;<br>     &lt;/filter&gt;<br>   &lt;/inputFilters&gt;<br>		<br>   &lt;outputFilters&gt;<br>    ...<br></b>   <b>&lt;/outputFilters&gt;<br>	<br>   &lt;services&gt;<br>      &lt;service&gt;<br>	&lt;name&gt;<br>	   performance.output<br>   	&lt;/name&gt;<br>         &lt;description&gt;<br>	   This is a performance collector filter<br>   	&lt;/description&gt;<br>	&lt;mainClass&gt;<br>	   &lt;javaClassName&gt;<br>	     edu.uci.isr.yancees.server.service.cassius.CassiusService<br>	   &lt;/javaClassName&gt;<br>	&lt;/arch:mainClass&gt;<br>      &lt;/arch:service&gt;<br>    &lt;/arch:services&gt;	<br><br><br>&lt;/arch:architecture&gt;<br></b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">&nbsp;</p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">Extensibility Summary</span></h3>
+
+
+
+
+
+
+<table style="font-family: Helvetica,Arial,sans-serif;" border="1" width="800">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" align="center" width="180"><span lang="en-us"><b>DESIGN
+DIMENSION</b></span></td>
+
+
+
+
+
+
+      <td class="style1" align="center" width="365"><span lang="en-us"><b>HOW
+TO EXTEND</b></span></td>
+
+
+
+
+
+
+      <td class="style1" align="center" width="233"><span lang="en-us"><b>EXAMPLE
+EXTENSIONS</b></span></td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="180"><span lang="en-us"><i><b>Subscription
+Model</b></i></span></td>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="365"><span lang="en-us">Extensible
+subscription
+language together with subscription plug-ins. Services and filters can
+also be used by the plug-ins</span></td>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="233"><span lang="en-us">Event
+aggregation<br>
+
+
+
+
+
+
+Abstraction<br>
+
+
+
+
+
+
+Rules (Event-condition/action<br>
+
+
+
+
+
+
+Sequence detection and rules</span></td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="180"><span lang="en-us"><i><b>Event
+Model</b></i></span></td>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="365"><span lang="en-us">Extensible
+event
+representation language or GenericMessage interface.<br>
+
+
+
+
+
+
+Decoupling provided by the event adapter.<br>
+
+
+
+
+
+
+Plug-in to handle adapter-specific features and language.</span></td>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="233"><span lang="en-us">Tuple-bassed
+(attribute/value
+pairs)<br>
+
+
+
+
+
+
+Record-based<br>
+
+
+
+
+
+
+Object-based<br>
+
+
+
+
+
+
+Typed and un-typed events</span></td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+    <tr><td><span style="font-weight: bold; font-style: italic;">Publication Model</span></td><td>Extensible FilterInterface.<br>Filters are insterded in a chain of responsibility fasion that intercepts the publicatoin of events in YANCEES</td><td>PublishToPeers plug-in that diverges events to peers in a P2P Yancees model. Type Checking, Event Persistency</td></tr><tr>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="180"><span lang="en-us"><i><b>Notification
+Model</b></i></span></td>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="365"><span lang="en-us">Extensible
+notification
+language together with notification plug-ins that implement event
+delivery policies</span></td>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="233"><span lang="en-us">Push<br>
+
+
+
+
+
+
+Pull (with persistency)</span></td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="180"><span lang="en-us"><i><b>Resource
+Model</b></i></span></td>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="365"><span lang="en-us">Server
+configuration language
+which is interpreted by the configuration manager.<br>
+
+
+
+
+
+
+It allows the distribution of components through the client side or
+server side.</span></td>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="233"><span lang="en-us">Centralized<br>
+
+
+
+
+
+
+Partially-centralized<br>
+
+
+
+
+
+
+Client-side components</span></td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="180"><span lang="en-us"><i><b>Protocol
+Model</b></i></span></td>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="365"><span lang="en-us">Extensible
+protocol language
+together with<br>
+
+
+
+
+
+
+Protocol plug-ins.&nbsp;</span></td>
+
+
+
+
+
+
+      <td class="style1" valign="top" width="233"><span lang="en-us">Security
+protocols<br>
+
+
+
+
+
+
+Mobility Protocols<br>
+
+
+
+
+
+
+Configuration protocols</span></td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">&nbsp;</p>
+
+
+
+
+
+
+<h2 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us">Services and Filters</span></h2>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">Once
+the languages are extended to include new
+primitives,
+commands and representations, plug-ins must be defined to actually
+implement and
+handle this new functionality. Dynamic (notification, subscription and
+protocol)
+parsers perform this dynamic instantiation and composition of plug-ins
+for each
+new subscription request. Plug-ins, however, are allocated on demand,
+usually one set for each subscription posted in the server. </p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">The
+plug-in life cycle ends when the subscription is
+not necessary anymore. This model is stateless and usually requires
+some external persistency that spans different plug-in activations.
+Another need is access to external resources such as database systems,
+data models, applications and so on. In order to cope with these extra
+requirements, services are provided. Services are objects that remain
+active in the system during the whole execution of the server and can
+be accessed by plug-ins whenever required. They enhance plug-ins with
+persistency and other services.</p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">Filters
+provide extension points in both the input
+and output buffers of the server, allowing the implementation of pre
+and post processing tasks, data collection and policy enforcements,
+for example. They usually apply to all input and output events. For
+example, plug-ins can collect performance information for further
+analysis, they can enforce event types, security policies and so on.</p>
+
+
+
+
+
+
+<h2 style="font-family: Helvetica,Arial,sans-serif;" align="justify">Programming
+Model</h2>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">This
+section describes in more detail how to
+implement the system's plug-ins, services and filters, presenting their
+interfaces.</p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" align="justify">Plug-in
+Interface</h3>
+
+
+
+
+
+
+<table style="border: medium none ; font-family: Helvetica,Arial,sans-serif;" class="MsoNormalTable" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" width="326">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b>interface PluginInterface<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extends PluginListenerInterface {<br>&nbsp; long getId();<br>&nbsp; String getTag();<br>&nbsp; String getFullContext();<br>&nbsp; String getFullPath();<br>&nbsp; Node getSubtree();<br>&nbsp; void addListener (PluginListenerInterface plugin);<br>&nbsp; void removeListener (PluginListenerInterface plugin);<br>&nbsp; void addRequiredPlugin (PluginInterface plugin);<br>&nbsp; PluginInterface[] getRequiredPluginsList();<br>&nbsp; boolean hasChildren();<br>&nbsp; void dispose();<br>}</b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">&nbsp;</p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" align="justify">Service
+Interface</h3>
+
+
+
+
+
+
+<table style="border: medium none ; font-family: Helvetica,Arial,sans-serif;" class="MsoNormalTable" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" width="326">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b>public interface ServiceInterface {<br>   public String getName();<br>   public void setName(String name);<br>   public boolean isActive();<br><br>}</b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">&nbsp;</p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" align="justify">Filter
+Interface</h3>
+
+
+
+
+
+
+<table style="border: medium none ; font-family: Helvetica,Arial,sans-serif;" class="MsoNormalTable" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" width="326">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b>public interface FilterInterface {<br>   public String getName();<br>   public void setName(String name);<br>   public void handleMessage(EventInterface evt);<br>   public void handleMessage(EventInterface[] evtList);<br>   public void addSuccessor(FilterInterface filter);<br>   public void removeSuccessor();<br>   public FilterInterface getSuccessor();<br>}</b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">&nbsp;</p>
+
+
+
+
+
+
+<h2 style="font-family: Helvetica,Arial,sans-serif;" align="justify">Configuration
+Manager</h2>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify">The
+configuration manager installs and configures
+the main
+components of the system. Configurations are expressed using the
+YANCEES configuration
+language, which is provided to the YANCEES runtime during its
+bootstrap. An
+example of configuration file was previously presented in the
+extensibility
+dimensions section.</p>
+
+
+
+
+
+
+<h2 style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="en-us"><a name="Examples"></a>Examples</span></h2>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;"><span lang="EN-US">Case
+study: implementing CASSIUS services with
+YANCEES</span></h3>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">To illustrate the use of the
+architecture extensibility and configurability, this section presents
+some examples on how to define and adapt the components of the system
+to implement different services. It also shows how YANCEES can be
+customized to provide the functionality required by different
+application domains.</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">For example, suppose that YANCEES
+needs to be adapted to support awareness applications. Notification
+servers such as Khronika and CASSIUS provide us with a list of the
+basic services
+needed. Hence, in order to be functionality-compatible with this
+domain, YANCEES needs to provide: event persistency and typing, event
+sequence detection, and the pull notification delivery mechanism.
+Moreover, a special feature provided by CASSIUS is the ability to
+browse and later subscribe to the event types that are published by
+each event source. This service, called event source browsing, provides
+information about the publishers and the events they publish. </span></p>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;"><span lang="EN-US">&nbsp;Implementing
+a sequence detection mechanism</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">Sequence detection requires the
+extension of the subscription model with the addition of a new keyword
+&lt;sequence&gt;. It will operate over a set of content-based filters,
+which are natively provided by the event dispatcher component. </span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="EN-US">The first step is to extend the YANCESS subscription
+language with the new </span><span style="font-size: 9pt;" lang="EN-US">&lt;sequence&gt;</span><span lang="EN-US"> tag. This is illustrated in the code fragment of Table 1
+as follows</span><b>.</b></p>
+
+
+
+
+
+
+<table style="border: medium none ; font-family: Helvetica,Arial,sans-serif;" class="MsoNormalTable" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" width="326">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b>&lt;complexType name="SequenceSubscriptionType"&gt;<br>&nbsp; &lt;complexContent&gt;<br>&nbsp;&nbsp;&nbsp; &lt;extension base="sub:SubscriptionType"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;sequence minOccurs="0" maxOccurs="1"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;element name="sequence" type= "FilterSequenceType" /&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/sequence&gt;<br>&nbsp;&nbsp;&nbsp; &lt;/extension&gt;<br>&nbsp; &lt;/complexContent&gt;<br>&lt;/complexType&gt;<br>&nbsp;</b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b>&lt;complexType name="FilterSequenceType"&gt;<br>&nbsp; &lt;sequence minOccurs="1" maxOccurs="unbounded"&gt;<br>&nbsp;&nbsp;&nbsp; &lt;element name="filter" type="FilterType"/&gt;<br>&nbsp; &lt;/sequence&gt;<br>&lt;/complexType&gt;</b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">&nbsp;The next step is to implement the
+sequence detection plug-in, extending the <i>AbstractPlugin, </i>a
+convenience class that provides default implementations to the plug-in
+interface presented in Table 2 as follows.</span></p>
+
+
+
+
+
+
+<table style="border: medium none ; font-family: Helvetica,Arial,sans-serif;" class="MsoNormalTable" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" width="326">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b>interface PluginInterface<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extends PluginListenerInterface {<br>&nbsp; long getId();<br>&nbsp; String getTag();<br>&nbsp; String getFullContext();<br>&nbsp; String getFullPath();<br>&nbsp; Node getSubtree();<br>&nbsp; void addListener (PluginListenerInterface plugin);<br>&nbsp; void removeListener (PluginListenerInterface plugin);<br>&nbsp; void addRequiredPlugin (PluginInterface plugin);<br>&nbsp; PluginInterface[] getRequiredPluginsList();<br>&nbsp; boolean hasChildren();<br>&nbsp; void dispose();<br>}</b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" align="justify"><span lang="EN-US">&nbsp;Note that the PluginInterface is a listener to
+events produced in other plug-ins. It implements the interface in Table
+3 as follows</span><b>.</b></p>
+
+
+
+
+
+
+<table style="border: medium none ; font-family: Helvetica,Arial,sans-serif;" class="MsoNormalTable" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" width="326">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b>interface PluginListenerInterface {<br>&nbsp; void receivePluginNotification (EventInterface evt, PluginInterface source);<br>&nbsp; void receivePluginNotification (EventInterface[] evtList, PluginInterface source);<br>}</b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">&nbsp;A simple sequence detection
+implementation will collect, in the right order, events coming from
+each one of the filters it observes. When a successful sequence is
+detected, the sequence plug-in returns the set of events collected,
+publishing it to higher-level plug-ins (listeners). Note that we are
+assuming that the event dispatcher guarantees the in-order delivery of
+events. If this is not the case, more complex algorithms must be used.</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">A plug-in factory, implementing the
+interface in Table 4 must also be defined. &nbsp;</span></p>
+
+
+
+
+
+
+<table style="border: medium none ; font-family: Helvetica,Arial,sans-serif;" class="MsoNormalTable" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" width="326">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b>interface PluginFactoryInterface {<br>&nbsp; String[] getTags();<br>&nbsp; PluginInterface createNewInstance (Node subTree);<br>}</b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">&nbsp;A simple factory implementation will
+return a new instance of the plug-in only each time the <i>createNewInstance</i>()
+method is invoked in its interface. The plug-in factory must then be
+registered under the &#8220;<i>sequence</i>&#8221; tag name in the
+YANCEES
+configuration file described in Table 5, followed by the restart or
+reconfiguration of the YANCEES service.&nbsp;</span></p>
+
+
+
+
+
+
+<table style="border: medium none ; font-family: Helvetica,Arial,sans-serif;" class="MsoNormalTable" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" bgcolor="#ffffcc" width="321">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b>&lt;subscription&gt;<br>...<br>&nbsp; &lt;plugin&gt;<br>&nbsp;&nbsp;&nbsp; &lt;name&gt; sequence.plugin &lt;/name&gt;<br>&nbsp;&nbsp;&nbsp; &lt;mainClass&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;javaClassName&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; plugin.sequence.SequencePlugin<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/javaClassName&gt;<br>&nbsp;&nbsp;&nbsp; &lt;/mainClass&gt;<br>&nbsp;&nbsp;&nbsp; &lt;factoryClass&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;javaClassName&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; plugin.sequence.SequencePluginFactory<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/javaClassName&gt;<br>&nbsp;&nbsp;&nbsp; &lt;/factoryClass&gt;<br>&nbsp;&nbsp;&nbsp; &lt;depends&gt; siena.plugin &lt;/depends&gt;<br>&nbsp; &lt;/plugin&gt;<br>...<br>&lt;/subscription&gt;</b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">&nbsp;The plug-in is then ready to be
+used. It will be activated each time a subscription is provided that
+uses the &lt;<i>sequence</i>&gt; tag as its part. An example of a
+subscription using this new extension is presented in Table 6. The Java
+DOM parser automatically checks the subscription for syntax errors by
+using the XML schema defined in Table 1.</span></p>
+
+
+
+
+
+
+<table style="border: medium none ; font-family: Helvetica,Arial,sans-serif;" class="MsoNormalTable" bgcolor="#ffffcc" border="1" cellpadding="2">
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+      <td class="style1" width="326">
+      
+      
+      
+      
+      
+      
+      <div align="justify">
+      
+      
+      
+      
+      
+      
+      <pre><b>&lt;subscription&gt;<br>&nbsp; &lt;sequence xsi:type="FilterSequenceType"&gt;<br>&nbsp;&nbsp;&nbsp; &lt;filter xsi:type="FilterType"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;EQ&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;name&gt; status&lt;/name&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;value&gt; Fail &lt;/value&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/EQ&gt;<br>&nbsp;&nbsp;&nbsp; &lt;/filter&gt;<br>&nbsp;&nbsp;&nbsp; &lt;filter xsi:type="FilterType"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;LT&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;name&gt; cooler Temp &lt;/name&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;value&gt; 90 &lt;/value&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/LT&gt;<br>&nbsp;&nbsp;&nbsp; &lt;/filter&gt;<br>&nbsp; &lt;/sequence&gt;<br>&lt;/subscription&gt;<br>&lt;notification&gt;<br>&nbsp; &lt;push&gt;<br>&lt;/notification&gt;</b></pre>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;"><span lang="EN-US">&nbsp;Implementing
+a
+pull delivery mechanism</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">&nbsp;Pull delivery allows
+subscribers to periodically poll (or check) the server for new events
+matching their subscriptions. This mechanism copes with the
+requirements of some mobile applications, where subscribers usually get
+temporarily disconnected.</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">This mechanism is provided by a pull
+notification plug-in. In order to temporarily store the events that are
+not being delivered, the pull mechanism needs an event persistency
+service. As a consequence, together with the pull notification plug-in,
+an event persistency service must also be defined.</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">Users need to control when to
+collect and when to store the events being routed to them as a result
+of a subscription. This usually requires a polling interaction
+protocol. This interaction is not part of the regular <i>publish</i>()
+and <i>subscribe</i>() commands of a notification server, so a
+protocol plug-in must be defined. In short, the implementation of a
+pull delivery mechanism requires:</span></p>
+
+
+
+
+
+
+<ul style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+
+
+  <li> <span lang="EN-US">The extension of the notification language
+to add pull support</span> </li>
+
+
+
+
+
+
+  <li> <span style="font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt;" lang="EN-US">&nbsp;</span><span lang="EN-US">The implementation of a
+pull notification plug-in</span> </li>
+
+
+
+
+
+
+  <li> <span style="font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt;" lang="EN-US">&nbsp;</span><span lang="EN-US">The implementation of a
+persistency service</span> </li>
+
+
+
+
+
+
+  <li> <span style="font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt;" lang="EN-US">&nbsp;</span><span lang="EN-US">The definition of a
+polling protocol</span> </li>
+
+
+
+
+
+
+  <li><span style="font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt;" lang="EN-US">&nbsp;</span><span lang="EN-US">The implementation of a
+polling protocol plug-in</span></li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;" lang="EN-US">The
+implementation of the pull notification plug-in
+follows the same steps as the sequence detection plug-in previously
+described. The same is true for the notification language extension. An
+extension is provided to the notification language that defines the <b>
+&lt;pull&gt; </b> tag. Additionally, a factory to instantiate this
+plug-in
+is also provided. In order to activate the pull plug-in, a <b>
+&lt;pull&gt;</b>
+tag must be provided in the <b> &lt;notification&gt;</b> session of a
+subscription message (see Table 6). As a consequence, a pull plug-in
+instance is created and registered to handle the events that match the
+subscription.</span>
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">The pull plug-in implementation is
+very simple; it directs the events to the persistency service component
+and registers them under their target subscriber interface.</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">The poll plug-in responds to
+commands such as <b> &lt;poll-interval&gt;, &lt;stop-polling&gt;</b>
+and <b>
+&lt;poll&gt;</b>, which define different polling mechanisms. It
+collects
+the events stored in the persistency service, and delivers them
+periodically to the subscriber (poll-interval command); it then
+collects the notifications whenever requested (using the poll command)
+or deactivates the periodic delivery (using the stop-polling command)
+in case of a temporary disconnection.</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">These sets of plug-ins define a
+configuration, a set of components that need to be present in order for
+a service to operate. The dependencies between these are checked by
+YANCEES with the help of the </span>
+<span style="font-size: 9pt;" lang="EN-US">&lt;depends&gt;</span><span lang="EN-US"> clause in the configuration file. </span></p>
+
+
+
+
+
+
+<h4 style="font-family: Helvetica,Arial,sans-serif;"><span lang="EN-US">&nbsp;Implementing
+CASSIUS features</span></h4>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">&nbsp;In addition to the features
+described in the previous sessions, CASSIUS provides event typing and
+the ability to browse through hierarchies of event sources.</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">The browsing of event sources in
+CASSIUS allows publishers to register events in a hierarchy based on
+accounts and objects. This model and the API required to operate the
+server are described elsewhere.</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">In the YANCEES framework, the
+CASSIUS functionality is implemented by the use of protocol plug-ins
+and a <i>
+CassiusService</i> component. The CASSIUS protocol plug-in interacts
+with the <i>CassiusService</i>, which allows the creation and
+management of
+objects, accounts, and their events. These operations include
+registering/un-registering accounts, objects, and events, as well as
+polling commands.</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">CASSIUS uses events with a fixed set
+of attributes. These events can be easily identified and checked for
+correctness by an input filter. This filter checks all incoming events
+for the proper CASSIUS template format. Once a CASSIUS event is
+identified and validated, it is copied to the <i>CassiusService</i>,
+which stores it in a database in its proper account/object record. </span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">Polling of events, in this case, is
+handled by the CASSIUS protocol plug-in, which allows the collection of
+events by account, object, or sub-hierarchies. Note that this approach
+does not prevent the simultaneous installation of both services, the
+simple pull and the CASSIUS pull protocol.</span></p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="Body"><span lang="EN-US">The poll mechanism is not the only
+way to collect CASSIUS events. At any time, subscriptions can also be
+performed on regular CASSIUS events.<br>
+
+
+
+
+
+
+</span></p>
+
+
+
+
+
+
+<h2 style="font-family: Helvetica,Arial,sans-serif;" class="style1"><span lang="EN-US">Currenlty Implemented Features</span></h2>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="style1">This section describes the functionality of the
+components currently available to the YANCEES framework. It is
+subdivided according to the extensibilty dimensions: event model,
+subscription model, notification mode and protocol.</p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" class="style1">Event Model</h3>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="style1">In the current YANCESS version, the events are
+represented as sets of attribute/value pairs. </p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" class="style1">Subscription Mode</h3>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="style1">Supports conent-based and topic-based subscrtiptins.
+The content-based language is a XML porting of the Siena Subscription
+language. The topic-based language, is implemented by the
+&lt;require&gt; tag with behaves similarly to the Elvin require()
+command. </p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" class="style1">Notification Model</h3>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="style1">Supports &lt;push&gt; and &lt;pull&gt;</p>
+
+
+
+
+
+
+<h3 style="font-family: Helvetica,Arial,sans-serif;" class="style1">Protocol Model</h3>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="style1">supports polling, to access the event stored on the
+server side, if the &lt;pull&gt; notification policy is used.</p>
+
+
+
+
+
+
+<p style="font-family: Helvetica,Arial,sans-serif;" class="style1"> <br>
+
+
+
+
+
+
+P.S. I will expand these last topics later on... </p>
+
+
+
+
+
+
+<hr style="font-family: Helvetica,Arial,sans-serif;">
+<center style="font-family: Helvetica,Arial,sans-serif;"><span lang="en-us">Research Staff: <a href="http://www.ics.uci.edu/%7Ersilvafi">Roberto Silveira Silva
+Filho</a><br>
+
+
+
+
+
+
+Professor: <a href="http://www.ics.uci.edu/%7Eredmiles/"> David F.
+Redmiles</a><br>
+
+
+
+
+
+
+<i><a href="http://www.isr.uci.edu/">Institute for Software Research</a><br>
+
+
+
+
+
+
+<a href="http://www.ics.uci.edu/">Information and Computer Science</a><br>
+
+
+
+
+
+
+<a href="http://www.uci.edu/">University of California, Irvine</a>
+CA 92697-3425</i><br>
+
+
+
+
+
+
+<a href="mailto:redmiles@ics.uci.edu"><br>
+
+
+
+
+
+
+</a></span></center>
+
+
+
+
+
+
+<hr style="font-family: Helvetica,Arial,sans-serif;">
+<address style="font-family: Helvetica,Arial,sans-serif;"> <span lang="en-us">This page was last updated on June 16th , 2006</span>
+</address>
+
+
+
+
+
+
+</body></html>
