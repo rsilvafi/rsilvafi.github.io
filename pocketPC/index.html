@@ -1,0 +1,2414 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <title>Configuring Java (J9) on a Pocket PC with RMI and SWT and SVG
+using CDC (Connected Device Configuration) and personal profile: some
+experiences</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <style type="text/css">
+<!--
+body,td,th {
+font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-size: smaller}
+-->
+  </style>
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table width="100%">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <td align="left">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <p align="center"><a href="http://www.uci.edu/"><img style="border: 0px solid ; width: 255px; height: 108px;" alt="UCI Logo" src="UCI.gif"></a>
+      </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <td align="center">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <h1>Configuring Java (J9) on a Pocket PC with RMI and SWT using CDC Personal Profile: some experiences and issues</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <td><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <td align="right">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <p align="center"><a href="http://www.isr.uci.edu/"> <img style="border: 0px solid ; width: 140px; height: 69px;" alt="ISR Logo" src="ISR-Logo.gif"></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+<div align="center">
+<center><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span lang="en-us"></span>This page presents some
+tricks, configurations and workarounds applied by me when configuring a
+pocket PC (WindowsME 2003) to run Java (IBM J9 virtual
+machine). &nbsp;I was particularly interested in running SVG and SWT in the pocket PC in order to support a tiny version of <a href="http://www.isr.uci.edu/projects/swirl/Projects.htm">Impromptu</a>
+desktop application. &nbsp;However, I could not run SVG (<a href="http://xmlgraphics.apache.org/batik/">apache Batik</a>)
+since it required Swing, which is not supported by the personal profile
+of Java. Then, I proceeded to use a TinySVG implementation from <a href="http://www.tinyline.com/">TinyLine</a>
+which claimed to run on those devices. My success in running TinyLine
+was partial (the examples ran but extensions implemented by be did
+not). This
+document also presents my experiences on installing the other
+components. Currently, I dropped SVG, SWT and other approaches, and I
+am using AWT to develop RMI applicatoins in
+the PocketPC.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Introduction</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+J9 is an implementation of J2ME (<a href="http://java.sun.com/javame/index.jsp">Java 2 Mobile
+Environmen</a>t) that supports different profiles. Each profile is
+developed for a different kind of device, ranging from very limited
+resource devicess such as cell phones, to more
+powerful devices such as pocket PCs. For a comparison of the differences between those
+profiles, and &nbsp;JDK1.3 go to: <a href="http://java.sun.com/products/cdc/reference/cdc_packages.pdf">CDC API
+Comparison</a>. And, for a description of the different profiles
+go to : <a href="http://java.sun.com/javame/reference/apis.jsp#api">J2ME
+Documentation.</a><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Pocket PC I used was a Dell AIXM running WindowsCE 2003. It supports the use of the
+<a href="http://java.sun.com/products/cdc/">Connected Device Configuration
+Personal Profile (CDC-PP in short)</a>, which is one of the profiles that most resembles JDK1.3.
+In fact, the CDC-PP is a stripped off version of the JDK1.3 java runtime environment. It
+does not
+include, for example, packages like <span style="font-style: italic;">java.rmi</span> or <span style="font-style: italic;">javax.swing</span>. Hence, in
+order to have RMI support (necessary to run <a href="www.isr.uci.edu/projects/yancees">YANCEES</a>, a pub/sub component in the Impromptu application), we will
+need to install the optional <span style="font-style: italic;">java.rmi</span> support as further described in this document.
+For the GUI, instead of swing, which is also not supported by the CDC-PP, we will use a port of
+SWT for Pocket PC provided by the eclipse project.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The good news is that because the CDC Personal Profile is so close to
+JDK1.3 (desktop version of java), you can use
+your favorite IDE to develop your applications. Hence, you with no need
+of
+specialized compilers. The code compiled for JDK1.3 should run without
+modification in your PocketPC provided that you do not use in your code
+any library
+that is not included in this profile, such as swing, for example; and
+any new language extension, such as those provided in JDK1.5. For example, in this project, I used <a href="http://www.eclispe.org">Eclipse</a>.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Setting up a development environment on your desktop PC and PocketPC</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In order to develop applications for the Pocket PC, one needs to set up
+an editor (or IDE) for the application development, and a way to
+download and run those applications in the PocketPC. The good news
+about Personal Profile is that you can use any editor and IDE, with a
+JDK1.3 compatible java compiler in your desktop. As for the PocketPC,
+Microsoft provides
+a nice set of utilities, which come as part of the <a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=74473FD6-1DCC-47AA-AB28-6A2B006EDFE9&amp;displaylang=en">Windows
+Mobile Developer Power Toys</a>,
+including a command processor, similar to a DOS prompt, and a remote control
+program (ActiveSync
+Remote Display) that allows you to control your pocket PC from the
+desktop (via craddle or USB cable). After following the link above and installing the Microsoft Movile Developer Power Toys
+on your desktop computer, copy the contents of the
+command prompt software located at: <span style="font-family: Courier New,Courier,monospace;">C:\Program
+Files\Windows Mobile Developer Power Toys\PPC_Command_Shell</span> from your desktop to your pocket PC, maybe in a directory called<span style="font-family: Courier New,Courier,monospace;"> \opt\cmd</span>.
+This will allow you to start the <span style="font-family: Courier New,Courier,monospace;">cmd.exe</span>program
+that implements the command interpreter. (<span style="text-decoration: underline;">tip:</span> use the Explore button in
+your Microsoft ActiveSync application that comes with the PocketPC and do not forget to copy the <span style="font-family: Courier New,Courier,monospace;">console.dll </span>file to your \Windows folder in the pocketPC).<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The command interpreter will allow you to start <span style="font-family: Courier New,Courier,monospace;">.bat</span>
+files and <span style="font-family: Courier New,Courier,monospace;">.exe</span>
+applications in your PocketPC, including the <span style="font-family: Courier New,Courier,monospace;">j9.exe</span>
+and the <span style="font-family: Courier New,Courier,monospace;">j9w.exe</span>
+programs once they are installed in your mobile device. To run the command
+interpreter, just run the <span style="font-family: Courier New,Courier,monospace;">cmd.exe </span>program.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2><span style="font-weight: bold;">Installing J9
+Java Virtual Machine</span></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The first step in the configuration of the java
+environment,&nbsp;is to download and install the IBM J9 virtual
+machine on
+your pocket PC. We will use the&nbsp;java J9 runtime evaluation
+version&nbsp;provided by IBM in the site: <a href="http://www-306.ibm.com/software/wireless/weme/">Websphere
+Everyplace Micro Environment</a>. Download the <b>WebSphere
+Everyplace Micro Environment 5.7.1 - Personal Profile 1.0 </b>for
+pocket PC, which is a long name for the J9 java runtime. Follow the
+above &nbsp;link, download the program and install on your desktop
+PC.
+IBM provides
+installation guides in its download site. The installation program will
+install the J9 runtime environement under <span style="font-family: Courier New,Courier,monospace;">\Program
+Files\J9 </span>directory on your Pocket PC.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You should also download a 30 day evaluation version of the whole IDE,
+the
+<a href="http://www-306.ibm.com/software/wireless/wctme/bundle.html">IBM
+Workplace Client Technology, Micro Edition 5.7</a>, which
+includes porting of IBM J9 to different architectures, besides of the
+whole Java development environment (<a href="http://www14.software.ibm.com/webapp/download/product.jsp?s=p&amp;id=DVDE-634P22">Click here for an alternative link</a>). Obs. There is a <a href="http://www-1.ibm.com/support/docview.wss?rs=2016&amp;context=SSQPWJ&amp;dc=DB520&amp;uid=swg21206555&amp;loc=en_US&amp;cs=utf-8&amp;lang=en">License
+Not Found Bug</a>
+in the installation of this software that requires you to set the date
+of your computer to May 1st 2005 in order to install it.&nbsp;<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I suggest you to download and install both applications since you will
+need IBM Workplace Client Environment in order to download the RMI
+Optional package from IBM. &nbsp;However, if you just want the virtual machine, <a href="http://www-306.ibm.com/software/wireless/weme/">the first link</a> will do it.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Downloading aditional components</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In general, additional components, in the form of .jar files, can be
+installed in the J9 runtime environment by copying those files to
+the&nbsp; <span style="font-family: Courier New,Courier,monospace;">\Program
+Files\J9\PPRO10\lib\jclPPro10\ext <span style="font-family: Helvetica,Arial,sans-serif;">directory in your PocketPC.<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+</span></span>
+
+
+
+
+
+
+
+
+
+
+
+<span style="font-weight: bold;">Install RMIOP</span>.
+IBM provides RMI
+as an optional package (called RMIOP) that can be installed in the J9 runtime
+environment.&nbsp;In order to get this packages, you will need the IBM Workspace Client
+Technology, Micro Edition 5.7, an IDE from IBM, as described in the
+previous step.
+After installing this IDE,&nbsp;start the Device Developer
+environment
+from IBM. It
+uses&nbsp;Eclipse 2.0 as its base environement which you may be
+familiar with. Go to the Help menu and start the Update Manager. Click
+in Sites to Visit, and select <span style="font-family: Courier New,Courier,monospace;">IBM
+WebSphere Everyplace Device Developer Technologies/Technologies/WEME
+RMIOP (Runtime 2.2)</span> and install the RMIOP optional package. The
+additional files will be added to each runtime environment under <span style="font-family: Courier New,Courier,monospace;">C:\Program
+Files\IBM\DeviceDeveloper\wsdd5.0\ive-2.2\runtimes</span> in your
+desktop computer. Copy the new files to your pocket PC: since we are
+using the Personal Profile, copy the <span style="font-family: Courier New,Courier,monospace;">rmip.jar</span>
+and <span style="font-family: Courier New,Courier,monospace;">rmip_nl1.jar</span>
+(optional language pack), from <span style="font-family: Courier New,Courier,monospace;">C:\Program
+Files\IBM\DeviceDeveloper\wsdd5.0\ive-2.2\runtimes\wm2003\arm\ppro10\lib\jclPPro10\ext</span>
+to the <span style="font-family: Courier New,Courier,monospace;">\Program
+Files\J9\PPRO10\lib\jclPPro10\ext</span>
+folder in your pocket PC. This should add the RMI support to your J9
+environment. The RMI is compatible with the JDK1.3 environment and
+suppots most of its features (with exeption of some advanced ones as
+dynamic activation and so on).<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span style="font-weight: bold;">Install a new version of SWT</span>.
+J9 already supports SWT. The file <span style="font-family: Courier New,Courier,monospace;">\Program Files\J9\PPRO10\lib\jclPPro10\ppro-ui.jar</span> alreay comes with the <span style="font-family: Courier New,Courier,monospace;">org.eclipse.swt</span>.* packages on it and the <span style="font-style: italic;">swt-win32-3050.dll</span> is already present in the <span style="font-family: Courier New,Courier,monospace;">\Program Files\J9\PPRO10\lib\bin</span>
+folder of your J9 installation. This version, however, is old and limited in the number of
+widgets it supports. Hence, you may want to install an updated and more
+complete version of SWT in your device.&nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; <br>
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+In order to do so, you must download a new version of SWT and install
+its respective .jar and .dll files. The .jar file needs to be copied to
+the <span style="font-family: Courier New,Courier,monospace;">ext</span> folder in the
+J9 runtime distribution in your pocket
+PC; whereas the .dll file needs to the copied to the bin folder. First, download the <a href="http://www.eclipse.org/downloads/index.php">SWT for
+Windows CE (ARM PocketPC)</a>
+from the SWT download website. Note that there are two versions, one
+for the CLDC and another for Personal Profile. You want the one for
+Personal Profile. The one I downloaded<span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;">&nbsp;</span></span>
+was&nbsp;<a href="http://www.eclipse.org/downloads/download.php?file=/eclipse/downloads/drops/R-3.0.2-200503110845/swt-3.0.2-win32-ce-arm-ppc.zip">swt-3.0.2-win32-ce-arm-ppc.zip</a>
+(newer versions are posted regularly). Then, copy the <span style="font-family: Courier New,Courier,monospace;">swt.jar</span>
+file from inside the distribution to&nbsp; <span style="font-family: Courier New,Courier,monospace;">\Program
+Files\J9\PPRO10\lib\jclPPro10\ext</span><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"> in your
+device, and the <span style="font-family: Courier New,Courier,monospace;">swt-win32-3064.dll</span>
+or newer version to the&nbsp;</span></span><span style="font-family: Courier New,Courier,monospace;">\Program
+Files\J9\PPRO10\bin</span><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;">&nbsp;
+folder in your device. A description on how to use SWT in a pocket PC
+is described here: </span></span><a href="http://www.eclipse.org/articles/Article-small-cup-of-swt/pocket-PC.html">A
+small cup of SWT.</a><br>
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+This procedure, however, will most likely conflict with the already installed&nbsp;<span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Courier New,Courier,monospace;">swt-win32-3050.dll</span></span></span>
+which comes with J9. If you erased this file, hoping that the new .dll
+would be used instead, the J9 virtual machine will throw an exception: <span style="font-family: Courier New,Courier,monospace;">"java.lang.UnsatisfiedLinkError:swt-32-3050"</span>. A possible solution to this issue is to add the new .class files from the <span style="font-family: Courier New,Courier,monospace;">swt.jar</span> file to the <span style="font-family: Courier New,Courier,monospace;">ppro-ui.jar</span> file that is in <span style="font-family: Courier New,Courier,monospace;">\Program
+Files\J9\PPRO10\lib</span>\<span style="font-family: Courier New,Courier,monospace;">jclPPro10</span>. For more details, see the <a href="http://forum.java.sun.com/thread.jspa?messageID=3981289">discussion thread</a>.
+&nbsp;Another, more elegant solution, is to change the J9 internal
+bootclasspath to include the new .jar file first in this path. To do
+so, you can use the -Xbootclasspath option. For example: <span style="font-family: Courier New,Courier,monospace;">"\Program Files\J9\PPRO10\bin\j9.exe" "-Xbootclasspath/p:\opt\swt\swt.jar"</span>. The /p key indicates to prepend the value to the path [Contribution from Peter Skopek].&nbsp;<br>
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+Obs. If you made some mistake in this process, you can always restore the original J9 environment from your: <span style="font-family: Courier New,Courier,monospace;">C:\Program Files\IBM\DeviceDeveloper\wsdd5.0\ive-2.2\runtimes\wm2003\arm\ppro10\bin<span style="font-family: Helvetica,Arial,sans-serif;"> directory from your desktop computer.</span></span><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span style="font-weight: bold;">OTHER PACKAGES<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+Install XML Support</span>.
+In order to add XML: SAX and DOM support for your J9 Personal Profile
+environemnt, you can download <a href="http://xml.apache.org/xerces2-j/">Xerces 2 Java Parser</a>
+and copy the <span style="font-family: Courier New,Courier,monospace;">xml-apis.jar</span>, <span style="font-family: Courier New,Courier,monospace;">resolver.jar</span>
+and the <span style="font-family: Courier New,Courier,monospace;">xercesImpl.jar</span>
+files to <span style="font-family: Courier New,Courier,monospace;">\Program
+Files\J9\PPRO10\lib\jclPPro10\ext</span><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"> in your
+device.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span style="font-weight: bold;">Install SVG</span>.
+There is a light version of SVG graphics engine for Pocket PC at: <a href="http://www.tinyline.com/svgt/index.html">TinyLine SVG</a>
+web site.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</span></span>
+<h2><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;">Running
+your applications</span></span></h2>
+
+
+
+
+
+
+
+
+<span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-weight: bold;">Java command.</span> There
+are two ways to use the J9 java virtual machine, by invoking <span style="font-family: Courier New,Courier,monospace;">j9.exe</span>
+or <span style="font-family: Courier New,Courier,monospace;">j9w.exe</span>.
+The first one is equivalent to <span style="font-family: Courier New,Courier,monospace;">java.exe</span> in traditional J2SDK, the
+second is equivalent to javaw.exe in that desktop environment. The <span style="font-family: Courier New,Courier,monospace;">j9w.exe</span>
+starts the application without generationg command line output. In
+other words, it starts scilently. For development purposes, <span style="font-family: Courier New,Courier,monospace;">j9.exe</span>
+is
+better, since the exeptions will be displayed on the screen; while for final sofware releases <span style="font-family: Courier New,Courier,monospace;">j9w.exe</span>
+is probably more indicated.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+<span style="font-weight: bold;">Use Full Path Names.</span> In order to run applications in the pocket PC, you must always use full
+path file names in your applications. This includes the options and
+parameters to your java application. The pocket PC and the j9 virtual
+machie seem not to understand relative paths.<br>
+
+
+
+
+
+
+
+
+<br>
+
+
+
+<span style="font-weight: bold;">Quotes.</span> The path names, jvm option keys and the java application name must be written under " "s. <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+<span style="font-weight: bold;">Shortcuts.</span> For, example, to run a Hello World application you can create a windows
+link file and change its content to look like:<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span style="font-family: Courier New,Courier,monospace;">255#"\Program
+Files\J9\PPRO10\bin\j9.exe" "-jcl:ppro10" "-cp" "\opt\SWT\" "HelloWorld"</span><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+<span style="font-weight: bold;">Parameters.</span> In this example, the <span style="font-family: Courier New,Courier,monospace;">HelloWorld.class</span>
+file is located at </span></span><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Courier New,Courier,monospace;">\opt\SWT\<span style="font-family: Helvetica,Arial,sans-serif;"> directory.
+The parameter&nbsp;</span></span></span></span><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Courier New,Courier,monospace;">"-jcl:ppro10"</span></span></span><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;">
+indicates to J9 which profile to use for its execution, in this case
+the personal profile. The current
+directory is provided as the classpath. This is necessary, since the
+<span style="font-family: Courier New,Courier,monospace;">HelloWorld.class</span> file is located in the <span style="font-family: Courier New,Courier,monospace;">\opt\SWT</span>
+directory. The additional packages,
+installed in the ext folder of J9&nbsp; runtime are automatically
+part
+of the classpath and do not need to be passed to the -cp parameter. </span></span></span></span><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"></span></span><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;">The
+"255#" part in the begining of the link file indicates the size of the
+command line in bytes. This seems not to work well in the Windows CE
+2003, though: more than 255 characters are ignored. </span></span><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"></span></span><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+<span style="font-weight: bold;">Use .bat files.</span> Alternatively, you can create a .bat file, similar to the ones you use
+in regular windows desktop, and add the line above with the exception
+of the "255#" part.&nbsp;</span></span><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"></span></span><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;">In order to execute .bat files, however, you need to
+be funning the <span style="font-weight: bold;">cmd.exe</span>
+application you previously installed in Microsoft Power Toys.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Here it is an example of a .bat file that runs a YANCEES publish client.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span style="font-family: Courier New,Courier,monospace;">"\Program
+Files\J9\PPRO10\bin\j9.exe" "-jcl:ppro10" "-cp"
+"\opt\RMI\Yancees-SNAPSHOT.jar;\opt\RMI\"
+-D"java.security.policy=file://opt/RMI/java.policy.all"
+-D"java.rmi.server.codebase=file://opt/RMI/Yancees-SNAPSHOT.jar"
+"RMIPublisher" "bahia.ics.uci.edu" "/opt/RMI/event.xml"<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</span></span></span>The programs are installed in
+the <span style="font-family: Courier New,Courier,monospace;">/opt/RMI</span>
+directlry. A <span style="font-family: Courier New,Courier,monospace;">java.policy.all</span>
+file is also provided in this directory,
+with the security options used by this java virtual machine. All the
+RMI sbubs are in the <span style="font-family: Courier New,Courier,monospace;">Yancees-SNAPSHOT.jar</span>
+file in this directory. Note that the jar file needs to be passed as
+part of the -cp parameter. The program <span style="font-family: Courier New,Courier,monospace;">RMIPublisher</span>
+is started with two parameters: <span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Courier New,Courier,monospace;">"bahia.ics.uci.edu"<span style="font-family: Helvetica,Arial,sans-serif;"> and </span>"/opt/RMI/event.xml"<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br style="font-family: Helvetica,Arial,sans-serif;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span style="font-family: Helvetica,Arial,sans-serif;">The
+&nbsp;command line above is the content of the file <span style="font-family: Courier New,Courier,monospace;">rmipub.bat</span>
+which can be executed from within the <span style="font-weight: bold;">cmd.exe</span> command
+processor, after changing to the <span style="font-family: Courier New,Courier,monospace;">/opt/RMI<span style="font-family: Helvetica,Arial,sans-serif;"> directory.
+Note that the way you use RMI is the same as that implemented by JDK1.3.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The souce code of the examples previously discussed are available here:
+<a href="download/CDCDemo.zip">CDCDemo.zip</a><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</span></span></span></span></span></span>
+<br>
+
+
+
+
+
+
+
+
+For further recerence, a pretty good description on how to run Pocket PC java programs is provided <a href="http://www.firstloox.org/forums/showthread.php?p=32533">here</a>.<br>
+
+
+
+
+
+
+
+
+<span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"></span></span></span></span></span></span>
+<h2><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;">Some known
+issues with J9 and cmd.exe</span></span></span></span></span></span></h2>
+
+
+
+<span style="font-weight: bold;">Limited link command line length</span>. It seems that the j9.exe command line cannot exceed 256 characters in
+length when used under links. If the length of the j9.exe parameters exceeds 256, the program
+execution may not succeed, some classes in the classpath may not be
+found or some parameters may be missed. I am not sure this is an issue
+with j9 or with the cmd.exe program I am using to run my applications,
+though.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+Links seem not to work at all if their lenght exceeds 256 characters
+too. I did nto test this option thoroughly. The first parameter of a
+link indicates its lenght in characters. Try using #512 in the begining
+of the link.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A good strategy to deal with these problems is to put all .jar files in
+the <span style="font-family: Courier New,Courier,monospace;">\Program
+Files\J9\PPRO10\lib\jclPPro10\ext</span> folder in order to
+reduce the size of the command line, including the -cp parameter.
+Another idea is to put all your application files in a single .jar file
+passed to the -cp parameter.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+<h2><span style="font-weight: bold;">An Alternative Way: Java Applets</span></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+Instead of running your java program as an application, you can
+consider running it as an applet inside Internet Explorer for pocketPC.
+&nbsp;The <span class="BigTitle"><a href="http://www.handango.com/PlatformProductDetail.jsp?siteId=1&amp;productType=2&amp;catalog=0&amp;sectionId=0&amp;productId=59096&amp;programId=45&amp;affiliateId=1218">Esmertec Jbed CDC Java Virtual Machine</a> provides a java plug-in for this purpose.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://nfppc.access.co.jp/english/">NetFronnt for Pocket PC</a> is a browser that supports Java and Flash.<br>
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+The <a href="http://www.cs.unc.edu/%7Elindsey/7ds/notes/jeode/">Insignia Solutions Jeode Java Runtime</a>&nbsp;
+provides a plug-in for PocketPC Internet Explorer that allows the
+execution of Java Applets on this device.&nbsp;It seems that
+JeodeRuntime was discontinued and/or changed its name to </span><a href="http://www.esmertec.com/solutions/mobile_multimedia/jbed_cdc/">Jbed CDC java runtime</a>&nbsp;. <br>
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="BigTitle"><br>
+
+
+
+
+
+
+
+
+
+
+
+
+In all those runtime environments, however, one needs to figure out how
+to run Java RMI, besides the basic installation process, which goes
+beyoond this document purpose.<br>
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+</span>
+<h2><span class="BigTitle">An alternative: Use AWT</span></h2>
+
+
+
+
+
+
+
+
+<span class="BigTitle"></span>J9 provides suport for&nbsp;AWT (event
+model and widgets compatible with JDK1.1), which allows the development
+of more traditional java user itnerfaces.&nbsp;<br>
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+In special, one can use <a href="http://www.rolemodelsoftware.com/drawlets/index.php">drawlets</a>, a framework for drawing graphics on top of AWT. <br>
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+<a href="http://java.sun.com/products/personaljava/truffle/index.html">Tuffle</a>
+(Touchable Look &amp; Fell Specification) is a toolkit used to
+customize the look and feel of AWT applications that run on PDAs.<br>
+
+
+
+
+
+<br>
+
+
+
+
+
+<h2><span class="BigTitle">Another alternative: Use SVG Graphics</span></h2>
+
+
+
+
+
+<a href="http://www.tinyline.com/">TinyLine</a> provides&nbsp;a nice SVG implementation designed to support Personal and MIDP profiles called <a href="http://www.tinyline.com/svgt/">TinyLine SVG API</a>. It is based on a Java 2D implementation called <a href="http://www.tinyline.com/2d/index.html">TinyLine 2D</a>. One can use it to design graphic-intensive applications and visualizations. <br>
+
+
+
+
+
+<span class="BigTitle">
+
+
+</span><span style="font-weight: bold;"></span><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"><span style="font-family: Courier New,Courier,monospace;"><span style="font-family: Helvetica,Arial,sans-serif;"></span></span></span></span></span></span>
+<h2><span style="font-weight: bold;">Further
+References</span></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span style="font-weight: bold;">Setting up java on Pocket PC:</span><br>
+
+
+
+
+
+
+
+
+<a href="http://www.vikdavid.com/mobile/">Java Pocket PC, the
+Unofficial FAQ</a><br>
+
+
+
+
+
+
+
+
+<a href="http://www.firstloox.org/forums/showthread.php?p=32533">Using Java on the Pocket PC - the complete tutorial</a><br>
+
+
+
+
+
+
+
+
+<a href="http://s91215199.onlinehome.us/zaurus/JavaOnPPC2002.htm">A
+brief adventure in "On-board Java Development" for Pocket PC 2002</a><br>
+
+
+
+
+
+
+
+
+<a href="http://publib.boulder.ibm.com/infocenter/weahelp/5.1/topic/com.ibm.websphere.db2e.doc/dbeapt0503b.html">Installing the J9 JVM run-time environment on a Windows CE device</a><br>
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.berka.name/stan/jvm-ppc/java_for_pda.html">Java for PocketPC PDAs</a><br>
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+<span style="font-weight: bold;">RMI on Pocket PC:</span><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.sun.com/software/communitysource/j2me/rmiop/index.xml">Sun
+Community Source Licensing(SCSL) - J2ME RMI Optional package (RMI OP)</a><br>
+
+
+
+
+
+
+
+
+<a href="http://developers.sun.com/techtopics/mobility/personal/articles/pbp_pp/"></a><br>
+
+
+
+
+
+
+
+
+<span style="font-weight: bold;">Differences in the java profiles:</span><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.developer.com/java/j2me/article.php/1443961">Understanding
+The Connected Device Configuration (CDC)</a><br>
+
+
+
+
+
+
+
+
+Eric Giguere's <a href="http://developers.sun.com/techtopics/mobility/personal/articles/pbp_pp/">Personal 
+                Basis Profile vs. Personal Profile: What's the Difference?</a><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                Sun's <a href="http://java.sun.com/j2me/docs/pdf/PP_Programmer_Guide.pdf">Programmer's 
+                Guide, J2ME Personal Profile v1.0</a> [PDF]<br>
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+<span style="font-weight: bold;">Pocket PC java user interface links:</span><br>
+
+
+
+
+
+
+
+
+<a href="http://www.eclipse.org/articles/Article-small-cup-of-swt/pocket-PC.html">A
+small cup of SWT</a><br>
+
+
+
+
+
+
+
+
+<a href="http://www.cs.umanitoba.ca/%7Eeclipse/">Getting Started with Eclipse and the SWT</a><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.tinyline.com/svgt/index.html">TinyLine
+SVG</a><br>
+
+
+
+
+
+
+
+
+<a href="http://www.rolemodelsoftware.com/drawlets/index.php">Drawlets</a><a href="http://www.j2mepolish.org"><br>
+
+
+
+
+</a><a href="http://www.j2mepolish.org">J2MEPolish</a><br>
+
+
+
+
+<h2>Other Java Virtual Machines</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www2s.biglobe.ne.jp/%7Edat/java/project/jvm/index_en.html">Mysaifu JVM (GNU Public License v2)</a><br>
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+<center><span lang="en-us">Research Staff: <a href="http://www.ics.uci.edu/%7Ersilvafi">Roberto Silveira
+Silva
+Filho</a><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Professor: <a href="http://www.ics.uci.edu/%7Eredmiles/">
+David F.
+Redmiles</a><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<i><a href="http://www.isr.uci.edu/">Institute for
+Software Research</a><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.ics.uci.edu/">Information and Computer
+Science</a><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://www.uci.edu/">University of California,
+Irvine</a>
+CA 92697-3425</i><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="mailto:redmiles@ics.uci.edu"><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</a></span></center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span lang="en-us"><font color="white">
+<script language="javascript1.2"><!--
+EXs=screen;EXw=EXs.width;navigator.appName!="Netscape"?
+EXb=EXs.colorDepth:EXb=EXs.pixelDepth;//-->
+</script>
+<script language="javascript"><!--
+EXd=document;EXw?"":EXw="na";EXb?"":EXb="na";
+EXd.write("<img src=\"http://t0.extreme-dm.com",
+"/c.g?tag=yancees&j=y&srw="+EXw+"&srb="+EXb+"&",
+"l="+escape(EXd.referrer)+"\" height=1 width=1>");//-->
+</script></font></span>
+<noscript><span lang="en-us"><font
+color="white"><img alt=""
+src="http://t0.extreme-dm.com/c.g?tag=yancees&j=n"></font></span>
+</noscript>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<center>
+</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+<address class="style1"> This page was last updated on November 15th,
+2005 by Roberto S. Silva Filho
+</address>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
