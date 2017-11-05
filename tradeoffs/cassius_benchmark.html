@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="pt-br"><head><title>Analysis of Versatility Trade-offs in Publish/Subscribe Infrastructures</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+body,td,th {
+font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-size: smaller}
+-->
+</style></head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<table width="100%">
+<tbody>
+<tr>
+<td align="left">
+<p align="center"><a href="http://www.uci.edu/"><img src="UCI.gif" border="0" height="108" width="255"></a></p>
+</td>
+<td align="center">
+<h1>Analysis of Versatility Trade-offs of Publish/subscribe
+Infrastructures<br>
+CASSIUS Reusability Benchmark</h1>
+</td>
+<td><br>
+</td>
+<td align="right">
+<p align="center"><a href="http://www.isr.uci.edu/"> <img src="ISR-Logo.gif" border="0" height="69" width="140"></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div align="center">
+<center>
+<table>
+<tbody>
+<tr>
+<td align="center"> Benchmarks<span lang="en-us">:&nbsp;</span>
+</td>
+<td><a href="#Overview">Overview</a> |</td>
+<td align="center">
+<p align="justify"><span lang="en-us"><a href="#Introduction">Performance</a> |</span></p>
+</td>
+<td align="center">
+<p align="justify"><a href="#Reusability">Reusability </a>|</p>
+</td>
+<td><a href="#IndividualCosts">Individual Reuse Costs</a> |</td>
+<td align="center"></td>
+<td align="center"><br>
+</td>
+<td align="center">&nbsp;<br>
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+</div>
+<div align="center">
+<center>
+<table>
+<tbody>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td style="vertical-align: top;"></td>
+</tr>
+</tbody>
+</table>
+</center>
+</div>
+<p align="justify">&nbsp;</p>
+<h2 align="justify"><span lang="en-us"><a name="Overview"></a>Overview</span></h2>This
+section reports on the evaluation of the selected infrastrucutres when
+they are used to support the requirements of an awareness server: CASSIUS.
+ <h3>CASSIUS</h3>
+<p class="MsoNormal"><a href="http://www.isr.uci.edu/projects/cassius/index.shtml">CASSIUS</a>&nbsp;
+is a notification server designed to support the development of
+awareness-based applications. A distinctive feature of CASSIUS is its
+ability to mange information source hierarchies, allowing end-users to
+browse through and subscribe to those hierarchies. The level of
+disruption of the notifications can also be configured according to
+different awareness styles. CASSIUS supports content-based&nbsp;
+subscriptions. In other words,subscriptions can be performed on the
+entire content of the event attributes (with the exception of some
+binary fields). CASSIUS uses a fixed record-based event model, with its
+own set of fields.&nbsp; The notification model is periodic pull. </p>
+<h3>CASSIUS Required publish/subscribe API</h3>From a publish/subscrbe perspective, impromptu requirements can be expressed in the form of the following API:
+<p class="MsoNormal" style="text-align: left; text-indent: 0in; font-family: Courier;" align="left"><small><span style="font-weight: bold;">
+public interface</span> ICassiusNotificationServerAPI {&nbsp;</small></p><p class="MsoNormal" style="text-align: left; text-indent: 0in; font-family: Courier;" align="left"><small>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"></span></small><small><span style="font-weight: bold;"><span style="font-style: italic;">// Account management<br>&nbsp; &nbsp; </span></span></small><small><span style="font-weight: bold;">public</span> <span style="font-weight: bold;">void</span> createAccount(String accountName, String description)
+<span style="font-weight: bold;">throws</span> CassiusNSException;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">void</span> deleteAccount(String accountName) <span style="font-weight: bold;">throws</span> CassiusNSException;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> ICassiusAccount[] listAllAccounts() <span style="font-weight: bold;">throws</span> CassiusNSException;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">String</span> addObjectToAccount(String accountName, String objName,
+String objType, String parentID, String description)
+<span style="font-weight: bold;">throws</span> CassiusNSException;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">void</span> removeObjectFromAccount(String accountName, String objectID)
+<span style="font-weight: bold;">throws</span> CassiusNSException;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> ICassiusObject[] listAccountObjects(String accountName,
+String parentId) <span style="font-weight: bold;">throws</span> CassiusNSException;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">void</span> addObjectType(String accountName, String typeName,
+String[] eventNames, String description) <span style="font-weight: bold;">throws</span> CassiusNSException;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> ICassiusObjectType getObjectType(String accountName, String typeName)
+throws CassiusNSException;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">public void</span> deleteObjectType(String accountName, String typeName)
+<span style="font-weight: bold;">throws</span> CassiusNSException;&nbsp;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> String[] listObjectTypeEvents(String accountName, String typeName)
+<span style="font-weight: bold;">throws</span> CassiusNSException;<span style="font-weight: bold;">&nbsp; &nbsp;&nbsp;</span></small></p><p class="MsoNormal" style="text-align: left; text-indent: 0in; font-family: Courier;" align="left"><small><span style="font-weight: bold;"><span style="font-style: italic;">&nbsp; &nbsp; // Account listener management</span><br>&nbsp; &nbsp; public</span> <span style="font-weight: bold;">void</span> addAccountEventsListener(ICassiusAccountListener al, String account)
+<span style="font-weight: bold;">throws</span> CassiusNSException;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">void</span> removeAccountEventsListener(ICassiusAccountListener al, String account)
+<span style="font-weight: bold;">throws</span> CassiusNSException;&nbsp;<br><span style="font-weight: bold;">&nbsp; &nbsp; public void</span> addModelEventsListener(ICassiusModelListener ml)
+<span style="font-weight: bold;">throws</span> CassiusNSException;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">void</span> removeModelEventsListener(ICassiusModelListener ml)
+<span style="font-weight: bold;">throws</span> CassiusNSException;&nbsp;&nbsp;&nbsp;&nbsp;<br><span style="font-weight: bold;"></span></small></p><p class="MsoNormal" style="text-align: left; text-indent: 0in; font-family: Courier;" align="left"><small><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp; <span style="font-style: italic;">// Publish/subscribe API</span><br>&nbsp; &nbsp; public</span> <span style="font-weight: bold;">void</span> publish(ICassiusEvent event, String accountName) <span style="font-weight: bold;">throws</span> CassiusNSException;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">void</span> subscribe(ICassiusSubscriberInterface si,
+ICassiusSubscription subscription) <span style="font-weight: bold;">throws</span> CassiusNSException;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">void</span> unsubscribe(ICassiusSubscriberInterface si,
+ICassiusSubscription subscription) <span style="font-weight: bold;">throws</span> CassiusNSException;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">void</span> unsubscribe(ICassiusSubscriberInterface si)
+<span style="font-weight: bold;">throws</span> CassiusNSException;</small></p><p class="MsoNormal" style="text-align: left; text-indent: 0in; font-family: Courier;" align="left"><small>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold; font-style: italic;">// Pull notification</span><br>&nbsp; &nbsp; <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">void</span> pullNotifications(ICassiusSubscriberInterface si,
+ICassiusSubscription subscription, boolean delete)
+<span style="font-weight: bold;">&nbsp;&nbsp;throws</span> CassiusNSException;&nbsp;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">void</span> pullNotifications(ICassiusSubscriberInterface si,
+ICassiusSubscription subscription, long since,
+boolean delete) <span style="font-weight: bold;">throws</span> CassiusNSException;&nbsp;<br>&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">void</span> clearNotifications(String accountName, long olderThan)
+<span style="font-weight: bold;">throws</span> CassiusNSException;&nbsp;</small></p><p class="MsoNormal" style="text-align: left; text-indent: 0in; font-family: Courier;" align="left"><small>}
+</small><br>
+</p>
+<p class="Body">From the point of view of the
+publish/subscribe infrastructures, CASSIUS requires: Record-based event
+model, content-based subscription (on every field of objects, with AND,
+OR&nbsp; operators, simple expressions ( ==, &gt;, &lt;, &gt;=, &lt;=
+), and the '*' wild card. For Example:
+(cassAccount.FileMonitor.ObjectID ==&nbsp;
+/Users/mkantor/cass/src/cassius/cassServlet.java AND&nbsp;
+cassAccount.FileMonitor.Event == Modify]). The notification model is
+pull; the publication model allows the specification of, besides
+supporting the definition of accounts where the events are&nbsp;
+published to, and event source browsing.</p>
+<h3>CASSIUS Benchmark</h3>The following benchmark was developed in
+order to assess the ability of different publish/subscribe
+infrastructures in supporting CASSIUS requirements:
+<div style="text-align: center;"><span style="font-size: 9pt; font-family: Courier;"></span><img style="width: 841px; height: 565px;" alt="CASSIUS Benchmark Architecture" src="CASSIUS-Benchmark.png"><br></div>
+<br>
+<p>Vertical
+dashed boxes represent individual implementations used in our tests,
+for
+example: The notification queues to store notifications that will be
+pulled by the subscribers (Notification queues over push model). The
+other
+components are infrastructure-specific, providing the required API
+functionality in infrastructure-specific ways.</p><h3>CASSIUS Benchmark Source&nbsp;Code Analysis</h3>After implementing the components in the benchmark described above, we
+prodeeded in measuring the characteristics of these components. The
+resulting metrics are presented as follows.<br><br>
+ <table style="border-collapse: collapse; width: 583pt;" border="0" cellpadding="0" cellspacing="0" width="778"><col style="width: 172pt;" width="229">
+ <col style="width: 57pt;" width="76">
+ <col style="width: 81pt;" width="108">
+ <col style="width: 77pt;" width="103">
+ <col style="width: 59pt;" width="79">
+ <col style="width: 60pt;" width="80">
+ <col style="width: 77pt;" width="103">
+ <tbody><tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt; width: 172pt; font-weight: bold;" height="20" width="229"><small>COMPONENTS</small></td>
+  <td class="xl65" style="width: 57pt; font-weight: bold;" width="76"><small>LOC</small></td>
+  <td class="xl65" style="width: 81pt; font-weight: bold;" width="108"><small>#Methods</small></td>
+  <td class="xl65" style="width: 77pt; font-weight: bold;" width="103"><small>#Classes</small></td>
+  <td class="xl65" style="width: 59pt; font-weight: bold;" width="79"><small>#Interfaces</small></td>
+  <td class="xl65" style="width: 60pt; font-weight: bold;" width="80"><small>McCabe CC</small></td>
+  <td class="xl65" style="width: 77pt; font-weight: bold;" width="103"><small>#Met*CC</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Benchmark</small></td>
+  <td align="right"><small>398</small></td>
+  <td align="right"><small>39</small></td>
+  <td align="right"><small>4</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>1.83</small></td>
+  <td align="right"><small>71.175</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt;" height="20"><small>CASSIUS Interface</small></td>
+  <td align="right"><small>141</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>11</small></td>
+  <td class="xl64" align="right"><small>1.00</small></td>
+  <td align="right"><small>1</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt;" height="20"><small>CASSIUS Kernel</small></td>
+  <td align="right"><small>484</small></td>
+  <td align="right"><small>48</small></td>
+  <td align="right"><small>6</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>1.94</small></td>
+  <td align="right"><small>93.12</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt;" height="20"><small>CASSIUS Data Model</small></td>
+  <td align="right"><small>272</small></td>
+  <td align="right"><small>42</small></td>
+  <td align="right"><small>4</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>1.17</small></td>
+  <td align="right"><small>49.014</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt;" height="20"><small>CASSIUS PushNS Kernel</small></td>
+  <td align="right"><small>267</small></td>
+  <td align="right"><small>17</small></td>
+  <td align="right"><small>2</small></td>
+  <td align="right"><small>1</small></td>
+  <td class="xl64" align="right"><small>2.82</small></td>
+  <td align="right"><small>48.008</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt;" height="20"><small>CASSIUS RMI</small></td>
+  <td align="right"><small>926</small></td>
+  <td align="right"><small>83</small></td>
+  <td align="right"><small>9</small></td>
+  <td align="right"><small>4</small></td>
+  <td class="xl64" align="right"><small>1.94</small></td>
+  <td align="right"><small>161.103</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>BFS API Imp.</small></td>
+  <td align="right"><small>306</small></td>
+  <td align="right"><small>20</small></td>
+  <td align="right"><small>2</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>3.00</small></td>
+  <td align="right"><small>60</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>BFS pub/sub core</small></td>
+  <td align="right"><small>274</small></td>
+  <td align="right"><small>29</small></td>
+  <td align="right"><small>3</small></td>
+  <td align="right"><small>2</small></td>
+  <td class="xl64" align="right"><small>2.57</small></td>
+  <td align="right"><small>74.443</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Siena API Imp.</small></td>
+  <td align="right"><small>476</small></td>
+  <td align="right"><small>23</small></td>
+  <td align="right"><small>3</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>3.64</small></td>
+  <td align="right"><small>83.789</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Siena Connector</small></td>
+  <td align="right"><small>51</small></td>
+  <td align="right"><small>2</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>4.00</small></td>
+  <td align="right"><small>8</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>CORBA-NS API Imp.</small></td>
+  <td align="right"><small>754</small></td>
+  <td align="right"><small>52</small></td>
+  <td align="right"><small>6</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.55</small></td>
+  <td align="right"><small>132.34</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>CORBA-NS Connector</small></td>
+  <td align="right"><small>92</small></td>
+  <td align="right"><small>2</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>6.50</small></td>
+  <td align="right"><small>13</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>JavaSpaces API Imp.</small></td>
+  <td align="right"><small>846</small></td>
+  <td align="right"><small>61</small></td>
+  <td align="right"><small>7</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.94</small></td>
+  <td align="right"><small>179.218</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>JavaSpaces Connector</small></td>
+  <td align="right"><small>85</small></td>
+  <td align="right"><small>7</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.57</small></td>
+  <td align="right"><small>17.997</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Yancees API Imp.</small></td>
+  <td align="right"><small>623</small></td>
+  <td align="right"><small>58</small></td>
+  <td align="right"><small>7</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>1.90</small></td>
+  <td align="right"><small>110.026</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Yancees Connector</small></td>
+  <td align="right"><small>68</small></td>
+  <td align="right"><small>4</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.50</small></td>
+  <td align="right"><small>10</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Yancees Dispatcher Adapter</small></td>
+  <td align="right"><small>379</small></td>
+  <td align="right"><small>33</small></td>
+  <td align="right"><small>3</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.39</small></td>
+  <td align="right"><small>79.002</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Yancees Subscription Plugin</small></td>
+  <td align="right"><small>27</small></td>
+  <td align="right"><small>10</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>1.00</small></td>
+  <td align="right"><small>10</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Yancees Pull Notification</small></td>
+  <td align="right"><small>132</small></td>
+  <td align="right"><small>10</small></td>
+  <td align="right"><small>2</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.20</small></td>
+  <td align="right"><small>22</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Yancees CASS Model</small></td>
+  <td align="right"><small>364</small></td>
+  <td align="right"><small>39</small></td>
+  <td align="right"><small>4</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>1.97</small></td>
+  <td align="right"><small>76.986</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Yancees CASS Model Protocol</small></td>
+  <td align="right"><small>245</small></td>
+  <td align="right"><small>20</small></td>
+  <td align="right"><small>2</small></td>
+  <td align="right"><small>3</small></td>
+  <td class="xl64" align="right"><small>2.50</small></td>
+  <td align="right"><small>50</small></td>
+ </tr></tbody></table><br><h2 align="justify"><span lang="en-us"><a name="Performance"></a>CASSIUS Benchmark: Performance</span></h2>
+<div style="text-align: center;"><img style="width: 616px; height: 320px;" alt="performance" src="cassius-performance-chart.PNG"><br>
+</div><h2 align="justify"><a name="Reusability"></a><span lang="en-us">CASSIUS Benchmark: Reusability&nbsp;</span></h2>In
+our study, we define cognitive distance as the produce of the number of
+lines of code and the average cyclomatic complexity of this code. The
+result of our experiment is shown in the following graphic. <br><br>The
+extensibility and configurability of YANCEES allows the customization
+of the infrastructure to more closely fit the requirements of the
+application domain. As a result, the client code size and complexity are
+reduced. This, however, comes with a development effort in the server
+side. As shown in our experiments, the&nbsp;
+server-side development efrorts of YANCEES is still less than developing the infrastructure from scratch. <br><br><br>
+<div style="text-align: center;"><img style="width: 615px; height: 306px;" alt="cognitive distance" src="cassius-dev-effort-loc-cc.PNG"><br></div>
+<span style=""><font style="" face="Verdana, Arial, Helvetica, sans-serif"><br></font></span>The following graphics show the original LOC and CC used to compute the cognitive distance.<br><span style=""><font style="" face="Verdana, Arial, Helvetica, sans-serif"><br></font></span><div style="text-align: center;"><span style=""><font style="" face="Verdana, Arial, Helvetica, sans-serif"><img style="width: 611px; height: 310px;" alt="effort in LOC" src="cassius-dev-effort-loc.PNG"><br><br></font></span><span style=""><font style="" face="Verdana, Arial, Helvetica, sans-serif">
+</font></span></div>
+<h3 style="text-align: center;"><img style="width: 613px; height: 319px;" alt="effort cc" src="edem-dev-effort-cc.PNG"><br></h3><h2><a name="IndividualCosts"></a>CASSIUS Benchmark: Analysis of Individual Reusability Costs</h2>Break down of the development costs per different tasks developers must do in order to reuse existing infrastructures<h3></h3><h3>Acknowledgements</h3>
+<p>This research has been sponsored by NSF (grants 0133749,
+0205724, 0326105, 0527729,0524033), an IBM Eclipse technology exchange
+grant, and the Intel Corporation. </p>
+<hr>
+<center><span lang="en-us">Research Staff: <a href="http://www.ics.uci.edu/%7Ersilvafi">Roberto Silveira
+Silva
+Filho</a><br>
+Professor: <a href="http://www.ics.uci.edu/%7Eredmiles/">
+David F.
+Redmiles</a><br>
+<i><a href="http://www.isr.uci.edu/">Institute for
+Software Research</a><br>
+<a href="http://www.ics.uci.edu/">Information and Computer
+Science</a><br>
+<a href="http://www.uci.edu/">University of California,
+Irvine</a>
+CA 92697-3425</i><br>
+<a href="mailto:redmiles@ics.uci.edu"><br>
+</a></span></center>
+<hr>
+<center>
+<p><font color="white" size="1"><a target="_top" href="http://extremetracking.com/open?login=yancees"><br>
+</a></font></p>
+</center>
+<hr>
+<address class="style1"> This page was last updated on May
+2nd,
+2008
+</address>
+</body></html>

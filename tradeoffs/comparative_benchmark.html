@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="pt-br"><head><title>Analysis of Versatility Trade-offs in Publish/Subscribe Infrastructures</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+body,td,th {
+font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-size: smaller}
+-->
+</style></head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<table width="100%">
+<tbody>
+<tr>
+<td align="left">
+<p align="center"><a href="http://www.uci.edu/"><img src="UCI.gif" border="0" height="108" width="255"></a></p>
+</td>
+<td align="center">
+<h1>Analysis of Versatility Trade-offs of Publish/subscribe
+Infrastructures<br>QUANTITATIVE and QUALITATIVE Comparison of the Infrastructures</h1>
+</td>
+<td><br>
+</td>
+<td align="right">
+<p align="center"><a href="http://www.isr.uci.edu/"> <img src="ISR-Logo.gif" border="0" height="69" width="140"></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div align="center">
+<center>
+<table>
+<tbody>
+<tr>
+<td align="center"> Benchmarks<span lang="en-us">:&nbsp;</span>
+</td>
+<td><a href="#Overview">Overview</a> |</td>
+<td align="center">
+<p align="justify"><span lang="en-us"><a href="#Findings">Findings</a> |</span></p>
+</td>
+<td align="center">
+<p align="justify"><a href="#DesignImplications">Implications to Design </a>|</p>
+</td>
+<td></td>
+<td align="center"></td>
+<td align="center"><br>
+</td>
+<td align="center">&nbsp;<br>
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+</div>
+<div align="center">
+<center>
+<table>
+<tbody>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td style="vertical-align: top;"></td>
+</tr>
+</tbody>
+</table>
+</center>
+</div>
+<p align="justify">&nbsp;</p>
+<h2 align="justify"><span lang="en-us"><a name="Overview"></a>Overview</span></h2>After
+performing individual benchmarks with different infrastructures and
+applications, we compared the results obtained in these experiments in
+a horizontal way.<br><br>It
+is important to note that infrastructures as Siena, CORBA-NS and Java
+Spaces are reused "from the outside". I.e. they are extended as black
+boxes, by building the required functionality around their provided
+APIs. YANCEES, on the other hand, is configurable and extensible as a
+grey box, allowing the modification of the set of features its supports
+"from the inside". This fundamental difference is reflected in the
+graphics below where both client and server side development efforts
+are shown, together with combined effort (client + sever) in a separate
+bar.<br><br><h2>Performance: usefulness and efficiency</h2>The
+performance tests demonstrate: (1) The usefulness of YANCEES and the
+other infrastructures in supporting different applicaiton domains; and
+(2) the efficiency of these infrastructures when reused in different
+contexts. <br><br><div style="text-align: center;"><span style="font-weight: bold;">EDEM performance results:</span><br></div><div style="text-align: center;"><img style="width: 596px; height: 285px;" alt="EDEM performance" src="edem-performance-chart.PNG"><br></div><br>In
+EDEM benchmarks, both JavaSpaces and CORBA-NS were not able to handle
+the large amount/frequency of events demanded by the benchmark.
+Moreover, these infrastructures must be executed in different processes.<br><br style="font-weight: bold;"><div style="text-align: center;"><span style="font-weight: bold;">CASSIUS performance results:</span><br></div><div style="text-align: center;"><img style="width: 598px; height: 284px;" alt="CASSIUS performance" src="cassius-performance-chart.PNG"><br></div><br>In
+the CASSIUS scenario, the native pull model of JavaSpaces gives it a
+performance advantage. Whereas all the other infrastructures, including
+CORBA-NS, need to implement a push-based event queue that store
+notifications for later retrieval. This strategy results in higher
+processing times for the other infrastructures.<br><br style="font-weight: bold;"><div style="text-align: center;"><span style="font-weight: bold;">IMPROMPTU performance results:</span><br></div><div style="text-align: center;"><img style="width: 592px; height: 273px;" alt="IMPROMPTU performance" src="impromptu-performance-chart.PNG"><br></div><br>In
+the IMPROMPTU scenarion, the JavaSpaces pull notificaiton model does
+not perform well in this intrinsic push, fast forwarding application
+domain.<br><h2>Reusability: Total Development Effort</h2><br>If
+one
+was required to build three different infrastructures to support the
+trhee different scenarios we studied, the total cost of development in
+terms of lines of code and complexity, for each infrastructure would be
+as shown in the graphic below. Note that these numbers do not include
+the initial development effort of each infrastructure, only the effort
+of the user to adapt the infratructure to their needs. YANCEES is the
+only infrastructure that includes development costs for the server side.<br><br><div style="text-align: center;"><img style="width: 576px; height: 289px;" alt="total cognitive effort" src="totalization-dev-effort-loc-cc.PNG"><br></div><br>The original LOC and McCAbe CC metrics used in our metrics are shown below.<br><br><div style="text-align: center;"><img style="width: 577px; height: 289px;" alt="development effort LOC" src="totalization-dev-effort-loc.PNG"><br></div><br><div style="text-align: center;"><img style="width: 568px; height: 289px;" alt="Development effort CC" src="totalization-dev-effort-cc.PNG"><br></div><span style="font-weight: bold;"></span><h3><br></h3><h2><a name="Findings"></a>Summary of Findings</h2><h3>Performance</h3>- The
+performance of compositional (YANCEES) and minimal-core (Siena)
+infrastructures&nbsp;are comparable to the best case build-from-scratch approach implementations.<h3>- Generalization versus specificity</h3>-
+Generalization (in either subscription and notificatoin models), while support a larger set of application domains, require
+extra programming effort to translate and parse specific concerns into generalized data and subscription formats.<br><h3>- Reuse: buy versus build</h3>-
+The ability to customize the API to match application requirements
+(YANCEES case) has two benefits: <br><ol><li>it divides the development effort between infrastructure producers and
+consumers. </li><li>it reduces
+client-side development effort since the infrastructure can be
+customized to support the exact set of features required by the domain.</li></ol>-
+However, these benefits come with high initial software development
+costs. In order to pay-off that initial investment, YANCEES (as well as
+the other approaches) need to be reused in
+different contexts.<br><h3>- The costs of inflexibility</h3>- The
+inflexibility of CORBA-NS, Siena and JavaSpaces requires API mismatches
+to be handled in the client-side, by the application developers. This
+not only increases the development effort, but also impacts the
+performance of the application.<br><br>Examples of mismatches found during the benchmark: <br>&nbsp;&nbsp;&nbsp; - JavaSpaces inability to handle aritmetic filter operators as: &lt;, &gt;, &lt;=, &gt;=<br>&nbsp; &nbsp; - JavaSpaces lack of support for pull notifications<br>&nbsp;&nbsp;&nbsp; - JavaSpaces requires clients to find the tuple when a notification trigger is fired.<br>&nbsp;&nbsp;&nbsp; - CORBA-NS pull notifications does not match CASSIUS pull model<br>&nbsp;&nbsp;&nbsp; - Siena does not support pull notifications<br>&nbsp;&nbsp;&nbsp; - Siena Pattern implementation is different from the one required by EDEM.<br><br>-
+Variation-based approaches as CORBA-NS provide a large set of options
+in its API. The selection between these options needs to be performed
+manually. The consequence is an increase in the infrastructure consumers' development effort.<br>-
+The JavaSpaces model does not completely match the publish/subscribe
+model, requiring extra effort to retrieve the events (represented as
+tuples), from the space. This results in performance penalties and
+extra development effort.<br><h2><a name="DesignImplications"></a>Implications for Infrastructures Design</h2>Coming soon.<br><h3>Acknowledgements</h3>
+<p>This research has been sponsored by NSF (grants 0133749,
+0205724, 0326105, 0527729,0524033), an IBM Eclipse technology exchange
+grant, and the Intel Corporation. </p>
+<hr>
+<center><span lang="en-us">Research Staff: <a href="http://www.ics.uci.edu/%7Ersilvafi">Roberto Silveira
+Silva
+Filho</a><br>
+Professor: <a href="http://www.ics.uci.edu/%7Eredmiles/">
+David F.
+Redmiles</a><br>
+<i><a href="http://www.isr.uci.edu/">Institute for
+Software Research</a><br>
+<a href="http://www.ics.uci.edu/">Information and Computer
+Science</a><br>
+<a href="http://www.uci.edu/">University of California,
+Irvine</a>
+CA 92697-3425</i><br>
+<a href="mailto:redmiles@ics.uci.edu"><br>
+</a></span></center>
+<hr>
+<center>
+<p><font color="white" size="1"><a target="_top" href="http://extremetracking.com/open?login=yancees"><br>
+</a></font></p>
+</center>
+<hr>
+<address class="style1"> This page was last updated on May
+2nd,
+2008
+</address>
+</body></html>

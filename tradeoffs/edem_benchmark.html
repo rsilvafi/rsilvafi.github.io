@@ -1,0 +1,453 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="pt-br"><head><title>Analysis of Versatility Trade-offs in Publish/Subscribe Infrastructures</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+body,td,th {
+font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-size: smaller}
+-->
+</style></head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<table width="100%">
+<tbody>
+<tr>
+<td align="left">
+<p align="center"><a href="http://www.uci.edu/"><img src="UCI.gif" border="0" height="108" width="255"></a></p>
+</td>
+<td align="center">
+<h1>Analysis of Versatility Trade-offs of Publish/subscribe
+Infrastructures<br>EDEM Benchmark</h1>
+</td>
+<td><br>
+</td>
+<td align="right">
+<p align="center"><a href="http://www.isr.uci.edu/"> <img src="ISR-Logo.gif" border="0" height="69" width="140"></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div align="center">
+<center>
+<table>
+<tbody>
+<tr>
+<td align="center"> Benchmarks<span lang="en-us">:&nbsp;</span>
+</td>
+<td><a href="#Overview">Overview</a> |</td><td align="center">
+<p align="justify"><span lang="en-us"><a href="#Introduction">Performance</a> |</span></p>
+</td>
+<td align="center">
+<p align="justify"><a href="#Reusability">Reusability </a>|</p>
+</td>
+<td>&nbsp;<a href="#IndividualCosts">Individual Reuse Costs</a> |<br></td><td align="center"><br></td><td align="center"><br></td>
+<td align="center">&nbsp;<br>
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+</div>
+<div align="center">
+<center>
+<table>
+<tbody>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td style="vertical-align: top;"></td>
+</tr>
+</tbody>
+</table>
+</center>
+</div>
+<p align="justify">&nbsp;</p>
+<h2 align="justify"><span lang="en-us"><a name="Overview"></a>Overview</span></h2>This
+section reports on the evaluation of the selected infrastrucutres when
+they are used to support the requirements of usability monitoring domain &nbsp;as required by EDEM.<br>
+<h3>EDEM</h3>
+<p class="MsoNormal"><a href="http://portal.acm.org/citation.cfm?id=302163.302177&amp;coll=ACM&amp;dl=ACM&amp;CFID=31474113&amp;CFTOKEN=21532970">Expectation
+Driven Event Monitoring
+(or EDEM)</a>
+is an approach to software
+usability monitoring based on the concept of expectations (common
+sequences of events that represent user interface interactions).
+Through the direct
+monitoring of applications deployed to end-users computers, EDEM
+detects and
+logs invalid or unexpected sequences of user interface events. This
+information is periodically sent to software developers and interface
+designers
+helping in the resolution of common usability problems.</p>
+<h3>EDEM Required publish/subscribe API</h3>From a publish/subscrbe perspective, EDEM requirements can be expressed in the form of the following API:
+<p class="MsoNormal" style="text-align: left; text-indent: 0in; font-family: Courier;" align="left"><b style=""><span style="font-size: 9pt;">public</span></b><span style="font-size: 9pt;"> <b style="">interface</b>
+IEDEMNotificationServerAPI {<o:p></o:p></span></p>
+<p class="MsoNormal" style="text-align: left; text-indent: 0in; font-family: Courier;" align="left"><i style=""><span style="font-size: 9pt;"><o:p>&nbsp;</o:p></span></i><b style=""><i style=""><span style="font-size: 9pt;">// State manipulation operations</span></i></b><br>
+<span style="font-size: 9pt;"><span style="">&nbsp;
+</span><b style="">void</b> setState(<b style="">String</b> key, <b style="">String</b>
+value);<br>
+<span style="">&nbsp; </span><b style="">void</b>
+setState(<b style="">String</b> key, <b style="">int</b>
+value);<br>
+<span style="">&nbsp; </span><b style="">String</b>
+getState(<b style="">String</b> key);<br>&nbsp; <span style="font-weight: bold;">String</span> getIntState(String key);<br>
+<span style="">&nbsp; </span><b style="">void</b>
+removeState(<b style="">String</b> key);<o:p></o:p></span></p>
+<p class="MsoNormal" style="text-align: left; text-indent: 0in; font-family: Courier;" align="left"><i style=""><span style="font-size: 9pt;"><o:p>&nbsp;</o:p></span></i><b style=""><i style=""><span style="font-size: 9pt;">// publication and subscription
+primitives</span></i></b><br>
+<span style="font-size: 9pt;"><span style="">&nbsp;
+</span><b style="">void</b> publish(IEDEMEvent
+event);<br>
+<span style="">&nbsp; </span><b style="">void</b>
+subscribe(ISubscriberInterface si, IEventFilter filter);<br>
+<span style="">&nbsp; </span><b style="">void</b>
+subscribe(ISubscriberInterface si, IStateFilter filter);<br>
+<span style="">&nbsp; </span><b style="">void</b>
+subscribe(ISubscriberInterface si, IPattern condition);<br>
+<span style="">&nbsp; </span><b style="">void</b>
+subscribe(ISubscriberInterface si, IRule rule);<br>
+<span style="">&nbsp; </span><b style="">void</b>
+unsubscribe(ISubscriberInterface si);<br>
+<span style="">&nbsp; </span><b style="">void</b>
+unsubscribe(ISubscriberInterface si,<span style=""> </span>IEventFilter
+filter);<br>
+<span style="">&nbsp; </span><b style="">void</b>
+unsubscribe(ISubscriberInterface si,<span style=""></span><span style="">&nbsp;</span>IStateFilter filter);<br>
+<span style="">&nbsp; </span><b style="">void</b>
+unsubscribe(ISubscriberInterface si, IPattern condition);<br>
+<span style="">&nbsp; </span><b style="">void</b>
+unsubscribe(ISubscriberInterface si, IRule rule);<o:p></o:p></span></p>
+<span style="font-size: 9pt; font-family: Courier;">}</span><br>
+<br>
+<p class="Body">An ideal publish/subscribe infrastructure,
+supporting&nbsp;EDEM requiremenst need to provide the following
+features: event content-based filtering;
+event
+pattern detection supporting disjunction, conjunction and exact
+sequence match;
+state change filters; and rules. Rules are special abstract data types
+that&nbsp;combine patterns, actions (for example: event recording or
+counting)
+and a set
+of begin and end triggers. Triggers (or Guards) are pattern detectors
+based on
+state changes or event occurrences. They are used to control the
+activation and
+deactivation of actions within a rule. When rules become active (begin
+trigger
+is activated), actions are executed whenever the rule-specific pattern
+is
+detected. When a rule end trigger is activated, the rule stops
+operating and a notification
+is sent to the subscriber in the form of state and event records. </p>
+<br>
+<h3>EDEM Reusability Study Setting</h3>The following benchmark was developed in order to assess the reusability of
+different publish/subscribe infrastructures: their ability to support the aforementioned EDEM
+requirements:<br><br>
+<div style="text-align: center;"><span style="font-size: 9pt; font-family: Courier;"></span><img style="width: 841px; height: 565px;" alt="EDEM Benchmark Architecture" src="EDEM-Benchmark.png"><br></div>
+<br>
+<p>Vertical
+dashed boxes represent individual implementations used in our tests,
+for
+example: EDEM on JavaSpaces, EDEM on CORBA-NS, EDEM on Siena, etc.
+Solid
+rounded boxes represent components integrated in the production of each
+implementation. For example, EDEM on Siena combines: the tuple space
+component,
+the Siena notification server, server-specific event and tuple space
+adapters
+(that handle the conversion between Siena and EDEM events,
+notifications,
+triggers and subscriptions), and a common set of Pattern, Rule, Action
+and
+Guard implementations. Components that crosscut vertical dashed boxes
+represent
+are reused by two or more implementations.</p><h3>EDEM Benchmark Source Code Analysis</h3><p>
+ After implementing the components in the benchmark described above, we
+prodeeded in measuring the characteristics of these components. The
+resulting metrics are presented as follows.</p>
+ <table style="border-collapse: collapse; width: 580pt;" border="0" cellpadding="0" cellspacing="0" width="774"><col style="width: 180pt;" width="240">
+ <col style="width: 57pt;" width="76">
+ <col style="width: 56pt;" width="75">
+ <col span="2" style="width: 59pt;" width="79">
+ <col style="width: 60pt;" width="80">
+ <col style="width: 53pt;" width="70">
+ <col style="width: 56pt;" width="75">
+ <tbody><tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt; width: 180pt; font-weight: bold;" height="20" width="240"><small>COMPONENTS</small></td>
+  <td class="xl63" style="width: 57pt; font-weight: bold;" width="76"><small>LOC</small></td>
+  <td class="xl63" style="width: 56pt; font-weight: bold;" width="75"><small>#Methods</small></td>
+  <td class="xl63" style="width: 59pt; font-weight: bold;" width="79"><small>#Classes</small></td>
+  <td class="xl63" style="width: 59pt; font-weight: bold;" width="79"><small>#Interfaces</small></td>
+  <td class="xl63" style="width: 60pt; font-weight: bold;" width="80"><small>McCabe CC</small></td>
+  <td class="xl63" style="width: 53pt; font-weight: bold;" width="70"><small>#Met*CC</small></td>
+  <td class="xl63" style="width: 56pt; font-weight: bold;" width="75"><small>LOC*CC</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Benchmark</small></td>
+  <td align="right"><small>348</small></td>
+  <td align="right"><small>17</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.83</small></td>
+  <td align="right"><small>48.161</small></td>
+  <td class="xl64" align="right"><small>985.88</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt; font-weight: bold;" height="20"><small>EDEM Interface</small></td>
+  <td align="right"><small>195</small></td>
+  <td align="right"><small>0</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>22</small></td>
+  <td class="xl64" align="right"><small>1.00</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>195.00</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt; font-weight: bold;" height="20"><small>EDEM Kernel</small></td>
+  <td align="right"><small>1206</small></td>
+  <td align="right"><small>131</small></td>
+  <td align="right"><small>15</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.09</small></td>
+  <td align="right"><small>273.79</small></td>
+  <td class="xl64" align="right"><small>2520.54</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt; font-weight: bold;" height="20"><small>EDEM RMI</small></td>
+  <td align="right"><small>662</small></td>
+  <td align="right"><small>50</small></td>
+  <td align="right"><small>5</small></td>
+  <td align="right"><small>2</small></td>
+  <td class="xl64" align="right"><small>2.35</small></td>
+  <td align="right"><small>117.3</small></td>
+  <td class="xl64" align="right"><small>1553.05</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt; font-weight: bold;" height="20"><small>Simple Tuple Space</small></td>
+  <td align="right"><small>357</small></td>
+  <td align="right"><small>38</small></td>
+  <td align="right"><small>6</small></td>
+  <td align="right"><small>5</small></td>
+  <td class="xl64" align="right"><small>2.00</small></td>
+  <td align="right"><small>76</small></td>
+  <td class="xl64" align="right"><small>714.00</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>BFS API Imp.</small></td>
+  <td align="right"><small>190</small></td>
+  <td align="right"><small>18</small></td>
+  <td align="right"><small>3</small></td>
+  <td align="right"><small>2</small></td>
+  <td class="xl64" align="right"><small>2.00</small></td>
+  <td align="right"><small>36</small></td>
+  <td class="xl64" align="right"><small>380.00</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Siena API Imp.</small></td>
+  <td align="right"><small>227</small></td>
+  <td align="right"><small>16</small></td>
+  <td align="right"><small>3</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>1.71</small></td>
+  <td align="right"><small>27.424</small></td>
+  <td class="xl64" align="right"><small>389.08</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Siena Connector</small></td>
+  <td align="right"><small>51</small></td>
+  <td align="right"><small>2</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>4.00</small></td>
+  <td align="right"><small>8</small></td>
+  <td class="xl64" align="right"><small>204.00</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>CORBA-NS API Imp.</small></td>
+  <td align="right"><small>754</small></td>
+  <td align="right"><small>52</small></td>
+  <td align="right"><small>6</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.55</small></td>
+  <td align="right"><small>132.34</small></td>
+  <td class="xl64" align="right"><small>1918.93</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>CORBA-NS Connector</small></td>
+  <td align="right"><small>92</small></td>
+  <td align="right"><small>2</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>6.50</small></td>
+  <td align="right"><small>13</small></td>
+  <td class="xl64" align="right"><small>598.00</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>JavaSpaces API Imp.</small></td>
+  <td align="right"><small>846</small></td>
+  <td align="right"><small>61</small></td>
+  <td align="right"><small>7</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.94</small></td>
+  <td align="right"><small>179.218</small></td>
+  <td class="xl64" align="right"><small>2485.55</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>JavaSpaces Connector</small></td>
+  <td align="right"><small>25</small></td>
+  <td align="right"><small>3</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>1.33</small></td>
+  <td align="right"><small>3.999</small></td>
+  <td class="xl64" align="right"><small>33.33</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Yancees API Imp.</small></td>
+  <td align="right"><small>668</small></td>
+  <td align="right"><small>55</small></td>
+  <td align="right"><small>7</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>1.98</small></td>
+  <td align="right"><small>109.12</small></td>
+  <td class="xl64" align="right"><small>1325.31</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Yancees Connector</small></td>
+  <td align="right"><small>68</small></td>
+  <td align="right"><small>4</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.50</small></td>
+  <td align="right"><small>10</small></td>
+  <td class="xl64" align="right"><small>170.00</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Yancees Tspace Protocol</small></td>
+  <td align="right"><small>159</small></td>
+  <td align="right"><small>16</small></td>
+  <td align="right"><small>3</small></td>
+  <td align="right"><small>2</small></td>
+  <td class="xl64" align="right"><small>1.44</small></td>
+  <td align="right"><small>23.008</small></td>
+  <td class="xl64" align="right"><small>228.64</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt;" height="20"><small>Yancees Guard subscription</small></td>
+  <td align="right"><small>157</small></td>
+  <td align="right"><small>14</small></td>
+  <td align="right"><small>2</small></td>
+  <td align="right"><small>1</small></td>
+  <td class="xl64" align="right"><small>2.29</small></td>
+  <td align="right"><small>32.004</small></td>
+  <td class="xl64" align="right"><small>358.90</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt;" height="20"><small>Yancees State filter</small></td>
+  <td align="right"><small>225</small></td>
+  <td align="right"><small>21</small></td>
+  <td align="right"><small>3</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.05</small></td>
+  <td align="right"><small>43.008</small></td>
+  <td class="xl64" align="right"><small>460.80</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt;" height="20"><small>Yancees Pattern subscription</small></td>
+  <td align="right"><small>172</small></td>
+  <td align="right"><small>12</small></td>
+  <td align="right"><small>2</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>3.50</small></td>
+  <td align="right"><small>42</small></td>
+  <td class="xl64" align="right"><small>602.00</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td class="xl63" style="height: 15pt;" height="20"><small>Yancees Rule subscription</small></td>
+  <td align="right"><small>441</small></td>
+  <td align="right"><small>49</small></td>
+  <td align="right"><small>5</small></td>
+  <td align="right"><small>1</small></td>
+  <td class="xl64" align="right"><small>2.16</small></td>
+  <td align="right"><small>105.987</small></td>
+  <td class="xl64" align="right"><small>953.88</small></td>
+ </tr>
+ <tr style="height: 15pt;" height="20">
+  <td style="height: 15pt;" height="20"><small>Yancees TS serivce façade</small></td>
+  <td align="right"><small>109</small></td>
+  <td align="right"><small>11</small></td>
+  <td align="right"><small>1</small></td>
+  <td align="right"><small>0</small></td>
+  <td class="xl64" align="right"><small>2.09</small></td>
+  <td align="right"><small>23.001</small></td>
+  <td class="xl64" align="right"><small>227.92</small></td>
+ </tr></tbody></table><h2 align="justify"><span lang="en-us"><a name="Performance"></a>EDEM Benchmark Performance</span></h2>In
+our&nbsp;EDEM performance tests, both Siena and YANCEES
+implmementations have performance comparable to our baseline
+implementatoin (Build from Scratch or BSF).<br><br><div style="text-align: center;"><img style="width: 596px; height: 285px;" alt="performance chart" src="edem-performance-chart.PNG"><br></div><h2 align="justify"><a name="Reusability"></a><span lang="en-us">EDEM Benchmark: Reusability&nbsp;</span></h2>In
+our study, we define cognitive distance as the produce of the number of
+lines of code and the average cyclomatic complexity of this code. The
+result of our experiment is shown in the following graphic. <br><br>The
+extensibility and configurability of YANCEES allows the customization
+of the infrastructure to more closely fit the requirements of the
+application. As a result, the client code size and complexity are
+reduced. This, however, comes with a development effort in the server
+side. As shown in our experiments, the&nbsp;server-side development efrorts of YANCEES is still less than the built
+of the infrastructure from scratch. <br><br>Finally, if considered both the
+client and the server-side development efforts, YANCEES is comparable
+to building the infrastructure from scratch.<br><br><div style="text-align: center;"><img style="width: 624px; height: 294px;" alt="cognitive distance" src="edem-dev-effot-loc-cc.PNG"><br></div><br>The
+following graphics shows the original LOC (number of lines of code) and
+CC (McCabe Cyclomatic Complexity) used to compute the cognitive
+distance.<br><br><div style="text-align: center;"><img style="width: 611px; height: 301px;" alt="development effort - LOC" src="edem-dev-effort-loc.PNG"><br></div><span style=""><font style="" face="Verdana, Arial, Helvetica, sans-serif"><br></font></span><div style="text-align: center;"><span style=""><font style="" face="Verdana, Arial, Helvetica, sans-serif"><img style="width: 624px; height: 319px;" alt="edem development effort" src="edem-dev-effort-cc.PNG"></font></span><br><span style=""><font style="" face="Verdana, Arial, Helvetica, sans-serif">
+</font></span></div>
+<h2><a name="IndividualCosts"></a>EDEM Benchmark: Analysis of Individual Reusability Costs</h2>Break down of the development costs per different tasks developers must do in order to reuse existing infrastructures<h3>YANCEES versus BFS: The use of generalized subscription languages adds extra parsing costs.</h3>By
+comaring the data in the table above, we also observed some differences
+between the subscription plug-ins developed for YANCEES and the <span style="text-decoration: underline;">same components</span>
+developed to support advanced event processing in our
+benchmark. The components developed for YANCEES, even though
+implemented the same functionality, were <span style="text-decoration: underline;">slightly bigger, but not significantly more complex </span>. These was due to extra effort devoted to <span style="text-decoration: underline;">parsing</span>
+the XML subscription, and by YANCEES generaliry approach of providing
+automatic parsing of subscriptions and alocation of plug-ins. The
+subscription manager automatically starts plug-ins based on the
+provided subscription, initialized thiese plug-ins with the XML
+expression they implement. The use of XML, while supports this
+generalized algorithm, requires the plug-ins to parse the XML content
+themselves in order to obtain parameters and elements used in their
+computation.<h3 style="text-align: center;"><img style="width: 601px; height: 345px;" alt="native versus yancees" src="edem-components-native-vs-yancees.PNG"></h3>These parsing costs are in average <span style="text-decoration: underline;">25% higher</span> than the native implementation.<h3>Acknowledgements</h3>
+<p>This research has been sponsored by NSF (grants 0133749,
+0205724, 0326105, 0527729,0524033), an IBM Eclipse technology exchange
+grant, and the Intel Corporation. </p>
+<hr>
+<center><span lang="en-us">Research Staff: <a href="http://www.ics.uci.edu/%7Ersilvafi">Roberto Silveira
+Silva
+Filho</a><br>
+Professor: <a href="http://www.ics.uci.edu/%7Eredmiles/">
+David F.
+Redmiles</a><br>
+<i><a href="http://www.isr.uci.edu/">Institute for
+Software Research</a><br>
+<a href="http://www.ics.uci.edu/">Information and Computer
+Science</a><br>
+<a href="http://www.uci.edu/">University of California,
+Irvine</a>
+CA 92697-3425</i><br>
+<a href="mailto:redmiles@ics.uci.edu"><br>
+</a></span></center>
+<hr>
+<center>
+<p><font color="white" size="1"><a target="_top" href="http://extremetracking.com/open?login=yancees"><br>
+</a></font></p>
+</center>
+<hr>
+<address class="style1"> This page was last updated on May
+2nd,
+2008
+</address>
+</body></html>

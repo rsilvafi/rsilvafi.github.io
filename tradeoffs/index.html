@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="pt-br"><head><title>Analysis of Versatility Trade-offs in Publish/Subscribe Infrastructures</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+body,td,th {
+font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {font-size: smaller}
+-->
+</style></head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<table width="100%">
+<tbody>
+<tr>
+<td align="left">
+<p align="center"><a href="http://www.uci.edu/"><img src="UCI.gif" border="0" height="108" width="255"></a></p>
+</td>
+<td align="center">
+<h1>Analysis of Versatility Trade-offs of Publish/subscribe
+Infrastructures</h1>
+</td>
+<td><br>
+</td>
+<td align="right">
+<p align="center"><a href="http://www.isr.uci.edu/"> <img src="ISR-Logo.gif" border="0" height="69" width="140"></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div align="center">
+<center>
+<table>
+<tbody>
+<tr>
+<td align="center"> <span lang="en-us">Concepts:&nbsp;</span>
+</td>
+<td align="center">
+<p align="justify"><span lang="en-us"><a href="#Introduction">Introduction</a>
+|</span></p>
+</td>
+<td align="center">
+<p align="justify"><a href="#Approach">Approach
+</a>|</p>
+</td>
+<td><a href="#Infrastructures">Infrastructures</a>
+|</td>
+<td align="center"> <a href="#Results">Results </a>| </td>
+<td align="center">
+<p align="justify"><a href="#Code">Code
+</a>|</p>
+</td>
+<td align="center">&nbsp;<br>
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+</div>
+<div align="center">
+<center>
+<table>
+<tbody>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td style="vertical-align: top;"></td>
+</tr>
+</tbody>
+</table>
+</center>
+</div>
+<p align="justify">&nbsp;</p>
+<h2 align="justify"><span lang="en-us"><a name="Introduction">Introduction</a></span></h2>
+<p class="Abstract">Publish/subscribe infrastructures are a special
+class of middleware that supports the development of event-based
+applications. In order to support a broader set of application domains
+and their requirements, these infrastructures have been developed
+according to different versatility approaches. For example,&nbsp;<span style="font-weight: bold;">generalization</span>: the development of minimal core APIs or coordination languages as tuple spaces; <span style="font-weight: bold;">variability</span>: the use of configurable one-size-fits-all infrastructures, and, more recently, <span style="font-weight: bold;">compositional strategies</span>:
+the built of application-specific infrastructures out of existing or
+new components. This broad spectrum of options have implicit trade-offs
+that are not always obvious for both middleware developers and users.
+Few empirical studies are available that analyzes the reusability
+benefits and limitations of different middleware implementation
+strategies in realistic scenarios. In&nbsp;this project we perform a multi-dimensional&nbsp;analysis of
+these design approaches according to different factors, including: flexibilty (extensibility and
+configurabilty),
+reusability and development effort in&nbsp; support of different applications. <span style="">&nbsp;</span>With
+the lessons learned in this work, we
+expect to broaden the understanding of the factors that permeate the
+development of flexible middleware. We also expect&nbsp; to derive
+more
+precise trade-offs, principles,
+metrics and guidelines that can better support developers in the
+construction of middleware in general, and publish/subscribe
+infrastructures specifically.
+</p><h2 align="justify"><a name="Approach"></a><span lang="en-us">Approach</span></h2>
+<ol>
+<li>Selection of a sublcass of infrastructures representing
+existing publish/subscribe flexibilty approaches by means of a <a href="Publish/subscribe%20infrastructures%20are%20a%20special%20class%20of%20middleware%20that%20supports%20the%20development%20of%20event-based%20applications.%20In%20order%20to%20support%20a%20broader%20set%20of%20application%20domains%20and%20their%20requirements,%20these%20infrastructures%20have%20been%20developed%20according%20to%20different%20reuse%20strategies.%20For%20example,%20generalization:%20the%20development%20of%20minimal%20core%20APIs%20or%20coordination%20languages%20as%20tuple%20spaces;%20variability:%20the%20use%20of%20configurable%20one-size-fits-all%20infrastructures,%20and,%20more%20recently,%20compositional%20strategies:%20the%20built%20of%20application-specific%20infrastructures%20out%20of%20existing%20or%20new%20components.%20This%20broad%20spectrum%20of%20options%20have%20implicit%20trade-offs%20that%20are%20not%20always%20obvious%20for%20both%20middleware%20developers%20and%20users.%20Few%20empirical%20studies%20are%20available%20that%20analyzes%20the%20reusability%20benefits%20and%20limitations%20of%20different%20middleware%20implementation%20strategies%20in%20realistic%20scenarios.">literature survey</a>;</li>
+<li>Selection of different application domains based on different event-driven projects developed at UCI, named: awareness (<a href="http://www.isr.uci.edu/projects/cassius/">CASSIUS</a>), usability monitoring (<a href="http://portal.acm.org/citation.cfm?id=302177">EDEM</a>) and synchronous peer-to-peer file sharing (<a href="http://www.isr.uci.edu/projects/swirl/Impromptu.html">IMPROMPTU</a>);</li><li>The
+development of a benchmark in the form of an ideal APIs that
+publish/subscribe infrastructure must provide for each application
+domain;</li>
+<li>The implementation of these APIs using representative
+infrastructures of each versatility approach, according to three
+different reuse approaches: whitebox, blackbox and greybox (YANCEES being the only greybox approach);</li>
+<li>The evaluation of the infrastructures according to
+different metrics,focusing on development effort, flexibility, maintainability and performance;</li>
+<li>The comparison of the results;</li>
+<li>The derivation of principles and guidelines.</li>
+</ol>
+<span style="font-weight: bold;"></span>
+<h2><a name="Infrastructures"></a>Selected
+Infrastructures</h2>
+<p class="MsoNormal">In a previous <a href="http://www.isr.uci.edu/tech_reports/UCI-ISR-05-8.pdf">survey
+of
+publish/subscribe infrastructures
+versatility approaches,</a><comment title="[if supportFields]&gt;&lt;span style='mso-element:field-begin'&gt;&lt;/span&gt;&lt;span style='mso-spacerun:yes'&gt; &lt;/span&gt;ADDIN EN.CITE &amp;lt;EndNote&amp;gt;&amp;lt;Cite&amp;gt;&amp;lt;Author&amp;gt;Silva Filho&amp;lt;/Author&amp;gt;&amp;lt;Year&amp;gt;2005&amp;lt;/Year&amp;gt;&amp;lt;RecNum&amp;gt;272&amp;lt;/RecNum&amp;gt;&amp;lt;MDL&amp;gt;&amp;lt;REFERENCE_TYPE&amp;gt;10&amp;lt;/REFERENCE_TYPE&amp;gt;&amp;lt;AUTHORS&amp;gt;&amp;lt;AUTHOR&amp;gt;Silva Filho, Roberto Silveira&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;David F. Redmiles&amp;lt;/AUTHOR&amp;gt;&amp;lt;/AUTHORS&amp;gt;&amp;lt;YEAR&amp;gt;2005&amp;lt;/YEAR&amp;gt;&amp;lt;TITLE&amp;gt;A Survey on Versatility for Publish/Subscribe Infrastructures. Technical Report UCI-ISR-05-8&amp;lt;/TITLE&amp;gt;&amp;lt;PLACE_PUBLISHED&amp;gt;Irvine, CA&amp;lt;/PLACE_PUBLISHED&amp;gt;&amp;lt;PUBLISHER&amp;gt;Institute for Software Research&amp;lt;/PUBLISHER&amp;gt;&amp;lt;PAGES&amp;gt;1-77&amp;lt;/PAGES&amp;gt;&amp;lt;DATE&amp;gt;May&amp;lt;/DATE&amp;gt;&amp;lt;/MDL&amp;gt;&amp;lt;/Cite&amp;gt;&amp;lt;/EndNote&amp;gt;&lt;span style='mso-element:field-separator'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"></comment><comment title="[if supportFields]&gt;&lt;span style='mso-element:field-end'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"></comment>
+we identified different strategies adopted by existing industry and
+research infrastructures in
+the
+support of an increasing set of event-driven applications. These
+strategies are:</p>
+<p class="MsoListParagraph" style="margin-left: 29.35pt; text-indent: -0.25in;"><comment title="[if !supportLists]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if !supportLists]--></comment><span style=""><span style="">1.<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><comment title="[endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[endif]--></comment><b style="">Build
+from scratch</b>. Very often, publish/subscribe infrastructures
+have been recreated
+to support specific application domains. Examples include: Khronika<comment title="[if supportFields]&gt;&lt;span style='mso-element:field-begin'&gt;&lt;/span&gt;&lt;span style='mso-spacerun:yes'&gt; &lt;/span&gt;ADDIN EN.CITE &amp;lt;EndNote&amp;gt;&amp;lt;Cite&amp;gt;&amp;lt;Author&amp;gt;Dourish&amp;lt;/Author&amp;gt;&amp;lt;Year&amp;gt;1992&amp;lt;/Year&amp;gt;&amp;lt;RecNum&amp;gt;17&amp;lt;/RecNum&amp;gt;&amp;lt;MDL&amp;gt;&amp;lt;REFERENCE_TYPE&amp;gt;3&amp;lt;/REFERENCE_TYPE&amp;gt;&amp;lt;AUTHORS&amp;gt;&amp;lt;AUTHOR&amp;gt;Paul Dourish&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Sara Bly&amp;lt;/AUTHOR&amp;gt;&amp;lt;/AUTHORS&amp;gt;&amp;lt;YEAR&amp;gt;1992&amp;lt;/YEAR&amp;gt;&amp;lt;TITLE&amp;gt;Portholes: Supporting Distributed Awareness in a Collaborative Work Group&amp;lt;/TITLE&amp;gt;&amp;lt;SECONDARY_TITLE&amp;gt;ACM Conference on Human Factors in Computing Systems (CHI &amp;amp;apos;92)&amp;lt;/SECONDARY_TITLE&amp;gt;&amp;lt;PLACE_PUBLISHED&amp;gt;Monterey, California, USA&amp;lt;/PLACE_PUBLISHED&amp;gt;&amp;lt;PUBLISHER&amp;gt;ACM Press&amp;lt;/PUBLISHER&amp;gt;&amp;lt;PAGES&amp;gt;541-547&amp;lt;/PAGES&amp;gt;&amp;lt;/MDL&amp;gt;&amp;lt;/Cite&amp;gt;&amp;lt;/EndNote&amp;gt;&lt;span style='mso-element:field-separator'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span
+style='mso-element:field-begin'></span><span
+style='mso-spacerun:yes'> </span>ADDIN EN.CITE
+&lt;EndNote&gt;&lt;Cite&gt;&lt;Author&gt;Dourish&lt;/Author&gt;&lt;Year&gt;1992&lt;/Year&gt;&lt;RecNum&gt;17&lt;/RecNum&gt;&lt;MDL&gt;&lt;REFERENCE_TYPE&gt;3&lt;/REFERENCE_TYPE&gt;&lt;AUTHORS&gt;&lt;AUTHOR&gt;Paul
+Dourish&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Sara
+Bly&lt;/AUTHOR&gt;&lt;/AUTHORS&gt;&lt;YEAR&gt;1992&lt;/YEAR&gt;&lt;TITLE&gt;Portholes:
+Supporting Distributed Awareness in a Collaborative Work
+Group&lt;/TITLE&gt;&lt;SECONDARY_TITLE&gt;ACM Conference on Human Factors in
+Computing Systems (CHI
+&amp;apos;92)&lt;/SECONDARY_TITLE&gt;&lt;PLACE_PUBLISHED&gt;Monterey,
+California, USA&lt;/PLACE_PUBLISHED&gt;&lt;PUBLISHER&gt;ACM
+Press&lt;/PUBLISHER&gt;&lt;PAGES&gt;541-547&lt;/PAGES&gt;&lt;/MDL&gt;&lt;/Cite&gt;&lt;/EndNote&gt;<span
+style='mso-element:field-separator'></span><![endif]--></comment>
+built to support groupware
+applications, and JEDI<comment title="[if supportFields]&gt;&lt;span style='mso-element:field-begin'&gt;&lt;/span&gt;&lt;span style='mso-spacerun:yes'&gt; &lt;/span&gt;ADDIN EN.CITE &amp;lt;EndNote&amp;gt;&amp;lt;Cite&amp;gt;&amp;lt;Author&amp;gt;Cugola&amp;lt;/Author&amp;gt;&amp;lt;Year&amp;gt;2001&amp;lt;/Year&amp;gt;&amp;lt;RecNum&amp;gt;23&amp;lt;/RecNum&amp;gt;&amp;lt;MDL&amp;gt;&amp;lt;REFERENCE_TYPE&amp;gt;0&amp;lt;/REFERENCE_TYPE&amp;gt;&amp;lt;AUTHORS&amp;gt;&amp;lt;AUTHOR&amp;gt;Gianpalo Cugola&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Elisabetta Di Nitto&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Alfonso Fuggetta&amp;lt;/AUTHOR&amp;gt;&amp;lt;/AUTHORS&amp;gt;&amp;lt;YEAR&amp;gt;2001&amp;lt;/YEAR&amp;gt;&amp;lt;TITLE&amp;gt;The Jedi Event-Based Infrastructure and Its Application on the Development of the OPSS WFMS&amp;lt;/TITLE&amp;gt;&amp;lt;SECONDARY_TITLE&amp;gt;IEEE Transactions on Software Engineering&amp;lt;/SECONDARY_TITLE&amp;gt;&amp;lt;VOLUME&amp;gt;27&amp;lt;/VOLUME&amp;gt;&amp;lt;NUMBER&amp;gt;9&amp;lt;/NUMBER&amp;gt;&amp;lt;PAGES&amp;gt;827-849&amp;lt;/PAGES&amp;gt;&amp;lt;DATE&amp;gt;September 2001&amp;lt;/DATE&amp;gt;&amp;lt;/MDL&amp;gt;&amp;lt;/Cite&amp;gt;&amp;lt;/EndNote&amp;gt;&lt;span style='mso-element:field-separator'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span style='mso-element:field-begin'></span><span
+style='mso-spacerun:yes'> </span>ADDIN EN.CITE
+&lt;EndNote&gt;&lt;Cite&gt;&lt;Author&gt;Cugola&lt;/Author&gt;&lt;Year&gt;2001&lt;/Year&gt;&lt;RecNum&gt;23&lt;/RecNum&gt;&lt;MDL&gt;&lt;REFERENCE_TYPE&gt;0&lt;/REFERENCE_TYPE&gt;&lt;AUTHORS&gt;&lt;AUTHOR&gt;Gianpalo
+Cugola&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Elisabetta Di
+Nitto&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Alfonso Fuggetta&lt;/AUTHOR&gt;&lt;/AUTHORS&gt;&lt;YEAR&gt;2001&lt;/YEAR&gt;&lt;TITLE&gt;The
+Jedi Event-Based Infrastructure and Its Application on the Development of the
+OPSS WFMS&lt;/TITLE&gt;&lt;SECONDARY_TITLE&gt;IEEE Transactions on Software
+Engineering&lt;/SECONDARY_TITLE&gt;&lt;VOLUME&gt;27&lt;/VOLUME&gt;&lt;NUMBER&gt;9&lt;/NUMBER&gt;&lt;PAGES&gt;827-849&lt;/PAGES&gt;&lt;DATE&gt;September
+2001&lt;/DATE&gt;&lt;/MDL&gt;&lt;/Cite&gt;&lt;/EndNote&gt;<span
+style='mso-element:field-separator'></span><![endif]--></comment>
+employed in the support for
+workflow management systems and mobile applications.</p>
+<p class="MsoListParagraph" style="margin-left: 29.35pt; text-indent: -0.25in;"><comment title="[if !supportLists]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if !supportLists]--></comment><span style=""><span style="">2.<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><comment title="[endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[endif]--></comment>Adopt
+<b style="">minimal
+core systems</b> as Siena<comment title="[if supportFields]&gt;&lt;span style='mso-element:field-begin'&gt;&lt;/span&gt;&lt;span style='mso-spacerun:yes'&gt; &lt;/span&gt;ADDIN EN.CITE &amp;lt;EndNote&amp;gt;&amp;lt;Cite&amp;gt;&amp;lt;Author&amp;gt;Carzaniga&amp;lt;/Author&amp;gt;&amp;lt;Year&amp;gt;2001&amp;lt;/Year&amp;gt;&amp;lt;RecNum&amp;gt;4&amp;lt;/RecNum&amp;gt;&amp;lt;MDL&amp;gt;&amp;lt;REFERENCE_TYPE&amp;gt;0&amp;lt;/REFERENCE_TYPE&amp;gt;&amp;lt;AUTHORS&amp;gt;&amp;lt;AUTHOR&amp;gt;Carzaniga, Antonio&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Rosenblum, David S.&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Wolf, Alexander L.&amp;lt;/AUTHOR&amp;gt;&amp;lt;/AUTHORS&amp;gt;&amp;lt;YEAR&amp;gt;2001&amp;lt;/YEAR&amp;gt;&amp;lt;TITLE&amp;gt;Design and Evaluation of a Wide-Area Event Notification Service&amp;lt;/TITLE&amp;gt;&amp;lt;SECONDARY_TITLE&amp;gt;ACM Transactions on Computer Systems&amp;lt;/SECONDARY_TITLE&amp;gt;&amp;lt;VOLUME&amp;gt;19&amp;lt;/VOLUME&amp;gt;&amp;lt;NUMBER&amp;gt;3&amp;lt;/NUMBER&amp;gt;&amp;lt;PAGES&amp;gt;332-383&amp;lt;/PAGES&amp;gt;&amp;lt;ALTERNATE_TITLE&amp;gt;ACM Trans. Comp. Sys.&amp;lt;/ALTERNATE_TITLE&amp;gt;&amp;lt;/MDL&amp;gt;&amp;lt;/Cite&amp;gt;&amp;lt;/EndNote&amp;gt;&lt;span style='mso-element:field-separator'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span style='mso-element:field-begin'></span><span
+style='mso-spacerun:yes'> </span>ADDIN EN.CITE
+&lt;EndNote&gt;&lt;Cite&gt;&lt;Author&gt;Carzaniga&lt;/Author&gt;&lt;Year&gt;2001&lt;/Year&gt;&lt;RecNum&gt;4&lt;/RecNum&gt;&lt;MDL&gt;&lt;REFERENCE_TYPE&gt;0&lt;/REFERENCE_TYPE&gt;&lt;AUTHORS&gt;&lt;AUTHOR&gt;Carzaniga,
+Antonio&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Rosenblum, David
+S.&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Wolf, Alexander
+L.&lt;/AUTHOR&gt;&lt;/AUTHORS&gt;&lt;YEAR&gt;2001&lt;/YEAR&gt;&lt;TITLE&gt;Design
+and Evaluation of a Wide-Area Event Notification
+Service&lt;/TITLE&gt;&lt;SECONDARY_TITLE&gt;ACM Transactions on Computer
+Systems&lt;/SECONDARY_TITLE&gt;&lt;VOLUME&gt;19&lt;/VOLUME&gt;&lt;NUMBER&gt;3&lt;/NUMBER&gt;&lt;PAGES&gt;332-383&lt;/PAGES&gt;&lt;ALTERNATE_TITLE&gt;ACM
+Trans. Comp. Sys.&lt;/ALTERNATE_TITLE&gt;&lt;/MDL&gt;&lt;/Cite&gt;&lt;/EndNote&gt;<span
+style='mso-element:field-separator'></span><![endif]--></comment>
+or Scribe<comment title="[if supportFields]&gt;&lt;span style='mso-element:field-begin'&gt;&lt;/span&gt;&lt;span style='mso-spacerun:yes'&gt; &lt;/span&gt;ADDIN EN.CITE &amp;lt;EndNote&amp;gt;&amp;lt;Cite&amp;gt;&amp;lt;Author&amp;gt;Castro&amp;lt;/Author&amp;gt;&amp;lt;Year&amp;gt;2002&amp;lt;/Year&amp;gt;&amp;lt;RecNum&amp;gt;499&amp;lt;/RecNum&amp;gt;&amp;lt;MDL&amp;gt;&amp;lt;REFERENCE_TYPE&amp;gt;0&amp;lt;/REFERENCE_TYPE&amp;gt;&amp;lt;AUTHORS&amp;gt;&amp;lt;AUTHOR&amp;gt;Castro, M.&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Druschel, P.&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Kermarrec, A-M.&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Rowstron, A.&amp;lt;/AUTHOR&amp;gt;&amp;lt;/AUTHORS&amp;gt;&amp;lt;YEAR&amp;gt;2002&amp;lt;/YEAR&amp;gt;&amp;lt;TITLE&amp;gt;SCRIBE: A Large-Scale and Decentralised Application-Level Multicast Infrastructure&amp;lt;/TITLE&amp;gt;&amp;lt;SECONDARY_TITLE&amp;gt;IEEE Journal on Selected Areas in Communications&amp;lt;/SECONDARY_TITLE&amp;gt;&amp;lt;VOLUME&amp;gt;20&amp;lt;/VOLUME&amp;gt;&amp;lt;NUMBER&amp;gt;8&amp;lt;/NUMBER&amp;gt;&amp;lt;PAGES&amp;gt;1489-1499&amp;lt;/PAGES&amp;gt;&amp;lt;DATE&amp;gt;October 2002&amp;lt;/DATE&amp;gt;&amp;lt;/MDL&amp;gt;&amp;lt;/Cite&amp;gt;&amp;lt;/EndNote&amp;gt;&lt;span style='mso-element:field-separator'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span
+style='mso-element:field-begin'></span><span
+style='mso-spacerun:yes'> </span>ADDIN EN.CITE
+&lt;EndNote&gt;&lt;Cite&gt;&lt;Author&gt;Castro&lt;/Author&gt;&lt;Year&gt;2002&lt;/Year&gt;&lt;RecNum&gt;499&lt;/RecNum&gt;&lt;MDL&gt;&lt;REFERENCE_TYPE&gt;0&lt;/REFERENCE_TYPE&gt;&lt;AUTHORS&gt;&lt;AUTHOR&gt;Castro,
+M.&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Druschel,
+P.&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Kermarrec,
+A-M.&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Rowstron,
+A.&lt;/AUTHOR&gt;&lt;/AUTHORS&gt;&lt;YEAR&gt;2002&lt;/YEAR&gt;&lt;TITLE&gt;SCRIBE:
+A Large-Scale and Decentralised Application-Level Multicast
+Infrastructure&lt;/TITLE&gt;&lt;SECONDARY_TITLE&gt;IEEE Journal on Selected
+Areas in Communications&lt;/SECONDARY_TITLE&gt;&lt;VOLUME&gt;20&lt;/VOLUME&gt;&lt;NUMBER&gt;8&lt;/NUMBER&gt;&lt;PAGES&gt;1489-1499&lt;/PAGES&gt;&lt;DATE&gt;October
+2002&lt;/DATE&gt;&lt;/MDL&gt;&lt;/Cite&gt;&lt;/EndNote&gt;<span
+style='mso-element:field-separator'></span><![endif]--></comment>
+, that provide simple but optimized
+services. These infrastructures are designed to be reused as
+publish/subscribe
+cores in different applications;</p>
+<p class="MsoListParagraph" style="margin-left: 29.35pt; text-indent: -0.25in;"><comment title="[if !supportLists]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if !supportLists]--></comment><span style=""><span style="">3.<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><comment title="[endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[endif]--></comment>Adopt
+<b style="">coordination
+languages</b> such as Linda<comment title="[if supportFields]&gt;&lt;span style='mso-element: field-begin'&gt;&lt;/span&gt;&lt;span style='mso-spacerun:yes'&gt; &lt;/span&gt;ADDIN EN.CITE &amp;lt;EndNote&amp;gt;&amp;lt;Cite&amp;gt;&amp;lt;Author&amp;gt;Gelernter&amp;lt;/Author&amp;gt;&amp;lt;Year&amp;gt;1985&amp;lt;/Year&amp;gt;&amp;lt;RecNum&amp;gt;159&amp;lt;/RecNum&amp;gt;&amp;lt;MDL&amp;gt;&amp;lt;REFERENCE_TYPE&amp;gt;0&amp;lt;/REFERENCE_TYPE&amp;gt;&amp;lt;AUTHORS&amp;gt;&amp;lt;AUTHOR&amp;gt;David Gelernter&amp;lt;/AUTHOR&amp;gt;&amp;lt;/AUTHORS&amp;gt;&amp;lt;YEAR&amp;gt;1985&amp;lt;/YEAR&amp;gt;&amp;lt;TITLE&amp;gt;Generative communication in Linda&amp;lt;/TITLE&amp;gt;&amp;lt;SECONDARY_TITLE&amp;gt;ACM Transactions on Programming Languages and Systems (TOPLAS&amp;lt;/SECONDARY_TITLE&amp;gt;&amp;lt;PUBLISHER&amp;gt;ACM Press&amp;lt;/PUBLISHER&amp;gt;&amp;lt;VOLUME&amp;gt;7&amp;lt;/VOLUME&amp;gt;&amp;lt;NUMBER&amp;gt;1&amp;lt;/NUMBER&amp;gt;&amp;lt;DATE&amp;gt;Jan 1985&amp;lt;/DATE&amp;gt;&amp;lt;/MDL&amp;gt;&amp;lt;/Cite&amp;gt;&amp;lt;/EndNote&amp;gt;&lt;span style='mso-element:field-separator'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span style='mso-element:
+field-begin'></span><span style='mso-spacerun:yes'> </span>ADDIN EN.CITE
+&lt;EndNote&gt;&lt;Cite&gt;&lt;Author&gt;Gelernter&lt;/Author&gt;&lt;Year&gt;1985&lt;/Year&gt;&lt;RecNum&gt;159&lt;/RecNum&gt;&lt;MDL&gt;&lt;REFERENCE_TYPE&gt;0&lt;/REFERENCE_TYPE&gt;&lt;AUTHORS&gt;&lt;AUTHOR&gt;David
+Gelernter&lt;/AUTHOR&gt;&lt;/AUTHORS&gt;&lt;YEAR&gt;1985&lt;/YEAR&gt;&lt;TITLE&gt;Generative
+communication in Linda&lt;/TITLE&gt;&lt;SECONDARY_TITLE&gt;ACM Transactions on
+Programming Languages and Systems
+(TOPLAS&lt;/SECONDARY_TITLE&gt;&lt;PUBLISHER&gt;ACM
+Press&lt;/PUBLISHER&gt;&lt;VOLUME&gt;7&lt;/VOLUME&gt;&lt;NUMBER&gt;1&lt;/NUMBER&gt;&lt;DATE&gt;Jan
+1985&lt;/DATE&gt;&lt;/MDL&gt;&lt;/Cite&gt;&lt;/EndNote&gt;<span
+style='mso-element:field-separator'></span><![endif]--></comment><comment title="[if supportFields]&gt;&lt;span style='mso-element:field-end'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]--></comment>
+, that provide a primitive
+vocabulary with which more complex coordination mechanisms can be built.</p>
+<p class="MsoListParagraph" style="margin-left: 29.35pt; text-indent: -0.25in;"><comment title="[if !supportLists]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if !supportLists]--></comment><span style=""><span style="">4.<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><comment title="[endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[endif]--></comment>Adopt
+<b style="">one-size-fits-all
+infrastructures</b>. as for example, CORBA-NS&nbsp;, that
+supports a broad set of
+user selectable subscription, notification, routing and QoS options;</p>
+<p class="MsoListParagraph" style="margin-left: 29.35pt; text-indent: -0.25in;"><comment title="[if !supportLists]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if !supportLists]--></comment><span style=""><span style="">5.<span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></span><comment title="[endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[endif]--></comment>Or reuse novel <b style="">reconfigurable compositional
+approaches</b> (as those provided by GREEN&nbsp;<comment title="[if supportFields]&gt;&lt;span style='mso-element:field-begin'&gt;&lt;/span&gt;&lt;span style='mso-spacerun:yes'&gt; &lt;/span&gt;ADDIN EN.CITE &amp;lt;EndNote&amp;gt;&amp;lt;Cite&amp;gt;&amp;lt;Author&amp;gt;Sivaharan&amp;lt;/Author&amp;gt;&amp;lt;Year&amp;gt;2005&amp;lt;/Year&amp;gt;&amp;lt;RecNum&amp;gt;271&amp;lt;/RecNum&amp;gt;&amp;lt;MDL&amp;gt;&amp;lt;REFERENCE_TYPE&amp;gt;3&amp;lt;/REFERENCE_TYPE&amp;gt;&amp;lt;AUTHORS&amp;gt;&amp;lt;AUTHOR&amp;gt;Sivaharan, T.&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Blair, G.S.&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Coulson, G.&amp;lt;/AUTHOR&amp;gt;&amp;lt;/AUTHORS&amp;gt;&amp;lt;YEAR&amp;gt;2005&amp;lt;/YEAR&amp;gt;&amp;lt;TITLE&amp;gt;GREEN: A Configurable and Re-Configurable Publish-Subscribe Middleware for Pervasive Computing&amp;lt;/TITLE&amp;gt;&amp;lt;SECONDARY_TITLE&amp;gt;Distributed Objects and Applications (DOA&amp;amp;#x2019;05)&amp;lt;/SECONDARY_TITLE&amp;gt;&amp;lt;PLACE_PUBLISHED&amp;gt; Agia Napa, Cyprus&amp;lt;/PLACE_PUBLISHED&amp;gt;&amp;lt;/MDL&amp;gt;&amp;lt;/Cite&amp;gt;&amp;lt;/EndNote&amp;gt;&lt;span style='mso-element:field-separator'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span style='mso-element:field-begin'></span><span
+style='mso-spacerun:yes'> </span>ADDIN EN.CITE
+&lt;EndNote&gt;&lt;Cite&gt;&lt;Author&gt;Sivaharan&lt;/Author&gt;&lt;Year&gt;2005&lt;/Year&gt;&lt;RecNum&gt;271&lt;/RecNum&gt;&lt;MDL&gt;&lt;REFERENCE_TYPE&gt;3&lt;/REFERENCE_TYPE&gt;&lt;AUTHORS&gt;&lt;AUTHOR&gt;Sivaharan,
+T.&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Blair, G.S.&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Coulson,
+G.&lt;/AUTHOR&gt;&lt;/AUTHORS&gt;&lt;YEAR&gt;2005&lt;/YEAR&gt;&lt;TITLE&gt;GREEN:
+A Configurable and Re-Configurable Publish-Subscribe Middleware for Pervasive
+Computing&lt;/TITLE&gt;&lt;SECONDARY_TITLE&gt;Distributed Objects and
+Applications (DOA&amp;#x2019;05)&lt;/SECONDARY_TITLE&gt;&lt;PLACE_PUBLISHED&gt;
+Agia Napa,
+Cyprus&lt;/PLACE_PUBLISHED&gt;&lt;/MDL&gt;&lt;/Cite&gt;&lt;/EndNote&gt;<span
+style='mso-element:field-separator'></span><![endif]--></comment><comment title="[if supportFields]&gt;&lt;span style='mso-element:field-end'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]--></comment>,
+YANCEES<comment title="[if supportFields]&gt;&lt;span style='mso-element:field-begin'&gt;&lt;/span&gt;&lt;span style='mso-spacerun:yes'&gt; &lt;/span&gt;ADDIN EN.CITE &amp;lt;EndNote&amp;gt;&amp;lt;Cite&amp;gt;&amp;lt;Author&amp;gt;Silva Filho&amp;lt;/Author&amp;gt;&amp;lt;Year&amp;gt;2005&amp;lt;/Year&amp;gt;&amp;lt;RecNum&amp;gt;283&amp;lt;/RecNum&amp;gt;&amp;lt;MDL&amp;gt;&amp;lt;REFERENCE_TYPE&amp;gt;3&amp;lt;/REFERENCE_TYPE&amp;gt;&amp;lt;AUTHORS&amp;gt;&amp;lt;AUTHOR&amp;gt;Silva Filho, R. S.&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Redmiles, D.&amp;lt;/AUTHOR&amp;gt;&amp;lt;/AUTHORS&amp;gt;&amp;lt;YEAR&amp;gt;2005&amp;lt;/YEAR&amp;gt;&amp;lt;TITLE&amp;gt;Striving for Versatility in Publish/Subscribe Infrastructures&amp;lt;/TITLE&amp;gt;&amp;lt;SECONDARY_TITLE&amp;gt;5th International Workshop on Software Engineering and Middleware (SEM&amp;amp;apos;2005)&amp;lt;/SECONDARY_TITLE&amp;gt;&amp;lt;PLACE_PUBLISHED&amp;gt;Lisbon, Portugal.&amp;lt;/PLACE_PUBLISHED&amp;gt;&amp;lt;PUBLISHER&amp;gt;ACM Press&amp;lt;/PUBLISHER&amp;gt;&amp;lt;PAGES&amp;gt;17 - 24&amp;lt;/PAGES&amp;gt;&amp;lt;DATE&amp;gt;September, 5th-6th 2005&amp;lt;/DATE&amp;gt;&amp;lt;/MDL&amp;gt;&amp;lt;/Cite&amp;gt;&amp;lt;/EndNote&amp;gt;&lt;span style='mso-element:field-separator'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span
+style='mso-element:field-begin'></span><span
+style='mso-spacerun:yes'> </span>ADDIN EN.CITE
+&lt;EndNote&gt;&lt;Cite&gt;&lt;Author&gt;Silva
+Filho&lt;/Author&gt;&lt;Year&gt;2005&lt;/Year&gt;&lt;RecNum&gt;283&lt;/RecNum&gt;&lt;MDL&gt;&lt;REFERENCE_TYPE&gt;3&lt;/REFERENCE_TYPE&gt;&lt;AUTHORS&gt;&lt;AUTHOR&gt;Silva
+Filho, R. S.&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Redmiles,
+D.&lt;/AUTHOR&gt;&lt;/AUTHORS&gt;&lt;YEAR&gt;2005&lt;/YEAR&gt;&lt;TITLE&gt;Striving
+for Versatility in Publish/Subscribe
+Infrastructures&lt;/TITLE&gt;&lt;SECONDARY_TITLE&gt;5th International Workshop
+on Software Engineering and Middleware
+(SEM&amp;apos;2005)&lt;/SECONDARY_TITLE&gt;&lt;PLACE_PUBLISHED&gt;Lisbon,
+Portugal.&lt;/PLACE_PUBLISHED&gt;&lt;PUBLISHER&gt;ACM
+Press&lt;/PUBLISHER&gt;&lt;PAGES&gt;17 - 24&lt;/PAGES&gt;&lt;DATE&gt;September,
+5th-6th 2005&lt;/DATE&gt;&lt;/MDL&gt;&lt;/Cite&gt;&lt;/EndNote&gt;<span
+style='mso-element:field-separator'></span><![endif]--></comment><comment title="[if supportFields]&gt;&lt;span style='mso-element:field-end'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]--></comment>
+and FACET<comment title="[if supportFields]&gt;&lt;span style='mso-element:field-begin'&gt;&lt;/span&gt;&lt;span style='mso-spacerun:yes'&gt; &lt;/span&gt;ADDIN EN.CITE &amp;lt;EndNote&amp;gt;&amp;lt;Cite&amp;gt;&amp;lt;Author&amp;gt;Pratap&amp;lt;/Author&amp;gt;&amp;lt;Year&amp;gt;2004&amp;lt;/Year&amp;gt;&amp;lt;RecNum&amp;gt;304&amp;lt;/RecNum&amp;gt;&amp;lt;MDL&amp;gt;&amp;lt;REFERENCE_TYPE&amp;gt;0&amp;lt;/REFERENCE_TYPE&amp;gt;&amp;lt;AUTHORS&amp;gt;&amp;lt;AUTHOR&amp;gt;Pratap, R.M.&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Hunleth, F.&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Cytron, R.K&amp;lt;/AUTHOR&amp;gt;&amp;lt;/AUTHORS&amp;gt;&amp;lt;YEAR&amp;gt;2004&amp;lt;/YEAR&amp;gt;&amp;lt;TITLE&amp;gt;Building fully customizable middleware using an aspect-oriented approach&amp;lt;/TITLE&amp;gt;&amp;lt;SECONDARY_TITLE&amp;gt;IEE Proceedings - Software Engineering&amp;lt;/SECONDARY_TITLE&amp;gt;&amp;lt;VOLUME&amp;gt;151&amp;lt;/VOLUME&amp;gt;&amp;lt;NUMBER&amp;gt;4&amp;lt;/NUMBER&amp;gt;&amp;lt;PAGES&amp;gt;199-216&amp;lt;/PAGES&amp;gt;&amp;lt;DATE&amp;gt;6 August 2004&amp;lt;/DATE&amp;gt;&amp;lt;/MDL&amp;gt;&amp;lt;/Cite&amp;gt;&amp;lt;/EndNote&amp;gt;&lt;span style='mso-element:field-separator'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span
+style='mso-element:field-begin'></span><span
+style='mso-spacerun:yes'> </span>ADDIN EN.CITE
+&lt;EndNote&gt;&lt;Cite&gt;&lt;Author&gt;Pratap&lt;/Author&gt;&lt;Year&gt;2004&lt;/Year&gt;&lt;RecNum&gt;304&lt;/RecNum&gt;&lt;MDL&gt;&lt;REFERENCE_TYPE&gt;0&lt;/REFERENCE_TYPE&gt;&lt;AUTHORS&gt;&lt;AUTHOR&gt;Pratap,
+R.M.&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Hunleth,
+F.&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Cytron, R.K&lt;/AUTHOR&gt;&lt;/AUTHORS&gt;&lt;YEAR&gt;2004&lt;/YEAR&gt;&lt;TITLE&gt;Building
+fully customizable middleware using an aspect-oriented
+approach&lt;/TITLE&gt;&lt;SECONDARY_TITLE&gt;IEE Proceedings - Software
+Engineering&lt;/SECONDARY_TITLE&gt;&lt;VOLUME&gt;151&lt;/VOLUME&gt;&lt;NUMBER&gt;4&lt;/NUMBER&gt;&lt;PAGES&gt;199-216&lt;/PAGES&gt;&lt;DATE&gt;6
+August 2004&lt;/DATE&gt;&lt;/MDL&gt;&lt;/Cite&gt;&lt;/EndNote&gt;<span
+style='mso-element:field-separator'></span><![endif]--></comment><comment title="[if supportFields]&gt;&lt;span style='mso-element:field-end'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]--></comment>
+). These infrastructures adopt
+compositional frameworks<comment title="[if supportFields]&gt;&lt;span style='mso-element:field-begin'&gt;&lt;/span&gt;&lt;span style='mso-spacerun:yes'&gt; &lt;/span&gt;ADDIN EN.CITE &amp;lt;EndNote&amp;gt;&amp;lt;Cite&amp;gt;&amp;lt;Author&amp;gt;Ommering&amp;lt;/Author&amp;gt;&amp;lt;Year&amp;gt;2002&amp;lt;/Year&amp;gt;&amp;lt;RecNum&amp;gt;498&amp;lt;/RecNum&amp;gt;&amp;lt;MDL&amp;gt;&amp;lt;REFERENCE_TYPE&amp;gt;0&amp;lt;/REFERENCE_TYPE&amp;gt;&amp;lt;AUTHORS&amp;gt;&amp;lt;AUTHOR&amp;gt;Rob van Ommering&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Jan Bosch&amp;lt;/AUTHOR&amp;gt;&amp;lt;/AUTHORS&amp;gt;&amp;lt;YEAR&amp;gt;2002&amp;lt;/YEAR&amp;gt;&amp;lt;TITLE&amp;gt; Widening the Scope of Software Product Lines &amp;amp;#x2014; From Variation to Composition&amp;lt;/TITLE&amp;gt;&amp;lt;SECONDARY_TITLE&amp;gt;LNCS - Second International Conference on Software Product Lines&amp;lt;/SECONDARY_TITLE&amp;gt;&amp;lt;VOLUME&amp;gt;2379&amp;lt;/VOLUME&amp;gt;&amp;lt;PAGES&amp;gt;328 - 347&amp;lt;/PAGES&amp;gt;&amp;lt;/MDL&amp;gt;&amp;lt;/Cite&amp;gt;&amp;lt;/EndNote&amp;gt;&lt;span style='mso-element:field-separator'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span style='mso-element:field-begin'></span><span
+style='mso-spacerun:yes'> </span>ADDIN EN.CITE
+&lt;EndNote&gt;&lt;Cite&gt;&lt;Author&gt;Ommering&lt;/Author&gt;&lt;Year&gt;2002&lt;/Year&gt;&lt;RecNum&gt;498&lt;/RecNum&gt;&lt;MDL&gt;&lt;REFERENCE_TYPE&gt;0&lt;/REFERENCE_TYPE&gt;&lt;AUTHORS&gt;&lt;AUTHOR&gt;Rob
+van Ommering&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Jan
+Bosch&lt;/AUTHOR&gt;&lt;/AUTHORS&gt;&lt;YEAR&gt;2002&lt;/YEAR&gt;&lt;TITLE&gt;
+Widening the Scope of Software Product Lines &amp;#x2014; From Variation to
+Composition&lt;/TITLE&gt;&lt;SECONDARY_TITLE&gt;LNCS - Second International
+Conference on Software Product Lines&lt;/SECONDARY_TITLE&gt;&lt;VOLUME&gt;2379&lt;/VOLUME&gt;&lt;PAGES&gt;328
+- 347&lt;/PAGES&gt;&lt;/MDL&gt;&lt;/Cite&gt;&lt;/EndNote&gt;<span
+style='mso-element:field-separator'></span><![endif]--></comment><comment title="[if supportFields]&gt;&lt;span style='mso-element:field-end'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]--></comment>
+based on plug-ins (as with
+GREEN and YANCEES) or Aspects&nbsp;<comment title="[if supportFields]&gt;&lt;span style='mso-element:field-begin'&gt;&lt;/span&gt;&lt;span style='mso-spacerun:yes'&gt; &lt;/span&gt;ADDIN EN.CITE &amp;lt;EndNote&amp;gt;&amp;lt;Cite&amp;gt;&amp;lt;Author&amp;gt;Kiczales&amp;lt;/Author&amp;gt;&amp;lt;Year&amp;gt;1997&amp;lt;/Year&amp;gt;&amp;lt;RecNum&amp;gt;171&amp;lt;/RecNum&amp;gt;&amp;lt;MDL&amp;gt;&amp;lt;REFERENCE_TYPE&amp;gt;3&amp;lt;/REFERENCE_TYPE&amp;gt;&amp;lt;AUTHORS&amp;gt;&amp;lt;AUTHOR&amp;gt;Gregor Kiczales&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;John Lamping&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Anurag Mendhekar&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Chris Maeda&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Cristina Videira Lopes&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;Jean-Marc Loingtier&amp;lt;/AUTHOR&amp;gt;&amp;lt;AUTHOR&amp;gt;John Irwin&amp;lt;/AUTHOR&amp;gt;&amp;lt;/AUTHORS&amp;gt;&amp;lt;YEAR&amp;gt;1997&amp;lt;/YEAR&amp;gt;&amp;lt;TITLE&amp;gt;Aspect-Oriented Programming&amp;lt;/TITLE&amp;gt;&amp;lt;SECONDARY_TITLE&amp;gt;European Conference on Object-Oriented Programming&amp;lt;/SECONDARY_TITLE&amp;gt;&amp;lt;PLACE_PUBLISHED&amp;gt;Jyv&amp;amp;#xE4;skyl&amp;amp;#xE4;, Finland&amp;lt;/PLACE_PUBLISHED&amp;gt;&amp;lt;PUBLISHER&amp;gt;Springer-Verlag&amp;lt;/PUBLISHER&amp;gt;&amp;lt;VOLUME&amp;gt;1241&amp;lt;/VOLUME&amp;gt;&amp;lt;PAGES&amp;gt;220-242&amp;lt;/PAGES&amp;gt;&amp;lt;DATE&amp;gt;9-13 June 1997&amp;lt;/DATE&amp;gt;&amp;lt;/MDL&amp;gt;&amp;lt;/Cite&amp;gt;&amp;lt;/EndNote&amp;gt;&lt;span style='mso-element:field-separator'&gt;&lt;/span&gt;&lt;![endif]" xmlns="http://disruptive-innovations.com/zoo/nvu"><!--[if supportFields]><span
+style='mso-element:field-begin'></span><span
+style='mso-spacerun:yes'> </span>ADDIN EN.CITE
+&lt;EndNote&gt;&lt;Cite&gt;&lt;Author&gt;Kiczales&lt;/Author&gt;&lt;Year&gt;1997&lt;/Year&gt;&lt;RecNum&gt;171&lt;/RecNum&gt;&lt;MDL&gt;&lt;REFERENCE_TYPE&gt;3&lt;/REFERENCE_TYPE&gt;&lt;AUTHORS&gt;&lt;AUTHOR&gt;Gregor
+Kiczales&lt;/AUTHOR&gt;&lt;AUTHOR&gt;John
+Lamping&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Anurag
+Mendhekar&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Chris
+Maeda&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Cristina Videira
+Lopes&lt;/AUTHOR&gt;&lt;AUTHOR&gt;Jean-Marc
+Loingtier&lt;/AUTHOR&gt;&lt;AUTHOR&gt;John Irwin&lt;/AUTHOR&gt;&lt;/AUTHORS&gt;&lt;YEAR&gt;1997&lt;/YEAR&gt;&lt;TITLE&gt;Aspect-Oriented
+Programming&lt;/TITLE&gt;&lt;SECONDARY_TITLE&gt;European Conference on
+Object-Oriented
+Programming&lt;/SECONDARY_TITLE&gt;&lt;PLACE_PUBLISHED&gt;Jyv&amp;#xE4;skyl&amp;#xE4;,
+Finland&lt;/PLACE_PUBLISHED&gt;&lt;PUBLISHER&gt;Springer-Verlag&lt;/PUBLISHER&gt;&lt;VOLUME&gt;1241&lt;/VOLUME&gt;&lt;PAGES&gt;220-242&lt;/PAGES&gt;&lt;DATE&gt;9-13
+June 1997&lt;/DATE&gt;&lt;/MDL&gt;&lt;/Cite&gt;&lt;/EndNote&gt;<span
+style='mso-element:field-separator'></span><![endif]--></comment>
+(as the case with FACET),
+allowing the generation of application-specific infrastructures out of
+a existing
+or new components.</p>
+<p class="MsoNormal">The approaches above present
+increasing levels of
+configurability,&nbsp; extensibility, generality and reusability.
+Apart from build-from-scratch
+approaches,
+that are, in their majority, monolithic and tailored for specific
+application
+domains, all
+other approaches strive to be versatile, supportting a broader set of
+applications from
+different
+domains.</p>
+<p class="MsoNormal">The selected infrastructures for our
+experiments were: <span style="font-weight: bold;">Siena,
+JavaSpaces, CORBA-NS (Community OpenORB) and YANCEES.</span></p><p class="MsoNormal">While
+Siena, JavaSpaces and CORBA-NS &nbsp;represent coarse-grained
+components that can be used as either white boxes or black boxes,
+YANCEES support a novel form of reuse: grey-box, where the
+partially-implemented publish/susbcribe functionality can be customized
+and extended to support applicattion-specific requirements.</p><h2 align="justify"><span lang="en-us"><a name="Results"></a>Results</span></h2><span style="text-decoration: underline;"><span style="font-weight: bold;"></span></span>The
+quantitatieve and qualitative results of our experiments, with the
+derived principles and guidelines are presented in the following ISR
+Technical Report: <a href="http://www.isr.uci.edu/tech_reports/UCI-ISR-09-3.pdf">An Analysis of Publish/Subscribe Middleware Versatility</a><br><br>Click <a href="src/Measurements.zip">here</a> to download the excel spreadsheets with the data collected in our analysis (size: 2MB).<br><br>
+<h2><a name="Code"></a>Code</h2>Click <a href="src/proj.thesis.zip">here </a>to
+download the source code used in our case studies (size: 90MB). It
+includes ConcernTagger and ConcernMapper configurations, in the /src
+directories of each project.<small><br>
+</small><span style=""><font style="" face="Verdana, Arial, Helvetica, sans-serif"><br>
+</font></span>
+<h3>Acknowledgements</h3>
+<p>This research has been sponsored by NSF (grants 0133749,
+0205724, 0326105, 0527729,0524033), an IBM Eclipse technology exchange
+grant, and the Intel Corporation. </p>
+<hr>
+<center><span lang="en-us">Research Staff: <a href="http://www.ics.uci.edu/%7Ersilvafi">Roberto Silveira
+Silva
+Filho</a><br>
+Professor: <a href="http://www.ics.uci.edu/%7Eredmiles/">
+David F.
+Redmiles</a><br>
+<i><a href="http://www.isr.uci.edu/">Institute for
+Software Research</a><br>
+<a href="http://www.ics.uci.edu/">Information and Computer
+Science</a><br>
+<a href="http://www.uci.edu/">University of California,
+Irvine</a>
+CA 92697-3425</i><br>
+<a href="mailto:redmiles@ics.uci.edu"><br>
+</a></span></center>
+<hr>
+<center>
+<p><font color="white" size="1"><a target="_top" href="http://extremetracking.com/open?login=yancees"><br>
+</a></font></p>
+</center>
+<hr>
+<address class="style1"> This page was last updated on May
+2nd,
+2008
+</address>
+</body></html>

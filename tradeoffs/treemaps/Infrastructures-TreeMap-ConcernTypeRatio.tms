@@ -1,0 +1,268 @@
+false
+Infrastructures-TreeMap-Data.txt
+TREEMAP VERSION	Treemap 4.1
+FLIP_SLICE_AND_DICE	false
+PARTITIONING_METHOD	1
+NOMINAL_ATTRIBUTE	4
+2	3
+true
+true
+true
+1	4
+true
+true
+true
+true
+3	26
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+3	60
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+LABEL_ATTRIBUTE_INDEX	4
+SIZE_ATTRIBUTE_NUMERIC_INDEX	6
+COLOR_ATTRIBUTE_INDEX	0
+AUTOHIDE	false
+VISIBLE_POPUP	true
+DIRECTORY_MAPPING_DATA	false
+FONT_SIZE	12
+BORDER_SIZE	3
+ALL_NOMINAL_STRINGS_TO_COLORS	4
+0
+3
+Essential	1	0	204	204
+Optional	2	0	127	0
+Accidental	0	0	0	127
+1
+4
+Siena	2	0	127	0
+YANCEES	3	0	127	127
+JavaSpaces	1	204	204	0
+CORBANS	0	0	0	127
+2
+26
+Publication	15	127	254	254
+Services	19	254	127	0
+ParsingUtil	12	127	127	254
+Routing	18	254	0	254
+Theading	22	254	254	0
+CM	2	0	127	0
+AccessControl	0	0	0	127
+Leasing	9	127	0	127
+ExtensionPoint	7	0	254	254
+Publicatoin	16	254	0	0
+Reflection	17	254	0	127
+Transactions	24	96	96	223
+Config&Connect	3	0	127	127
+Logging	10	127	0	254
+Subscription	20	254	127	127
+Exception	6	0	254	127
+Persistence	13	127	254	0
+Protocol	14	127	254	127
+UserTemplates	25	96	223	96
+Notification	11	127	127	0
+Adaptation	1	0	0	254
+Factory	8	127	0	0
+Termination	21	254	127	254
+Threading	23	254	254	127
+Event	5	0	254	0
+Distribution	4	0	127	254
+4
+60
+YANCEES_ACC_CM_Automation	42	255	255	255
+JavaSpaces_ACC_Leasing	19	254	127	0
+CORBANS_ESS_Protocol(Management&Monitor)	10	127	0	254
+YANCEES_ACC_ExtensionPointsFactory	48	255	255	255
+CORBANS_ACC_Logging	5	0	254	0
+Siena_ACC_Exception	33	159	32	32
+YANCEES_ACC_Config&Connect	45	255	255	255
+Siena_ACC_Config&Connect	31	32	159	32
+JavaSpaces_ESS_Notification	25	96	223	96
+YANCEES_ESS_Protocol	56	255	255	255
+Siena_ESS_Notification	37	64	191	64
+Siena_ACC_Threading	35	159	159	32
+JavaSpaces_ESS_Protocols(User)	26	96	223	223
+YANCEES_ACC_ExtensionPoints	47	255	255	255
+Siena_ACC_Logging	34	159	32	159
+JavaSpaces_ACC_AccessControl	15	127	254	254
+YANCEES_ACC_Threading	52	255	255	255
+YANCEES_ACC_CM_Parsing	44	255	255	255
+CORBANS_ESS_Publication	11	127	127	0
+JavaSpaces_ESS_Publication	27	223	96	96
+JavaSpaces_ESS_Subscription_Parsing	30	32	32	159
+JavaSpaces_ESS_Routing&Matching	28	223	96	223
+JavaSpaces_ACC_Distribution	17	254	0	127
+CORBANS_ACC_Persistence	6	0	254	127
+JavaSpaces_ACC_Persistence	20	254	127	127
+JavaSpaces_ESS_Subscription_API	29	223	223	96
+YANCEES_ESS_Subscription	59	255	255	255
+Siena_ACC_Distribution	32	32	159	159
+YANCEES_ACC_UserTemplates	53	255	255	255
+Siena_ESS_Event	36	64	64	191
+CORBANS_ESS_Subscription_Parsing&Rep	14	127	254	127
+JavaSpaces_ACC_Transactions	23	254	254	127
+CORBANS_ACC_Factory(Dynamism)	4	0	127	254
+YANCEES_ACC_ParsingUtil	49	255	255	255
+CORBANS_ESS_Event	8	127	0	0
+JavaSpaces_ACC_Exception	18	254	0	254
+JavaSpaces_ESS_Event	24	96	96	223
+YANCEES_ACC_CM_Builder	43	255	255	255
+CORBANS_ACC_Adaptation(Data)	0	0	0	127
+YANCEES_ESS_Publication	57	255	255	255
+JavaSpaces_ACC_Threading	22	254	254	0
+YANCEES_ESS_Event	54	255	255	255
+CORBANS_ESS_Routing&Matching	12	127	127	254
+YANCEES_ACC_Reflection&Registry	50	255	255	255
+Siena_ESS_Routing	40	191	64	191
+CORBANS_ESS_Subscription_API	13	127	254	0
+YANCEES_ACC_Services	51	255	255	255
+Siena_ESS_Publication	39	191	64	64
+YANCEES_ESS_Notification	55	255	255	255
+YANCEES_ESS_Routing	58	255	255	255
+CORBANS_ACC_Config&Connect	1	0	0	254
+Siena_ESS_Protocol	38	64	191	191
+YANCEES_ACC_Distribution	46	255	255	255
+CORBANS_ACC_Exception	3	0	127	127
+Siena_ESS_Subscription	41	191	191	64
+CORBANS_ESS_Notification	9	127	0	127
+JavaSpaces_ACC_Termination	21	254	127	254
+CORBANS_ACC_Threading	7	0	254	254
+CORBANS_ACC_Distribution	2	0	127	0
+JavaSpaces_ACC_Config&Connect	16	254	0	0
+COLOR_BINNING_PROPERTIES
+0	0.00	1.00	1	0	0	0	0	255	0
+0	0.00	0.987	1	0	0	0	0	255	0
+0	0.00	0.997	1	0	0	0	0	255	0
+0	1.00	109.00	1	0	0	0	0	255	0
+0	1.00	574.00	1	0	0	0	0	255	0
+0	27.00	7075.00	1	0	0	0	0	255	0
+0	0.00	0.31	1	0	0	0	0	255	0
+HIERARCHY_HISTORY
+2
+Hierarchy: 1	4
+-1	1	0	2	
+Hierarchy: 2	4
+-1	0	2	1	
+0
+-1	-1
+BINNING_PROPERTIES
+0	0.00	1.00	1
+0	0.00	0.987	1
+0	0.00	0.997	1
+0	1.00	109.00	1
+0	1.00	574.00	1
+0	27.00	7075.00	1
+0	0.00	0.31	1
+USER_MAXIMUM_DEPTH	4
+HIDE_LEAF_LABEL	true
+NUMERICAL_ATTRIBUTE_USER_MINIMA	7
+false	-1
+false	-1
+false	-1
+false	0
+false	0
+false	26
+false	-1
+NUMERICAL_ATTRIBUTE_USER_MAXIMA	7
+false	2
+false	1
+false	1
+false	110
+false	575
+false	7076
+false	1
+AGGREGATE_FUNCTION	7
+3	1
+5	1
+6	1
+7	1
+8	1
+9	1
+10	1
+HIGHLIGHTED_NODE	-1
+TREEMAP_TITLE	Infrastructure Concerns
+NO_BORDER	true
+USER_ROOT	-1
+END_SETTINGS
